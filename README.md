@@ -1,6 +1,6 @@
-[![Mozilla Add-ons](https://img.shields.io/amo/v/anime-watch-parties?label=Firefox&logo=Firefox)](https://addons.mozilla.org/firefox/addon/anime-watch-parties/)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/goinehmnmhnoaepodbngfgdgjeibgelh?label=Chrome&logo=Google%20Chrome)](https://chrome.google.com/webstore/detail/anime-watch-parties/goinehmnmhnoaepodbngfgdgjeibgelh)
-[![Github](https://img.shields.io/github/license/Dragicafit/Anime-Watch-Parties?logo=Github)](https://github.com/Dragicafit/Anime-Watch-Parties)
+[![Mozilla Add-ons](https://img.shields.io/amo/v/crunchyroll-with-better-seasons?label=Firefox&logo=Firefox)](https://addons.mozilla.org/firefox/addon/crunchyroll-with-better-seasons/)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/goinehmnmhnoaepodbngfgdgjeibgelh?label=Chrome&logo=Google%20Chrome)](https://chrome.google.com/webstore/detail/crunchyroll-with-better-seasons/goinehmnmhnoaepodbngfgdgjeibgelh)
+[![Github](https://img.shields.io/github/license/Dragicafit/Crunchyroll-With-Better-Seasons?logo=Github)](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons)
 
 # Crunchyroll With Better Seasons
 
@@ -12,13 +12,13 @@ On the episode page, it adds a setting to change the audio langiage.
 
 ## Manual Install
 
-- Firefox: Download the [xpi release](https://github.com/Dragicafit/Anime-Watch-Parties/releases/download/v0.4.5-beta/Anime-Watch-Parties.xpi), go to `about:debugging#/runtime/this-firefox`, click on `Load Temporay Add-on...` and select the xpi file.
-- Chromium: Download the [crx release](https://github.com/Dragicafit/Anime-Watch-Parties/releases/download/v0.4.5-beta/Anime-Watch-Parties.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
-- Chrome: Download the [crx release](https://github.com/Dragicafit/Anime-Watch-Parties/releases/download/v0.4.5-beta/Anime-Watch-Parties.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
+- Firefox: Download the [xpi release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.1.0-beta/Crunchyroll-With-Better-Seasons.xpi), go to `about:debugging#/runtime/this-firefox`, click on `Load Temporay Add-on...` and select the xpi file.
+- Chromium: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.1.0-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
+- Chrome: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.1.0-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
 
 ## Developing or debugging the extension
 
-The [master branch](https://github.com/Dragicafit/Anime-Watch-Parties) generate the firefox extension, the [chrome branch](https://github.com/Dragicafit/Anime-Watch-Parties/tree/chrome) generate the chrome and chromium extension.
+The [master branch](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons) generate the firefox extension, the [chrome branch](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/tree/chrome) generate the chrome and chromium extension.
 
 This project uses [Node.js](https://nodejs.org/). You have to install it before continuing:
 
