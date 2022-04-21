@@ -1,8 +1,20 @@
-import { languages } from "../background-scripts/backgroundConst";
+import {
+  crunchyrollApiEpisode,
+  crunchyrollApiObjects,
+  crunchyrollApiSeasons,
+  crunchyrollApiUpNextSeries,
+  episode_metadata,
+  languages,
+} from "../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
 export class TabOverrideXMLHttpRequest {
   private tabContext: TabContext;
   private upNext: string[] | undefined;
+  private currentEpisode:
+    | (episode_metadata & {
+        id: string;
+      })
+    | undefined;
 
   constructor(tabContext: TabContext) {
     this.tabContext = tabContext;
@@ -15,7 +27,7 @@ export class TabOverrideXMLHttpRequest {
 
     let _open = XMLHttpRequest.prototype.open;
     window.XMLHttpRequest.prototype.open = function (method, url) {
-      let url2: string = "";
+      let url2 = "";
       if (url instanceof URL) {
         url2 = url.href;
       } else if (typeof url === "string") {
@@ -36,40 +48,119 @@ export class TabOverrideXMLHttpRequest {
             _this.readyState === 4 &&
             _this.status === 200
           ) {
-            let data = JSON.parse(_this.responseText);
+            const data = JSON.parse(_this.responseText);
 
-            if (
-              url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
-              url2.includes("/M3/crunchyroll/seasons")
-            ) {
-              try {
-                Object.defineProperty(_this, "responseText", {
-                  value: JSON.stringify(
-                    tabOverrideXMLHttpRequest.filterLanguages(
-                      data,
-                      preferedLanguages
-                    )
-                  ),
+            if (document.URL.includes("/watch/")) {
+              if (
+                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
+                url2.includes("/objects/")
+              ) {
+                const dataObjects = <crunchyrollApiObjects>data;
+                tabOverrideXMLHttpRequest.currentEpisode = {
+                  ...dataObjects.items[0].episode_metadata,
+                  id: dataObjects.items[0].id,
+                };
+              } else if (
+                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
+                url2.includes("/M3/crunchyroll/seasons")
+              ) {
+                const dataSeasons = <crunchyrollApiSeasons>data;
+                console.info(url2);
+                dataSeasons.items = dataSeasons.items.map((item) => {
+                  const slug_title = item.slug_title;
+                  if (slug_title.endsWith("-english-dub")) {
+                    item.lang = "EN";
+                  } else if (slug_title.endsWith("-french-dub")) {
+                    item.lang = "FR";
+                  } else if (slug_title.endsWith("-spanish-dub")) {
+                    item.lang = "ES";
+                  } else if (slug_title.endsWith("-portuguese-dub")) {
+                    item.lang = "PT";
+                  } else if (slug_title.endsWith("-german-dub")) {
+                    item.lang = "DE";
+                  } else if (slug_title.endsWith("-russian-dub")) {
+                    item.lang = "RU";
+                  }
+                  item.slug_title = item.slug_title.replace(
+                    /-english-dub|-french-dub|-spanish-dub|-portuguese-dub|-german-dub|-russian-dub/,
+                    ""
+                  );
+                  return item;
                 });
-              } catch (e) {}
-            } else if (
-              url2.startsWith(
-                "https://beta-api.crunchyroll.com/content/v1/up_next_series"
-              )
-            ) {
-              try {
-                tabOverrideXMLHttpRequest.adaptUpNext(data).then((data) => {
+                const newLocal = dataSeasons.items.find(
+                  (value) =>
+                    value.id ==
+                    tabOverrideXMLHttpRequest.currentEpisode?.season_id
+                )!;
+                const slug_title = newLocal.slug_title;
+                const slug_title2 = slug_title;
+                console.info(slug_title2);
+                const seasons = dataSeasons.items.filter(
+                  (value) => value.slug_title == slug_title2
+                );
+                console.info(seasons);
+                for (const season of seasons) {
+                  let url3 = url2.replace(
+                    "seasons?series_id=" + season.series_id,
+                    "episodes?season_id=" + season.id
+                  );
+                  season;
+                  fetch(url3)
+                    .then((response) => response.json())
+                    .then((body: crunchyrollApiEpisode) => {
+                      const episode = body.items.find(
+                        (item) =>
+                          item.sequence_number ===
+                          tabOverrideXMLHttpRequest.currentEpisode
+                            ?.sequence_number
+                      )!;
+                      console.info(
+                        document.URL.replace(
+                          tabOverrideXMLHttpRequest.currentEpisode!.id,
+                          episode.id
+                        )
+                      );
+                    });
+                }
+              }
+            } else if (document.URL.includes("/series/")) {
+              if (
+                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
+                url2.includes("/M3/crunchyroll/seasons")
+              ) {
+                const dataSeasons = <crunchyrollApiSeasons>data;
+                try {
                   Object.defineProperty(_this, "responseText", {
-                    value: JSON.stringify(data),
+                    value: JSON.stringify(
+                      tabOverrideXMLHttpRequest.filterLanguages(
+                        dataSeasons,
+                        preferedLanguages
+                      )
+                    ),
                   });
-                  resolve();
-                });
-                return;
-              } catch (e) {}
+                } catch (e) {}
+              } else if (
+                url2.startsWith(
+                  "https://beta-api.crunchyroll.com/content/v1/up_next_series"
+                )
+              ) {
+                const dataUpNextSeries = <crunchyrollApiUpNextSeries>data;
+                try {
+                  tabOverrideXMLHttpRequest
+                    .adaptUpNext(dataUpNextSeries)
+                    .then((data) => {
+                      Object.defineProperty(_this, "responseText", {
+                        value: JSON.stringify(data),
+                      });
+                      resolve();
+                    });
+                  return;
+                } catch (e) {}
+              }
             }
           }
           resolve();
-        }).then(() => {
+        }).finally(() => {
           if (_onloadend == null) return;
           _onloadend.apply(this, <any>arguments);
         });
