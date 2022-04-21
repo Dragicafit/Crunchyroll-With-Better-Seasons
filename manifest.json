@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Crunchyroll Dub Filter",
-  "description": "Disable unwanted dubs and sort languages according to your preference",
+  "name": "Crunchyroll With Better Seasons",
+  "description": "Instead of having multiple seasons as DUBS, change audio language directly from the episode.",
   "version": "1.0",
   "author": "Dragicafit",
   "permissions": [],

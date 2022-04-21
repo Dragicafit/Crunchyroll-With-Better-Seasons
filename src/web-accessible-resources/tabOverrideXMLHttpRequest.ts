@@ -167,7 +167,7 @@ export class TabOverrideXMLHttpRequest {
       });
       vilosWindow.postMessage(
         {
-          direction: "from-script-AWP",
+          direction: "from-script-CWBS",
           command: eventsBackgroundSend.SEND_INFO,
           currentAudioLanguage: currentLanguageId,
           audioLanguages: languagesWithoutNullOrdered,

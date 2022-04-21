@@ -16,7 +16,7 @@ window.addEventListener("message", (event) => {
   if (
     event.source !== window.parent ||
     event.origin !== "https://beta.crunchyroll.com" ||
-    event.data?.direction !== "from-script-AWP"
+    event.data?.direction !== "from-script-CWBS"
   )
     return;
   switch (event.data.command) {
