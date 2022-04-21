@@ -136,7 +136,8 @@ export class TabOverrideXMLHttpRequest {
             const episode = body.items.find(
               (item) =>
                 item.sequence_number === this.currentEpisode?.sequence_number
-            )!;
+            );
+            if (episode == null) return;
             return {
               id: season.lang,
               name: langToDisplay[season.lang],
@@ -146,27 +147,30 @@ export class TabOverrideXMLHttpRequest {
       );
     }
     Promise.all(promiseList).then((languages) => {
-      languages = possibleLangKeys
+      let languagesWithoutNull = languages.flatMap((language) =>
+        language ? [language] : []
+      );
+      let languagesWithoutNullOrdered = possibleLangKeys
         .filter((lang) =>
-          languages.map((language) => language.id).includes(lang)
+          languagesWithoutNull.map((language) => language.id).includes(lang)
         )
-        .map((lang) => languages.find((lang2) => lang == lang2.id)!);
-      const currentLanguage = languages.find(
+        .map((lang) => languagesWithoutNull.find((lang2) => lang == lang2.id)!);
+      const currentLanguageId = languagesWithoutNullOrdered.find(
         (season) => season.id == currentSeason.lang
       )?.id;
       const vilosWindow = (<HTMLIFrameElement>(
         document.getElementsByClassName("video-player")[0]
       )).contentWindow!;
       console.log("send info", {
-        currentLanguage: currentLanguage,
-        languages: languages,
+        currentLanguage: currentLanguageId,
+        languages: languagesWithoutNullOrdered,
       });
       vilosWindow.postMessage(
         {
           direction: "from-script-AWP",
           command: eventsBackgroundSend.SEND_INFO,
-          currentLanguage: currentLanguage,
-          languages: languages,
+          currentLanguage: currentLanguageId,
+          languages: languagesWithoutNullOrdered,
         },
         "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
       );
