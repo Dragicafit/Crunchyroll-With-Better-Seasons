@@ -18,8 +18,8 @@
     },
     {
       "matches": [
-        "https://beta.crunchyroll.com/*/watch/*",
-        "https://beta.crunchyroll.com/*/series/*"
+        "https://beta.crunchyroll.com/*watch/*",
+        "https://beta.crunchyroll.com/*series/*"
       ],
       "js": ["src/content-scripts/injectInTab.js"],
       "all_frames": false,
