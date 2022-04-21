@@ -153,7 +153,7 @@ export type collectionEpisode = {
   items: episode[];
 };
 
-export type crunchyrollApiUpNextSeries = {
+export type upNextSeries = {
   playhead: number;
   fully_watched: boolean;
   never_watched: boolean;
@@ -249,7 +249,7 @@ export const possibleLang = {
   PT: "Portuguese dub",
   DE: "German dub",
   RU: "Russian dub",
-  OTHERS: "Other dub",
+  OTHERS: "Other dubs",
 };
 
 export const possibleLangKeys = <languages[]>Object.keys(possibleLang);

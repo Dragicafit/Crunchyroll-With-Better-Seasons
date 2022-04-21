@@ -2,12 +2,12 @@ import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
-  episode,
   episode_metadata,
   languages,
+  possibleLangKeys,
   season,
+  upNextSeries,
 } from "../background-scripts/backgroundConst";
-import { crunchyrollApiUpNextSeries } from "./../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
 
 export class TabOverrideXMLHttpRequest {
@@ -84,8 +84,8 @@ export class TabOverrideXMLHttpRequest {
                 console.info(seasonsWithLang);
                 for (const season of seasonsWithLang) {
                   let url3 = url2.replace(
-                    "seasons?series_id=" + season.series_id,
-                    "episodes?season_id=" + season.id
+                    `seasons?series_id=${season.series_id}`,
+                    `episodes?season_id=${season.id}`
                   );
                   season;
                   fetch(url3)
@@ -111,34 +111,31 @@ export class TabOverrideXMLHttpRequest {
                 url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
                 url2.includes("/M3/crunchyroll/seasons")
               ) {
-                const dataSeasons = <collectionEpisode>data;
+                const dataSeasons = <collectionSeason>data;
                 try {
                   Object.defineProperty(_this, "responseText", {
                     value: JSON.stringify(
-                      tabOverrideXMLHttpRequest.concatLanguages(
-                        dataSeasons,
-                        preferedLanguages
-                      )
+                      tabOverrideXMLHttpRequest.concatLanguages(dataSeasons)
                     ),
                   });
                 } catch (e) {}
-              } else if (
-                url2.startsWith(
-                  "https://beta-api.crunchyroll.com/content/v1/up_next_series"
-                )
-              ) {
-                const dataUpNextSeries = <crunchyrollApiUpNextSeries>data;
-                try {
-                  tabOverrideXMLHttpRequest
-                    .adaptUpNext(dataUpNextSeries)
-                    .then((data) => {
-                      Object.defineProperty(_this, "responseText", {
-                        value: JSON.stringify(data),
-                      });
-                      resolve();
-                    });
-                  return;
-                } catch (e) {}
+                // } else if (
+                //   url2.startsWith(
+                //     "https://beta-api.crunchyroll.com/content/v1/up_next_series"
+                //   )
+                // ) {
+                //   const dataUpNextSeries = <upNextSeries>data;
+                //   try {
+                //     tabOverrideXMLHttpRequest
+                //       .adaptUpNext(dataUpNextSeries)
+                //       .then((data) => {
+                //         Object.defineProperty(_this, "responseText", {
+                //           value: JSON.stringify(data),
+                //         });
+                //         resolve();
+                //       });
+                //     return;
+                //   } catch (e) {}
               }
             }
           }
@@ -165,98 +162,92 @@ export class TabOverrideXMLHttpRequest {
   private parseSeasons(seasons: season[]) {
     return seasons.map((season) => {
       const seasonWithLang = <season & { lang: languages }>season;
-      const slug_title = seasonWithLang.slug_title;
-      if (slug_title.endsWith("-english-dub")) {
+      if (seasonWithLang.is_subbed) {
+        seasonWithLang.lang = "SUB";
+      } else if (seasonWithLang.slug_title.match(/-english(-dub)?$/)) {
         seasonWithLang.lang = "EN";
-      } else if (slug_title.endsWith("-french-dub")) {
+      } else if (seasonWithLang.slug_title.match(/-french(-dub)?$/)) {
         seasonWithLang.lang = "FR";
-      } else if (slug_title.endsWith("-spanish-dub")) {
+      } else if (seasonWithLang.slug_title.match(/-spanish(-dub)?$/)) {
         seasonWithLang.lang = "ES";
-      } else if (slug_title.endsWith("-portuguese-dub")) {
+      } else if (seasonWithLang.slug_title.match(/-portuguese(-dub)?$/)) {
         seasonWithLang.lang = "PT";
-      } else if (slug_title.endsWith("-german-dub")) {
+      } else if (seasonWithLang.slug_title.match(/-german(-dub)?$/)) {
         seasonWithLang.lang = "DE";
-      } else if (slug_title.endsWith("-russian-dub")) {
+      } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
         seasonWithLang.lang = "RU";
+      } else {
+        seasonWithLang.lang = "OTHERS";
       }
-      seasonWithLang.slug_title = season.slug_title.replace(
-        /-english-dub|-french-dub|-spanish-dub|-portuguese-dub|-german-dub|-russian-dub/,
-        ""
-      );
+      if (seasonWithLang.is_dubbed) {
+        seasonWithLang.slug_title = season.slug_title.replace(
+          /-english(-dub)?$|-french(-dub)?$|-spanish(-dub)?$|-portuguese(-dub)?$|-german(-dub)?$|-russian(-dub)?$/,
+          ""
+        );
+        seasonWithLang.title = season.title.replace(
+          / \(\w+? Dub\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(RU\) /,
+          ""
+        );
+      } else {
+        seasonWithLang.title = season.title.replace(/\(OmU\) /, "");
+      }
       return seasonWithLang;
     });
   }
 
-  private concatLanguages(
-    data: collectionEpisode,
-    preferedLanguages: languages[]
-  ) {
-    let newItems: {
-      SUB: episode[];
-      RU: episode[];
-      FR: episode[];
-      EN: episode[];
-      ES: episode[];
-      PT: episode[];
-      DE: episode[];
-      OTHERS: episode[];
-    } = {
-      SUB: [],
-      RU: [],
-      FR: [],
-      EN: [],
-      ES: [],
-      PT: [],
-      DE: [],
-      OTHERS: [],
-    };
+  private concatLanguages(data: collectionSeason) {
+    let seasonsWithLang = <
+      (season & {
+        lang: languages;
+        langs: languages[];
+      })[]
+    >this.parseSeasons(data.items);
 
-    const oldItems = [...data.items];
-
-    newItems.SUB = oldItems.filter((item) => item.is_subbed);
-    newItems.EN = oldItems.filter((item) =>
-      item.slug_title.endsWith("english-dub")
+    let seen = new Set();
+    let seasons = seasonsWithLang.reduce(
+      (previousValue, currentValue) => {
+        let k = currentValue.slug_title;
+        let found = previousValue.find(
+          (season) => season.slug_title == currentValue.slug_title
+        );
+        if (found != null) {
+          found.langs.push(currentValue.lang);
+          if (currentValue.is_subbed) {
+            found.title = currentValue.title;
+          }
+        } else {
+          seen.add(k);
+          currentValue.langs = [currentValue.lang];
+          previousValue.push(currentValue);
+        }
+        return previousValue;
+      },
+      <
+        (season & {
+          lang: languages;
+          langs: languages[];
+        })[]
+      >(<unknown[]>[])
     );
-    newItems.FR = oldItems.filter((item) =>
-      item.slug_title.endsWith("french-dub")
-    );
-    newItems.ES = oldItems.filter((item) =>
-      item.slug_title.endsWith("spanish-dub")
-    );
-    newItems.PT = oldItems.filter((item) =>
-      item.slug_title.endsWith("portuguese-dub")
-    );
-    newItems.DE = oldItems.filter((item) =>
-      item.slug_title.endsWith("german-dub")
-    );
-    newItems.RU = oldItems.filter((item) =>
-      item.slug_title.endsWith("russian-dub")
-    );
-    newItems.OTHERS = oldItems.filter(
-      (item) =>
-        !item.is_subbed &&
-        !item.slug_title.endsWith("english-dub") &&
-        !item.slug_title.endsWith("french-dub") &&
-        !item.slug_title.endsWith("spanish-dub") &&
-        !item.slug_title.endsWith("portuguese-dub") &&
-        !item.slug_title.endsWith("german-dub") &&
-        !item.slug_title.endsWith("russian-dub")
-    );
-
-    data.items = [];
-    for (const language of preferedLanguages) {
-      data.items = data.items.concat(newItems[language]);
-    }
-
-    this.upNext = data.items.map((item) => item.id);
-
+    data.items = seasons.map((season) => {
+      let firstDub = true;
+      for (const lang of possibleLangKeys.filter((lang) =>
+        season.langs.includes(lang)
+      )) {
+        if (firstDub && lang !== "SUB") {
+          firstDub = false;
+          season.title += `, DUBS : ${lang}`;
+        } else {
+          season.title += `, ${lang}`;
+        }
+      }
+      return season;
+    });
     return data;
   }
 
-  private adaptUpNext(
-    data: crunchyrollApiUpNextSeries
-  ): Promise<crunchyrollApiUpNextSeries> {
-    return new Promise<crunchyrollApiUpNextSeries>((resolve) => {
+  private adaptUpNext(data: upNextSeries): Promise<upNextSeries> {
+    return new Promise<upNextSeries>((resolve) => {
       if (this.upNext == null) {
         return setTimeout(() => resolve(this.adaptUpNext(data)), 100);
       }
