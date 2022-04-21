@@ -4,7 +4,7 @@
   "description": "Disable unwanted dubs and sort languages according to your preference",
   "version": "1.0",
   "author": "Dragicafit",
-  "permissions": ["storage", "https://*.crunchyroll.com/"],
+  "permissions": [],
   "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"],
   "content_scripts": [
     {
