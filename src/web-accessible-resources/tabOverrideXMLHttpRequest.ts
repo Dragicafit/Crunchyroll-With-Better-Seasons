@@ -1,10 +1,11 @@
 import {
   collectionEpisode,
   collectionPanel,
-  collectionSeasonWithLang,
+  collectionSeason,
   episode,
   episode_metadata,
   languages,
+  season,
 } from "../background-scripts/backgroundConst";
 import { crunchyrollApiUpNextSeries } from "./../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
@@ -66,40 +67,22 @@ export class TabOverrideXMLHttpRequest {
                 url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
                 url2.includes("/M3/crunchyroll/seasons")
               ) {
-                const dataSeasons = <collectionSeasonWithLang>data;
+                const seasons = <collectionSeason>data;
                 console.info(url2);
-                dataSeasons.items = dataSeasons.items.map((item) => {
-                  const slug_title = item.slug_title;
-                  if (slug_title.endsWith("-english-dub")) {
-                    item.lang = "EN";
-                  } else if (slug_title.endsWith("-french-dub")) {
-                    item.lang = "FR";
-                  } else if (slug_title.endsWith("-spanish-dub")) {
-                    item.lang = "ES";
-                  } else if (slug_title.endsWith("-portuguese-dub")) {
-                    item.lang = "PT";
-                  } else if (slug_title.endsWith("-german-dub")) {
-                    item.lang = "DE";
-                  } else if (slug_title.endsWith("-russian-dub")) {
-                    item.lang = "RU";
-                  }
-                  item.slug_title = item.slug_title.replace(
-                    /-english-dub|-french-dub|-spanish-dub|-portuguese-dub|-german-dub|-russian-dub/,
-                    ""
-                  );
-                  return item;
-                });
-                const currentSeason = dataSeasons.items.find(
-                  (value) =>
-                    value.id ==
+                let seasonsWithLang = tabOverrideXMLHttpRequest.parseSeasons(
+                  seasons.items
+                );
+                const currentSeason = seasonsWithLang.find(
+                  (season) =>
+                    season.id ==
                     tabOverrideXMLHttpRequest.currentEpisode?.season_id
                 )!;
-                console.info(currentSeason.slug_title);
-                const seasons = dataSeasons.items.filter(
+                seasonsWithLang = seasonsWithLang.filter(
                   (season) => season.slug_title == currentSeason.slug_title
                 );
-                console.info(seasons);
-                for (const season of seasons) {
+                console.info(currentSeason.slug_title);
+                console.info(seasonsWithLang);
+                for (const season of seasonsWithLang) {
                   let url3 = url2.replace(
                     "seasons?series_id=" + season.series_id,
                     "episodes?season_id=" + season.id
@@ -177,6 +160,31 @@ export class TabOverrideXMLHttpRequest {
 
       return _open.apply(_this, <any>arguments);
     };
+  }
+
+  private parseSeasons(seasons: season[]) {
+    return seasons.map((season) => {
+      const seasonWithLang = <season & { lang: languages }>season;
+      const slug_title = seasonWithLang.slug_title;
+      if (slug_title.endsWith("-english-dub")) {
+        seasonWithLang.lang = "EN";
+      } else if (slug_title.endsWith("-french-dub")) {
+        seasonWithLang.lang = "FR";
+      } else if (slug_title.endsWith("-spanish-dub")) {
+        seasonWithLang.lang = "ES";
+      } else if (slug_title.endsWith("-portuguese-dub")) {
+        seasonWithLang.lang = "PT";
+      } else if (slug_title.endsWith("-german-dub")) {
+        seasonWithLang.lang = "DE";
+      } else if (slug_title.endsWith("-russian-dub")) {
+        seasonWithLang.lang = "RU";
+      }
+      seasonWithLang.slug_title = season.slug_title.replace(
+        /-english-dub|-french-dub|-spanish-dub|-portuguese-dub|-german-dub|-russian-dub/,
+        ""
+      );
+      return seasonWithLang;
+    });
   }
 
   private concatLanguages(

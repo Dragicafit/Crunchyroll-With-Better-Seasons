@@ -143,18 +143,6 @@ export type collectionSeason = {
   items: season[];
 };
 
-export type collectionSeasonWithLang = {
-  __class__: "collection";
-  __href__: string;
-  __resource_key__: string;
-  __links__: {};
-  __actions__: {};
-  total: number;
-  items: (season & {
-    lang: languages;
-  })[];
-};
-
 export type collectionEpisode = {
   __class__: "collection";
   __href__: string;
