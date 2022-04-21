@@ -22,8 +22,15 @@ window.addEventListener("message", (event) => {
   switch (event.data.command) {
     case "sendInfo":
       settings = createSettings(
-        event.data.languages,
-        event.data.currentLanguage
+        [
+          {
+            title: "Audio",
+            type: "audioLanguage",
+            values: event.data.audioLanguages,
+            callback: changeAudioLanguage,
+          },
+        ],
+        event.data.currentAudioLanguage
       );
   }
 });
@@ -41,20 +48,13 @@ function render({ tagName, children, callback, ...properties }) {
   return element;
 }
 
-function setPlaybackRate(infos) {
+function changeAudioLanguage(infos) {
   window.parent.location = infos.url;
 }
 
-function createSettings(languages, currentLanguage) {
-  console.log("create settings", languages, currentLanguage);
-  return [
-    {
-      title: "Audio",
-      type: "playbackRate",
-      values: languages,
-      callback: setPlaybackRate,
-    },
-  ].flatMap(({ type, title, values, callback }) => {
+function createSettings(settings, currentValue) {
+  console.log("create settings", settings, currentValue);
+  return settings.flatMap(({ type, title, values, callback }) => {
     const displayValue = render({
       tagName: "span",
       className: "font",
@@ -149,15 +149,15 @@ function createSettings(languages, currentLanguage) {
         ],
       }),
     ];
-    changeSelected(displayValue, elementByValues, currentLanguage);
+    changeSelected(displayValue, elementByValues, currentValue);
 
     return elements;
   });
 }
 
-function changeSelected(displayValue, elementByValues, value) {
-  if (!value) return;
-  const { element, option } = elementByValues[value];
+function changeSelected(displayValue, elementByValues, currentValue) {
+  if (!currentValue) return;
+  const { element, option } = elementByValues[currentValue];
   displayValue.innerText = option.name;
   const selected = document.querySelector(".ic_option[value=true]");
   if (selected) selected.setAttribute("value", "false");

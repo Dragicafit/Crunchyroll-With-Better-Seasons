@@ -169,8 +169,8 @@ export class TabOverrideXMLHttpRequest {
         {
           direction: "from-script-AWP",
           command: eventsBackgroundSend.SEND_INFO,
-          currentLanguage: currentLanguageId,
-          languages: languagesWithoutNullOrdered,
+          currentAudioLanguage: currentLanguageId,
+          audioLanguages: languagesWithoutNullOrdered,
         },
         "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
       );
