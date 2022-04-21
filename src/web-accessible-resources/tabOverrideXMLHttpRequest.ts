@@ -3,11 +3,12 @@ import {
   collectionPanel,
   collectionSeason,
   episode_metadata,
-  languages,
+  langToDisplay,
   possibleLangKeys,
   season,
   upNextSeries,
 } from "../background-scripts/backgroundConst";
+import { languages } from "./../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
 
 export class TabOverrideXMLHttpRequest {
@@ -68,7 +69,6 @@ export class TabOverrideXMLHttpRequest {
                 url2.includes("/M3/crunchyroll/seasons")
               ) {
                 const seasons = <collectionSeason>data;
-                console.info(url2);
                 let seasonsWithLang = tabOverrideXMLHttpRequest.parseSeasons(
                   seasons.items
                 );
@@ -80,31 +80,54 @@ export class TabOverrideXMLHttpRequest {
                 seasonsWithLang = seasonsWithLang.filter(
                   (season) => season.slug_title === currentSeason.slug_title
                 );
-                console.info(currentSeason.slug_title);
-                console.info(seasonsWithLang);
+                const promiseList = [];
                 for (const season of seasonsWithLang) {
                   let url3 = url2.replace(
                     `seasons?series_id=${season.series_id}`,
                     `episodes?season_id=${season.id}`
                   );
-                  season;
-                  fetch(url3)
-                    .then((response) => response.json())
-                    .then((body: collectionEpisode) => {
-                      const episode = body.items.find(
-                        (item) =>
-                          item.sequence_number ===
-                          tabOverrideXMLHttpRequest.currentEpisode
-                            ?.sequence_number
-                      )!;
-                      console.info(
-                        document.URL.replace(
-                          tabOverrideXMLHttpRequest.currentEpisode!.id,
-                          episode.id
-                        )
-                      );
-                    });
+                  promiseList.push(
+                    fetch(url3)
+                      .then((response) => response.json())
+                      .then((body: collectionEpisode) => {
+                        const episode = body.items.find(
+                          (item) =>
+                            item.sequence_number ===
+                            tabOverrideXMLHttpRequest.currentEpisode
+                              ?.sequence_number
+                        )!;
+                        return {
+                          id: season.lang,
+                          name: langToDisplay[season.lang],
+                          url: document.URL.replace(
+                            tabOverrideXMLHttpRequest.currentEpisode!.id,
+                            episode.id
+                          ),
+                        };
+                      })
+                  );
                 }
+                Promise.all(promiseList).then((languages) => {
+                  const currentLanguage = languages.find(
+                    (season) => season.id == currentSeason.lang
+                  )?.id;
+                  console.log("send info", {
+                    currentLanguage: currentLanguage,
+                    languages: languages,
+                  });
+                  const vilosWindow = (<HTMLIFrameElement>(
+                    document.getElementsByClassName("video-player")[0]
+                  )).contentWindow!;
+                  vilosWindow.postMessage(
+                    {
+                      direction: "from-script-AWP",
+                      command: "SEND_INFO",
+                      currentLanguage: currentLanguage,
+                      languages: languages,
+                    },
+                    "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
+                  );
+                });
               }
             } else if (document.URL.includes("/series/")) {
               if (

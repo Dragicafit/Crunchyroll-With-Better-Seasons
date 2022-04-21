@@ -64,6 +64,14 @@ module.exports = {
           from: "src/content-scripts/listener.js",
           to: "src/content-scripts/listener.js",
         },
+        {
+          from: "src/content-scripts/crunchyrollVideoPlayerV2.js",
+          to: "src/content-scripts/crunchyrollVideoPlayerV2.js",
+        },
+        {
+          from: "src/content-scripts/crunchyrollVideoPlayerV2.css",
+          to: "src/content-scripts/crunchyrollVideoPlayerV2.css",
+        },
         { from: "src/popup/popup.html", to: "src/popup/popup.html" },
       ],
     }),

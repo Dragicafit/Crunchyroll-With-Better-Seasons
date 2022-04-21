@@ -252,4 +252,15 @@ export const possibleLang = {
   OTHERS: "Other dubs",
 };
 
+export const langToDisplay = {
+  SUB: "Sub",
+  EN: "English",
+  FR: "French",
+  ES: "Spanish",
+  PT: "Portuguese",
+  DE: "German",
+  RU: "Russian",
+  OTHERS: "Other",
+};
+
 export const possibleLangKeys = <languages[]>Object.keys(possibleLang);

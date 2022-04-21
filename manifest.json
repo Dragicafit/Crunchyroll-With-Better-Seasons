@@ -4,7 +4,7 @@
   "description": "Disable unwanted dubs and sort languages according to your preference",
   "version": "1.0",
   "author": "Dragicafit",
-  "permissions": ["storage", "https://beta.crunchyroll.com/"],
+  "permissions": ["storage", "https://*.crunchyroll.com/"],
   "background": {
     "scripts": ["src/background-scripts/background.bundle.js"]
   },
@@ -16,5 +16,16 @@
       "32": "src/icons/icon.svg"
     }
   },
-  "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"]
+  "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
+      ],
+      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.js"],
+      "css": ["src/content-scripts/crunchyrollVideoPlayerV2.css"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ]
 }
