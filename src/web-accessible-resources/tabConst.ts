@@ -273,3 +273,6 @@ export const regexApiSeasons =
 
 export const startApiUpNextSeries =
   "https://beta-api.crunchyroll.com/content/v1/up_next_series";
+
+export const regexApiEpisodes =
+  /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;

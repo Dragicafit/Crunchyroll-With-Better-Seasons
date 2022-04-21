@@ -7,6 +7,7 @@ import {
   langToDisplay,
   languages,
   possibleLangKeys,
+  regexApiEpisodes,
   regexApiObjects,
   regexApiSeasons,
   regexPageSeries,
@@ -23,6 +24,9 @@ export class TabOverrideXMLHttpRequest {
         id: string;
       })
     | undefined;
+  private seasonsWithLang: (season & {
+    lang: languages;
+  })[] = [];
 
   constructor() {}
 
@@ -49,9 +53,9 @@ export class TabOverrideXMLHttpRequest {
 
             if (document.URL.match(regexPageWatch)) {
               if (url2.match(regexApiObjects)) {
-                tabOverrideXMLHttpRequest.newMethod2(data);
+                tabOverrideXMLHttpRequest.saveCurrentEpisode(data);
               } else if (url2.match(regexApiSeasons)) {
-                tabOverrideXMLHttpRequest.newMethod3(data, url2);
+                tabOverrideXMLHttpRequest.sendLanguagesToVilos(data, url2);
               }
             } else if (document.URL.match(regexPageSeries)) {
               if (url2.match(regexApiSeasons)) {
@@ -64,8 +68,19 @@ export class TabOverrideXMLHttpRequest {
                   resolve();
                 });
                 return;
+              }
+              if (url2.match(regexApiEpisodes)) {
+                tabOverrideXMLHttpRequest
+                  .addEpisodesFromOtherLanguages(data, url2)
+                  .then(() => {
+                    Object.defineProperty(_this, "responseText", {
+                      value: JSON.stringify(data),
+                    });
+                    resolve();
+                  });
+                return;
               } else if (url2.startsWith(startApiUpNextSeries)) {
-                tabOverrideXMLHttpRequest.newMethod(data);
+                tabOverrideXMLHttpRequest.saveUpNext(data);
               }
             }
           }
@@ -89,18 +104,18 @@ export class TabOverrideXMLHttpRequest {
     };
   }
 
-  private newMethod(dataUpNextSeries: upNextSeries) {
+  private saveUpNext(dataUpNextSeries: upNextSeries) {
     this.upNext = dataUpNextSeries.panel.episode_metadata.season_id;
   }
 
-  private newMethod2(dataObjects: collectionPanel) {
+  private saveCurrentEpisode(dataObjects: collectionPanel) {
     this.currentEpisode = {
       ...dataObjects.items[0].episode_metadata,
       id: dataObjects.items[0].id,
     };
   }
 
-  private newMethod3(seasons: collectionSeason, url2: string) {
+  private sendLanguagesToVilos(seasons: collectionSeason, url2: string) {
     let seasonsWithLang = this.parseSeasons(seasons.items);
     const currentSeason = seasonsWithLang.find(
       (season) => season.id === this.currentEpisode?.season_id
@@ -158,6 +173,52 @@ export class TabOverrideXMLHttpRequest {
     });
   }
 
+  private async addEpisodesFromOtherLanguages(
+    episodes: collectionEpisode,
+    url2: string
+  ) {
+    const currentSeasonId = episodes.items[0].season_id;
+    let currentSeasonsWithLang = this.seasonsWithLang.find(
+      (season) => season.id === currentSeasonId
+    )!;
+    let sameSeasonsWithLang = this.seasonsWithLang.filter(
+      (season) => season.slug_title === currentSeasonsWithLang.slug_title
+    );
+    const promiseList = [];
+    for (const season of sameSeasonsWithLang) {
+      if (season.id === currentSeasonId) {
+        continue;
+      }
+      let url3 = url2.replace(
+        `episodes?season_id=${currentSeasonId}`,
+        `episodes?season_id=${season.id}`
+      );
+      promiseList.push(
+        fetch(url3)
+          .then((response) => response.json())
+          .then((body: collectionEpisode) => {
+            body.items.forEach((episode) => {
+              if (
+                !episodes.items.find(
+                  (alreadyPresentEpisode) =>
+                    episode.sequence_number ===
+                    alreadyPresentEpisode.sequence_number
+                )
+              ) {
+                episodes.items.push(episode);
+              }
+            });
+          })
+      );
+    }
+    await Promise.all(promiseList);
+    episodes.items.sort(
+      (episode1, episode2) =>
+        episode1.sequence_number - episode2.sequence_number
+    );
+    return episodes;
+  }
+
   private parseSeasons(seasons: season[]) {
     return seasons.map((season) => {
       const seasonWithLang = <season & { lang: languages }>season;
@@ -195,16 +256,17 @@ export class TabOverrideXMLHttpRequest {
   }
 
   private concatLanguages(data: collectionSeason, upNext: string) {
-    let seasonsWithLang = <
-      (season & {
-        lang: languages;
-        langs: languages[];
-      })[]
-    >this.parseSeasons(data.items);
+    this.seasonsWithLang = this.parseSeasons(data.items);
 
     let seen = new Set();
-    let seasons = seasonsWithLang.reduce(
-      (previousValue, currentValue) => {
+    let seasons = this.seasonsWithLang.reduce(
+      (
+        previousValue,
+        currentValue: season & {
+          lang: languages;
+          langs?: languages[];
+        }
+      ) => {
         let k = currentValue.slug_title;
         let found = previousValue.find(
           (season) => season.slug_title === currentValue.slug_title
@@ -220,7 +282,14 @@ export class TabOverrideXMLHttpRequest {
         } else {
           seen.add(k);
           currentValue.langs = [currentValue.lang];
-          previousValue.push(currentValue);
+          previousValue.push(
+            <
+              season & {
+                lang: languages;
+                langs: languages[];
+              }
+            >currentValue
+          );
         }
         return previousValue;
       },
