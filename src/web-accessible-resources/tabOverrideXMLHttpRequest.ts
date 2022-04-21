@@ -108,6 +108,13 @@ export class TabOverrideXMLHttpRequest {
                   );
                 }
                 Promise.all(promiseList).then((languages) => {
+                  languages = possibleLangKeys
+                    .filter((lang) =>
+                      languages.map((language) => language.id).includes(lang)
+                    )
+                    .map(
+                      (lang) => languages.find((lang2) => lang == lang2.id)!
+                    );
                   const currentLanguage = languages.find(
                     (season) => season.id == currentSeason.lang
                   )?.id;
