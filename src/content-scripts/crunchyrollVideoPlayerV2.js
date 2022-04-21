@@ -119,9 +119,9 @@ function createSettings(languages, currentLanguage) {
                 className: "ic_option",
                 innerHTML: `
                 <svg viewBox='0 0 20 20' style='height: 20px; width: 20px;'>
-                  <circle class='bg' cx='10' cy='10' r='9' style='fill: rgb(25, 46, 56); opacity: 1;'></circle>
-                  <circle class='dot' cx='10' cy='10' r='4' style='fill: rgb(68, 195, 171);'></circle>
-                  <path class='outer_circle' d='M10,2a8,8,0,1,1-8,8,8.009,8.009,0,0,1,8-8m0-2A10,10,0,1,0,20,10,10,10,0,0,0,10,0Z' style='fill: rgb(160, 160, 160);'></path>
+                  <circle class='bg' cx='10' cy='10' r='9'></circle>
+                  <circle class='dot' cx='10' cy='10' r='4'></circle>
+                  <path class='outer_circle' d='M10,2a8,8,0,1,1-8,8,8.009,8.009,0,0,1,8-8m0-2A10,10,0,1,0,20,10,10,10,0,0,0,10,0Z'></path>
                 </svg>`,
                 children: (() => {
                   const children = [

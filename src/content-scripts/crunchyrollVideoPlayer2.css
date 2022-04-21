@@ -142,18 +142,34 @@ Copyright (c) 2022 Damien HERBERT
   color: rgb(160, 160, 160);
 }
 
+.ic_option:hover .font {
+  color: rgb(255, 255, 255);
+}
+
+.ic_option[value="true"] .font {
+  color: rgb(255, 255, 255);
+}
+
+.ic_option .bg {
+  fill: rgb(25, 46, 56);
+  opacity: 1;
+}
+.ic_option .dot {
+  fill: rgb(68, 195, 171);
+}
+
 .ic_option:not([value="true"]) .dot {
   display: none;
 }
 
-.ic_option[value="true"] .outer_circle {
-  fill: rgb(68, 195, 171) !important;
+.ic_option .outer_circle {
+  fill: rgb(160, 160, 160);
 }
 
-.ic_option > input[type="range"] {
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  width: fit-content;
+.ic_option:hover .outer_circle {
+  fill: rgb(255, 255, 255);
+}
+
+.ic_option[value="true"] .outer_circle {
+  fill: rgb(68, 195, 171);
 }
