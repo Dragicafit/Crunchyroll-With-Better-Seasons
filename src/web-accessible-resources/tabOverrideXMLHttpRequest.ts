@@ -1,12 +1,14 @@
 import {
-  crunchyrollApiEpisode,
-  crunchyrollApiObjects,
-  crunchyrollApiSeasons,
-  crunchyrollApiUpNextSeries,
+  collectionEpisode,
+  collectionPanel,
+  collectionSeasonWithLang,
+  episode,
   episode_metadata,
   languages,
 } from "../background-scripts/backgroundConst";
+import { crunchyrollApiUpNextSeries } from "./../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
+
 export class TabOverrideXMLHttpRequest {
   private tabContext: TabContext;
   private upNext: string[] | undefined;
@@ -55,7 +57,7 @@ export class TabOverrideXMLHttpRequest {
                 url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
                 url2.includes("/objects/")
               ) {
-                const dataObjects = <crunchyrollApiObjects>data;
+                const dataObjects = <collectionPanel>data;
                 tabOverrideXMLHttpRequest.currentEpisode = {
                   ...dataObjects.items[0].episode_metadata,
                   id: dataObjects.items[0].id,
@@ -64,7 +66,7 @@ export class TabOverrideXMLHttpRequest {
                 url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
                 url2.includes("/M3/crunchyroll/seasons")
               ) {
-                const dataSeasons = <crunchyrollApiSeasons>data;
+                const dataSeasons = <collectionSeasonWithLang>data;
                 console.info(url2);
                 dataSeasons.items = dataSeasons.items.map((item) => {
                   const slug_title = item.slug_title;
@@ -87,16 +89,14 @@ export class TabOverrideXMLHttpRequest {
                   );
                   return item;
                 });
-                const newLocal = dataSeasons.items.find(
+                const currentSeason = dataSeasons.items.find(
                   (value) =>
                     value.id ==
                     tabOverrideXMLHttpRequest.currentEpisode?.season_id
                 )!;
-                const slug_title = newLocal.slug_title;
-                const slug_title2 = slug_title;
-                console.info(slug_title2);
+                console.info(currentSeason.slug_title);
                 const seasons = dataSeasons.items.filter(
-                  (value) => value.slug_title == slug_title2
+                  (season) => season.slug_title == currentSeason.slug_title
                 );
                 console.info(seasons);
                 for (const season of seasons) {
@@ -107,7 +107,7 @@ export class TabOverrideXMLHttpRequest {
                   season;
                   fetch(url3)
                     .then((response) => response.json())
-                    .then((body: crunchyrollApiEpisode) => {
+                    .then((body: collectionEpisode) => {
                       const episode = body.items.find(
                         (item) =>
                           item.sequence_number ===
@@ -128,11 +128,11 @@ export class TabOverrideXMLHttpRequest {
                 url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
                 url2.includes("/M3/crunchyroll/seasons")
               ) {
-                const dataSeasons = <crunchyrollApiSeasons>data;
+                const dataSeasons = <collectionEpisode>data;
                 try {
                   Object.defineProperty(_this, "responseText", {
                     value: JSON.stringify(
-                      tabOverrideXMLHttpRequest.filterLanguages(
+                      tabOverrideXMLHttpRequest.concatLanguages(
                         dataSeasons,
                         preferedLanguages
                       )
@@ -179,16 +179,19 @@ export class TabOverrideXMLHttpRequest {
     };
   }
 
-  private filterLanguages(data: any, preferedLanguages: languages[]) {
+  private concatLanguages(
+    data: collectionEpisode,
+    preferedLanguages: languages[]
+  ) {
     let newItems: {
-      SUB: any[];
-      RU: any[];
-      FR: any[];
-      EN: any[];
-      ES: any[];
-      PT: any[];
-      DE: any[];
-      OTHERS: any[];
+      SUB: episode[];
+      RU: episode[];
+      FR: episode[];
+      EN: episode[];
+      ES: episode[];
+      PT: episode[];
+      DE: episode[];
+      OTHERS: episode[];
     } = {
       SUB: [],
       RU: [],
@@ -237,13 +240,15 @@ export class TabOverrideXMLHttpRequest {
       data.items = data.items.concat(newItems[language]);
     }
 
-    this.upNext = data.items.map((item: any) => item.id);
+    this.upNext = data.items.map((item) => item.id);
 
     return data;
   }
 
-  private adaptUpNext(data: any): Promise<any> {
-    return new Promise<any>((resolve) => {
+  private adaptUpNext(
+    data: crunchyrollApiUpNextSeries
+  ): Promise<crunchyrollApiUpNextSeries> {
+    return new Promise<crunchyrollApiUpNextSeries>((resolve) => {
       if (this.upNext == null) {
         return setTimeout(() => resolve(this.adaptUpNext(data)), 100);
       }
