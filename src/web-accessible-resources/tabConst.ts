@@ -247,7 +247,7 @@ export const possibleLang = {
 };
 
 export const langToDisplay = {
-  SUB: "Sub",
+  SUB: "Japanese",
   EN: "English",
   FR: "French",
   ES: "Spanish",

@@ -5,15 +5,17 @@ Copyright (c) 2019-2022 Thomas Tavernier
 
 https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399e5bccc886e0fe6decc1b/LICENSE
 https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399e5bccc886e0fe6decc1b/content/css/crunchyrollVideoPlayer2.css
+
+Copyright (c) 2022 Damien HERBERT
 */
 
 #velocity-settings-menu .ic_settings,
-#velocity-settings-menu[ic_options='submenu'] > .ic_menu,
-#velocity-settings-menu[ic_options='hide'] > * {
+#velocity-settings-menu[ic_options="submenu"] > .ic_menu,
+#velocity-settings-menu[ic_options="hide"] > * {
   display: none;
 }
 
-#velocity-settings-menu[ic_options='hide'] > .ic_settings:target {
+#velocity-settings-menu[ic_options="hide"] > .ic_settings:target {
   display: flex !important;
   flex-direction: column;
   overflow-y: auto;
@@ -47,21 +49,29 @@ https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399
 }
 
 .ic_menu .font {
-  font-family: Lato, sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  line-height: 18px;
   color: rgb(255, 255, 255);
 }
 
 .ic_menu .right_text .font {
+  -webkit-line-clamp: 1;
   color: rgb(218, 218, 218);
+  font-family: Lato;
+  font-size: 14px;
+  line-height: 18px;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ic_menu .next {
   height: 24px;
   width: 24px;
   position: relative;
-  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8.6%207.4L10%206l6%206-6%206-1.4-1.4%204.6-4.6z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E');
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8.6%207.4L10%206l6%206-6%206-1.4-1.4%204.6-4.6z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
 }
 
 .ic_back {
@@ -77,14 +87,28 @@ https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399
   height: 24px;
   width: 24px;
   margin-left: -2px;
-  margin-right: 6px;
-  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M15.4%2016.6L14%2018l-6-6%206-6%201.4%201.4-4.6%204.6z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E');
+  margin-right: 0px;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M15.4%2016.6L14%2018l-6-6%206-6%201.4%201.4-4.6%204.6z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+}
+
+.font {
+  border: 0px solid black;
+  box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  display: inline;
+  font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 .ic_back .font {
-  font-family: Lato, sans-serif;
+  font-family: Lato;
   font-size: 18px;
-  font-weight: 500;
+  line-height: 26px;
+  margin-left: 6px;
   color: rgb(255, 255, 255);
 }
 
@@ -111,25 +135,25 @@ https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399
 }
 
 .ic_option .font {
-  font-family: Lato, sans-serif;
+  -webkit-line-clamp: 1;
+  font-family: Lato;
   font-size: 14px;
-  font-weight: 500;
-  color: rgb(255, 255, 255);
+  line-height: 18px;
+  color: rgb(160, 160, 160);
 }
 
-.ic_option:not([value='true']) .dot {
+.ic_option:not([value="true"]) .dot {
   display: none;
 }
 
-.ic_option[value='true'] .outer_circle {
+.ic_option[value="true"] .outer_circle {
   fill: rgb(68, 195, 171) !important;
 }
 
-.ic_option > input[type='range'] {
+.ic_option > input[type="range"] {
   position: absolute;
   margin: auto;
   left: 0;
   right: 0;
   width: fit-content;
 }
-

@@ -172,7 +172,9 @@ function insertSettings(velocitySettingsMenu, elements) {
   elements.forEach((element) =>
     velocitySettingsMenu.insertBefore(
       element,
-      velocitySettingsMenu.firstElementChild
+      velocitySettingsMenu.querySelector(
+        '[data-testid="vilos-settings_texttrack_submenu"]'
+      )
     )
   );
   new MutationObserver(() => {
