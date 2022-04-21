@@ -58,8 +58,8 @@ module.exports = {
         { from: "manifest.json" },
         { from: "src/icons", to: "src/icons" },
         {
-          from: "src/content-scripts/listener.js",
-          to: "src/content-scripts/listener.js",
+          from: "src/content-scripts/injectInTab.js",
+          to: "src/content-scripts/injectInTab.js",
         },
         {
           from: "src/content-scripts/crunchyrollVideoPlayerV2.js",
