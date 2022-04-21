@@ -248,12 +248,12 @@ export const possibleLang = {
 
 export const langToDisplay = {
   SUB: "Japanese",
-  EN: "English",
-  FR: "French",
-  ES: "Spanish",
-  PT: "Portuguese",
-  DE: "German",
-  RU: "Russian",
+  EN: "English (United States)",
+  FR: "Français (France)",
+  ES: "Español (Latin America)",
+  PT: "Português (Brasil)",
+  DE: "Deutsch (Germany)",
+  RU: "Русский (Russia)",
   OTHERS: "Other",
 };
 
