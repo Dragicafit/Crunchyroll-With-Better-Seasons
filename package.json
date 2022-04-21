@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "release": "webpack --mode=production && mkdirp built/Release/Firefox/ && rimraf built/Release/Firefox/Crunchyroll-Dub-Filter.xpi && jszip-cli add --noconfig --force -o built/Release/Firefox/Crunchyroll-Dub-Filter.xpi built/Firefox/src built/Firefox/LICENSE built/Firefox/manifest.json",
+    "release": "webpack --mode=production && mkdirp built/Release/Firefox/ && rimraf built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi && jszip-cli add --noconfig --force -o built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi built/Firefox/src built/Firefox/LICENSE built/Firefox/manifest.json",
     "build-extension": "webpack --mode=development",
     "watch-extension": "webpack --mode=development -w"
   },
@@ -16,7 +16,7 @@
     "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",
     "rimraf": "^3.0.2",
-    "sass": "^1.50.0",
+    "sass": "^1.50.1",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.8",
