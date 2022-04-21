@@ -90,9 +90,7 @@ function createSettings(languages, currentLanguage) {
         callback: (element) => {
           element.addEventListener("click", () => {
             window.location.hash = "";
-            document
-              .getElementById("velocity-settings-menu")
-              .setAttribute("ic_options", "hide");
+            document.body.setAttribute("ic_options", "hide");
             window.location.hash = type;
           });
         },
@@ -108,9 +106,7 @@ function createSettings(languages, currentLanguage) {
             innerHTML: `<div class='back'></div><div class='font'>${title}</div>`,
             callback: (element) => {
               element.addEventListener("click", () =>
-                document
-                  .getElementById("velocity-settings-menu")
-                  .removeAttribute("ic_options")
+                document.body.removeAttribute("ic_options")
               );
             },
           },
@@ -169,23 +165,42 @@ function changeSelected(displayValue, elementByValues, value) {
 }
 
 function insertSettings(velocitySettingsMenu, elements) {
-  elements.forEach((element) =>
+  elements.forEach((element) => {
     velocitySettingsMenu.insertBefore(
       element,
       velocitySettingsMenu.querySelector(
         '[data-testid="vilos-settings_texttrack_submenu"]'
       )
-    )
-  );
-  new MutationObserver(() => {
-    velocitySettingsMenu.setAttribute(
-      "ic_options",
+    );
+  });
+  new MutationObserver((mutations) => {
+    if (
+      mutations.find((mutation) =>
+        [...mutation.addedNodes].find((addedNode) =>
+          elements.includes(addedNode)
+        )
+      )
+    ) {
+      return;
+    }
+    elements.forEach((element) => {
+      velocitySettingsMenu.removeChild(element);
+      velocitySettingsMenu.insertBefore(
+        element,
+        velocitySettingsMenu.querySelector(
+          '[data-testid="vilos-settings_texttrack_submenu"]'
+        )
+      );
+    });
+    if (
       velocitySettingsMenu.querySelector(
         '[data-testid="vilos-settings_back_button"]'
       )
-        ? "submenu"
-        : ""
-    );
+    ) {
+      document.body.setAttribute("ic_options", "submenu");
+    } else if (document.body.getAttribute("ic_options") === "submenu") {
+      document.body.removeAttribute("ic_options");
+    }
   }).observe(velocitySettingsMenu, {
     childList: true,
   });
@@ -206,9 +221,9 @@ new MutationObserver((_, observer) => {
       );
       if (!velocityControlsPackage) return;
       new MutationObserver((mutations) => {
-        const [addedNode] = mutations.flatMap(({ addedNodes }) => [
+        const addedNode = mutations.flatMap(({ addedNodes }) => [
           ...addedNodes,
-        ]);
+        ])[0];
         if (!addedNode) return;
         const velocitySettingsMenu = addedNode.querySelector(
           "#velocity-settings-menu"

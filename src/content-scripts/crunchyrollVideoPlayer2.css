@@ -10,12 +10,12 @@ Copyright (c) 2022 Damien HERBERT
 */
 
 #velocity-settings-menu .ic_settings,
-#velocity-settings-menu[ic_options="submenu"] > .ic_menu,
-#velocity-settings-menu[ic_options="hide"] > * {
+[ic_options="submenu"] #velocity-settings-menu > .ic_menu,
+[ic_options="hide"] #velocity-settings-menu > * {
   display: none;
 }
 
-#velocity-settings-menu[ic_options="hide"] > .ic_settings:target {
+[ic_options="hide"] #velocity-settings-menu > .ic_settings:target {
   display: flex !important;
   flex-direction: column;
   overflow-y: auto;
