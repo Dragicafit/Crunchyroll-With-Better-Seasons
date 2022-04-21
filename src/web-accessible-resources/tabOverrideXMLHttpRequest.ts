@@ -7,7 +7,12 @@ import {
   langToDisplay,
   languages,
   possibleLangKeys,
+  regexApiObjects,
+  regexApiSeasons,
+  regexPageSeries,
+  regexPageWatch,
   season,
+  startApiUpNextSeries,
   upNextSeries,
 } from "./tabConst";
 
@@ -42,116 +47,25 @@ export class TabOverrideXMLHttpRequest {
           if (_this.readyState === 4 && _this.status === 200) {
             const data = JSON.parse(_this.responseText);
 
-            if (document.URL.includes("/watch/")) {
-              if (
-                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
-                url2.includes("/objects/")
-              ) {
-                const dataObjects = <collectionPanel>data;
-                tabOverrideXMLHttpRequest.currentEpisode = {
-                  ...dataObjects.items[0].episode_metadata,
-                  id: dataObjects.items[0].id,
-                };
-              } else if (
-                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
-                url2.includes("/M3/crunchyroll/seasons")
-              ) {
-                const seasons = <collectionSeason>data;
-                let seasonsWithLang = tabOverrideXMLHttpRequest.parseSeasons(
-                  seasons.items
-                );
-                const currentSeason = seasonsWithLang.find(
-                  (season) =>
-                    season.id ===
-                    tabOverrideXMLHttpRequest.currentEpisode?.season_id
-                )!;
-                seasonsWithLang = seasonsWithLang.filter(
-                  (season) => season.slug_title === currentSeason.slug_title
-                );
-                const promiseList = [];
-                for (const season of seasonsWithLang) {
-                  let url3 = url2.replace(
-                    `seasons?series_id=${season.series_id}`,
-                    `episodes?season_id=${season.id}`
-                  );
-                  promiseList.push(
-                    fetch(url3)
-                      .then((response) => response.json())
-                      .then((body: collectionEpisode) => {
-                        const episode = body.items.find(
-                          (item) =>
-                            item.sequence_number ===
-                            tabOverrideXMLHttpRequest.currentEpisode
-                              ?.sequence_number
-                        )!;
-                        return {
-                          id: season.lang,
-                          name: langToDisplay[season.lang],
-                          url: document.URL.replace(
-                            tabOverrideXMLHttpRequest.currentEpisode!.id,
-                            episode.id
-                          ),
-                        };
-                      })
-                  );
-                }
-                Promise.all(promiseList).then((languages) => {
-                  languages = possibleLangKeys
-                    .filter((lang) =>
-                      languages.map((language) => language.id).includes(lang)
-                    )
-                    .map(
-                      (lang) => languages.find((lang2) => lang == lang2.id)!
-                    );
-                  const currentLanguage = languages.find(
-                    (season) => season.id == currentSeason.lang
-                  )?.id;
-                  const vilosWindow = (<HTMLIFrameElement>(
-                    document.getElementsByClassName("video-player")[0]
-                  )).contentWindow!;
-                  console.log("send info", {
-                    currentLanguage: currentLanguage,
-                    languages: languages,
-                  });
-                  vilosWindow.postMessage(
-                    {
-                      direction: "from-script-AWP",
-                      command: eventsBackgroundSend.SEND_INFO,
-                      currentLanguage: currentLanguage,
-                      languages: languages,
-                    },
-                    "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
-                  );
-                });
+            if (document.URL.match(regexPageWatch)) {
+              if (url2.match(regexApiObjects)) {
+                tabOverrideXMLHttpRequest.newMethod2(data);
+              } else if (url2.match(regexApiSeasons)) {
+                tabOverrideXMLHttpRequest.newMethod3(data, url2);
               }
-            } else if (document.URL.includes("/series/")) {
-              if (
-                url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
-                url2.includes("/M3/crunchyroll/seasons")
-              ) {
-                const dataSeasons = <collectionSeason>data;
-                try {
-                  tabOverrideXMLHttpRequest.waitForUpNext().then((upNext) => {
-                    Object.defineProperty(_this, "responseText", {
-                      value: JSON.stringify(
-                        tabOverrideXMLHttpRequest.concatLanguages(
-                          dataSeasons,
-                          upNext
-                        )
-                      ),
-                    });
-                    resolve();
+            } else if (document.URL.match(regexPageSeries)) {
+              if (url2.match(regexApiSeasons)) {
+                tabOverrideXMLHttpRequest.waitForUpNext().then((upNext) => {
+                  Object.defineProperty(_this, "responseText", {
+                    value: JSON.stringify(
+                      tabOverrideXMLHttpRequest.concatLanguages(data, upNext)
+                    ),
                   });
-                  return;
-                } catch (e) {}
-              } else if (
-                url2.startsWith(
-                  "https://beta-api.crunchyroll.com/content/v1/up_next_series"
-                )
-              ) {
-                const dataUpNextSeries = <upNextSeries>data;
-                tabOverrideXMLHttpRequest.upNext =
-                  dataUpNextSeries.panel.episode_metadata.season_id;
+                  resolve();
+                });
+                return;
+              } else if (url2.startsWith(startApiUpNextSeries)) {
+                tabOverrideXMLHttpRequest.newMethod(data);
               }
             }
           }
@@ -173,6 +87,75 @@ export class TabOverrideXMLHttpRequest {
 
       return _open.apply(_this, <any>arguments);
     };
+  }
+
+  private newMethod(dataUpNextSeries: upNextSeries) {
+    this.upNext = dataUpNextSeries.panel.episode_metadata.season_id;
+  }
+
+  private newMethod2(dataObjects: collectionPanel) {
+    this.currentEpisode = {
+      ...dataObjects.items[0].episode_metadata,
+      id: dataObjects.items[0].id,
+    };
+  }
+
+  private newMethod3(seasons: collectionSeason, url2: string) {
+    let seasonsWithLang = this.parseSeasons(seasons.items);
+    const currentSeason = seasonsWithLang.find(
+      (season) => season.id === this.currentEpisode?.season_id
+    )!;
+    seasonsWithLang = seasonsWithLang.filter(
+      (season) => season.slug_title === currentSeason.slug_title
+    );
+    const promiseList = [];
+    for (const season of seasonsWithLang) {
+      let url3 = url2.replace(
+        `seasons?series_id=${season.series_id}`,
+        `episodes?season_id=${season.id}`
+      );
+      promiseList.push(
+        fetch(url3)
+          .then((response) => response.json())
+          .then((body: collectionEpisode) => {
+            const episode = body.items.find(
+              (item) =>
+                item.sequence_number === this.currentEpisode?.sequence_number
+            )!;
+            return {
+              id: season.lang,
+              name: langToDisplay[season.lang],
+              url: document.URL.replace(this.currentEpisode!.id, episode.id),
+            };
+          })
+      );
+    }
+    Promise.all(promiseList).then((languages) => {
+      languages = possibleLangKeys
+        .filter((lang) =>
+          languages.map((language) => language.id).includes(lang)
+        )
+        .map((lang) => languages.find((lang2) => lang == lang2.id)!);
+      const currentLanguage = languages.find(
+        (season) => season.id == currentSeason.lang
+      )?.id;
+      const vilosWindow = (<HTMLIFrameElement>(
+        document.getElementsByClassName("video-player")[0]
+      )).contentWindow!;
+      console.log("send info", {
+        currentLanguage: currentLanguage,
+        languages: languages,
+      });
+      vilosWindow.postMessage(
+        {
+          direction: "from-script-AWP",
+          command: eventsBackgroundSend.SEND_INFO,
+          currentLanguage: currentLanguage,
+          languages: languages,
+        },
+        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
+      );
+    });
   }
 
   private parseSeasons(seasons: season[]) {

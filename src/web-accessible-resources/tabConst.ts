@@ -258,3 +258,18 @@ export const langToDisplay = {
 };
 
 export const possibleLangKeys = <languages[]>Object.keys(possibleLang);
+
+export const regexPageSeries =
+  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}\/)?series/;
+
+export const regexPageWatch =
+  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}\/)?watch/;
+
+export const regexApiObjects =
+  /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/objects\/[A-Z0-9]{9}/;
+
+export const regexApiSeasons =
+  /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/seasons/;
+
+export const startApiUpNextSeries =
+  "https://beta-api.crunchyroll.com/content/v1/up_next_series";
