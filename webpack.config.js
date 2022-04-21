@@ -66,8 +66,8 @@ module.exports = {
           to: "src/content-scripts/crunchyrollVideoPlayerV2.js",
         },
         {
-          from: "src/content-scripts/crunchyrollVideoPlayerV2.css",
-          to: "src/content-scripts/crunchyrollVideoPlayerV2.css",
+          from: "src/content-scripts/crunchyrollVideoPlayer2.css",
+          to: "src/content-scripts/crunchyrollVideoPlayer2.css",
         },
       ],
     }),

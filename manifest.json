@@ -12,7 +12,7 @@
         "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
       ],
       "js": ["src/content-scripts/crunchyrollVideoPlayerV2.js"],
-      "css": ["src/content-scripts/crunchyrollVideoPlayerV2.css"],
+      "css": ["src/content-scripts/crunchyrollVideoPlayer2.css"],
       "all_frames": true,
       "run_at": "document_start"
     },

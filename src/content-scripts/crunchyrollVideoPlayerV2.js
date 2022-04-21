@@ -1,3 +1,13 @@
+/*
+MIT License
+
+Copyright (c) 2019-2022 Thomas Tavernier
+https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399e5bccc886e0fe6decc1b/LICENSE
+https://github.com/ThomasTavernier/Improve-Crunchyroll/blob/2d2a3f6696a2045ae399e5bccc886e0fe6decc1b/content/js/crunchyrollVideoPlayerV2.js
+
+Copyright (c) 2022 Damien HERBERT
+*/
+
 "use strict";
 
 let settings;
