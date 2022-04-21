@@ -1,12 +1,6 @@
-export enum eventsBackgroundReceive {
-  ASK_INFO = "askInfo",
-}
-
 export enum eventsBackgroundSend {
   SEND_INFO = "sendInfo",
 }
-
-export const preferedLangKey = "PREFERED_LANG_KEY";
 
 export type languages =
   | "SUB"

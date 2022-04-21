@@ -3,16 +3,15 @@ import {
   collectionPanel,
   collectionSeason,
   episode_metadata,
+  eventsBackgroundSend,
   langToDisplay,
+  languages,
   possibleLangKeys,
   season,
   upNextSeries,
-} from "../background-scripts/backgroundConst";
-import { languages } from "./../background-scripts/backgroundConst";
-import { TabContext } from "./tabContext";
+} from "./tabConst";
 
 export class TabOverrideXMLHttpRequest {
-  private tabContext: TabContext;
   private upNext: string | undefined;
   private currentEpisode:
     | (episode_metadata & {
@@ -20,13 +19,9 @@ export class TabOverrideXMLHttpRequest {
       })
     | undefined;
 
-  constructor(tabContext: TabContext) {
-    this.tabContext = tabContext;
-  }
+  constructor() {}
 
-  askInfo(): void {
-    console.log("ask info");
-
+  start(): void {
     const tabOverrideXMLHttpRequest = this;
 
     let _open = XMLHttpRequest.prototype.open;
@@ -44,14 +39,7 @@ export class TabOverrideXMLHttpRequest {
         if (_onloadend == null) return;
 
         new Promise<void>((resolve) => {
-          const preferedLanguages =
-            tabOverrideXMLHttpRequest.tabContext.preferedLanguages;
-
-          if (
-            preferedLanguages != null &&
-            _this.readyState === 4 &&
-            _this.status === 200
-          ) {
+          if (_this.readyState === 4 && _this.status === 200) {
             const data = JSON.parse(_this.responseText);
 
             if (document.URL.includes("/watch/")) {
@@ -118,17 +106,17 @@ export class TabOverrideXMLHttpRequest {
                   const currentLanguage = languages.find(
                     (season) => season.id == currentSeason.lang
                   )?.id;
+                  const vilosWindow = (<HTMLIFrameElement>(
+                    document.getElementsByClassName("video-player")[0]
+                  )).contentWindow!;
                   console.log("send info", {
                     currentLanguage: currentLanguage,
                     languages: languages,
                   });
-                  const vilosWindow = (<HTMLIFrameElement>(
-                    document.getElementsByClassName("video-player")[0]
-                  )).contentWindow!;
                   vilosWindow.postMessage(
                     {
                       direction: "from-script-AWP",
-                      command: "SEND_INFO",
+                      command: eventsBackgroundSend.SEND_INFO,
                       currentLanguage: currentLanguage,
                       languages: languages,
                     },

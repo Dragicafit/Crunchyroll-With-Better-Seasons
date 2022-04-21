@@ -10,7 +10,7 @@ window.addEventListener("message", (event) => {
   )
     return;
   switch (event.data.command) {
-    case "SEND_INFO":
+    case "sendInfo":
       settings = createSettings(
         event.data.languages,
         event.data.currentLanguage
@@ -36,6 +36,7 @@ function setPlaybackRate(infos) {
 }
 
 function createSettings(languages, currentLanguage) {
+  console.log("create settings", languages, currentLanguage);
   return [
     {
       title: "Audio",

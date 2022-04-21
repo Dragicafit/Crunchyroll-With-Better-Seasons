@@ -7,9 +7,6 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    "src/background-scripts/background":
-      "./src/background-scripts/backgroundScript.ts",
-    "src/popup/popup": "./src/popup/popupScript.ts",
     "src/web-accessible-resources/tab":
       "./src/web-accessible-resources/tabScript.ts",
   },
@@ -72,7 +69,6 @@ module.exports = {
           from: "src/content-scripts/crunchyrollVideoPlayerV2.css",
           to: "src/content-scripts/crunchyrollVideoPlayerV2.css",
         },
-        { from: "src/popup/popup.html", to: "src/popup/popup.html" },
       ],
     }),
     new CleanWebpackPlugin(),
