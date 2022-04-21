@@ -12,7 +12,7 @@ import { TabContext } from "./tabContext";
 
 export class TabOverrideXMLHttpRequest {
   private tabContext: TabContext;
-  private upNext: string[] | undefined;
+  private upNext: string | undefined;
   private currentEpisode:
     | (episode_metadata & {
         id: string;
@@ -74,11 +74,11 @@ export class TabOverrideXMLHttpRequest {
                 );
                 const currentSeason = seasonsWithLang.find(
                   (season) =>
-                    season.id ==
+                    season.id ===
                     tabOverrideXMLHttpRequest.currentEpisode?.season_id
                 )!;
                 seasonsWithLang = seasonsWithLang.filter(
-                  (season) => season.slug_title == currentSeason.slug_title
+                  (season) => season.slug_title === currentSeason.slug_title
                 );
                 console.info(currentSeason.slug_title);
                 console.info(seasonsWithLang);
@@ -113,29 +113,27 @@ export class TabOverrideXMLHttpRequest {
               ) {
                 const dataSeasons = <collectionSeason>data;
                 try {
-                  Object.defineProperty(_this, "responseText", {
-                    value: JSON.stringify(
-                      tabOverrideXMLHttpRequest.concatLanguages(dataSeasons)
-                    ),
+                  tabOverrideXMLHttpRequest.waitForUpNext().then((upNext) => {
+                    Object.defineProperty(_this, "responseText", {
+                      value: JSON.stringify(
+                        tabOverrideXMLHttpRequest.concatLanguages(
+                          dataSeasons,
+                          upNext
+                        )
+                      ),
+                    });
+                    resolve();
                   });
+                  return;
                 } catch (e) {}
-                // } else if (
-                //   url2.startsWith(
-                //     "https://beta-api.crunchyroll.com/content/v1/up_next_series"
-                //   )
-                // ) {
-                //   const dataUpNextSeries = <upNextSeries>data;
-                //   try {
-                //     tabOverrideXMLHttpRequest
-                //       .adaptUpNext(dataUpNextSeries)
-                //       .then((data) => {
-                //         Object.defineProperty(_this, "responseText", {
-                //           value: JSON.stringify(data),
-                //         });
-                //         resolve();
-                //       });
-                //     return;
-                //   } catch (e) {}
+              } else if (
+                url2.startsWith(
+                  "https://beta-api.crunchyroll.com/content/v1/up_next_series"
+                )
+              ) {
+                const dataUpNextSeries = <upNextSeries>data;
+                tabOverrideXMLHttpRequest.upNext =
+                  dataUpNextSeries.panel.episode_metadata.season_id;
               }
             }
           }
@@ -195,7 +193,7 @@ export class TabOverrideXMLHttpRequest {
     });
   }
 
-  private concatLanguages(data: collectionSeason) {
+  private concatLanguages(data: collectionSeason, upNext: string) {
     let seasonsWithLang = <
       (season & {
         lang: languages;
@@ -208,12 +206,15 @@ export class TabOverrideXMLHttpRequest {
       (previousValue, currentValue) => {
         let k = currentValue.slug_title;
         let found = previousValue.find(
-          (season) => season.slug_title == currentValue.slug_title
+          (season) => season.slug_title === currentValue.slug_title
         );
         if (found != null) {
           found.langs.push(currentValue.lang);
           if (currentValue.is_subbed) {
             found.title = currentValue.title;
+          }
+          if (upNext === currentValue.id) {
+            found.id = currentValue.id;
           }
         } else {
           seen.add(k);
@@ -246,18 +247,13 @@ export class TabOverrideXMLHttpRequest {
     return data;
   }
 
-  private adaptUpNext(data: upNextSeries): Promise<upNextSeries> {
-    return new Promise<upNextSeries>((resolve) => {
+  private waitForUpNext(): Promise<string> {
+    return new Promise<string>((resolve) => {
       if (this.upNext == null) {
-        return setTimeout(() => resolve(this.adaptUpNext(data)), 100);
+        return setTimeout(() => resolve(this.waitForUpNext()), 100);
       }
 
-      if (!this.upNext.includes(data.panel.episode_metadata.season_id)) {
-        data.panel.episode_metadata.season_id = this.upNext[0];
-        document.getElementsByClassName("up-next-section")[0].remove();
-      }
-
-      return resolve(data);
+      return resolve(this.upNext);
     });
   }
 }
