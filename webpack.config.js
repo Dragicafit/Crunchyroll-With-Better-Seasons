@@ -59,6 +59,7 @@ module.exports = {
       patterns: [
         { from: "LICENSE" },
         { from: "manifest.json" },
+        { from: "src/icons", to: "src/icons" },
         {
           from: "src/content-scripts/listener.js",
           to: "src/content-scripts/listener.js",

@@ -1,4 +1,4 @@
-import { lang } from "../background-scripts/backgroundConst";
+import { languages } from "../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
 import { TabSync } from "./tabSync";
 
@@ -11,9 +11,9 @@ export class TabEvents {
     this.tabSync = tabSync;
   }
 
-  sendInfo(item: lang[]): void {
-    console.log("send info", item);
+  sendInfo(preferedLanguages: languages[]): void {
+    console.log("send info", preferedLanguages);
 
-    this.tabContext.item = item;
+    this.tabContext.preferedLanguages = preferedLanguages;
   }
 }

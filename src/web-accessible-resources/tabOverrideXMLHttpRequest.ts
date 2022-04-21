@@ -1,4 +1,4 @@
-import { lang } from "../background-scripts/backgroundConst";
+import { languages } from "../background-scripts/backgroundConst";
 import { TabContext } from "./tabContext";
 export class TabOverrideXMLHttpRequest {
   private tabContext: TabContext;
@@ -28,20 +28,27 @@ export class TabOverrideXMLHttpRequest {
         if (_onloadend == null) return;
 
         new Promise<void>((resolve) => {
-          const item = tabOverrideXMLHttpRequest.tabContext.item;
+          const preferedLanguages =
+            tabOverrideXMLHttpRequest.tabContext.preferedLanguages;
 
-          if (item != null && _this.readyState === 4 && _this.status === 200) {
+          if (
+            preferedLanguages != null &&
+            _this.readyState === 4 &&
+            _this.status === 200
+          ) {
             let data = JSON.parse(_this.responseText);
 
             if (
-              url2.startsWith(
-                "https://beta-api.crunchyroll.com/cms/v2/FR/M3/crunchyroll/seasons"
-              )
+              url2.startsWith("https://beta-api.crunchyroll.com/cms/v2/") &&
+              url2.includes("/M3/crunchyroll/seasons")
             ) {
               try {
                 Object.defineProperty(_this, "responseText", {
                   value: JSON.stringify(
-                    tabOverrideXMLHttpRequest.newMethod(data, item)
+                    tabOverrideXMLHttpRequest.filterLanguages(
+                      data,
+                      preferedLanguages
+                    )
                   ),
                 });
               } catch (e) {}
@@ -51,14 +58,12 @@ export class TabOverrideXMLHttpRequest {
               )
             ) {
               try {
-                tabOverrideXMLHttpRequest
-                  .newMethod2(data, item)
-                  .then((data) => {
-                    Object.defineProperty(_this, "responseText", {
-                      value: JSON.stringify(data),
-                    });
-                    resolve();
+                tabOverrideXMLHttpRequest.adaptUpNext(data).then((data) => {
+                  Object.defineProperty(_this, "responseText", {
+                    value: JSON.stringify(data),
                   });
+                  resolve();
+                });
                 return;
               } catch (e) {}
             }
@@ -83,7 +88,7 @@ export class TabOverrideXMLHttpRequest {
     };
   }
 
-  private newMethod(data: any, item: lang[]) {
+  private filterLanguages(data: any, preferedLanguages: languages[]) {
     let newItems: {
       SUB: any[];
       RU: any[];
@@ -137,8 +142,8 @@ export class TabOverrideXMLHttpRequest {
     );
 
     data.items = [];
-    for (const a of item) {
-      data.items = data.items.concat(newItems[a]);
+    for (const language of preferedLanguages) {
+      data.items = data.items.concat(newItems[language]);
     }
 
     this.upNext = data.items.map((item: any) => item.id);
@@ -146,10 +151,10 @@ export class TabOverrideXMLHttpRequest {
     return data;
   }
 
-  private newMethod2(data: any, item: lang[]): Promise<any> {
+  private adaptUpNext(data: any): Promise<any> {
     return new Promise<any>((resolve) => {
       if (this.upNext == null) {
-        return setTimeout(() => resolve(this.newMethod2(data, item)), 100);
+        return setTimeout(() => resolve(this.adaptUpNext(data)), 100);
       }
 
       if (!this.upNext.includes(data.panel.episode_metadata.season_id)) {

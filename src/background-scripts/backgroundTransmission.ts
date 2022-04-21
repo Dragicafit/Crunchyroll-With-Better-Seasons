@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import { eventsBackgroundReceive } from "./backgroundConst";
+import { eventsBackgroundReceive, preferedLangKey } from "./backgroundConst";
 import { BackgroundScript } from "./backgroundScript";
 
 export default {
@@ -33,8 +33,8 @@ export default {
         return;
       }
       if (
-        changes["name"] != null &&
-        changes["name"].newValue != changes["name"].oldValue
+        changes[preferedLangKey] != null &&
+        changes[preferedLangKey].newValue != changes[preferedLangKey].oldValue
       ) {
         backgroundScript.backgroundSync.sendInfo();
       }

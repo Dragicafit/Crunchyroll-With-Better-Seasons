@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@ffflorian/jszip-cli": "^3.1.6",
-    "@primer/css": "19.7.0",
+    "@primer/css": "19.7.1",
     "@tsconfig/recommended": "^1.0.1",
     "@types/sortablejs": "^1.10.7",
     "@types/webextension-polyfill": "^0.8.3",

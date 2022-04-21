@@ -12,8 +12,8 @@
     "default_title": "Crunchyroll Dub Filter",
     "default_popup": "src/popup/popup.html",
     "default_icon": {
-      "16": "src/icons/desactivate.svg",
-      "32": "src/icons/desactivate.svg"
+      "16": "src/icons/icon.svg",
+      "32": "src/icons/icon.svg"
     }
   },
   "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"]

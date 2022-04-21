@@ -1,6 +1,5 @@
 (function () {
   if (window.hasRun) {
-    console.log("already running");
     return;
   }
   window.hasRun = true;

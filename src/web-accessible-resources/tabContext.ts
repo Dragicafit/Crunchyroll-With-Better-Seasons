@@ -1,4 +1,4 @@
-import { lang } from "../background-scripts/backgroundConst";
+import { languages } from "../background-scripts/backgroundConst";
 export class TabContext {
-  item: lang[] | undefined;
+  preferedLanguages: languages[] | undefined;
 }

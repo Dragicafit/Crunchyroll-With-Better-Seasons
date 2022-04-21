@@ -12,7 +12,7 @@ export default {
         return;
       switch (event.data.command) {
         case eventsBackgroundSend.SEND_INFO:
-          tabEvent.sendInfo(event.data.clientContext);
+          tabEvent.sendInfo(event.data.preferedLanguages);
           break;
         default:
           break;

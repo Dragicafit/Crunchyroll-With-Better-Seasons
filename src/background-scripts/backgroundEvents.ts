@@ -14,6 +14,6 @@ export class BackgroundEvent {
   }
 
   private saveLog(...logs: any[]) {
-    return logs;
+    return this.backgroundScript.backgroundUtils.saveLog(...logs);
   }
 }

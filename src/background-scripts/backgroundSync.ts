@@ -1,23 +1,27 @@
 import browser from "webextension-polyfill";
-import { eventsBackgroundSend, lang } from "./backgroundConst";
-import { defaultLanguage } from "./backgroundUtils";
+import {
+  eventsBackgroundSend,
+  languages,
+  preferedLangKey,
+} from "./backgroundConst";
+import { BackgroundScript } from "./backgroundScript";
+import { defaultLanguages } from "./backgroundUtils";
 
 export class BackgroundSync {
+  private backgroundScript: BackgroundScript;
+
+  constructor(backgroundScript: BackgroundScript) {
+    this.backgroundScript = backgroundScript;
+  }
+
   sendInfo() {
-    console.log(...this.saveLog("send info"));
+    browser.storage.local.get(preferedLangKey).then((item) => {
+      console.log(...this.saveLog("send info", item));
 
-    browser.storage.local.get("name").then((item) => {
-      let name: lang[] = item["name"];
-      if (name == null) {
-        name = defaultLanguage();
+      let preferedLanguages: languages[] = item[preferedLangKey];
+      if (preferedLanguages == null) {
+        preferedLanguages = defaultLanguages();
       }
-
-      browser.runtime
-        .sendMessage({
-          command: eventsBackgroundSend.SEND_INFO,
-          clientContext: name,
-        })
-        .catch(() => {});
 
       browser.tabs.query({}).then((tabs) => {
         tabs.forEach((tab) => {
@@ -25,7 +29,7 @@ export class BackgroundSync {
           browser.tabs
             .sendMessage(tab.id, {
               command: eventsBackgroundSend.SEND_INFO,
-              clientContext: name,
+              preferedLanguages: preferedLanguages,
             })
             .catch(() => {});
         });
@@ -34,6 +38,6 @@ export class BackgroundSync {
   }
 
   private saveLog(...logs: any[]) {
-    return logs;
+    return this.backgroundScript.backgroundUtils.saveLog(...logs);
   }
 }

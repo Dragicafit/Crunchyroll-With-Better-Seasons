@@ -11,7 +11,7 @@ export class BackgroundScript {
 
   public constructor() {
     this.backgroundUtils = new BackgroundUtils();
-    this.backgroundSync = new BackgroundSync();
+    this.backgroundSync = new BackgroundSync(this);
     this.backgroundEvent = new BackgroundEvent(this);
 
     clientTransmission.start(this);
@@ -27,8 +27,8 @@ export class BackgroundScript {
       .catch((error) => console.error(...this.saveError(error)));
   }
 
-  private saveError(...errors: any[]) {
-    return errors;
+  private saveError(...logs: any[]) {
+    return this.backgroundUtils.saveError(...logs);
   }
 }
 

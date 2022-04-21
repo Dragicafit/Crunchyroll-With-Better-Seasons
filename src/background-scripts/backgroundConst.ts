@@ -6,7 +6,17 @@ export enum eventsBackgroundSend {
   SEND_INFO = "sendInfo",
 }
 
-export type lang = "SUB" | "EN" | "FR" | "ES" | "PT" | "DE" | "RU" | "OTHERS";
+export const preferedLangKey = "PREFERED_LANG_KEY";
+
+export type languages =
+  | "SUB"
+  | "EN"
+  | "FR"
+  | "ES"
+  | "PT"
+  | "DE"
+  | "RU"
+  | "OTHERS";
 
 export const possibleLang = {
   SUB: "Subs",
@@ -19,4 +29,4 @@ export const possibleLang = {
   OTHERS: "Other dub",
 };
 
-export const possibleLangKeys = <lang[]>Object.keys(possibleLang);
+export const possibleLangKeys = <languages[]>Object.keys(possibleLang);

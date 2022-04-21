@@ -1,29 +1,31 @@
 import Sortable from "sortablejs";
 import browser from "webextension-polyfill";
 import {
-  eventsBackgroundReceive,
+  languages,
   possibleLang,
   possibleLangKeys,
-  lang,
+  preferedLangKey,
 } from "../background-scripts/backgroundConst";
-import { defaultLanguage } from "../background-scripts/backgroundUtils";
+import { defaultLanguages } from "../background-scripts/backgroundUtils";
 import "./index.scss";
 
-browser.storage.local.get("name").then((item) => {
-  let name: lang[] = item["name"];
-  if (name == null) {
-    name = defaultLanguage();
+browser.storage.local.get(preferedLangKey).then((item) => {
+  let preferedLanguages: languages[] = item[preferedLangKey];
+  if (preferedLanguages == null) {
+    preferedLanguages = defaultLanguages();
   }
 
-  var el = document.getElementById("items")!;
-  var e2 = document.getElementById("items2")!;
+  var el = document.getElementById("show")!;
+  var e2 = document.getElementById("hide")!;
 
-  for (const i of name) {
-    el.innerHTML += `<div class="Box-body my-handle" data-id="${i}">${possibleLang[i]}</div>`;
+  for (const lang of preferedLanguages) {
+    el.innerHTML += `<div class="Box-body grab" data-id="${lang}">${possibleLang[lang]}</div>`;
   }
 
-  for (const i of possibleLangKeys.filter((n: any) => !name.includes(n))) {
-    e2.innerHTML += `<div class="Box-body my-handle" data-id="${i}">${possibleLang[i]}</div>`;
+  for (const lang of possibleLangKeys.filter(
+    (n: any) => !preferedLanguages.includes(n)
+  )) {
+    e2.innerHTML += `<div class="Box-body grab" data-id="${lang}">${possibleLang[lang]}</div>`;
   }
 
   const list = new Sortable(el!, {
@@ -31,7 +33,7 @@ browser.storage.local.get("name").then((item) => {
     dragoverBubble: true,
 
     onSort: function () {
-      browser.storage.local.set({ name: list.toArray() });
+      browser.storage.local.set({ [preferedLangKey]: list.toArray() });
     },
   });
 
@@ -39,11 +41,4 @@ browser.storage.local.get("name").then((item) => {
     group: "shared",
     dragoverBubble: true,
   });
-
-  console.log("ask info");
-  browser.runtime
-    .sendMessage({
-      command: eventsBackgroundReceive.ASK_INFO,
-    })
-    .catch(console.error);
 });
