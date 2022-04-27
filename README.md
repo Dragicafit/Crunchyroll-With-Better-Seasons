@@ -8,7 +8,7 @@ Crunchyroll With Better Seasons is a cross-platform browser extension that chang
 
 On the serie page, it groups all audio languages into a single seasons.
 
-On the episode page, it adds a setting to change the audio langiage.
+On the episode page, it adds a setting to change the audio language.
 
 ## Manual Install
 
