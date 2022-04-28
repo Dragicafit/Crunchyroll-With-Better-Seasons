@@ -2,7 +2,7 @@
   "extends": "@tsconfig/recommended/tsconfig.json",
 
   "compilerOptions": {
-    "outDir": "./built/Firefox/src",
+    "outDir": "./built/Chrome/src",
     "sourceMap": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

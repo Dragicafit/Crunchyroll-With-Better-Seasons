@@ -1,15 +1,21 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Crunchyroll With Better Seasons",
   "description": "Instead of having multiple seasons as DUBS, change audio language directly from the episode.",
   "version": "0.2.0",
   "author": "Dragicafit",
   "icons": {
-    "48": "src/icons/icon.svg",
-    "96": "src/icons/icon.svg"
+    "16": "src/icons/icon16.png",
+    "48": "src/icons/icon48.png",
+    "128": "src/icons/icon128.png"
   },
   "permissions": [],
-  "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/web-accessible-resources/tab.bundle.js"],
+      "matches": ["https://beta.crunchyroll.com/*"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": [

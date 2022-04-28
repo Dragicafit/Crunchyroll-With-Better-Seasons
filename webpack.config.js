@@ -49,7 +49,7 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "built/Firefox/"),
+    path: path.resolve(__dirname, "built/Chrome/"),
   },
   plugins: [
     new CopyWebpackPlugin({

@@ -1,17 +1,17 @@
 {
   "private": true,
   "scripts": {
-    "release": "webpack --mode=production && mkdirp built/Release/Firefox/ && rimraf built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi && jszip-cli add --noconfig --force -o built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi built/Firefox/src built/Firefox/LICENSE built/Firefox/manifest.json",
+    "release": "webpack --mode=production && mkdirp built/Release/Chrome/ && rimraf built/Release/Chrome/Crunchyroll-With-Better-Seasons.crx && crx3 -p built/Release/Chrome/Crunchyroll-With-Better-Seasons.pem -o built/Release/Chrome/Crunchyroll-With-Better-Seasons.crx built/Chrome/",
     "build-extension": "webpack --mode=development",
     "watch-extension": "webpack --mode=development -w"
   },
   "devDependencies": {
-    "@ffflorian/jszip-cli": "^3.1.6",
     "@tsconfig/recommended": "^1.0.1",
     "@types/webextension-polyfill": "^0.8.3",
     "@types/webpack": "^5.28.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.4",
+    "crx3": "^1.1.3",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "mkdirp": "^1.0.4",
