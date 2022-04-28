@@ -72,9 +72,9 @@ export class TabOverrideXMLHttpRequest {
               if (url2.match(regexApiEpisodes)) {
                 tabOverrideXMLHttpRequest
                   .addEpisodesFromOtherLanguages(data, url2)
-                  .then(() => {
+                  .then((episodes) => {
                     Object.defineProperty(_this, "responseText", {
-                      value: JSON.stringify(data),
+                      value: JSON.stringify(episodes),
                     });
                     resolve();
                   });
@@ -120,8 +120,8 @@ export class TabOverrideXMLHttpRequest {
     const currentSeason = seasonsWithLang.find(
       (season) => season.id === this.currentEpisode?.season_id
     )!;
-    seasonsWithLang = seasonsWithLang.filter(
-      (season) => season.slug_title === currentSeason.slug_title
+    seasonsWithLang = seasonsWithLang.filter((season) =>
+      this.sameSeason(season, currentSeason)
     );
     const promiseList = [];
     for (const season of seasonsWithLang) {
@@ -185,8 +185,8 @@ export class TabOverrideXMLHttpRequest {
     let currentSeasonsWithLang = this.seasonsWithLang.find(
       (season) => season.id === currentSeasonId
     )!;
-    let sameSeasonsWithLang = this.seasonsWithLang.filter(
-      (season) => season.slug_title === currentSeasonsWithLang.slug_title
+    let sameSeasonsWithLang = this.seasonsWithLang.filter((season) =>
+      this.sameSeason(season, currentSeasonsWithLang)
     );
     const promiseList = [];
     for (const season of sameSeasonsWithLang) {
@@ -271,9 +271,9 @@ export class TabOverrideXMLHttpRequest {
           langs?: languages[];
         }
       ) => {
-        let k = currentValue.slug_title;
-        let found = previousValue.find(
-          (season) => season.slug_title === currentValue.slug_title
+        let slug_title = currentValue.slug_title;
+        let found = previousValue.find((season) =>
+          this.sameSeason(season, currentValue)
         );
         if (found != null) {
           found.langs.push(currentValue.lang);
@@ -284,7 +284,7 @@ export class TabOverrideXMLHttpRequest {
             found.id = currentValue.id;
           }
         } else {
-          seen.add(k);
+          seen.add(slug_title);
           currentValue.langs = [currentValue.lang];
           previousValue.push(
             <
@@ -329,5 +329,12 @@ export class TabOverrideXMLHttpRequest {
 
       return resolve(this.upNext);
     });
+  }
+
+  private sameSeason(season1: season, season2: season) {
+    if (["kaguya-sama-love-is-war"].includes(season1.slug_title)) {
+      return season1.season_number === season2.season_number;
+    }
+    return season1.slug_title === season2.slug_title;
   }
 }
