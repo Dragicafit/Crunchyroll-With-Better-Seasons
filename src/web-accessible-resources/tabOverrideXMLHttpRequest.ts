@@ -4,6 +4,7 @@ import {
   collectionSeason,
   episode_metadata,
   eventsBackgroundSend,
+  findOtherDubs,
   langToDisplay,
   languages,
   possibleLangKeys,
@@ -60,12 +61,14 @@ export class TabOverrideXMLHttpRequest {
             } else if (document.URL.match(regexPageSeries)) {
               if (url2.match(regexApiSeasons)) {
                 tabOverrideXMLHttpRequest.waitForUpNext().then((upNext) => {
-                  Object.defineProperty(_this, "responseText", {
-                    value: JSON.stringify(
-                      tabOverrideXMLHttpRequest.concatLanguages(data, upNext)
-                    ),
-                  });
-                  resolve();
+                  tabOverrideXMLHttpRequest
+                    .concatLanguages(data, upNext, url2)
+                    .then((seasons) => {
+                      Object.defineProperty(_this, "responseText", {
+                        value: JSON.stringify(seasons),
+                      });
+                      resolve();
+                    });
                 });
                 return;
               }
@@ -115,71 +118,78 @@ export class TabOverrideXMLHttpRequest {
     };
   }
 
-  private sendLanguagesToVilos(seasons: collectionSeason, url2: string) {
-    let seasonsWithLang = this.parseSeasons(seasons.items);
-    const currentSeason = seasonsWithLang.find(
-      (season) => season.id === this.currentEpisode?.season_id
-    )!;
-    seasonsWithLang = seasonsWithLang.filter((season) =>
-      this.sameSeason(season, currentSeason)
+  private sendLanguagesToVilos(seasons: collectionSeason, url: string) {
+    const serieId = seasons.__resource_key__.replace(
+      "cms:/seasons?series_id=",
+      ""
     );
-    const promiseList = [];
-    for (const season of seasonsWithLang) {
-      let url3 = url2.replace(
-        `seasons?series_id=${season.series_id}`,
-        `episodes?season_id=${season.id}`
+    this.parseSeasons(seasons, url).then((seasonsWithLang) => {
+      const currentSeason = seasonsWithLang.find(
+        (season) => season.id === this.currentEpisode?.season_id
+      )!;
+      seasonsWithLang = seasonsWithLang.filter((season) =>
+        this.sameSeason(season, currentSeason)
       );
-      promiseList.push(
-        fetch(url3)
-          .then((response) => response.json())
-          .then((body: collectionEpisode) => {
-            const episode = body.items.find(
-              (item) =>
-                item.sequence_number === this.currentEpisode?.sequence_number
-            );
-            if (episode == null) return;
-            return {
-              id: season.lang,
-              name: langToDisplay[season.lang],
-              url: document.URL.replace(this.currentEpisode!.id, episode.id),
-            };
-          })
-      );
-    }
-    Promise.all(promiseList).then((languages) => {
-      let languagesWithoutNull = languages.flatMap((language) =>
-        language ? [language] : []
-      );
-      let languagesWithoutNullOrdered = possibleLangKeys
-        .filter((lang) =>
-          languagesWithoutNull.map((language) => language.id).includes(lang)
-        )
-        .map((lang) => languagesWithoutNull.find((lang2) => lang == lang2.id)!);
-      const currentLanguageId = languagesWithoutNullOrdered.find(
-        (season) => season.id == currentSeason.lang
-      )?.id;
-      const vilosWindow = (<HTMLIFrameElement>(
-        document.getElementsByClassName("video-player")[0]
-      )).contentWindow!;
-      console.log("send info", {
-        currentLanguage: currentLanguageId,
-        languages: languagesWithoutNullOrdered,
+      const promiseList = [];
+      for (const season of seasonsWithLang) {
+        let urlEpisodes = url.replace(
+          `seasons?series_id=${serieId}`,
+          `episodes?season_id=${season.id}`
+        );
+        promiseList.push(
+          fetch(urlEpisodes)
+            .then((response) => response.json())
+            .then((body: collectionEpisode) => {
+              const episode = body.items.find(
+                (item) =>
+                  item.sequence_number === this.currentEpisode?.sequence_number
+              );
+              if (episode == null) return;
+              return {
+                id: season.lang,
+                name: langToDisplay[season.lang],
+                url: document.URL.replace(this.currentEpisode!.id, episode.id),
+              };
+            })
+        );
+      }
+      Promise.all(promiseList).then((languages) => {
+        let languagesWithoutNull = languages.flatMap((language) =>
+          language ? [language] : []
+        );
+        let languagesWithoutNullOrdered = possibleLangKeys
+          .filter((lang) =>
+            languagesWithoutNull.map((language) => language.id).includes(lang)
+          )
+          .map(
+            (lang) => languagesWithoutNull.find((lang2) => lang == lang2.id)!
+          );
+        const currentLanguageId = languagesWithoutNullOrdered.find(
+          (season) => season.id == currentSeason.lang
+        )?.id;
+        const vilosWindow = (<HTMLIFrameElement>(
+          document.getElementsByClassName("video-player")[0]
+        )).contentWindow!;
+        console.log("send info", {
+          currentLanguage: currentLanguageId,
+          languages: languagesWithoutNullOrdered,
+        });
+        vilosWindow.postMessage(
+          {
+            direction: "from-script-CWBS",
+            command: eventsBackgroundSend.SEND_INFO,
+            currentAudioLanguage: currentLanguageId,
+            audioLanguages: languagesWithoutNullOrdered,
+          },
+          "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
+        );
       });
-      vilosWindow.postMessage(
-        {
-          direction: "from-script-CWBS",
-          command: eventsBackgroundSend.SEND_INFO,
-          currentAudioLanguage: currentLanguageId,
-          audioLanguages: languagesWithoutNullOrdered,
-        },
-        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
-      );
     });
   }
 
   private async addEpisodesFromOtherLanguages(
     episodes: collectionEpisode,
-    url2: string
+    url: string
   ) {
     const currentSeasonId = episodes.items[0].season_id;
     let currentSeasonsWithLang = this.seasonsWithLang.find(
@@ -193,12 +203,12 @@ export class TabOverrideXMLHttpRequest {
       if (season.id === currentSeasonId) {
         continue;
       }
-      let url3 = url2.replace(
+      let urlOtherEpisodes = url.replace(
         `episodes?season_id=${currentSeasonId}`,
         `episodes?season_id=${season.id}`
       );
       promiseList.push(
-        fetch(url3)
+        fetch(urlOtherEpisodes)
           .then((response) => response.json())
           .then((body: collectionEpisode) => {
             body.items.forEach((episode) => {
@@ -223,8 +233,32 @@ export class TabOverrideXMLHttpRequest {
     return episodes;
   }
 
-  private parseSeasons(seasons: season[]) {
-    return seasons.map((season) => {
+  private async parseSeasons(
+    seasons: collectionSeason,
+    url: string
+  ): Promise<
+    (season & {
+      lang: languages;
+    })[]
+  > {
+    const serieId = seasons.__resource_key__.replace(
+      "cms:/seasons?series_id=",
+      ""
+    );
+    const otherDubId = findOtherDubs.get(serieId);
+    if (otherDubId != null) {
+      let urlOtherSeason = url.replace(
+        `seasons?series_id=${serieId}`,
+        `seasons?series_id=${otherDubId}`
+      );
+      await fetch(urlOtherSeason)
+        .then((response) => response.json())
+        .then((body: collectionSeason) => {
+          seasons.items.push(...body.items);
+          seasons.items.sort((s1, s2) => s1.season_number - s2.season_number);
+        });
+    }
+    return seasons.items.map((season) => {
       const seasonWithLang = <season & { lang: languages }>season;
       if (seasonWithLang.is_subbed) {
         seasonWithLang.lang = "SUB";
@@ -259,9 +293,12 @@ export class TabOverrideXMLHttpRequest {
     });
   }
 
-  private concatLanguages(data: collectionSeason, upNext: string) {
-    this.seasonsWithLang = this.parseSeasons(data.items);
-
+  private async concatLanguages(
+    data: collectionSeason,
+    upNext: string,
+    url: string
+  ): Promise<collectionSeason> {
+    this.seasonsWithLang = await this.parseSeasons(data, url);
     let seen = new Set();
     let seasons = this.seasonsWithLang.reduce(
       (
@@ -277,6 +314,10 @@ export class TabOverrideXMLHttpRequest {
         );
         if (found != null) {
           found.langs.push(currentValue.lang);
+          found.season_number = Math.min(
+            found.season_number,
+            currentValue.season_number
+          );
           if (currentValue.is_subbed) {
             found.title = currentValue.title;
           }
