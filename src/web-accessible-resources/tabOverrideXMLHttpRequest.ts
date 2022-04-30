@@ -5,6 +5,7 @@ import {
   episode_metadata,
   eventsBackgroundSend,
   findOtherDubs,
+  invalidSlug,
   langToDisplay,
   languages,
   possibleLangKeys,
@@ -373,7 +374,7 @@ export class TabOverrideXMLHttpRequest {
   }
 
   private sameSeason(season1: season, season2: season) {
-    if (["kaguya-sama-love-is-war"].includes(season1.slug_title)) {
+    if (invalidSlug.includes(season1.slug_title)) {
       return season1.season_number === season2.season_number;
     }
     return season1.slug_title === season2.slug_title;
