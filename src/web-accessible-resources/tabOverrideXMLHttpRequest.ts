@@ -5,19 +5,19 @@ import {
   episode_metadata,
   eventsBackgroundSend,
   findOtherDubs,
-  invalidSlug,
+  impoveMergedSeason,
+  impoveSeason,
   langToDisplay,
-  languages,
   possibleLangKeys,
   regexApiEpisodes,
   regexApiObjects,
   regexApiSeasons,
   regexPageSeries,
   regexPageWatch,
-  season,
   startApiUpNextSeries,
   upNextSeries,
 } from "./tabConst";
+import { improveApiSeasons } from "./tabImproveApiSeasons";
 
 export class TabOverrideXMLHttpRequest {
   private upNext: string | undefined;
@@ -26,9 +26,7 @@ export class TabOverrideXMLHttpRequest {
         id: string;
       })
     | undefined;
-  private seasonsWithLang: (season & {
-    lang: languages;
-  })[] = [];
+  private seasonsWithLang: impoveSeason[] = [];
 
   constructor() {}
 
@@ -234,14 +232,10 @@ export class TabOverrideXMLHttpRequest {
     return episodes;
   }
 
-  private async parseSeasons(
+  async parseSeasons(
     seasons: collectionSeason,
     url: string
-  ): Promise<
-    (season & {
-      lang: languages;
-    })[]
-  > {
+  ): Promise<impoveSeason[]> {
     const serieId = seasons.__resource_key__.replace(
       "cms:/seasons?series_id=",
       ""
@@ -259,39 +253,68 @@ export class TabOverrideXMLHttpRequest {
           seasons.items.sort((s1, s2) => s1.season_number - s2.season_number);
         });
     }
-    return seasons.items.map((season) => {
-      const seasonWithLang = <season & { lang: languages }>season;
-      if (seasonWithLang.is_subbed) {
-        seasonWithLang.lang = "SUB";
-      } else if (seasonWithLang.slug_title.match(/-english(-dub)?$/)) {
-        seasonWithLang.lang = "EN";
-      } else if (seasonWithLang.slug_title.match(/-french(-dub)?$/)) {
-        seasonWithLang.lang = "FR";
-      } else if (seasonWithLang.slug_title.match(/-spanish(-dub)?$/)) {
-        seasonWithLang.lang = "ES";
-      } else if (seasonWithLang.slug_title.match(/-portuguese(-dub)?$/)) {
-        seasonWithLang.lang = "PT";
-      } else if (seasonWithLang.slug_title.match(/-german(-dub)?$/)) {
-        seasonWithLang.lang = "DE";
-      } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
-        seasonWithLang.lang = "RU";
+    const useNewLang = seasons.items.every((season) => {
+      const improveApiSeason = improveApiSeasons.get(season.id);
+      return improveApiSeason != null && improveApiSeason.lang != null;
+    });
+    const useNewOrder = seasons.items.every((season) => {
+      const improveApiSeason = improveApiSeasons.get(season.id);
+      return (
+        improveApiSeason != null &&
+        improveApiSeason.season_number != null &&
+        improveApiSeason.season_number_order != null
+      );
+    });
+    const seasonsWithLang = seasons.items.map((season) => {
+      const seasonWithLang = <impoveSeason>season;
+      const improveApiSeason = improveApiSeasons.get(season.id);
+      seasonWithLang.useNewLang = useNewLang;
+      seasonWithLang.useNewOrder = useNewOrder;
+      if (useNewLang) {
+        seasonWithLang.lang = improveApiSeason!.lang;
       } else {
-        seasonWithLang.lang = "OTHERS";
+        if (seasonWithLang.is_subbed) {
+          seasonWithLang.lang = "SUB";
+        } else if (seasonWithLang.slug_title.match(/-english-dub$/)) {
+          seasonWithLang.lang = "EN";
+        } else if (seasonWithLang.slug_title.match(/-french-dub$/)) {
+          seasonWithLang.lang = "FR";
+        } else if (seasonWithLang.slug_title.match(/-spanish-dub$/)) {
+          seasonWithLang.lang = "ES";
+        } else if (seasonWithLang.slug_title.match(/-portuguese-dub$/)) {
+          seasonWithLang.lang = "PT";
+        } else if (seasonWithLang.slug_title.match(/-german-dub$/)) {
+          seasonWithLang.lang = "DE";
+        } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
+          seasonWithLang.lang = "RU";
+        } else if (seasonWithLang.slug_title.match(/-dub$/)) {
+          seasonWithLang.lang = "EN";
+        } else {
+          seasonWithLang.lang = "OTHERS";
+        }
       }
-      if (seasonWithLang.is_dubbed) {
-        seasonWithLang.slug_title = season.slug_title.replace(
-          /-english(-dub)?$|-french(-dub)?$|-spanish(-dub)?$|-portuguese(-dub)?$|-german(-dub)?$|-russian(-dub)?$/,
-          ""
-        );
-        seasonWithLang.title = season.title.replace(
-          / \(\w+? Dub\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(RU\) /,
-          ""
-        );
-      } else {
-        seasonWithLang.title = season.title.replace(/\(OmU\) /, "");
+      if (useNewOrder) {
+        seasonWithLang.season_number_order =
+          improveApiSeason!.season_number_order!;
+        seasonWithLang.season_number = <any>improveApiSeason!.season_number!;
       }
+
+      seasonWithLang.slug_title = season.slug_title.replace(
+        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$-dub$/,
+        ""
+      );
+      seasonWithLang.title = season.title.replace(
+        / \(English Dub\)$| \(French Dub\)$| \(Spanish Dub\)$| \(Portuguese Dub\)$| \(German Dub\)$| \(Russian Dub\)$| \(Dub\)$| \(Sub\)$| \(Dubbed\)$| \(Subbed\)$| \(Subtitled\)$| \(Russian\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(RU\) |\(OmU\) /,
+        ""
+      );
       return seasonWithLang;
     });
+    if (useNewOrder) {
+      seasonsWithLang.sort(
+        (s1, s2) => s1.season_number_order - s2.season_number_order
+      );
+    }
+    return seasonsWithLang;
   }
 
   private async concatLanguages(
@@ -300,51 +323,33 @@ export class TabOverrideXMLHttpRequest {
     url: string
   ): Promise<collectionSeason> {
     this.seasonsWithLang = await this.parseSeasons(data, url);
-    let seen = new Set();
     let seasons = this.seasonsWithLang.reduce(
-      (
-        previousValue,
-        currentValue: season & {
-          lang: languages;
-          langs?: languages[];
-        }
-      ) => {
-        let slug_title = currentValue.slug_title;
+      (previousValue: impoveMergedSeason[], currentValue: impoveSeason) => {
         let found = previousValue.find((season) =>
           this.sameSeason(season, currentValue)
         );
         if (found != null) {
           found.langs.push(currentValue.lang);
-          found.season_number = Math.min(
-            found.season_number,
-            currentValue.season_number
-          );
-          if (currentValue.is_subbed) {
+          if (!found.useNewOrder || !currentValue.useNewOrder) {
+            found.season_number = Math.min(
+              found.season_number,
+              currentValue.season_number
+            );
+          }
+          if (currentValue.lang === "SUB") {
             found.title = currentValue.title;
           }
           if (upNext === currentValue.id) {
             found.id = currentValue.id;
           }
         } else {
-          seen.add(slug_title);
-          currentValue.langs = [currentValue.lang];
-          previousValue.push(
-            <
-              season & {
-                lang: languages;
-                langs: languages[];
-              }
-            >currentValue
-          );
+          const mainValue = <impoveMergedSeason>currentValue;
+          mainValue.langs = [currentValue.lang];
+          previousValue.push(mainValue);
         }
         return previousValue;
       },
-      <
-        (season & {
-          lang: languages;
-          langs: languages[];
-        })[]
-      >(<unknown[]>[])
+      <impoveMergedSeason[]>(<unknown[]>[])
     );
     data.items = seasons.map((season) => {
       let firstDub = true;
@@ -373,9 +378,9 @@ export class TabOverrideXMLHttpRequest {
     });
   }
 
-  private sameSeason(season1: season, season2: season) {
-    if (invalidSlug.includes(season1.slug_title)) {
-      return season1.season_number === season2.season_number;
+  private sameSeason(season1: impoveSeason, season2: impoveSeason) {
+    if (season1.useNewOrder && season2.useNewOrder) {
+      return season1.season_number_order === season2.season_number_order;
     }
     return season1.slug_title === season2.slug_title;
   }
