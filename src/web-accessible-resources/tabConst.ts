@@ -26,18 +26,29 @@ export type episode_metadata = {
   duration_ms: number;
   episode_air_date: string;
   is_premium_only: boolean;
+  extended_maturity_ratings: {};
+  maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
-  available_date: null;
-  free_available_date: null;
-  premium_date: null;
-  premium_available_date: null;
+  available_date: string | null;
+  free_available_date: string | null;
+  premium_date: string | null;
+  premium_available_date: string | null;
   is_subbed: boolean;
   is_dubbed: boolean;
   is_clip: boolean;
   available_offline: boolean;
-  maturity_ratings: string[];
-  subtitle_locales: string[];
+  subtitle_locales: (
+    | "en-US"
+    | "es-419"
+    | "es-ES"
+    | "fr-FR"
+    | "pt-BR"
+    | "ar-SA"
+    | "it-IT"
+    | "de-DE"
+    | "ru-RU"
+  )[];
   availability_notes: string;
 };
 
@@ -51,11 +62,6 @@ export type panel = {
     "resource/channel": { href: string };
     streams: { href: string };
   };
-  "episode/season": { href: string };
-  "episode/series": { href: string };
-  resource: { href: string };
-  "resource/channel": { href: string };
-  streams: { href: string };
   __actions__: {};
   id: string;
   external_id: string;
@@ -73,7 +79,7 @@ export type panel = {
       height: number;
       type: string;
       source: string;
-    }[];
+    }[][];
   };
   episode_metadata: episode_metadata;
   playback: string;
@@ -103,8 +109,10 @@ export type season = {
   is_complete: boolean;
   description: string;
   keywords: [];
-  season_tags: [];
+  season_tags: string[];
   images: {};
+  extended_maturity_ratings: {};
+  maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
   is_subbed: boolean;
@@ -204,13 +212,15 @@ export type episode = {
   next_episode_id: string;
   next_episode_title: string;
   hd_flag: boolean;
+  maturity_ratings: string[];
+  extended_maturity_ratings: {};
   is_mature: boolean;
   mature_blocked: boolean;
   episode_air_date: string;
-  available_date: string;
-  free_available_date: string;
-  premium_date: string;
-  premium_available_date: string;
+  available_date: string | null;
+  free_available_date: string | null;
+  premium_date: string | null;
+  premium_available_date: string | null;
   is_subbed: boolean;
   is_dubbed: boolean;
   is_clip: boolean;
