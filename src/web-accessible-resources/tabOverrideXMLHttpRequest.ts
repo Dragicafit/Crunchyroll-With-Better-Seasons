@@ -273,7 +273,10 @@ export class TabOverrideXMLHttpRequest {
       if (useNewLang) {
         seasonWithLang.lang = improveApiSeason!.lang;
       } else {
-        if (seasonWithLang.is_subbed) {
+        if (
+          seasonWithLang.is_subbed ||
+          seasonWithLang.slug_title.match(/-sub$|-subbed$|-subtitled$/)
+        ) {
           seasonWithLang.lang = "SUB";
         } else if (seasonWithLang.slug_title.match(/-english-dub$/)) {
           seasonWithLang.lang = "EN";
@@ -287,7 +290,7 @@ export class TabOverrideXMLHttpRequest {
           seasonWithLang.lang = "DE";
         } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
           seasonWithLang.lang = "RU";
-        } else if (seasonWithLang.slug_title.match(/-dub$/)) {
+        } else if (seasonWithLang.slug_title.match(/-dub$|-dubbed$/)) {
           seasonWithLang.lang = "EN";
         } else {
           seasonWithLang.lang = "OTHERS";
@@ -300,7 +303,7 @@ export class TabOverrideXMLHttpRequest {
       }
 
       seasonWithLang.slug_title = season.slug_title.replace(
-        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$|-dub$/,
+        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$|-dub$|-sub$|-dubbed$|-subbed$|-subtitled$/,
         ""
       );
       seasonWithLang.title = season.title.replace(
