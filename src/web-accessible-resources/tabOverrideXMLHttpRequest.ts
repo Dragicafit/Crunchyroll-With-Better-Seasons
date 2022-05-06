@@ -300,7 +300,7 @@ export class TabOverrideXMLHttpRequest {
       }
 
       seasonWithLang.slug_title = season.slug_title.replace(
-        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$-dub$/,
+        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$|-dub$/,
         ""
       );
       seasonWithLang.title = season.title.replace(
