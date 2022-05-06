@@ -299,16 +299,20 @@ export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
 
 export const findOtherDubs = new Map([
-  ["G24H1NM05", "GR751KNZY"], //AOT
-  ["GR751KNZY", "G24H1NM05"], //AOT
-  ["GYNV9DP2R", "G6NQ5DWZ6"], //MHA
-  ["G6NQ5DWZ6", "GYNV9DP2R"], //MHA
-  ["GY1XX0N0Y", "GRE50KV36"], //BC
-  ["GRE50KV36", "GY1XX0N0Y"], //BC
-  ["G0XHWM9MP", "G6DQDD3WR"], //FT
-  ["G6DQDD3WR", "G0XHWM9MP"], //FT
-  ["GR0XP5V9Y", "G6GG91P26"], //FW
-  ["G6GG91P26", "GR0XP5V9Y"], //FW
-  ["GKEH2G8N4", "G619JM99Y"], //Monster Strike
-  ["G619JM99Y", "GKEH2G8N4"], //Monster Strike
+  ["G24H1NM05", "GR751KNZY"], // Attack on Titan
+  ["GR751KNZY", "G24H1NM05"], // Attack on Titan
+  ["GYNV9DP2R", "G6NQ5DWZ6"], // My Hero Academia
+  ["G6NQ5DWZ6", "GYNV9DP2R"], // My Hero Academia
+  ["GY1XX0N0Y", "GRE50KV36"], // Black Clover
+  ["GRE50KV36", "GY1XX0N0Y"], // Black Clover
+  ["G0XHWM9MP", "G6DQDD3WR"], // Fairy Tail
+  ["G6DQDD3WR", "G0XHWM9MP"], // Fairy Tail
+  ["GR0XP5V9Y", "G6GG91P26"], // Food Wars
+  ["G6GG91P26", "GR0XP5V9Y"], // Food Wars
+  ["GKEH2G8N4", "G619JM99Y"], // Monster Strike
+  ["G619JM99Y", "GKEH2G8N4"], // Monster Strike
+  ["G6VNXNE4R", "G6VDWKM76"], // Persona5
+  ["G6VDWKM76", "G6VNXNE4R"], // Persona5
+  ["GRWEK728R", "GRGGVKP4R"], // Yowamushi Pedal
+  ["GRGGVKP4R", "GRWEK728R"], // Yowamushi Pedal
 ]);

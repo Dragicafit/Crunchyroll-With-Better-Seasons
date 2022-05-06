@@ -192,7 +192,7 @@ export const improveApiSeasons: Map<
   ["GREXN9JGY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYP5K9JMY",
-    { season_number: "1 Less censored", season_number_order: 1, lang: "SUB" },
+    { season_number: "1 less censored", season_number_order: 1, lang: "SUB" },
   ],
   [
     "GREXNJPVY",
@@ -875,85 +875,31 @@ export const improveApiSeasons: Map<
   ["G6MGDMMV6", { season_number: 3, season_number_order: 3, lang: "EN" }],
   ["G6491J8WY", { season_number: 4, season_number_order: 4, lang: "EN" }],
   ["GYWEZV50Y", { season_number: 5, season_number_order: 5, lang: "EN" }],
-  [
-    "GR2PD33JR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR2P5XG2R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  ["GRK5KX4M6", { season_number: null, season_number_order: null, lang: "EN" }],
-  [
-    "GR2P5EVPR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR2PD33JR", { season_number: 6, season_number_order: 6, lang: "SUB" }],
+  ["GR2P5XG2R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GRK5KX4M6", { season_number: 1, season_number_order: 1, lang: "EN" }],
+  ["GR2P5EVPR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR2PQEP5R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR2PE3WKR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR2P952KR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR25KXK0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65V3D256",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY2PDV4EY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VW0ZP6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR2PE3WKR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR2P952KR", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["GR25KXK0R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65V3D256", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY2PDV4EY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G65VW0ZP6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYP522ZWY", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["G6QW225Q6", { season_number: 1, season_number_order: 1, lang: "PT" }],
   ["G65V9WW36", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G65VJ2Z56",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VKK2D6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G65VJ2Z56", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VKK2D6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G65VEK7P6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GYGGP44DY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYGGP44DY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G65VEPK86", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G65VE1Q06",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VD0K06",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VXVWG6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VP79D6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VPKWE6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65VPNW56",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G65VE1Q06", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VD0K06", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VXVWG6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VP79D6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VPKWE6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65VPNW56", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G609CX95V", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G65V1QNE6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6Q4CZ4M1", { season_number: 1, season_number_order: 1, lang: "DE" }],
@@ -964,23 +910,14 @@ export const improveApiSeasons: Map<
   ["G65J22486", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G65PW4Q76", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G69PC2XQ2", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "G65PG8Q36",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65PM41K6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G65PJ0ZG6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G65PG8Q36", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65PM41K6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G65PJ0ZG6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYXJG2P86", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G65P794D6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G65P7QD86",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 1, lang: "SUB" },
   ],
   ["G65P773K6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYMGC3Z37", { season_number: 2, season_number_order: 2, lang: "SUB" }],
@@ -996,26 +933,18 @@ export const improveApiSeasons: Map<
     { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   ["GR09CX9E7", { season_number: 1, season_number_order: 1, lang: "EN" }],
+  [
+    "GY3VGVMZR",
+    { season_number: "pecial", season_number_order: 1.5, lang: "SUB" },
+  ],
   ["GY3K1EW9Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GY3VZ4KMR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY3V70N9R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY3VZ4KMR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY3V70N9R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GY3VPQ5ER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR8V7GDGR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "GYP8QZ8VY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYP8QZ8VY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GY3VXK0MR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GY3VMQ2NR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY3VMQ2NR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GY3VW7MWR",
     { season_number: "pin-off 1", season_number_order: 50, lang: "SUB" },
@@ -1024,22 +953,9 @@ export const improveApiSeasons: Map<
     "G6K5K3P9Y",
     { season_number: "pin-off 2", season_number_order: 51, lang: "SUB" },
   ],
-  [
-    "G60971M76",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR9PX30J6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY3VW8VQR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY3VGVMZR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G60971M76", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR9PX30J6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GY3VW8VQR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6G53D056", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYVNC2DV7", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["GR3VC2MPN", { season_number: 1, season_number_order: 1, lang: "PT" }],
@@ -1057,14 +973,8 @@ export const improveApiSeasons: Map<
   ["G6GG58346", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6GG59D16", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRQ4WQN3Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "G6GG5E0E6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6GG5PDW6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6GG5E0E6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6GG5PDW6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYGGCVD1V", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6GGK00P6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6GGK3WW6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -1091,41 +1001,17 @@ export const improveApiSeasons: Map<
   ["GRWEC3PMM", { season_number: 2, season_number_order: 2, lang: "ES" }],
   ["GRGGCVD5V", { season_number: 2, season_number_order: 2, lang: "PT" }],
   ["G6VDWXV76", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "GR491ZZE6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR497ZMJ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR49M05P6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR49M47V6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR49MP516",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR491ZZE6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR497ZMJ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR49M05P6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR49M47V6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR49MP516", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR49MGQZ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR49MJW36", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6XJX37NR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR49040E6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR490V9Z6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYWEXDMMY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR49040E6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR490V9Z6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYWEXDMMY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR490PNZ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYNQCJ5Q5",
@@ -1183,17 +1069,14 @@ export const improveApiSeasons: Map<
   ["GRVNC2PG1", { season_number: 3, season_number_order: 3, lang: "ES" }],
   ["G63VC27JJ", { season_number: 3, season_number_order: 3, lang: "PT" }],
   ["GRZXCMNZZ", { season_number: 3, season_number_order: 3, lang: "SUB" }],
-  [
-    "G6DKX1Q1R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6DKX1Q1R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G64PXZD3R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " OVA", season_number_order: 1.5, lang: "SUB" },
   ],
   [
     "GYG5MG07Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   [
     "G6DQVVMDR",
@@ -1260,14 +1143,8 @@ export const improveApiSeasons: Map<
   ["G6P8CXQQ9", { season_number: 1, season_number_order: 1, lang: "FR" }],
   ["G63VC2PP4", { season_number: 1, season_number_order: 1, lang: "PT" }],
   ["GYK5CNZ9G", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GRMGC3JWQ",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRK5CN7QD",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRMGC3JWQ", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRK5CN7QD", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["G6P8CXWP1", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYK5CNZN5",
@@ -1357,12 +1234,9 @@ export const improveApiSeasons: Map<
   ],
   [
     "GYNQCJZXG",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
-  [
-    "GRVNC2D42",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRVNC2D42", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GY2PCVZWW",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -1419,30 +1293,12 @@ export const improveApiSeasons: Map<
     "GRJQC1J9K",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRX0C4NX3",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY49C7P9D",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G619CP8DZ",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYJQC143P",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRNQCJ5E5",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYK5CN7JZ",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRX0C4NX3", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY49C7P9D", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G619CP8DZ", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["GYJQC143P", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["GRNQCJ5E5", { season_number: 5, season_number_order: 5, lang: "SUB" }],
+  ["GYK5CN7JZ", { season_number: 6, season_number_order: 6, lang: "SUB" }],
   ["G6P8CXQMW", { season_number: 1, season_number_order: 1, lang: "DE" }],
   ["GY8VCPD52", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["G63VC2P85", { season_number: 1, season_number_order: 1, lang: "FR" }],
@@ -1643,14 +1499,8 @@ export const improveApiSeasons: Map<
     "GYE5M9N1R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYE5KM31R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR49487V6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYE5KM31R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR49487V6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GYE5K58QR",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -1659,29 +1509,17 @@ export const improveApiSeasons: Map<
     "GYE5KP09R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYE5P14PR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYGG8308Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRDK9773Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYE5P14PR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYGG8308Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GRDK9773Y", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GYE5PX1QR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYE5PXJPR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYE5PXJPR", { season_number: 5, season_number_order: 5, lang: "SUB" }],
   [
     "GY8VGXJ0Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial", season_number_order: 4.5, lang: "SUB" },
   ],
   [
     "GYE5JNK1R",
@@ -1720,14 +1558,8 @@ export const improveApiSeasons: Map<
   ],
   ["GYWEZ8NGY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6JQVZE3R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6JQV7GXR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRX0197N6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6JQV7GXR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRX0197N6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G6JQKZN8R",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -1830,18 +1662,9 @@ export const improveApiSeasons: Map<
     "GY8VKDZ4Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GY8VK878Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR9PED3J6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR9VVEKV6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY8VK878Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR9PED3J6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GR9VVEKV6", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GY8VX0V8Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -1864,11 +1687,11 @@ export const improveApiSeasons: Map<
   ],
   [
     "G6MGC3J85",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: 2021, season_number_order: 2021, lang: "SUB" },
   ],
   [
     "GRP5QMG9R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: 2019, season_number_order: 2019, lang: "SUB" },
   ],
   ["G6K5CN8Z3", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GR9PC2DPD", { season_number: 2, season_number_order: 2, lang: "EN" }],
@@ -1906,11 +1729,11 @@ export const improveApiSeasons: Map<
     "GRP8PDZ1R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
+  ["GY19N75ER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
-    "GY19N75ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    "GR79GJW56",
+    { season_number: " OAD", season_number_order: 1.5, lang: "SUB" },
   ],
-  ["GR79GJW56", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRJQC1MM1", { season_number: 2, season_number_order: 2, lang: "EN" }],
   ["GY19793QR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRMGC3ZD0", { season_number: 2, season_number_order: 2, lang: "SUB" }],
@@ -1918,13 +1741,10 @@ export const improveApiSeasons: Map<
   ["GY19GMPZR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G69PC2D45", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY1985KVR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GY19QNQ2R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY19QNQ2R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GR9V1Z546",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " OVA", season_number_order: 1.5, lang: "SUB" },
   ],
   ["G6E5M5X8Y", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6VNC2P9V", { season_number: 4, season_number_order: 4, lang: "ES" }],
@@ -2018,22 +1838,10 @@ export const improveApiSeasons: Map<
   ],
   ["GRK5CN819", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6WE8MZJ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6WEWJ4Q6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYEX58096",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6WEK7086",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRZJ8QPV6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6WEWJ4Q6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYEX58096", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G6WEK7086", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRZJ8QPV6", { season_number: " OVA", season_number_order: 2, lang: "SUB" }],
   [
     "G6WEMXXG6",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2060,14 +1868,8 @@ export const improveApiSeasons: Map<
     "GYW448N26",
     { season_number: " Movie 1", season_number_order: 2.5, lang: "SUB" },
   ],
-  [
-    "GR9PXJ116",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G619Q5MKY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR9PXJ116", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G619Q5MKY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR5VCDJE3", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G609CX34Q", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["GR9PXM286", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -2090,14 +1892,8 @@ export const improveApiSeasons: Map<
     "GY3VC2P34",
     { season_number: " OAD", season_number_order: 50, lang: "SUB" },
   ],
-  [
-    "GR9PXNWW6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRX0ME556",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR9PXNWW6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRX0ME556", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GR9PXWJ86",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2190,14 +1986,8 @@ export const improveApiSeasons: Map<
     "G6ZXQXDMR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6ZXQ71XR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G69P2KV8Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6ZXQ71XR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G69P2KV8Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["G6X018J0Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6X01W03Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -2258,24 +2048,15 @@ export const improveApiSeasons: Map<
     "G6X0JXW0Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6X0JXJ2Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6Q4WV9ZR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6X0JXJ2Y", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["G6Q4WV9ZR", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["G6X0J230Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRNQV31XR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GRVNDKGZY", { season_number: 3, season_number_order: 3, lang: "SUB" }],
-  [
-    "G6X0JQ13Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6X0JQ13Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYDQCG47P",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   ["GY19QW0KR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -2302,14 +2083,8 @@ export const improveApiSeasons: Map<
   ],
   ["GR9V44W86", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6QWVV0Q6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6QWNKKP6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYVDQ3EWY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6QWNKKP6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYVDQ3EWY", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "G6QWJKXG6",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2331,44 +2106,20 @@ export const improveApiSeasons: Map<
     "G6Q4MMEGR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6Q4K01QR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYJQVJK26",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6MGQ7VW6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6Q4K01QR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYJQVJK26", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G6MGQ7VW6", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["GY9PC2DK5", { season_number: 2, season_number_order: 2, lang: "EN" }],
   ["GY75CDWGJ", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6Q428VER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6K5G75GY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["G6GG5WGE6", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6Q4WNJER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6Q4W3N7R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6P853M56",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYZXJK8D6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6Q4WQJQR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRP85X59R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6Q4W3N7R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6P853M56", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYZXJK8D6", { season_number: " OVA", season_number_order: 3, lang: "SUB" }],
+  ["G6Q4WQJQR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRP85X59R", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["G6Q4W1P3R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G6Q4WXQPR",
@@ -2382,30 +2133,12 @@ export const improveApiSeasons: Map<
     "G6Q4QK9ZR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6Q4Q28ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY9PMZWDR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYNQX22XY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRGG9XD2R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6Q4Q4D4R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6P8X84V6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6Q4Q28ER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY9PMZWDR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYNQX22XY", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["GRGG9XD2R", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["G6Q4Q4D4R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6P8X84V6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["G6Q41Q09R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6Q49Z91R", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY24PG49R", { season_number: 1, season_number_order: 1, lang: "ES" }],
@@ -2416,34 +2149,22 @@ export const improveApiSeasons: Map<
   ["GY2P59WEY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYNQCJWWE", { season_number: 3, season_number_order: 3, lang: "EN" }],
   ["GY8DVZG7Y", { season_number: 3, season_number_order: 3, lang: "SUB" }],
-  [
-    "G6Q498JQR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6Q498JQR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G649GJ91Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "2 Part 1", season_number_order: 2.1, lang: "SUB" },
   ],
-  [
-    "GY9PX0XVR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY9PX0XVR", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "G6X0MVJMY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "2 Part 2", season_number_order: 2.2, lang: "SUB" },
   ],
   [
     "G6Q493N9R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6Q499QER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYVNMMG06",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6Q499QER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYVNMMG06", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR09CXQMJ", { season_number: 1, season_number_order: 1, lang: "DE" }],
   ["G6X0C4N21", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GR9PC2W90", { season_number: 1, season_number_order: 1, lang: "ES" }],
@@ -2509,10 +2230,7 @@ export const improveApiSeasons: Map<
     "G6751E1JR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6759G45R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6759G45R", { season_number: 4, season_number_order: 4, lang: "SUB" }],
   [
     "G675N574R",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2537,27 +2255,18 @@ export const improveApiSeasons: Map<
   ],
   ["GY9V1MZVR", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G60XKZ34R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G60XKK8GR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G60XKK8GR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G6K5CN74D",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  ["GY8VCPD4V", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G60X2JJGR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   [
-    "G609174P6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    "GY8VCPD4V",
+    { season_number: "pecial", season_number_order: 1.5, lang: "SUB" },
   ],
-  [
-    "G609X3796",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G60X2JJGR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G609174P6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G609X3796", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRGGCVD3P", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G609ZZM96", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G649MZ4PY", { season_number: 1, season_number_order: 1, lang: "EN" }],
@@ -2617,34 +2326,24 @@ export const improveApiSeasons: Map<
   ],
   ["G609Q9QV6", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRJQ2QJXY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6097WQG6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G63VWEENY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6097WQG6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G63VWEENY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GR49G78V6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Summary", season_number_order: 1.1, lang: "SUB" },
   ],
+  ["GRGGK397R", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "G6NQJ3EJ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "2 Summary", season_number_order: 2.1, lang: "SUB" },
   ],
+  ["G62P81W76", { season_number: 4, season_number_order: 4, lang: "SUB" }],
   [
     "GYVNMKPX6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2.5, lang: "SUB" },
   ],
-  [
-    "G6097WE46",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6X0M2N7Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6097WE46", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6X0M2N7Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G60972776",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2712,14 +2411,8 @@ export const improveApiSeasons: Map<
     "G6NQJ9XG6",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6NQJQ406",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6VNMD9DR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6NQJQ406", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6VNMD9DR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GYQ4EVE96",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2756,18 +2449,9 @@ export const improveApiSeasons: Map<
     "GRMEGJ22Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6W454N8R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G63K3WVN6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR3KN21QR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6W454N8R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G63K3WVN6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GR3KN21QR", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GRMEWQEZY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -2794,27 +2478,27 @@ export const improveApiSeasons: Map<
   ],
   [
     "GYVNM8476",
-    { season_number: "1 Part 1", season_number_order: 1, lang: "SUB" },
+    { season_number: "1 Part 1", season_number_order: 1.1, lang: "SUB" },
   ],
   [
     "GY3VWX3MR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 1 HD", season_number_order: 1, lang: "SUB" },
   ],
   [
     "G6P8PQ7M6",
-    { season_number: "1 Part 2", season_number_order: 2, lang: "SUB" },
+    { season_number: "1 Part 2", season_number_order: 2.1, lang: "SUB" },
   ],
   [
     "GY19QP57R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 2 HD", season_number_order: 2, lang: "SUB" },
   ],
   [
     "GYWEM933Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 3 HD", season_number_order: 3, lang: "SUB" },
   ],
   [
     "GRVNM78ZY",
-    { season_number: "1 Part 3", season_number_order: 3, lang: "SUB" },
+    { season_number: "1 Part 3", season_number_order: 3.1, lang: "SUB" },
   ],
   [
     "GY5VJ4KQY",
@@ -2862,7 +2546,7 @@ export const improveApiSeasons: Map<
   ],
   [
     "G69PXQ7EY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 8", season_number_order: 9.5, lang: "SUB" },
   ],
   [
     "GYP8PM4KY",
@@ -2870,28 +2554,25 @@ export const improveApiSeasons: Map<
   ],
   [
     "GYJQKXG46",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 9", season_number_order: 10.5, lang: "SUB" },
   ],
   [
     "GYMG8J7WY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 10", season_number_order: 10.6, lang: "SUB" },
   ],
   [
     "G63VWQWEY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 11", season_number_order: 11.5, lang: "SUB" },
   ],
   [
     "GY75N3546",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 12", season_number_order: 13.5, lang: "SUB" },
   ],
   [
     "G6NVVEP9Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pecial 13", season_number_order: 13.6, lang: "SUB" },
   ],
-  [
-    "GYVN305D6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYVN305D6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G619CPX2W", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYVN3N8Z6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR3VC2P42", { season_number: 2, season_number_order: 2, lang: "EN" }],
@@ -2908,137 +2589,86 @@ export const improveApiSeasons: Map<
     "GYVND09Q6",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYVNZ1VZ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G62PN7326",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYVNZ1VZ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G62PN7326", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYVNEKG06", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6ZXDKK4R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYWE2W53Y", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYVNE5746", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GYVN45P76",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G60X931GR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYVN45P76", { season_number: "1-2", season_number_order: 1, lang: "SUB" }],
+  ["G60X931GR", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GY2PDGZJY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1-2 web", season_number_order: 51, lang: "SUB" },
   ],
   [
     "G69VPW30Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "3 web", season_number_order: 53, lang: "SUB" },
   ],
   ["GYVN8N206", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYK5PJEER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 1", season_number_order: 1, lang: "SUB" },
   ],
   [
     "GYWEXK2MY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 2", season_number_order: 2, lang: "SUB" },
   ],
   [
     "G65VE9QP6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 3", season_number_order: 3, lang: "SUB" },
   ],
   [
     "G67524W0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 4", season_number_order: 4, lang: "SUB" },
   ],
   [
     "GR8VJQZ5R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 5", season_number_order: 5, lang: "SUB" },
   ],
   [
     "GYZXQKMX6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 6", season_number_order: 6, lang: "SUB" },
   ],
   [
     "GY5VE9MDY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 7", season_number_order: 7, lang: "SUB" },
   ],
   [
     "GY19539ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 8", season_number_order: 8, lang: "SUB" },
   ],
   [
     "G65VE3KE6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 Part 9", season_number_order: 9, lang: "SUB" },
   ],
   ["GR0X117WY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYK5P371R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYX0Q28PR", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYK58J2WR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GYK5K89PR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYK5K8ZGR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYK5KMNGR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY19QJG1R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR9PX0Z36",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYVNGJKZ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY49W4WWR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYZJ0554R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR24G5776",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYGGCV7XG",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYK5K89PR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYK5K8ZGR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYK5KMNGR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY19QJG1R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GR9PX0Z36", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["GYVNGJKZ6", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["GY49W4WWR", { season_number: 5, season_number_order: 5, lang: "SUB" }],
+  ["GYZJ0554R", { season_number: 6, season_number_order: 6, lang: "SUB" }],
+  ["GR24G5776", { season_number: 7, season_number_order: 7, lang: "SUB" }],
+  ["GYGGCV7XG", { season_number: 8, season_number_order: 8, lang: "SUB" }],
   ["GYK53N98R", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY19NV52R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GY8V18EWY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 uncensored", season_number_order: 1, lang: "SUB" },
   ],
   [
     "GYK53WQ7R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 censored", season_number_order: 1.1, lang: "SUB" },
   ],
-  [
-    "GYK5EVV3R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYK5Z8X7R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G63V5DXWY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYK5EVV3R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYK5Z8X7R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G63V5DXWY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYKE4NMPY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3067,14 +2697,8 @@ export const improveApiSeasons: Map<
     "GY2P3DZ0Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GY2P5D1PY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY5VJ3XEY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY2P5D1PY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY5VJ3XEY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR5VCDEWM", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY2P9Q5MY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYQ4CZ4JQ", { season_number: 1, season_number_order: 1, lang: "DE" }],
@@ -3083,14 +2707,8 @@ export const improveApiSeasons: Map<
   ["GY5VCDJPX", { season_number: 1, season_number_order: 1, lang: "FR" }],
   ["G6DQCG4KX", { season_number: 1, season_number_order: 1, lang: "PT" }],
   ["GY25KKNJY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR5V3595R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR5VMV8GR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR5V3595R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR5VMV8GR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GY5PKKPEY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GR5VEKDPR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6MGC3ZX7", { season_number: 1, season_number_order: 1, lang: "ES" }],
@@ -3118,13 +2736,10 @@ export const improveApiSeasons: Map<
     "GR5P7NNDR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GR5P4WK7R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR5P4WK7R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYP5J729Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   ["GREXNQM3Y", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G63K2JKN6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -3134,11 +2749,11 @@ export const improveApiSeasons: Map<
   ],
   [
     "GRVD1PG4R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 censored", season_number_order: 1.1, lang: "SUB" },
   ],
   [
     "G63K98G46",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 uncensored", season_number_order: 1, lang: "SUB" },
   ],
   [
     "G63K0NDX6",
@@ -3175,14 +2790,8 @@ export const improveApiSeasons: Map<
     "G63VK9DMY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G63VM24NY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G69PM4D4Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G63VM24NY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G69PM4D4Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G63VM5VZY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3258,14 +2867,8 @@ export const improveApiSeasons: Map<
     "GRGG952ER",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRGG9728R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6X03D2NY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRGG9728R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6X03D2NY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYQWD1GQY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRGG9DXDR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYG5EQ12Y", { season_number: 2, season_number_order: 2, lang: "EN" }],
@@ -3281,14 +2884,6 @@ export const improveApiSeasons: Map<
   ["GYNQCJWZJ", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRGGZKW4R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
-    "GRGGK397R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G62P81W76",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
     "GRGGVNM5R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
@@ -3297,7 +2892,10 @@ export const improveApiSeasons: Map<
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["GRGGV2MDR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  ["GRGGX54ER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  [
+    "GRGGX54ER",
+    { season_number: null, season_number_order: null, lang: "SUB" },
+  ],
   [
     "GR4PXKWEY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3309,17 +2907,11 @@ export const improveApiSeasons: Map<
   ["GRGGE7W8R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GY5P02W3Y",
-    { season_number: " Live-action", season_number_order: 50, lang: "SUB" },
+    { season_number: " Bonus", season_number_order: 50, lang: "SUB" },
   ],
   ["GYX0C4NNP", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "GRGGP5P7R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G68V71076",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRGGP5P7R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G68V71076", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GRGGPXG5R",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3360,27 +2952,15 @@ export const improveApiSeasons: Map<
     "GY49MXK8R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GY49079ZR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6093VDM6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY49079ZR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6093VDM6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GY49P30ER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GY49GDVER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY49GDVER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G63K2X1D6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " OVA", season_number_order: 1.5, lang: "SUB" },
   ],
-  [
-    "GY79E3J4R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY79E3J4R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GYJQKXM06",
     { season_number: "pecial", season_number_order: 1.5, lang: "SUB" },
@@ -3392,15 +2972,15 @@ export const improveApiSeasons: Map<
   ],
   [
     "GY4PVZDJ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 2018", season_number_order: 1, lang: "SUB" },
   ],
   [
     "GRQWNJ22R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 2011", season_number_order: 1.1, lang: "SUB" },
   ],
   [
     "G6XJXNX8R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pin-off", season_number_order: 2, lang: "SUB" },
   ],
   [
     "GY4P595Q6",
@@ -3431,22 +3011,10 @@ export const improveApiSeasons: Map<
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["GRDKQ8N9Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GRDQD3Z1Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYNQPDKQY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6JQM4W4R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G61X4G8Z6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRDQD3Z1Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYNQPDKQY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G6JQM4W4R", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["G61X4G8Z6", { season_number: 4, season_number_order: 4, lang: "SUB" }],
   [
     "GRDQV72WY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3456,14 +3024,8 @@ export const improveApiSeasons: Map<
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["GRDQPDDWY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GRDQNVE1Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR49WJVZ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRDQNVE1Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR49WJVZ6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["G6MGPM186", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRNQCJ52M", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -3619,14 +3181,8 @@ export const improveApiSeasons: Map<
     "G6EX0371R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRJQ12Z0Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYMG3704Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRJQ12Z0Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYMG3704Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR4PPVJPY", { season_number: 1, season_number_order: 1, lang: "DE" }],
   ["GRDKX21ZY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRNVVXX86", { season_number: 1, season_number_order: 1, lang: "ES" }],
@@ -3670,14 +3226,8 @@ export const improveApiSeasons: Map<
     "GRJQVKGVY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRJQ0P50Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYZXJE4X6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRJQ0P50Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYZXJE4X6", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["GRJQ0EVVY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYWE4520Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GY759G2Z6", { season_number: 3, season_number_order: 3, lang: "SUB" }],
@@ -3685,11 +3235,8 @@ export const improveApiSeasons: Map<
     "GRJ0Q844Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  ["GRJ0EW50Y", { season_number: null, season_number_order: null, lang: "EN" }],
-  [
-    "GY24VP5KR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRJ0EW50Y", { season_number: 1, season_number_order: 1, lang: "EN" }],
+  ["GY24VP5KR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRJ0MZ98Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRJ0004VY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G68DZQJD6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -3727,26 +3274,11 @@ export const improveApiSeasons: Map<
     "G68VJDQ96",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G68VJDXG6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G64PKKZPR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYP509MQY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR79JNVJ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6NV9DDJY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G68VJDXG6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G64PKKZPR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYP509MQY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR79JNVJ6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G6NV9DDJY", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GYP50ZXJY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3789,22 +3321,10 @@ export const improveApiSeasons: Map<
     "G619X882Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G619XZQ9Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY193W5VR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G619XW8EY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G69PV1KVY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G619XZQ9Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY193W5VR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G619XW8EY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G69PV1KVY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G619XPG1Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3816,11 +3336,11 @@ export const improveApiSeasons: Map<
   ["G649C7PPJ", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G61XQVG96",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 censored", season_number_order: 1.1, lang: "SUB" },
   ],
   [
     "GYKEKN4PY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 uncensored", season_number_order: 1, lang: "SUB" },
   ],
   [
     "GRW4JPX3Y",
@@ -3905,14 +3425,8 @@ export const improveApiSeasons: Map<
     "GRWEM7MQR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRWEM08NR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYE5MW0NR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRWEM08NR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYE5MW0NR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GRWEZGZ2R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRWEZXK0R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GR4910X16", { season_number: 2, season_number_order: 2, lang: "EN" }],
@@ -3966,10 +3480,7 @@ export const improveApiSeasons: Map<
   ["GYNQX5WQY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYG5MEV2Y", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY9VEK13R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GY9VD5XJR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY9VD5XJR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GY9V11V0R",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -3992,13 +3503,10 @@ export const improveApiSeasons: Map<
   ["GRJQVGPVY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYGG4Q0WY", { season_number: 2, season_number_order: 2, lang: "EN" }],
   ["G6X01PZ5Y", { season_number: 3, season_number_order: 3, lang: "EN" }],
-  [
-    "GRZXWE0KY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRZXWE0KY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GR5PGMV0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   ["GRZXWVKZY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -4069,14 +3577,8 @@ export const improveApiSeasons: Map<
   ["G6DKE8Z8R", { season_number: 1, season_number_order: 1, lang: "FR" }],
   ["GR79ZZEN6", { season_number: 1, season_number_order: 1, lang: "PT" }],
   ["GRZXDV39Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GRZXDKDZY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6JQ1N2ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRZXDKDZY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6JQ1N2ER", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GRZXDX29Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYZJQ509R", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GRX0GNJK6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -4137,14 +3639,8 @@ export const improveApiSeasons: Map<
     "GRXJXEZKY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GRXJ9E42Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYEXD27Q6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRXJ9E42Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYEXD27Q6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GRXJNG85Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -4213,22 +3709,10 @@ export const improveApiSeasons: Map<
     { season_number: " Movie", season_number_order: 3, lang: "SUB" },
   ],
   ["GR75KQEMY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR75K3NMY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYVNEJ5X6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR75KX4ZY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYJQ1X8E6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYVNEJ5X6", { season_number: 1, season_number_order: 1, lang: "EN" }],
+  ["GR75K3NMY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR75KX4ZY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYJQ1X8E6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR75KP7VY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GR7510WZY",
@@ -4280,18 +3764,9 @@ export const improveApiSeasons: Map<
   ["GRQ4CZ41Q", { season_number: 2, season_number_order: 2, lang: "FR" }],
   ["G6WEC3NWJ", { season_number: 2, season_number_order: 2, lang: "PT" }],
   ["GR09CXQ33", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "GR799M3N6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY8DD340Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRDV0913R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR799M3N6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GY8DD340Y", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GRDV0913R", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GR0XDJPEY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -4319,54 +3794,30 @@ export const improveApiSeasons: Map<
   ],
   ["GRJQ3ZZVY", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GR09JE8PR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR09XZ1VR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6JQ0422R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRW4WGZQY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR09XZ1VR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6JQ0422R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GRW4WGZQY", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   [
     "GR09GJW0R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["GY8VCP2QD", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GR09GGKER", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR09GW3WR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6DQNM23R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR09GW3WR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6DQNM23R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR09GQ70R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6P8X1DM6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GR09GEJ4R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GR09WP32R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR2PD39ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR09WP32R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR2PD39ER", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "GR09Q80VR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GR09QQK0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR09QQK0R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GR097D4MR",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -4379,11 +3830,8 @@ export const improveApiSeasons: Map<
     "GR097Q72R",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  ["GY5VCDEJ7", { season_number: null, season_number_order: null, lang: "EN" }],
-  [
-    "GR092QPWR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY5VCDEJ7", { season_number: 1, season_number_order: 1, lang: "EN" }],
+  ["GR092QPWR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYX0C4NW0", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G649C7PV8", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["GR07VXZPY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -4470,26 +3918,11 @@ export const improveApiSeasons: Map<
     "G6VN387WR",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G6VNEMWWR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRZXD4XDY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6K5XKE8Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G60XK0GWR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY5PD4XEY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6VNEMWWR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRZXD4XDY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G6K5XKE8Y", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["G60XK0GWR", { season_number: 4, season_number_order: 4, lang: "SUB" }],
+  ["GY5PD4XEY", { season_number: 5, season_number_order: 5, lang: "SUB" }],
   [
     "G6VNE4K7R",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -4501,17 +3934,14 @@ export const improveApiSeasons: Map<
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["G6K584N9Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6K579MEY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6K579MEY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G6K50X1PY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Movie", season_number_order: 2, lang: "SUB" },
   ],
   [
     "GYQ4NJ026",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pin-off", season_number_order: 1.5, lang: "SUB" },
   ],
   [
     "G6K5K2Q3Y",
@@ -4524,7 +3954,7 @@ export const improveApiSeasons: Map<
   ["G6K5K5Q8Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "G6K53EDMY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: " Bonus", season_number_order: 50, lang: "SUB" },
   ],
   ["G6X01J9MY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G6Q4VNJ7R", { season_number: 1, season_number_order: 1, lang: "EN" }],
@@ -4579,13 +4009,10 @@ export const improveApiSeasons: Map<
   ["G6KEV4G46", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYJ0MG436", { season_number: 2, season_number_order: 2, lang: "EN" }],
   ["GYJ0MGWE6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "G6KEVV986",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6KEVV986", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYGGCV7M7",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "pin-off", season_number_order: 2, lang: "SUB" },
   ],
   ["G624J2XKY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -4598,14 +4025,8 @@ export const improveApiSeasons: Map<
     "G62P035J6",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G62P4ZJJ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRGG5DE5R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G62P4ZJJ6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRGG5DE5R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G62P4DVM6",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -4632,19 +4053,19 @@ export const improveApiSeasons: Map<
   ],
   [
     "G62PEMZ56",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 censored", season_number_order: 1.1, lang: "SUB" },
   ],
   [
     "GRDQN524Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "1 uncensored", season_number_order: 1, lang: "SUB" },
   ],
   [
     "G6P8XNQQ6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "2 censored", season_number_order: 2.1, lang: "SUB" },
   ],
   [
     "GYNQX8K3Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
+    { season_number: "2 uncensored", season_number_order: 2, lang: "SUB" },
   ],
   [
     "G625K1KJ6",
@@ -4654,26 +4075,11 @@ export const improveApiSeasons: Map<
     "GY5VKMGEY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GY5VEQ35Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GRNQ1MW0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G68VJG446",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GY5VE2VQY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6752V21R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY5VEQ35Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GRNQ1MW0R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["G68VJG446", { season_number: 3, season_number_order: 3, lang: "SUB" }],
+  ["GY5VE2VQY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6752V21R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GRGGP4VDR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G64951JEY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
@@ -4789,14 +4195,8 @@ export const improveApiSeasons: Map<
     "GY5VPXJ7Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GY5VP833Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR09X82ER",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GY5VP833Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR09X82ER", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GR09CX382", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY5V1P5PY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRW4Q1WJY", { season_number: 1, season_number_order: 1, lang: "DE" }],
@@ -4882,14 +4282,8 @@ export const improveApiSeasons: Map<
     "GYG51K3PY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYG51PZDY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6W4MG43R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYG51PZDY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6W4MG43R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYG5G8N5Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYEXP9G06", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYG5G8EEY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
@@ -4948,22 +4342,10 @@ export const improveApiSeasons: Map<
     "GYGGK7KEY",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "GYGGV1N5Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR2P5XXMR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYE5M48XR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6X0MNDKY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYGGV1N5Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR2P5XXMR", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYE5M48XR", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["G6X0MNDKY", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   ["GYGGXX1PY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GYGG45WDY",
@@ -4974,14 +4356,8 @@ export const improveApiSeasons: Map<
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
   ["GYGG4M8EY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6491VXZY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "G6ZX27EKR",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6491VXZY", { season_number: "1-2", season_number_order: 1, lang: "SUB" }],
+  ["G6ZX27EKR", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["GY9V3338R", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G64975M1Y", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
@@ -5006,14 +4382,8 @@ export const improveApiSeasons: Map<
     "G649PQ81Y",
     { season_number: null, season_number_order: null, lang: "SUB" },
   ],
-  [
-    "G649GMPVY",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYQ49Q996",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G649GMPVY", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYQ49Q996", { season_number: 2, season_number_order: 2, lang: "SUB" }],
   [
     "G649GMJPY",
     { season_number: null, season_number_order: null, lang: "SUB" },
@@ -5088,58 +4458,25 @@ export const improveApiSeasons: Map<
   ],
   ["GYDQDQWD6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRGG4GQ2R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
-  [
-    "GYQ48Z5E6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYDQ722G6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYDQNWQK6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GR5P09J0R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYDQNKVK6",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GYQ48Z5E6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYDQ722G6", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYDQNWQK6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GR5P09J0R", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYDQNKVK6", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GRX034426", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GYDQN4496", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GR5VE345R",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYDQ8W776",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
-  [
-    "GYP5JQD1Y",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GR5VE345R", { season_number: 1, season_number_order: 1, lang: "SUB" }],
+  ["GYDQ8W776", { season_number: 2, season_number_order: 2, lang: "SUB" }],
+  ["GYP5JQD1Y", { season_number: 3, season_number_order: 3, lang: "SUB" }],
   ["G609CX9D0", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["GY2PCV21D", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "GRMGC3JQM",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["GRMGC3JQM", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["GYNQCJW22", { season_number: 1, season_number_order: 1, lang: "EN" }],
   ["G6JQC1J9E", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G6MGC3JGM",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G6MGC3JGM", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   ["G62PCV2JX", { season_number: 1, season_number_order: 1, lang: "ES" }],
   ["GRMGC3ZZ0", { season_number: 1, season_number_order: 1, lang: "SUB" }],
-  [
-    "G65VCD2MN",
-    { season_number: null, season_number_order: null, lang: "SUB" },
-  ],
+  ["G65VCD2MN", { season_number: 1, season_number_order: 1, lang: "SUB" }],
   [
     "GRMGC3JJD",
     { season_number: "hort", season_number_order: 1.5, lang: "SUB" },
