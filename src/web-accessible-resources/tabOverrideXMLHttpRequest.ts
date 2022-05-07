@@ -7,6 +7,7 @@ import {
   findOtherDubs,
   impoveMergedSeason,
   improveSeason,
+  invalidSlug,
   langToDisplay,
   possibleLangKeys,
   regexApiEpisodes,
@@ -463,6 +464,9 @@ export class TabOverrideXMLHttpRequest {
   private sameSeason(season1: improveSeason, season2: improveSeason) {
     if (season1.useNewOrder && season2.useNewOrder) {
       return season1.season_number_order === season2.season_number_order;
+    }
+    if (invalidSlug.includes(season1.slug_title)) {
+      return season1.season_number === season2.season_number;
     }
     return season1.slug_title === season2.slug_title;
   }

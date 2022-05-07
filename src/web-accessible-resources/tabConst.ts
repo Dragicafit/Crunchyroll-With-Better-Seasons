@@ -298,6 +298,12 @@ export const startApiUpNextSeries =
 export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
 
+export const invalidSlug = [
+  "kaguya-sama-love-is-war",
+  "my-hero-academia-season",
+  "my-hero-academia",
+];
+
 export const findOtherDubs = new Map([
   ["G24H1NM05", "GR751KNZY"], // Attack on Titan
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan
