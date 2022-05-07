@@ -21,10 +21,7 @@
       "run_at": "document_start"
     },
     {
-      "matches": [
-        "https://beta.crunchyroll.com/*watch/*",
-        "https://beta.crunchyroll.com/*series/*"
-      ],
+      "matches": ["https://beta.crunchyroll.com/*"],
       "js": ["src/content-scripts/injectInTab.js"],
       "all_frames": false,
       "run_at": "document_start"

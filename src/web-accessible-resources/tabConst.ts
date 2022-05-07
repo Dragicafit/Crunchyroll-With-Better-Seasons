@@ -125,14 +125,14 @@ export type season = {
   subtitle_locales: [];
 };
 
-export type impoveSeason = season & {
+export type improveSeason = season & {
   lang: languages;
   season_number_order: number;
   useNewLang: boolean;
   useNewOrder: boolean;
 };
 
-export type impoveMergedSeason = impoveSeason & {
+export type impoveMergedSeason = improveSeason & {
   langs: languages[];
 };
 
