@@ -26,18 +26,29 @@ export type episode_metadata = {
   duration_ms: number;
   episode_air_date: string;
   is_premium_only: boolean;
+  extended_maturity_ratings: {};
+  maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
-  available_date: null;
-  free_available_date: null;
-  premium_date: null;
-  premium_available_date: null;
+  available_date: string | null;
+  free_available_date: string | null;
+  premium_date: string | null;
+  premium_available_date: string | null;
   is_subbed: boolean;
   is_dubbed: boolean;
   is_clip: boolean;
   available_offline: boolean;
-  maturity_ratings: string[];
-  subtitle_locales: string[];
+  subtitle_locales: (
+    | "en-US"
+    | "es-419"
+    | "es-ES"
+    | "fr-FR"
+    | "pt-BR"
+    | "ar-SA"
+    | "it-IT"
+    | "de-DE"
+    | "ru-RU"
+  )[];
   availability_notes: string;
 };
 
@@ -51,11 +62,6 @@ export type panel = {
     "resource/channel": { href: string };
     streams: { href: string };
   };
-  "episode/season": { href: string };
-  "episode/series": { href: string };
-  resource: { href: string };
-  "resource/channel": { href: string };
-  streams: { href: string };
   __actions__: {};
   id: string;
   external_id: string;
@@ -73,7 +79,7 @@ export type panel = {
       height: number;
       type: string;
       source: string;
-    }[];
+    }[][];
   };
   episode_metadata: episode_metadata;
   playback: string;
@@ -103,8 +109,10 @@ export type season = {
   is_complete: boolean;
   description: string;
   keywords: [];
-  season_tags: [];
+  season_tags: string[];
   images: {};
+  extended_maturity_ratings: {};
+  maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
   is_subbed: boolean;
@@ -115,6 +123,17 @@ export type season = {
   availability_notes: string;
   audio_locales: [];
   subtitle_locales: [];
+};
+
+export type improveSeason = season & {
+  lang: languages;
+  season_number_order: number;
+  useNewLang: boolean;
+  useNewOrder: boolean;
+};
+
+export type impoveMergedSeason = improveSeason & {
+  langs: languages[];
 };
 
 export type collectionPanel = {
@@ -193,13 +212,15 @@ export type episode = {
   next_episode_id: string;
   next_episode_title: string;
   hd_flag: boolean;
+  maturity_ratings: string[];
+  extended_maturity_ratings: {};
   is_mature: boolean;
   mature_blocked: boolean;
   episode_air_date: string;
-  available_date: string;
-  free_available_date: string;
-  premium_date: string;
-  premium_available_date: string;
+  available_date: string | null;
+  free_available_date: string | null;
+  premium_date: string | null;
+  premium_available_date: string | null;
   is_subbed: boolean;
   is_dubbed: boolean;
   is_clip: boolean;
@@ -276,3 +297,28 @@ export const startApiUpNextSeries =
 
 export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
+
+export const invalidSlug = [
+  "kaguya-sama-love-is-war",
+  "my-hero-academia-season",
+  "my-hero-academia",
+];
+
+export const findOtherDubs = new Map([
+  ["G24H1NM05", "GR751KNZY"], // Attack on Titan
+  ["GR751KNZY", "G24H1NM05"], // Attack on Titan
+  ["GYNV9DP2R", "G6NQ5DWZ6"], // My Hero Academia
+  ["G6NQ5DWZ6", "GYNV9DP2R"], // My Hero Academia
+  ["GY1XX0N0Y", "GRE50KV36"], // Black Clover
+  ["GRE50KV36", "GY1XX0N0Y"], // Black Clover
+  ["G0XHWM9MP", "G6DQDD3WR"], // Fairy Tail
+  ["G6DQDD3WR", "G0XHWM9MP"], // Fairy Tail
+  ["GR0XP5V9Y", "G6GG91P26"], // Food Wars
+  ["G6GG91P26", "GR0XP5V9Y"], // Food Wars
+  ["GKEH2G8N4", "G619JM99Y"], // Monster Strike
+  ["G619JM99Y", "GKEH2G8N4"], // Monster Strike
+  ["G6VNXNE4R", "G6VDWKM76"], // Persona5
+  ["G6VDWKM76", "G6VNXNE4R"], // Persona5
+  ["GRWEK728R", "GRGGVKP4R"], // Yowamushi Pedal
+  ["GRGGVKP4R", "GRWEK728R"], // Yowamushi Pedal
+]);
