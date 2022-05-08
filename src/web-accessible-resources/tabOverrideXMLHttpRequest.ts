@@ -1,14 +1,15 @@
+import { sameSerie } from "./findOtherSeries";
 import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
   episode_metadata,
   eventsBackgroundSend,
-  findOtherDubs,
   impoveMergedSeason,
   improveSeason,
   invalidSlug,
   langToDisplay,
+  languages,
   possibleLangKeys,
   regexApiEpisodes,
   regexApiObjects,
@@ -171,7 +172,14 @@ export class TabOverrideXMLHttpRequest {
       seasonsWithLang = seasonsWithLang.filter((season) =>
         this.sameSeason(season, currentSeason)
       );
-      const promiseList = [];
+      const promiseList: Promise<
+        | {
+            id: languages;
+            name: string;
+            url: string;
+          }
+        | undefined
+      >[] = [];
       for (const season of seasonsWithLang) {
         let urlEpisodes = url.replace(
           `seasons?series_id=${serieId}`,
@@ -240,7 +248,7 @@ export class TabOverrideXMLHttpRequest {
     let sameSeasonsWithLang = seasonsWithLang.filter((season) =>
       this.sameSeason(season, currentSeasonsWithLang)
     );
-    const promiseList = [];
+    const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
       if (season.id === currentSeasonId) {
         continue;
@@ -283,18 +291,24 @@ export class TabOverrideXMLHttpRequest {
       "cms:/seasons?series_id=",
       ""
     );
-    const otherDubId = findOtherDubs.get(serieId);
-    if (otherDubId != null) {
-      let urlOtherSeason = url.replace(
-        `seasons?series_id=${serieId}`,
-        `seasons?series_id=${otherDubId}`
-      );
-      await fetch(urlOtherSeason)
-        .then((response) => response.json())
-        .then((body: collectionSeason) => {
-          seasons.items.push(...body.items);
-          seasons.items.sort((s1, s2) => s1.season_number - s2.season_number);
-        });
+    const otherSeries = sameSerie.findOtherSeries(serieId);
+    if (otherSeries.length > 0) {
+      const promiseList: Promise<void>[] = [];
+      for (const otherSerie of otherSeries) {
+        let urlOtherSeason = url.replace(
+          `seasons?series_id=${serieId}`,
+          `seasons?series_id=${otherSerie}`
+        );
+        promiseList.push(
+          fetch(urlOtherSeason)
+            .then((response) => response.json())
+            .then((body: collectionSeason) => {
+              seasons.items.push(...body.items);
+            })
+        );
+      }
+      await Promise.all(promiseList);
+      seasons.items.sort((s1, s2) => s1.season_number - s2.season_number);
     }
     const useNewLang = seasons.items.every((season) => {
       const improveApiSeason = improveApiSeasons.get(season.id);
