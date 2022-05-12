@@ -48,7 +48,7 @@ export default class ParseService {
                   id: episode.id,
                   subtitle_locales: episode.subtitle_locales,
                   audio_locale: season.audio_locale2,
-                  streamsUrl: episode.__links__.streams.href,
+                  videoStreamsUrl: episode.__links__.streams.href,
                 });
                 found.is_subbed = found.is_subbed || episode.is_subbed;
                 found.is_dubbed = found.is_dubbed || episode.is_dubbed;
@@ -59,7 +59,7 @@ export default class ParseService {
                     id: episode.id,
                     subtitle_locales: episode.subtitle_locales,
                     audio_locale: season.audio_locale2,
-                    streamsUrl: episode.__links__.streams.href,
+                    videoStreamsUrl: episode.__links__.streams.href,
                   },
                 ];
                 episodes.push(mainValue);

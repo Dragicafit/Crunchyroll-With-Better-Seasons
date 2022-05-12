@@ -1,6 +1,8 @@
 import browser from "webextension-polyfill";
 import {
   localeToDisplay,
+  startPageBundle,
+  startPagePlayer,
   subtitleLocalesWithSUB,
   supportedAndMappingLocales,
 } from "../web-accessible-resources/tabConst";
@@ -8,12 +10,8 @@ import {
 browser.webRequest.onBeforeRequest.addListener(
   (requestDetails) => {
     if (
-      !requestDetails.documentUrl?.startsWith(
-        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
-      ) ||
-      !requestDetails.originUrl?.startsWith(
-        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
-      )
+      !requestDetails.documentUrl?.startsWith(startPagePlayer) ||
+      !requestDetails.originUrl?.startsWith(startPagePlayer)
     ) {
       return;
     }
@@ -70,7 +68,7 @@ browser.webRequest.onBeforeRequest.addListener(
             encodeURIComponent(body).replace(
               /%([0-9A-F]{2})/g,
               function (_, b) {
-                return String.fromCharCode(<any>"0x" + b);
+                return String.fromCharCode(<any>("0x" + b));
               }
             )
           );
@@ -80,6 +78,6 @@ browser.webRequest.onBeforeRequest.addListener(
         };
       });
   },
-  { urls: ["https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js"] },
+  { urls: [startPageBundle] },
   ["blocking"]
 );

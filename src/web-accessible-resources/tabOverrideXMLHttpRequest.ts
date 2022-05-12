@@ -13,11 +13,12 @@ import {
   regexApiEpisodes,
   regexApiObjects,
   regexApiSeasons,
-  regexApiStreams,
+  regexApiVideoStreams,
   regexPageSeries,
   regexPageWatch,
   startApiUpNextSeries,
   upNextSeries,
+  videoStreams,
 } from "./tabConst";
 
 export default class TabOverrideXMLHttpRequest {
@@ -70,12 +71,12 @@ export default class TabOverrideXMLHttpRequest {
                     resolve();
                   });
                 return;
-              } else if (url2.match(regexApiStreams)) {
+              } else if (url2.match(regexApiVideoStreams)) {
                 tabOverrideXMLHttpRequest
-                  .handleStreamsInPageWatch(data, url2)
-                  .then((streams) => {
+                  .handleVideoStreamsInPageWatch(data, url2)
+                  .then((videoStreams) => {
                     Object.defineProperty(_this, "responseText", {
-                      value: JSON.stringify(streams),
+                      value: JSON.stringify(videoStreams),
                     });
                     resolve();
                   });
@@ -139,16 +140,16 @@ export default class TabOverrideXMLHttpRequest {
     return dataObjects;
   }
 
-  private async handleStreamsInPageWatch(
-    data: any,
-    url2: string
-  ): Promise<any> {
+  private async handleVideoStreamsInPageWatch(
+    videoStreams: videoStreams,
+    url: string
+  ): Promise<videoStreams> {
     const currentEpisode = await this.saveService.waitForCurrentEpisode();
     const mergedEpisodes =
       await this.saveService.waitForCurrentMergedEpisodes();
-    return await this.proxyService.addStreamsFromOtherLanguages(
-      data,
-      url2,
+    return await this.proxyService.addVideoStreamsFromOtherLanguages(
+      videoStreams,
+      url,
       currentEpisode,
       mergedEpisodes
     );
@@ -169,14 +170,14 @@ export default class TabOverrideXMLHttpRequest {
   }
 
   private async handleEpisodesInPageSeries(
-    data: any,
-    url2: string
+    episodes: collectionEpisode,
+    url: string
   ): Promise<collectionEpisode> {
-    let seasonsWithLang = await this.saveService.waitForSeasonsWithLang();
+    const seasonsWithLang = await this.saveService.waitForSeasonsWithLang();
     return await this.proxyService.addEpisodesFromOtherLanguages(
-      data,
+      episodes,
       seasonsWithLang,
-      url2
+      url
     );
   }
 

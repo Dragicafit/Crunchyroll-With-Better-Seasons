@@ -10,8 +10,9 @@ import {
   languages,
   panel,
   possibleLangKeys,
-  subtitleLocales,
+  startPagePlayer,
   subtitleLocalesWithSUBValues,
+  videoStreams,
 } from "../web-accessible-resources/tabConst";
 import ParseService from "./parseService";
 import RequestService from "./requestService";
@@ -81,7 +82,7 @@ export default class ProxyService {
         currentAudioLanguage: currentLanguageId,
         audioLanguages: languagesOrdered,
       },
-      "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
+      startPagePlayer
     );
   }
 
@@ -185,13 +186,13 @@ export default class ProxyService {
   addSubtitlesFromOtherLanguages(currentEpisode: panel) {
     currentEpisode.episode_metadata.is_subbed = true;
     currentEpisode.episode_metadata.subtitle_locales.push(
-      ...(<subtitleLocales[]>(<any>subtitleLocalesWithSUBValues))
+      ...(<any[]>subtitleLocalesWithSUBValues)
     );
     return currentEpisode;
   }
 
-  async addStreamsFromOtherLanguages(
-    stream: any,
+  async addVideoStreamsFromOtherLanguages(
+    videoStreams: videoStreams,
     url: string,
     currentEpisode: panel,
     mergedEpisodes: improveMergedEpisode
@@ -200,25 +201,25 @@ export default class ProxyService {
       currentEpisode.episode_metadata.is_subbed ||
       !currentEpisode.episode_metadata.is_dubbed
     ) {
-      return stream;
+      return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
-      const urlStreams = url.replace(
+      const urlVideoStreams = url.replace(
         /\/cms\/v2\/FR\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
-        mergedEpisode.streamsUrl
+        mergedEpisode.videoStreamsUrl
       );
       const subtitles = await this.requestService
-        .fetchJson(urlStreams)
-        .then((body) => <any[]>Object.values(body.subtitles));
+        .fetchJson(urlVideoStreams)
+        .then((body: videoStreams) => Object.values(body.subtitles));
       for (const subtitle of subtitles) {
         if (mergedEpisode.audio_locale != "SUB") {
           continue;
         }
-        subtitle.locale = subtitle.locale + "SUB";
-        stream.subtitles[subtitle.locale] = subtitle;
+        subtitle.locale = <any>(subtitle.locale + "SUB");
+        videoStreams.subtitles[subtitle.locale] = subtitle;
       }
     }
-    console.log("subtitles", stream.subtitles);
-    return stream;
+    console.log("subtitles", videoStreams.subtitles);
+    return videoStreams;
   }
 }

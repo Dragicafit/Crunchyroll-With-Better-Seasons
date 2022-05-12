@@ -184,7 +184,7 @@ export type improveMergedEpisode = episode & {
     id: string;
     audio_locale: languages;
     subtitle_locales: subtitleLocales[];
-    streamsUrl: string;
+    videoStreamsUrl: string;
   }[];
 };
 
@@ -298,6 +298,51 @@ export type episode = {
   availability_notes: string;
 };
 
+export type streamInfo = {
+  [subtitleLocale: string]: {
+    hardsub_locale: subtitleLocales | "";
+    url: string;
+  };
+};
+
+export type videoStreams = {
+  __class__: "video_streams";
+  __href__: string;
+  __resource_key__: string;
+  __links__: {
+    resource: { href: string };
+  };
+  __actions__: {};
+  media_id: string;
+  audio_locale: subtitleLocales;
+  subtitles: {
+    [subtitleLocale: string]: {
+      locale: subtitleLocales;
+      url: string;
+      format: string;
+    };
+  };
+  captions: {};
+  streams: {
+    adaptive_dash: streamInfo;
+    adaptive_hls: streamInfo;
+    download_dash: streamInfo;
+    download_hls: streamInfo;
+    drm_adaptive_dash: streamInfo;
+    drm_adaptive_hls: streamInfo;
+    drm_download_dash: streamInfo;
+    drm_download_hls: streamInfo;
+    drm_multitrack_adaptive_hls_v2: streamInfo;
+    multitrack_adaptive_hls_v2: streamInfo;
+    urls: streamInfo;
+    vo_adaptive_dash: streamInfo;
+    vo_adaptive_hls: streamInfo;
+    vo_drm_adaptive_dash: streamInfo;
+    vo_drm_adaptive_hls: streamInfo;
+  };
+  bifs: string[];
+};
+
 export type supportedAndMappingLocales = {
   supported: subtitleLocales[];
   supported_fallbacks: {
@@ -360,7 +405,7 @@ export const startApiUpNextSeries =
 export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
 
-export const regexApiStreams =
+export const regexApiVideoStreams =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/;
 
 export const invalidSlug = [
