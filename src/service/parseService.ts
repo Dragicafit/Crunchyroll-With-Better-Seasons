@@ -18,7 +18,7 @@ export default class ParseService {
     this.seasonService = seasonService;
   }
 
-  async parseMergeEpisode(
+  async parseMergedEpisodes(
     sameSeasonsWithLang: improveSeason[],
     episodeId: string,
     url: string

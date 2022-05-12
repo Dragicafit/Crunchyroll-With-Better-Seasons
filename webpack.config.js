@@ -7,6 +7,8 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
+    "src/background-scripts/background":
+      "./src/background-scripts/backgroundScript.ts",
     "src/web-accessible-resources/tab":
       "./src/web-accessible-resources/tabScript.ts",
   },

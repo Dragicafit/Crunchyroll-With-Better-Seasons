@@ -10,6 +10,8 @@ import {
   languages,
   panel,
   possibleLangKeys,
+  subtitleLocales,
+  subtitleLocalesWithSUBValues,
 } from "../web-accessible-resources/tabConst";
 import ParseService from "./parseService";
 import RequestService from "./requestService";
@@ -44,33 +46,12 @@ export default class ProxyService {
   }
 
   async sendLanguagesToVilos(
-    seasons: collectionSeason,
     currentEpisode: panel,
-    url: string
+    currentSeasonWithLang: improveSeason,
+    currentEpisodeId: string,
+    mergedEpisodes: improveMergedEpisode
   ) {
-    const currentEpisodeId = currentEpisode.id;
-    const currentEpisodeNumber =
-      currentEpisode.episode_metadata.sequence_number;
-    const seasonId = currentEpisode.episode_metadata.season_id;
-
-    const seasonsWithLang = await this.parseService.parseSeasonsWithLang(
-      seasons,
-      url
-    );
-    const currentSeasonWithLang = seasonsWithLang.find(
-      (season) => season.id === seasonId
-    )!;
-    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
-      this.seasonService.sameSeason(season, currentSeasonWithLang)
-    );
-    const episodes = await this.parseService.parseMergeEpisode(
-      sameSeasonsWithLang,
-      currentEpisodeId,
-      url
-    );
-    const mergedEpisodes: improveMergedEpisode = episodes.find(
-      (item) => item.sequence_number === currentEpisodeNumber
-    )!;
+    currentEpisode.episode_metadata.sequence_number;
     const languages: {
       id: languages;
       name: string;
@@ -102,6 +83,31 @@ export default class ProxyService {
       },
       "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
     );
+  }
+
+  async getInfos(
+    currentEpisode: panel,
+    currentEpisodeId: string,
+    seasonsWithLang: improveSeason[],
+    url: string
+  ) {
+    const seasonId = currentEpisode.episode_metadata.season_id;
+
+    const currentSeasonWithLang = seasonsWithLang.find(
+      (season) => season.id === seasonId
+    )!;
+    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
+      this.seasonService.sameSeason(season, currentSeasonWithLang)
+    );
+    const mergedEpisodesList = await this.parseService.parseMergedEpisodes(
+      sameSeasonsWithLang,
+      currentEpisodeId,
+      url
+    );
+    return {
+      currentSeasonWithLang,
+      mergedEpisodesList,
+    };
   }
 
   async addEpisodesFromOtherLanguages(
@@ -153,8 +159,7 @@ export default class ProxyService {
 
   async concatLanguages(
     seasonsWithLang: improveSeason[],
-    upNext: string,
-    url: string
+    upNext: string
   ): Promise<improveMergedSeason[]> {
     const mergedSeasons = await this.parseService.parseMergedSeasons(
       seasonsWithLang,
@@ -175,5 +180,45 @@ export default class ProxyService {
       }
       return season;
     });
+  }
+
+  addSubtitlesFromOtherLanguages(currentEpisode: panel) {
+    currentEpisode.episode_metadata.is_subbed = true;
+    currentEpisode.episode_metadata.subtitle_locales.push(
+      ...(<subtitleLocales[]>(<any>subtitleLocalesWithSUBValues))
+    );
+    return currentEpisode;
+  }
+
+  async addStreamsFromOtherLanguages(
+    stream: any,
+    url: string,
+    currentEpisode: panel,
+    mergedEpisodes: improveMergedEpisode
+  ) {
+    if (
+      currentEpisode.episode_metadata.is_subbed ||
+      !currentEpisode.episode_metadata.is_dubbed
+    ) {
+      return stream;
+    }
+    for (const mergedEpisode of mergedEpisodes.episodes) {
+      const urlStreams = url.replace(
+        /\/cms\/v2\/FR\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
+        mergedEpisode.streamsUrl
+      );
+      const subtitles = await this.requestService
+        .fetchJson(urlStreams)
+        .then((body) => <any[]>Object.values(body.subtitles));
+      for (const subtitle of subtitles) {
+        if (mergedEpisode.audio_locale != "SUB") {
+          continue;
+        }
+        subtitle.locale = subtitle.locale + "SUB";
+        stream.subtitles[subtitle.locale] = subtitle;
+      }
+    }
+    console.log("subtitles", stream.subtitles);
+    return stream;
   }
 }
