@@ -1,6 +1,4 @@
-import { seriesGroups } from "./tabConst";
-
-class SameSerie {
+export default class SameSerie {
   private seriesGroups;
   private index;
 
@@ -24,5 +22,3 @@ class SameSerie {
     return this.seriesGroups[index].filter((serie2) => serie2 !== serie);
   }
 }
-
-export const sameSerie = new SameSerie(seriesGroups);

@@ -12,6 +12,31 @@ export type languages =
   | "RU"
   | "OTHERS";
 
+export type subtitleLocales =
+  | "en-US"
+  | "es-419"
+  | "es-ES"
+  | "fr-FR"
+  | "pt-BR"
+  | "pt-PT"
+  | "ar-SA"
+  | "it-IT"
+  | "de-DE"
+  | "ru-RU";
+
+export const subtitleLocalesValues: subtitleLocales[] = [
+  "en-US",
+  "es-419",
+  "es-ES",
+  "fr-FR",
+  "pt-BR",
+  "pt-PT",
+  "ar-SA",
+  "it-IT",
+  "de-DE",
+  "ru-RU",
+];
+
 export type episode_metadata = {
   series_id: string;
   series_title: string;
@@ -38,17 +63,7 @@ export type episode_metadata = {
   is_dubbed: boolean;
   is_clip: boolean;
   available_offline: boolean;
-  subtitle_locales: (
-    | "en-US"
-    | "es-419"
-    | "es-ES"
-    | "fr-FR"
-    | "pt-BR"
-    | "ar-SA"
-    | "it-IT"
-    | "de-DE"
-    | "ru-RU"
-  )[];
+  subtitle_locales: subtitleLocales[];
   availability_notes: string;
 };
 
@@ -126,14 +141,26 @@ export type season = {
 };
 
 export type improveSeason = season & {
-  lang: languages;
+  audio_locale2: languages;
   season_number_order: number;
   useNewLang: boolean;
   useNewOrder: boolean;
 };
 
-export type impoveMergedSeason = improveSeason & {
-  langs: languages[];
+export type improveMergedSeason = improveSeason & {
+  seasons: {
+    id: string;
+    audio_locale: languages;
+  }[];
+};
+
+export type improveMergedEpisode = episode & {
+  episodes: {
+    id: string;
+    audio_locale: languages;
+    subtitle_locales: subtitleLocales[];
+    streamsUrl: string;
+  }[];
 };
 
 export type collectionPanel = {
@@ -241,17 +268,7 @@ export type episode = {
   duration_ms: number;
   is_premium_only: boolean;
   listing_id: string;
-  subtitle_locales: (
-    | "en-US"
-    | "es-419"
-    | "es-ES"
-    | "fr-FR"
-    | "pt-BR"
-    | "ar-SA"
-    | "it-IT"
-    | "de-DE"
-    | "ru-RU"
-  )[];
+  subtitle_locales: subtitleLocales[];
   playback: string;
   availability_notes: string;
 };

@@ -1,15 +1,17 @@
-import { sameSerie } from "./findOtherSeries";
+import _ from "lodash";
+import ParseService from "../service/parseService";
+import RequestService from "../service/requestService";
+import SeasonService from "../service/seasonService";
 import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
-  episode_metadata,
   eventsBackgroundSend,
-  impoveMergedSeason,
+  improveMergedEpisode,
   improveSeason,
-  invalidSlug,
   langToDisplay,
   languages,
+  panel,
   possibleLangKeys,
   regexApiEpisodes,
   regexApiObjects,
@@ -19,20 +21,25 @@ import {
   startApiUpNextSeries,
   upNextSeries,
 } from "./tabConst";
-import { improveApiSeasons } from "./tabImproveApiSeasons";
 
 export class TabOverrideXMLHttpRequest {
   private upNext: string | undefined;
-  private currentEpisode:
-    | (episode_metadata & {
-        id: string;
-      })
-    | undefined;
   private seasonsWithLang: improveSeason[] | undefined;
   private href;
   private eventsToClean: NodeJS.Timeout[];
 
+  private readonly requestService: RequestService;
+  private readonly seasonService: SeasonService;
+  private readonly parseService: ParseService;
+
   constructor() {
+    this.requestService = new RequestService();
+    this.seasonService = new SeasonService(this.requestService);
+    this.parseService = new ParseService(
+      this.requestService,
+      this.seasonService
+    );
+
     this.href = window.location.href;
     this.eventsToClean = [];
 
@@ -44,7 +51,6 @@ export class TabOverrideXMLHttpRequest {
       this.eventsToClean.forEach(clearTimeout);
       this.eventsToClean = [];
       this.upNext = undefined;
-      this.currentEpisode = undefined;
       this.seasonsWithLang = undefined;
       this.href = window.location.href;
     }
@@ -74,17 +80,7 @@ export class TabOverrideXMLHttpRequest {
 
             if (document.URL.match(regexPageWatch)) {
               if (url2.match(regexApiObjects)) {
-                tabOverrideXMLHttpRequest.saveCurrentEpisode(data);
-              } else if (url2.match(regexApiSeasons)) {
-                tabOverrideXMLHttpRequest
-                  .waitForCurrentEpisode()
-                  .then((currentEpisode) => {
-                    tabOverrideXMLHttpRequest.sendLanguagesToVilos(
-                      data,
-                      currentEpisode,
-                      url2
-                    );
-                  });
+                tabOverrideXMLHttpRequest.magic(data, url2);
               }
             } else if (document.URL.match(regexPageSeries)) {
               if (url2.match(regexApiSeasons)) {
@@ -143,97 +139,93 @@ export class TabOverrideXMLHttpRequest {
     };
   }
 
+  private magic(dataObjects: collectionPanel, url: string) {
+    const currentEpisode = this.saveCurrentEpisode(dataObjects);
+    this.getSeasonsFromEpisode(dataObjects, url).then((seasons) => {
+      this.sendLanguagesToVilos(seasons, currentEpisode, url);
+    });
+  }
+
   private saveUpNext(dataUpNextSeries: upNextSeries) {
     this.upNext = dataUpNextSeries.panel.episode_metadata.season_id;
   }
 
-  private saveCurrentEpisode(dataObjects: collectionPanel) {
-    this.currentEpisode = {
-      ...dataObjects.items[0].episode_metadata,
-      id: dataObjects.items[0].id,
-    };
+  private saveCurrentEpisode(dataObjects: collectionPanel): panel {
+    return dataObjects.items[0];
   }
 
-  private sendLanguagesToVilos(
+  private getSeasonsFromEpisode(
+    dataObjects: collectionPanel,
+    url: string
+  ): Promise<collectionSeason> {
+    const serieId = dataObjects.items[0].episode_metadata.series_id;
+    const episodeId = dataObjects.items[0].id;
+    let urlSeasons = url.replace(
+      `objects/${episodeId}?`,
+      `seasons?series_id=${serieId}&`
+    );
+    return this.requestService.fetchJson(urlSeasons);
+  }
+
+  private async sendLanguagesToVilos(
     seasons: collectionSeason,
-    currentEpisode: episode_metadata & {
-      id: string;
-    },
+    currentEpisode: panel,
     url: string
   ) {
-    const serieId = seasons.__resource_key__.replace(
-      "cms:/seasons?series_id=",
-      ""
+    const currentEpisodeId = currentEpisode.id;
+    const currentEpisodeNumber =
+      currentEpisode.episode_metadata.sequence_number;
+    const seasonId = currentEpisode.episode_metadata.season_id;
+
+    const seasonsWithLang = await this.parseService.parseSeasonsWithLang(
+      seasons,
+      url
     );
-    this.parseSeasons(seasons, url).then((seasonsWithLang) => {
-      const currentSeason = seasonsWithLang.find(
-        (season) => season.id === currentEpisode.season_id
-      )!;
-      seasonsWithLang = seasonsWithLang.filter((season) =>
-        this.sameSeason(season, currentSeason)
-      );
-      const promiseList: Promise<
-        | {
-            id: languages;
-            name: string;
-            url: string;
-          }
-        | undefined
-      >[] = [];
-      for (const season of seasonsWithLang) {
-        let urlEpisodes = url.replace(
-          `seasons?series_id=${serieId}`,
-          `episodes?season_id=${season.id}`
-        );
-        promiseList.push(
-          fetch(urlEpisodes)
-            .then((response) => response.json())
-            .then((body: collectionEpisode) => {
-              const episode = body.items.find(
-                (item) =>
-                  item.sequence_number === currentEpisode.sequence_number
-              );
-              if (episode == null) return;
-              return {
-                id: season.lang,
-                name: langToDisplay[season.lang],
-                url: document.URL.replace(currentEpisode.id, episode.id),
-              };
-            })
-        );
-      }
-      Promise.all(promiseList).then((languages) => {
-        let languagesWithoutNull = languages.flatMap((language) =>
-          language ? [language] : []
-        );
-        let languagesWithoutNullOrdered = possibleLangKeys
-          .filter((lang) =>
-            languagesWithoutNull.map((language) => language.id).includes(lang)
-          )
-          .map(
-            (lang) => languagesWithoutNull.find((lang2) => lang == lang2.id)!
-          );
-        const currentLanguageId = languagesWithoutNullOrdered.find(
-          (season) => season.id == currentSeason.lang
-        )?.id;
-        const vilosWindow = (<HTMLIFrameElement>(
-          document.getElementsByClassName("video-player")[0]
-        )).contentWindow!;
-        console.log("send info", {
-          currentLanguage: currentLanguageId,
-          languages: languagesWithoutNullOrdered,
-        });
-        vilosWindow.postMessage(
-          {
-            direction: "from-script-CWBS",
-            command: eventsBackgroundSend.SEND_INFO,
-            currentAudioLanguage: currentLanguageId,
-            audioLanguages: languagesWithoutNullOrdered,
-          },
-          "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
-        );
-      });
+    const currentSeasonWithLang = seasonsWithLang.find(
+      (season) => season.id === seasonId
+    )!;
+    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
+      this.seasonService.sameSeason(season, currentSeasonWithLang)
+    );
+    const episodes = await this.parseService.parseMergeEpisode(
+      sameSeasonsWithLang,
+      currentEpisodeId,
+      url
+    );
+    const mergedEpisodes: improveMergedEpisode = episodes.find(
+      (item) => item.sequence_number === currentEpisodeNumber
+    )!;
+    const languages: {
+      id: languages;
+      name: string;
+      url: string;
+    }[] = mergedEpisodes.episodes.map((episode) => ({
+      id: episode.audio_locale,
+      name: langToDisplay[episode.audio_locale],
+      url: document.URL.replace(currentEpisodeId, episode.id),
+    }));
+    const languagesOrdered = possibleLangKeys
+      .filter((lang) => languages.map((language) => language.id).includes(lang))
+      .map((lang) => languages.find((lang2) => lang == lang2.id)!);
+    const currentLanguageId = languagesOrdered.find(
+      (season) => season.id == currentSeasonWithLang.audio_locale2
+    )?.id;
+    const vilosWindow = (<HTMLIFrameElement>(
+      document.getElementsByClassName("video-player")[0]
+    )).contentWindow!;
+    console.log("send info", {
+      currentLanguage: currentLanguageId,
+      languages: languagesOrdered,
     });
+    vilosWindow.postMessage(
+      {
+        direction: "from-script-CWBS",
+        command: eventsBackgroundSend.SEND_INFO,
+        currentAudioLanguage: currentLanguageId,
+        audioLanguages: languagesOrdered,
+      },
+      "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html"
+    );
   }
 
   private async addEpisodesFromOtherLanguages(
@@ -242,11 +234,11 @@ export class TabOverrideXMLHttpRequest {
     url: string
   ) {
     const currentSeasonId = episodes.items[0].season_id;
-    let currentSeasonsWithLang = seasonsWithLang.find(
+    const currentSeasonWithLang = seasonsWithLang.find(
       (season) => season.id === currentSeasonId
     )!;
-    let sameSeasonsWithLang = seasonsWithLang.filter((season) =>
-      this.sameSeason(season, currentSeasonsWithLang)
+    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
+      this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
@@ -258,8 +250,8 @@ export class TabOverrideXMLHttpRequest {
         `episodes?season_id=${season.id}`
       );
       promiseList.push(
-        fetch(urlOtherEpisodes)
-          .then((response) => response.json())
+        this.requestService
+          .fetchJson(urlOtherEpisodes)
           .then((body: collectionEpisode) => {
             body.items.forEach((episode) => {
               if (
@@ -283,138 +275,24 @@ export class TabOverrideXMLHttpRequest {
     return episodes;
   }
 
-  async parseSeasons(
-    seasons: collectionSeason,
-    url: string
-  ): Promise<improveSeason[]> {
-    const serieId = seasons.__resource_key__.replace(
-      "cms:/seasons?series_id=",
-      ""
-    );
-    const otherSeries = sameSerie.findOtherSeries(serieId);
-    if (otherSeries.length > 0) {
-      const promiseList: Promise<void>[] = [];
-      for (const otherSerie of otherSeries) {
-        let urlOtherSeason = url.replace(
-          `seasons?series_id=${serieId}`,
-          `seasons?series_id=${otherSerie}`
-        );
-        promiseList.push(
-          fetch(urlOtherSeason)
-            .then((response) => response.json())
-            .then((body: collectionSeason) => {
-              seasons.items.push(...body.items);
-            })
-        );
-      }
-      await Promise.all(promiseList);
-      seasons.items.sort((s1, s2) => s1.season_number - s2.season_number);
-    }
-    const useNewLang = seasons.items.every((season) => {
-      const improveApiSeason = improveApiSeasons.get(season.id);
-      return improveApiSeason != null && improveApiSeason.lang != null;
-    });
-    const useNewOrder = seasons.items.every((season) => {
-      const improveApiSeason = improveApiSeasons.get(season.id);
-      return (
-        improveApiSeason != null &&
-        improveApiSeason.season_number != null &&
-        improveApiSeason.season_number_order != null
-      );
-    });
-    const seasonsWithLang = seasons.items.map((season) => {
-      const seasonWithLang = <improveSeason>season;
-      const improveApiSeason = improveApiSeasons.get(season.id);
-      seasonWithLang.useNewLang = useNewLang;
-      seasonWithLang.useNewOrder = useNewOrder;
-      if (useNewLang) {
-        seasonWithLang.lang = improveApiSeason!.lang;
-      } else {
-        if (
-          seasonWithLang.is_subbed ||
-          seasonWithLang.slug_title.match(/-sub$|-subbed$|-subtitled$/)
-        ) {
-          seasonWithLang.lang = "SUB";
-        } else if (seasonWithLang.slug_title.match(/-english-dub$/)) {
-          seasonWithLang.lang = "EN";
-        } else if (seasonWithLang.slug_title.match(/-french-dub$/)) {
-          seasonWithLang.lang = "FR";
-        } else if (seasonWithLang.slug_title.match(/-spanish-dub$/)) {
-          seasonWithLang.lang = "ES";
-        } else if (seasonWithLang.slug_title.match(/-portuguese-dub$/)) {
-          seasonWithLang.lang = "PT";
-        } else if (seasonWithLang.slug_title.match(/-german-dub$/)) {
-          seasonWithLang.lang = "DE";
-        } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
-          seasonWithLang.lang = "RU";
-        } else if (seasonWithLang.slug_title.match(/-dub$|-dubbed$/)) {
-          seasonWithLang.lang = "EN";
-        } else {
-          seasonWithLang.lang = "OTHERS";
-        }
-      }
-      if (useNewOrder) {
-        seasonWithLang.season_number_order =
-          improveApiSeason!.season_number_order!;
-        seasonWithLang.season_number = <any>improveApiSeason!.season_number!;
-      }
-
-      seasonWithLang.slug_title = season.slug_title.replace(
-        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$|-dub$|-sub$|-dubbed$|-subbed$|-subtitled$/,
-        ""
-      );
-      seasonWithLang.title = season.title.replace(
-        / \(English Dub\)$| \(French Dub\)$| \(Spanish Dub\)$| \(Portuguese Dub\)$| \(German Dub\)$| \(Russian Dub\)$| \(Dub\)$| \(Sub\)$| \(Dubbed\)$| \(Subbed\)$| \(Subtitled\)$| \(Russian\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(RU\) |\(OmU\) /,
-        ""
-      );
-      return seasonWithLang;
-    });
-    if (useNewOrder) {
-      seasonsWithLang.sort(
-        (s1, s2) => s1.season_number_order - s2.season_number_order
-      );
-    }
-    return seasonsWithLang;
-  }
-
   private async concatLanguages(
-    data: collectionSeason,
+    seasons: collectionSeason,
     upNext: string,
     url: string
   ): Promise<collectionSeason> {
-    this.seasonsWithLang = await this.parseSeasons(data, url);
-    let seasons = this.seasonsWithLang.reduce(
-      (previousValue: impoveMergedSeason[], currentValue: improveSeason) => {
-        let found = previousValue.find((season) =>
-          this.sameSeason(season, currentValue)
-        );
-        if (found != null) {
-          found.langs.push(currentValue.lang);
-          if (!found.useNewOrder || !currentValue.useNewOrder) {
-            found.season_number = Math.min(
-              found.season_number,
-              currentValue.season_number
-            );
-          }
-          if (currentValue.lang === "SUB") {
-            found.title = currentValue.title;
-          }
-          if (upNext === currentValue.id) {
-            found.id = currentValue.id;
-          }
-        } else {
-          const mainValue = <impoveMergedSeason>currentValue;
-          mainValue.langs = [currentValue.lang];
-          previousValue.push(mainValue);
-        }
-        return previousValue;
-      },
-      <impoveMergedSeason[]>(<unknown[]>[])
+    this.seasonsWithLang = await this.parseService.parseSeasonsWithLang(
+      seasons,
+      url
     );
-    data.items = seasons.map((season) => {
+    const mergedSeasons = await this.parseService.parseMergedSeasons(
+      this.seasonsWithLang,
+      upNext
+    );
+    seasons.items = mergedSeasons.map((season) => {
       let firstDub = true;
-      for (const lang of possibleLangKeys.filter((lang) =>
-        season.langs.includes(lang)
+      for (const lang of possibleLangKeys.filter(
+        (lang) =>
+          season.seasons.find((season) => season.audio_locale === lang) != null
       )) {
         if (firstDub && lang !== "SUB") {
           firstDub = false;
@@ -425,7 +303,7 @@ export class TabOverrideXMLHttpRequest {
       }
       return season;
     });
-    return data;
+    return seasons;
   }
 
   private waitForUpNext(): Promise<string> {
@@ -452,36 +330,5 @@ export class TabOverrideXMLHttpRequest {
 
       return resolve(this.seasonsWithLang);
     });
-  }
-
-  private waitForCurrentEpisode(): Promise<
-    episode_metadata & {
-      id: string;
-    }
-  > {
-    return new Promise<
-      episode_metadata & {
-        id: string;
-      }
-    >((resolve) => {
-      if (this.currentEpisode == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForCurrentEpisode()), 100)
-        );
-        return;
-      }
-
-      return resolve(this.currentEpisode);
-    });
-  }
-
-  private sameSeason(season1: improveSeason, season2: improveSeason) {
-    if (season1.useNewOrder && season2.useNewOrder) {
-      return season1.season_number_order === season2.season_number_order;
-    }
-    if (invalidSlug.includes(season1.slug_title)) {
-      return season1.season_number === season2.season_number;
-    }
-    return season1.slug_title === season2.slug_title;
   }
 }

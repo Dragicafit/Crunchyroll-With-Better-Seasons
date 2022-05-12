@@ -1,12 +1,18 @@
-import { TabOverrideXMLHttpRequest } from "../../src/web-accessible-resources/tabOverrideXMLHttpRequest";
+import ParseService from "../../../src/service/parseService";
+import RequestService from "../../../src/service/requestService";
+import SeasonService from "../../../src/service/seasonService";
 
-let tabOverride: TabOverrideXMLHttpRequest;
+let requestService: RequestService;
+let seasonService: SeasonService;
+let parseService: ParseService;
 
 beforeEach(() => {
-  tabOverride = new TabOverrideXMLHttpRequest();
+  requestService = new RequestService();
+  seasonService = new SeasonService(requestService);
+  parseService = new ParseService(requestService, seasonService);
 });
 
-it("test with demon slayer", async () => {
+it("parses seasons of demon slayer", async () => {
   let collectionSeason: any = {
     __resource_key__: "",
     items: [
@@ -113,7 +119,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba",
       slug_title: "demon-slayer-kimetsu-no-yaiba",
       season_number: 1,
-      lang: "RU",
+      audio_locale2: "RU",
       season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
@@ -123,7 +129,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba",
       slug_title: "demon-slayer-kimetsu-no-yaiba",
       season_number: 1,
-      lang: "FR",
+      audio_locale2: "FR",
       season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
@@ -133,78 +139,78 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba",
       slug_title: "demon-slayer-kimetsu-no-yaiba",
       season_number: 1,
-      lang: "SUB",
+      audio_locale2: "SUB",
       season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "GYZXCM75X",
-      lang: "ES",
-      season_number: 1,
-      season_number_order: 1,
-      slug_title: "demon-slayer-kimetsu-no-yaiba",
       title: "Demon Slayer: Kimetsu no Yaiba",
+      slug_title: "demon-slayer-kimetsu-no-yaiba",
+      season_number: 1,
+      audio_locale2: "ES",
+      season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "GRQ4CZD8P",
-      lang: "PT",
-      season_number: 1,
-      season_number_order: 1,
-      slug_title: "demon-slayer-kimetsu-no-yaiba",
       title: "Demon Slayer: Kimetsu no Yaiba",
+      slug_title: "demon-slayer-kimetsu-no-yaiba",
+      season_number: 1,
+      audio_locale2: "PT",
+      season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "G68VCPDQ2",
-      lang: "EN",
-      season_number: 1,
-      season_number_order: 1,
-      slug_title: "demon-slayer-kimetsu-no-yaiba",
       title: "Demon Slayer: Kimetsu no Yaiba",
+      slug_title: "demon-slayer-kimetsu-no-yaiba",
+      season_number: 1,
+      audio_locale2: "EN",
+      season_number_order: 1,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "GY09CX3E8",
-      lang: "EN",
-      season_number: " Movie",
-      season_number_order: 2,
       slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
       title: "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+      season_number: " Movie",
+      audio_locale2: "EN",
+      season_number_order: 2,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "G6E5CQPVN",
-      lang: "ES",
-      season_number: " Movie",
-      season_number_order: 2,
-      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
       title: "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
+      season_number: " Movie",
+      audio_locale2: "ES",
+      season_number_order: 2,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "GY75CD5NM",
-      lang: "PT",
-      season_number: " Movie",
-      season_number_order: 2,
-      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
       title: "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
+      season_number: " Movie",
+      audio_locale2: "PT",
+      season_number_order: 2,
       useNewLang: true,
       useNewOrder: true,
     },
     {
       id: "G6WEC39ZX",
-      lang: "SUB",
-      season_number: " Movie",
-      season_number_order: 2,
-      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
       title: "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+      slug_title: "demon-slayer--kimetsu-no-yaiba--the-movie-mugen-train",
+      season_number: " Movie",
+      audio_locale2: "SUB",
+      season_number_order: 2,
       useNewLang: true,
       useNewOrder: true,
     },
@@ -213,7 +219,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-mugen-train-arc",
       season_number: "2 Part 1",
-      lang: "EN",
+      audio_locale2: "EN",
       season_number_order: 2.1,
       useNewLang: true,
       useNewOrder: true,
@@ -223,7 +229,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-mugen-train-arc",
       season_number: "2 Part 1",
-      lang: "RU",
+      audio_locale2: "RU",
       season_number_order: 2.1,
       useNewLang: true,
       useNewOrder: true,
@@ -233,7 +239,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-mugen-train-arc",
       season_number: "2 Part 1",
-      lang: "FR",
+      audio_locale2: "FR",
       season_number_order: 2.1,
       useNewLang: true,
       useNewOrder: true,
@@ -243,7 +249,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-mugen-train-arc",
       season_number: "2 Part 1",
-      lang: "SUB",
+      audio_locale2: "SUB",
       season_number_order: 2.1,
       useNewLang: true,
       useNewOrder: true,
@@ -253,7 +259,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-entertainment-district-arc",
       season_number: "2 Part 2",
-      lang: "EN",
+      audio_locale2: "EN",
       season_number_order: 2.2,
       useNewLang: true,
       useNewOrder: true,
@@ -263,7 +269,7 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-entertainment-district-arc",
       season_number: "2 Part 2",
-      lang: "FR",
+      audio_locale2: "FR",
       season_number_order: 2.2,
       useNewLang: true,
       useNewOrder: true,
@@ -273,20 +279,20 @@ it("test with demon slayer", async () => {
       title: "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
       slug_title: "demon-slayer-kimetsu-no-yaiba-entertainment-district-arc",
       season_number: "2 Part 2",
-      lang: "SUB",
+      audio_locale2: "SUB",
       season_number_order: 2.2,
       useNewLang: true,
       useNewOrder: true,
     },
   ];
-  expect(await tabOverride.parseSeasons(collectionSeason, "")).toStrictEqual(
-    expected
-  );
+  expect(
+    await parseService.parseSeasonsWithLang(collectionSeason, "")
+  ).toStrictEqual(expected);
 });
 
-it("test with use old", async () => {
+it("parses seasons with old", async () => {
   let collectionSeason: any = {
-    __resource_key__: "",
+    __resource_key__: "cms:/seasons?series_id=seriesIdMock",
     items: [
       {
         id: "0",
@@ -430,7 +436,7 @@ it("test with use old", async () => {
       is_subbed: true,
       useNewLang: false,
       useNewOrder: false,
-      lang: "SUB",
+      audio_locale2: "SUB",
     },
     {
       id: "1",
@@ -439,7 +445,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "EN",
+      audio_locale2: "EN",
     },
     {
       id: "2",
@@ -448,7 +454,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "FR",
+      audio_locale2: "FR",
     },
     {
       id: "3",
@@ -457,7 +463,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "ES",
+      audio_locale2: "ES",
     },
     {
       id: "4",
@@ -466,7 +472,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "PT",
+      audio_locale2: "PT",
     },
     {
       id: "5",
@@ -475,7 +481,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "DE",
+      audio_locale2: "DE",
     },
     {
       id: "6",
@@ -484,7 +490,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "RU",
+      audio_locale2: "RU",
     },
     {
       id: "7",
@@ -493,7 +499,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "EN",
+      audio_locale2: "EN",
     },
     {
       id: "8",
@@ -502,7 +508,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "SUB",
+      audio_locale2: "SUB",
     },
     {
       id: "9",
@@ -511,7 +517,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "EN",
+      audio_locale2: "EN",
     },
     {
       id: "10",
@@ -520,7 +526,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "SUB",
+      audio_locale2: "SUB",
     },
     {
       id: "11",
@@ -529,7 +535,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "SUB",
+      audio_locale2: "SUB",
     },
     {
       id: "12",
@@ -538,7 +544,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "RU",
+      audio_locale2: "RU",
     },
     {
       id: "13",
@@ -547,7 +553,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "FR",
+      audio_locale2: "FR",
     },
     {
       id: "14",
@@ -556,7 +562,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "EN",
+      audio_locale2: "EN",
     },
     {
       id: "15",
@@ -565,7 +571,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "FR",
+      audio_locale2: "FR",
     },
     {
       id: "16",
@@ -574,7 +580,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "ES",
+      audio_locale2: "ES",
     },
     {
       id: "17",
@@ -583,7 +589,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "PT",
+      audio_locale2: "PT",
     },
     {
       id: "18",
@@ -592,7 +598,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "DE",
+      audio_locale2: "DE",
     },
     {
       id: "19",
@@ -601,7 +607,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "RU",
+      audio_locale2: "RU",
     },
     {
       id: "20",
@@ -610,7 +616,7 @@ it("test with use old", async () => {
       is_subbed: false,
       useNewLang: false,
       useNewOrder: false,
-      lang: "OTHERS",
+      audio_locale2: "OTHERS",
     },
     {
       id: "21",
@@ -619,10 +625,21 @@ it("test with use old", async () => {
       is_subbed: true,
       useNewLang: false,
       useNewOrder: false,
-      lang: "SUB",
+      audio_locale2: "SUB",
     },
   ];
-  expect(await tabOverride.parseSeasons(collectionSeason, "")).toStrictEqual(
-    expected
+  const findOtherSeriesMock = jest
+    .spyOn(seasonService, "findOtherSeries")
+    .mockImplementation(() => Promise.resolve());
+  expect(
+    await parseService.parseSeasonsWithLang(collectionSeason, "urlMock")
+  ).toStrictEqual(expected);
+
+  expect(findOtherSeriesMock).toHaveBeenNthCalledWith(
+    1,
+    "seriesIdMock",
+    "urlMock",
+    collectionSeason
   );
+  expect(findOtherSeriesMock).toHaveBeenCalledTimes(1);
 });
