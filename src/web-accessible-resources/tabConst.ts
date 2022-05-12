@@ -24,6 +24,18 @@ export type subtitleLocales =
   | "de-DE"
   | "ru-RU";
 
+export type subtitleLocalesWithSUB =
+  | "en-USSUB"
+  | "es-419SUB"
+  | "es-ESSUB"
+  | "fr-FRSUB"
+  | "pt-BRSUB"
+  | "pt-PTSUB"
+  | "ar-SASUB"
+  | "it-ITSUB"
+  | "de-DESUB"
+  | "ru-RUSUB";
+
 export const subtitleLocalesValues: subtitleLocales[] = [
   "en-US",
   "es-419",
@@ -35,6 +47,19 @@ export const subtitleLocalesValues: subtitleLocales[] = [
   "it-IT",
   "de-DE",
   "ru-RU",
+];
+
+export const subtitleLocalesWithSUBValues: subtitleLocalesWithSUB[] = [
+  "en-USSUB",
+  "es-419SUB",
+  "es-ESSUB",
+  "fr-FRSUB",
+  "pt-BRSUB",
+  "pt-PTSUB",
+  "ar-SASUB",
+  "it-ITSUB",
+  "de-DESUB",
+  "ru-RUSUB",
 ];
 
 export type episode_metadata = {
@@ -273,6 +298,20 @@ export type episode = {
   availability_notes: string;
 };
 
+export type supportedAndMappingLocales = {
+  supported: subtitleLocales[];
+  supported_fallbacks: {
+    [subtitleLocale: string]: subtitleLocales[];
+  };
+  mapping: {
+    [locale: string]: { to: subtitleLocales; desc: string };
+  };
+};
+
+export type localeToDisplay = {
+  [locale: string]: string;
+};
+
 export const possibleLang = {
   SUB: "Subs",
   EN: "English dub",
@@ -303,6 +342,12 @@ export const regexPageSeries =
 export const regexPageWatch =
   /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?watch/;
 
+export const startPagePlayer =
+  "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html";
+
+export const startPageBundle =
+  "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js";
+
 export const regexApiObjects =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/objects\/[A-Z0-9]{9}/;
 
@@ -314,6 +359,9 @@ export const startApiUpNextSeries =
 
 export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
+
+export const regexApiStreams =
+  /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/;
 
 export const invalidSlug = [
   "kaguya-sama-love-is-war",
