@@ -1,6 +1,6 @@
-import ParseService from "../../../src/service/parseService";
-import RequestService from "../../../src/service/requestService";
-import SeasonService from "../../../src/service/seasonService";
+import ParseService from "../../src/service/parseService";
+import RequestService from "../../src/service/requestService";
+import SeasonService from "../../src/service/seasonService";
 
 let requestService: RequestService;
 let seasonService: SeasonService;

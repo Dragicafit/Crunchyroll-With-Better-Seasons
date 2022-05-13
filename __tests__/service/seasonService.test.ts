@@ -1,5 +1,5 @@
-import SeasonService from "../../../src/service/seasonService";
-import RequestService from "../../../src/service/requestService";
+import SeasonService from "../../src/service/seasonService";
+import RequestService from "../../src/service/requestService";
 
 let seasonService: SeasonService;
 let requestService: RequestService;
