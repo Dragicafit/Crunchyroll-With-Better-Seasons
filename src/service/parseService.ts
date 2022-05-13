@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   collectionEpisode,
   collectionSeason,
@@ -44,14 +45,14 @@ export default class ParseService {
                 if (season.audio_locale2 == "SUB") {
                   found.subtitle_locales = episode.subtitle_locales;
                 }
+                found.is_subbed = found.is_subbed || episode.is_subbed;
+                found.is_dubbed = found.is_dubbed || episode.is_dubbed;
                 found.episodes.push({
                   id: episode.id,
                   subtitle_locales: episode.subtitle_locales,
                   audio_locale: season.audio_locale2,
                   videoStreamsUrl: episode.__links__.streams.href,
                 });
-                found.is_subbed = found.is_subbed || episode.is_subbed;
-                found.is_dubbed = found.is_dubbed || episode.is_dubbed;
               } else {
                 const mainValue = <improveMergedEpisode>episode;
                 mainValue.episodes = [
@@ -160,17 +161,19 @@ export default class ParseService {
         if (found != null) {
           if (currentValue.audio_locale2 == "SUB") {
             found.subtitle_locales = currentValue.subtitle_locales;
+            found.audio_locale2 = currentValue.audio_locale2;
           }
-          found.seasons.push({
+          found.is_subbed = found.is_subbed || currentValue.is_subbed;
+          found.is_dubbed = found.is_dubbed || currentValue.is_dubbed;
+          found.audio_locales2.push(currentValue.audio_locale2);
+          found.seasons.set(currentValue.audio_locale2, {
             id: currentValue.id,
             audio_locale: currentValue.audio_locale2,
           });
-          if (!found.useNewOrder || !currentValue.useNewOrder) {
-            found.season_number = Math.min(
-              found.season_number,
-              currentValue.season_number
-            );
-          }
+          found.season_number = Math.min(
+            found.season_number,
+            currentValue.season_number
+          );
           if (currentValue.audio_locale2 === "SUB") {
             found.title = currentValue.title;
           }
@@ -178,13 +181,17 @@ export default class ParseService {
             found.id = currentValue.id;
           }
         } else {
-          const mainValue = <improveMergedSeason>currentValue;
-          mainValue.seasons = [
-            {
-              id: currentValue.id,
-              audio_locale: currentValue.audio_locale2,
-            },
-          ];
+          const mainValue: improveMergedSeason = <any>_.cloneDeep(currentValue);
+          mainValue.audio_locales2 = [currentValue.audio_locale2];
+          mainValue.seasons = new Map([
+            [
+              currentValue.audio_locale2,
+              {
+                id: currentValue.id,
+                audio_locale: currentValue.audio_locale2,
+              },
+            ],
+          ]);
           previousValue.push(mainValue);
         }
         return previousValue;

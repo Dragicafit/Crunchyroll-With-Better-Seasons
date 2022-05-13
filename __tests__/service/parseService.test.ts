@@ -1,3 +1,4 @@
+import _ from "lodash";
 import ParseService from "../../src/service/parseService";
 import RequestService from "../../src/service/requestService";
 import SeasonService from "../../src/service/seasonService";
@@ -642,4 +643,293 @@ it("parses seasons with old", async () => {
     collectionSeason
   );
   expect(findOtherSeriesMock).toHaveBeenCalledTimes(1);
+});
+
+describe("parses merged seasons", () => {
+  it("parses merged seasons", async () => {
+    const seasonsWithLang: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: false,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+      },
+      {
+        id: "1",
+        title: "title dub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: false,
+        is_dubbed: true,
+        subtitle_locales: [],
+        audio_locale2: "EN",
+      },
+    ];
+    const expected: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: true,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+        audio_locales2: ["SUB", "EN"],
+        seasons: new Map([
+          [
+            "SUB",
+            {
+              id: "0",
+              audio_locale: "SUB",
+            },
+          ],
+          [
+            "EN",
+            {
+              id: "1",
+              audio_locale: "EN",
+            },
+          ],
+        ]),
+      },
+    ];
+
+    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    expect(
+      await parseService.parseMergedSeasons(seasonsWithLang, "0")
+    ).toStrictEqual(expected);
+    expect(seasonsWithLang).toStrictEqual(seasonsWithLangClone);
+  });
+
+  it("parses merged seasons inverted", async () => {
+    const seasonsWithLang: any = [
+      {
+        id: "0",
+        title: "title dub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: false,
+        is_dubbed: true,
+        subtitle_locales: [],
+        audio_locale2: "EN",
+      },
+      {
+        id: "1",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: false,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+      },
+    ];
+    const expected: any = [
+      {
+        id: "1",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: true,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+        audio_locales2: ["EN", "SUB"],
+        seasons: new Map([
+          [
+            "EN",
+            {
+              id: "0",
+              audio_locale: "EN",
+            },
+          ],
+          [
+            "SUB",
+            {
+              id: "1",
+              audio_locale: "SUB",
+            },
+          ],
+        ]),
+      },
+    ];
+
+    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    expect(
+      await parseService.parseMergedSeasons(seasonsWithLang, "1")
+    ).toStrictEqual(expected);
+    expect(seasonsWithLang).toStrictEqual(seasonsWithLangClone);
+  });
+
+  it("parses two merged seasons", async () => {
+    const seasonsWithLang: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: false,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+      },
+      {
+        id: "1",
+        title: "title dub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: false,
+        is_dubbed: true,
+        subtitle_locales: [],
+        audio_locale2: "EN",
+      },
+      {
+        id: "2",
+        title: "title dub 2",
+        slug_title: "slug2",
+        season_number: 2,
+        is_subbed: false,
+        is_dubbed: true,
+        subtitle_locales: [],
+        audio_locale2: "EN",
+      },
+      {
+        id: "3",
+        title: "title sub 2",
+        slug_title: "slug2",
+        season_number: 2,
+        is_subbed: true,
+        is_dubbed: false,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+      },
+    ];
+    const expected: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: true,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+        audio_locales2: ["SUB", "EN"],
+        seasons: new Map([
+          [
+            "SUB",
+            {
+              id: "0",
+              audio_locale: "SUB",
+            },
+          ],
+          [
+            "EN",
+            {
+              id: "1",
+              audio_locale: "EN",
+            },
+          ],
+        ]),
+      },
+      {
+        id: "2",
+        title: "title sub 2",
+        slug_title: "slug2",
+        season_number: 2,
+        is_subbed: true,
+        is_dubbed: true,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+        audio_locales2: ["EN", "SUB"],
+        seasons: new Map([
+          [
+            "EN",
+            {
+              id: "2",
+              audio_locale: "EN",
+            },
+          ],
+          [
+            "SUB",
+            {
+              id: "3",
+              audio_locale: "SUB",
+            },
+          ],
+        ]),
+      },
+    ];
+
+    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    expect(
+      await parseService.parseMergedSeasons(seasonsWithLang, "0")
+    ).toStrictEqual(expected);
+    expect(seasonsWithLang).toStrictEqual(seasonsWithLangClone);
+  });
+
+  it("parses merged seasons and different order", async () => {
+    const seasonsWithLang: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 2,
+        is_subbed: true,
+        is_dubbed: false,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+      },
+      {
+        id: "1",
+        title: "title dub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: false,
+        is_dubbed: true,
+        subtitle_locales: [],
+        audio_locale2: "EN",
+      },
+    ];
+    const expected: any = [
+      {
+        id: "0",
+        title: "title sub",
+        slug_title: "slug",
+        season_number: 1,
+        is_subbed: true,
+        is_dubbed: true,
+        subtitle_locales: ["EN", "FR"],
+        audio_locale2: "SUB",
+        audio_locales2: ["SUB", "EN"],
+        seasons: new Map([
+          [
+            "SUB",
+            {
+              id: "0",
+              audio_locale: "SUB",
+            },
+          ],
+          [
+            "EN",
+            {
+              id: "1",
+              audio_locale: "EN",
+            },
+          ],
+        ]),
+      },
+    ];
+
+    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    expect(
+      await parseService.parseMergedSeasons(seasonsWithLang, "0")
+    ).toStrictEqual(expected);
+    expect(seasonsWithLang).toStrictEqual(seasonsWithLangClone);
+  });
 });

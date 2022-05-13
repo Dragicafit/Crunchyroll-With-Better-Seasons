@@ -173,10 +173,14 @@ export type improveSeason = season & {
 };
 
 export type improveMergedSeason = improveSeason & {
-  seasons: {
-    id: string;
-    audio_locale: languages;
-  }[];
+  audio_locales2: languages[];
+  seasons: Map<
+    languages,
+    {
+      id: string;
+      audio_locale: languages;
+    }
+  >;
 };
 
 export type improveMergedEpisode = episode & {

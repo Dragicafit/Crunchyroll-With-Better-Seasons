@@ -168,9 +168,8 @@ export default class ProxyService {
     );
     return mergedSeasons.map((season) => {
       let firstDub = true;
-      for (const lang of possibleLangKeys.filter(
-        (lang) =>
-          season.seasons.find((season) => season.audio_locale === lang) != null
+      for (const lang of possibleLangKeys.filter((lang) =>
+        season.seasons.has(lang)
       )) {
         if (firstDub && lang !== "SUB") {
           firstDub = false;
