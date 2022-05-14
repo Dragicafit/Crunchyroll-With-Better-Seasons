@@ -39,7 +39,7 @@ export default class ProxyService {
   ): Promise<collectionSeason> {
     const serieId = dataObjects.items[0].episode_metadata.series_id;
     const episodeId = dataObjects.items[0].id;
-    let urlSeasons = url.replace(
+    const urlSeasons = url.replace(
       `objects/${episodeId}?`,
       `seasons?series_id=${serieId}&`
     );

@@ -23,7 +23,7 @@ export default class SeasonService {
     if (otherSeries.length > 0) {
       const promiseList: Promise<void>[] = [];
       for (const otherSerie of otherSeries) {
-        let urlOtherSeasons = url.replace(
+        const urlOtherSeasons = url.replace(
           `seasons?series_id=${serieId}`,
           `seasons?series_id=${otherSerie}`
         );

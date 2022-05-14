@@ -41,7 +41,7 @@ export default class TabOverrideXMLHttpRequest {
   start(): void {
     const tabOverrideXMLHttpRequest = this;
 
-    let _open = XMLHttpRequest.prototype.open;
+    const _open = XMLHttpRequest.prototype.open;
     window.XMLHttpRequest.prototype.open = function (method, url) {
       let url2 = "";
       if (url instanceof URL) {

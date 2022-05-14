@@ -28,7 +28,7 @@ export default class ParseService {
     const mergedEpisodes: improveMergedEpisode[] = [];
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
-      let urlEpisodes = url.replace(
+      const urlEpisodes = url.replace(
         `objects/${episodeId}?`,
         `episodes?season_id=${season.id}&`
       );
@@ -88,7 +88,7 @@ export default class ParseService {
         });
         continue;
       }
-      let urlOtherEpisodes = url.replace(
+      const urlOtherEpisodes = url.replace(
         `episodes?season_id=${currentSeasonId}`,
         `episodes?season_id=${season.id}`
       );

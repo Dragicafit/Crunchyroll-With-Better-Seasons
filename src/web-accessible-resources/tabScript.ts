@@ -1,4 +1,4 @@
 import TabOverrideXMLHttpRequest from "./tabOverrideXMLHttpRequest";
 
-let tabOverrideXMLHttpRequest = new TabOverrideXMLHttpRequest();
+const tabOverrideXMLHttpRequest = new TabOverrideXMLHttpRequest();
 tabOverrideXMLHttpRequest.start();
