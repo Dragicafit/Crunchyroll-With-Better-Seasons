@@ -28,7 +28,7 @@ export default class ParseService {
     const mergedEpisodes: improveMergedEpisode[] = [];
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
-      const urlEpisodes = url.replace(
+      const urlEpisodes: string = url.replace(
         `objects/${episodeId}?`,
         `episodes?season_id=${season.id}&`
       );
@@ -37,11 +37,12 @@ export default class ParseService {
           .fetchJson(urlEpisodes)
           .then((body: collectionEpisode) => {
             body.items.forEach((episode) => {
-              const found = mergedEpisodes.find(
-                (alreadyPresentEpisode) =>
-                  episode.sequence_number ===
-                  alreadyPresentEpisode.sequence_number
-              );
+              const found: improveMergedEpisode | undefined =
+                mergedEpisodes.find(
+                  (alreadyPresentEpisode) =>
+                    episode.sequence_number ===
+                    alreadyPresentEpisode.sequence_number
+                );
               if (found != null) {
                 this.mergeEpisodeIntoMergedEpisode(episode, found, season);
               } else {
@@ -70,7 +71,7 @@ export default class ParseService {
     for (const season of sameSeasonsWithLang) {
       if (season.id === currentSeasonId) {
         currentEpisodes.forEach((episode) => {
-          const foundIndex = mergedEpisodesList.findIndex(
+          const foundIndex: number = mergedEpisodesList.findIndex(
             (alreadyPresentEpisode) =>
               episode.sequence_number === alreadyPresentEpisode.sequence_number
           );
@@ -80,7 +81,7 @@ export default class ParseService {
             mergedEpisodesList
           );
           if (foundIndex !== -1) {
-            const found = mergedEpisodesList[foundIndex];
+            const found: improveMergedEpisode = mergedEpisodesList[foundIndex];
             mergedEpisodesList.splice(foundIndex, 1);
 
             this.mergeEpisodeIntoMergedEpisode(mainValue, found, season);
@@ -88,7 +89,7 @@ export default class ParseService {
         });
         continue;
       }
-      const urlOtherEpisodes = url.replace(
+      const urlOtherEpisodes: string = url.replace(
         `episodes?season_id=${currentSeasonId}`,
         `episodes?season_id=${season.id}`
       );
@@ -97,11 +98,12 @@ export default class ParseService {
           .fetchJson(urlOtherEpisodes)
           .then((body: collectionEpisode) => {
             body.items.forEach((episode) => {
-              const found = mergedEpisodesList.find(
-                (alreadyPresentEpisode) =>
-                  episode.sequence_number ===
-                  alreadyPresentEpisode.sequence_number
-              );
+              const found: improveMergedEpisode | undefined =
+                mergedEpisodesList.find(
+                  (alreadyPresentEpisode) =>
+                    episode.sequence_number ===
+                    alreadyPresentEpisode.sequence_number
+                );
               if (found != null) {
                 this.mergeEpisodeIntoMergedEpisode(episode, found, season);
               } else {
@@ -123,16 +125,16 @@ export default class ParseService {
     seasons: collectionSeason,
     url: string
   ): Promise<improveSeason[]> {
-    const serieId = seasons.__resource_key__.replace(
+    const serieId: string = seasons.__resource_key__.replace(
       "cms:/seasons?series_id=",
       ""
     );
     await this.seasonService.findOtherSeries(serieId, url, seasons);
-    const useNewLang = seasons.items.every((season) => {
+    const useNewLang: boolean = seasons.items.every((season) => {
       const improveApiSeason = improveApiSeasons.get(season.id);
       return improveApiSeason != null && improveApiSeason.lang != null;
     });
-    const useNewOrder = seasons.items.every((season) => {
+    const useNewOrder: boolean = seasons.items.every((season) => {
       const improveApiSeason = improveApiSeasons.get(season.id);
       return (
         improveApiSeason != null &&
@@ -140,8 +142,8 @@ export default class ParseService {
         improveApiSeason.season_number_order != null
       );
     });
-    const seasonsWithLang = seasons.items.map((season) => {
-      const seasonWithLang = <improveSeason>season;
+    const seasonsWithLang: improveSeason[] = seasons.items.map((season) => {
+      const seasonWithLang: improveSeason = <improveSeason>season;
       const improveApiSeason = improveApiSeasons.get(season.id);
       seasonWithLang.useNewLang = useNewLang;
       seasonWithLang.useNewOrder = useNewOrder;
@@ -199,10 +201,10 @@ export default class ParseService {
     seasonsWithLang: improveSeason[],
     currentEpisodeId: string
   ): Promise<improveMergedSeason[]> {
-    const seasons = seasonsWithLang.reduce(
+    const seasons: improveMergedSeason[] = seasonsWithLang.reduce(
       (previousValue: improveMergedSeason[], currentValue: improveSeason) => {
-        const found = previousValue.find((season) =>
-          this.seasonService.sameSeason(season, currentValue)
+        const found: improveMergedSeason | undefined = previousValue.find(
+          (season) => this.seasonService.sameSeason(season, currentValue)
         );
         if (found != null) {
           this.mergeSeasonWithLangIntoMergedSeason(
@@ -225,7 +227,9 @@ export default class ParseService {
     seasonWithLang: improveSeason,
     mergedEpisodes: improveMergedEpisode[]
   ): improveMergedEpisode {
-    const mergedEpisode: improveMergedEpisode = <any>_.cloneDeep(episode);
+    const mergedEpisode: improveMergedEpisode = <improveMergedEpisode>(
+      _.cloneDeep(episode)
+    );
     mergedEpisode.episodes = [
       {
         id: episode.id,
@@ -242,7 +246,9 @@ export default class ParseService {
     seasonWithLang: improveSeason,
     mergedSeasons: improveMergedSeason[]
   ) {
-    const mergedSeason: improveMergedSeason = <any>_.cloneDeep(seasonWithLang);
+    const mergedSeason: improveMergedSeason = <improveMergedSeason>(
+      _.cloneDeep(seasonWithLang)
+    );
     mergedSeason.audio_locales2 = [seasonWithLang.audio_locale2];
     mergedSeason.seasons = new Map([
       [

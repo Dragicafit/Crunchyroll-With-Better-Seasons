@@ -37,9 +37,9 @@ export default class ProxyService {
     dataObjects: collectionPanel,
     url: string
   ): Promise<collectionSeason> {
-    const serieId = dataObjects.items[0].episode_metadata.series_id;
-    const episodeId = dataObjects.items[0].id;
-    const urlSeasons = url.replace(
+    const serieId: string = dataObjects.items[0].episode_metadata.series_id;
+    const episodeId: string = dataObjects.items[0].id;
+    const urlSeasons: string = url.replace(
       `objects/${episodeId}?`,
       `seasons?series_id=${serieId}&`
     );
@@ -55,20 +55,20 @@ export default class ProxyService {
     currentEpisode.episode_metadata.sequence_number;
     const languages: {
       id: languages;
-      name: string;
+      name: string | undefined;
       url: string;
     }[] = mergedEpisodes.episodes.map((episode) => ({
       id: episode.audio_locale,
-      name: langToDisplay[episode.audio_locale],
+      name: langToDisplay.get(episode.audio_locale),
       url: document.URL.replace(currentEpisodeId, episode.id),
     }));
     const languagesOrdered = possibleLangKeys
       .filter((lang) => languages.map((language) => language.id).includes(lang))
       .map((lang) => languages.find((lang2) => lang == lang2.id)!);
-    const currentLanguageId = languagesOrdered.find(
+    const currentLanguageId: languages | undefined = languagesOrdered.find(
       (season) => season.id == currentSeasonWithLang.audio_locale2
     )?.id;
-    const vilosWindow = (<HTMLIFrameElement>(
+    const vilosWindow: Window = (<HTMLIFrameElement>(
       document.getElementsByClassName("video-player")[0]
     )).contentWindow!;
     console.log("send info", {
@@ -92,19 +92,19 @@ export default class ProxyService {
     seasonsWithLang: improveSeason[],
     url: string
   ) {
-    const seasonId = currentEpisode.episode_metadata.season_id;
-
-    const currentSeasonWithLang = seasonsWithLang.find(
+    const seasonId: string = currentEpisode.episode_metadata.season_id;
+    const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
       (season) => season.id === seasonId
     )!;
-    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
-      this.seasonService.sameSeason(season, currentSeasonWithLang)
+    const sameSeasonsWithLang: improveSeason[] = seasonsWithLang.filter(
+      (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
-    const mergedEpisodesList = await this.parseService.parseMergedEpisodes(
-      sameSeasonsWithLang,
-      url,
-      currentEpisodeId
-    );
+    const mergedEpisodesList: improveMergedEpisode[] =
+      await this.parseService.parseMergedEpisodes(
+        sameSeasonsWithLang,
+        url,
+        currentEpisodeId
+      );
     return {
       currentSeasonWithLang,
       mergedEpisodesList,
@@ -116,12 +116,12 @@ export default class ProxyService {
     seasonsWithLang: improveSeason[],
     url: string
   ) {
-    const currentSeasonId = collectionEpisode.items[0].season_id;
-    const currentSeasonWithLang = seasonsWithLang.find(
+    const currentSeasonId: string = collectionEpisode.items[0].season_id;
+    const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
       (season) => season.id === currentSeasonId
     )!;
-    const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
-      this.seasonService.sameSeason(season, currentSeasonWithLang)
+    const sameSeasonsWithLang: improveSeason[] = seasonsWithLang.filter(
+      (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
 
     return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
@@ -136,10 +136,8 @@ export default class ProxyService {
     seasonsWithLang: improveSeason[],
     upNext: string
   ): Promise<improveMergedSeason[]> {
-    const mergedSeasons = await this.parseService.parseMergedSeasons(
-      seasonsWithLang,
-      upNext
-    );
+    const mergedSeasons: improveMergedSeason[] =
+      await this.parseService.parseMergedSeasons(seasonsWithLang, upNext);
     return mergedSeasons.map((season) => {
       let firstDub = true;
       for (const lang of possibleLangKeys.filter((lang) =>
@@ -177,7 +175,7 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
-      const urlVideoStreams = url.replace(
+      const urlVideoStreams: string = url.replace(
         /\/cms\/v2\/FR\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
         mergedEpisode.videoStreamsUrl
       );

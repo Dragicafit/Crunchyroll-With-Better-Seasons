@@ -1,6 +1,6 @@
 export default class SameSerie {
-  private seriesGroups;
-  private index;
+  private seriesGroups: string[][];
+  private index: Map<string, number>;
 
   constructor(seriesGroups: string[][]) {
     this.seriesGroups = seriesGroups;
@@ -15,7 +15,7 @@ export default class SameSerie {
   }
 
   findOtherSeries(serie: string): string[] {
-    const index = this.index.get(serie);
+    const index: number | undefined = this.index.get(serie);
     if (index == null) {
       return [];
     }

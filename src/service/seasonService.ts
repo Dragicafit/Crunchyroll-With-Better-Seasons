@@ -19,11 +19,11 @@ export default class SeasonService {
     url: string,
     seasons: collectionSeason
   ) {
-    const otherSeries = sameSerie.findOtherSeries(serieId);
+    const otherSeries: string[] = sameSerie.findOtherSeries(serieId);
     if (otherSeries.length > 0) {
       const promiseList: Promise<void>[] = [];
       for (const otherSerie of otherSeries) {
-        const urlOtherSeasons = url.replace(
+        const urlOtherSeasons: string = url.replace(
           `seasons?series_id=${serieId}`,
           `seasons?series_id=${otherSerie}`
         );

@@ -361,29 +361,29 @@ export type localeToDisplay = {
   [locale: string]: string;
 };
 
-export const possibleLang = {
-  SUB: "Subs",
-  EN: "English dub",
-  FR: "French dub",
-  ES: "Spanish dub",
-  PT: "Portuguese dub",
-  DE: "German dub",
-  RU: "Russian dub",
-  OTHERS: "Other dubs",
-};
+export const possibleLang: Map<languages, string> = new Map([
+  ["SUB", "Subs"],
+  ["EN", "English dub"],
+  ["FR", "French dub"],
+  ["ES", "Spanish dub"],
+  ["PT", "Portuguese dub"],
+  ["DE", "German dub"],
+  ["RU", "Russian dub"],
+  ["OTHERS", "Other dubs"],
+]);
 
-export const langToDisplay = {
-  SUB: "Japanese",
-  EN: "English (United States)",
-  FR: "Français (France)",
-  ES: "Español (Latin America)",
-  PT: "Português (Brasil)",
-  DE: "Deutsch (Germany)",
-  RU: "Русский (Russia)",
-  OTHERS: "Other",
-};
+export const langToDisplay: Map<languages, string> = new Map([
+  ["SUB", "Japanese"],
+  ["EN", "English (United States)"],
+  ["FR", "Français (France)"],
+  ["ES", "Español (Latin America)"],
+  ["PT", "Português (Brasil)"],
+  ["DE", "Deutsch (Germany)"],
+  ["RU", "Русский (Russia)"],
+  ["OTHERS", "Other"],
+]);
 
-export const possibleLangKeys = <languages[]>Object.keys(possibleLang);
+export const possibleLangKeys: languages[] = [...possibleLang.keys()];
 
 export const regexPageSeries =
   /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?series/;
@@ -412,13 +412,13 @@ export const regexApiEpisodes =
 export const regexApiVideoStreams =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/;
 
-export const invalidSlug = [
+export const invalidSlug: string[] = [
   "kaguya-sama-love-is-war",
   "my-hero-academia-season",
   "my-hero-academia",
 ];
 
-export const seriesGroups = [
+export const seriesGroups: string[][] = [
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan
   ["G6NQ5DWZ6", "GYNV9DP2R"], // My Hero Academia
   ["GRE50KV36", "GY1XX0N0Y"], // Black Clover
