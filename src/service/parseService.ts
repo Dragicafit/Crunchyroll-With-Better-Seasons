@@ -2,6 +2,7 @@ import _ from "lodash";
 import {
   collectionEpisode,
   collectionSeason,
+  episode,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
@@ -21,10 +22,10 @@ export default class ParseService {
 
   async parseMergedEpisodes(
     sameSeasonsWithLang: improveSeason[],
-    episodeId: string,
-    url: string
-  ) {
-    const episodes: improveMergedEpisode[] = [];
+    url: string,
+    episodeId: string
+  ): Promise<improveMergedEpisode[]> {
+    const mergedEpisodes: improveMergedEpisode[] = [];
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
       let urlEpisodes = url.replace(
@@ -36,41 +37,86 @@ export default class ParseService {
           .fetchJson(urlEpisodes)
           .then((body: collectionEpisode) => {
             body.items.forEach((episode) => {
-              const found = episodes.find(
+              const found = mergedEpisodes.find(
                 (alreadyPresentEpisode) =>
                   episode.sequence_number ===
                   alreadyPresentEpisode.sequence_number
               );
               if (found != null) {
-                if (season.audio_locale2 == "SUB") {
-                  found.subtitle_locales = episode.subtitle_locales;
-                }
-                found.is_subbed = found.is_subbed || episode.is_subbed;
-                found.is_dubbed = found.is_dubbed || episode.is_dubbed;
-                found.episodes.push({
-                  id: episode.id,
-                  subtitle_locales: episode.subtitle_locales,
-                  audio_locale: season.audio_locale2,
-                  videoStreamsUrl: episode.__links__.streams.href,
-                });
+                this.mergeEpisodeIntoMergedEpisode(episode, found, season);
               } else {
-                const mainValue = <improveMergedEpisode>episode;
-                mainValue.episodes = [
-                  {
-                    id: episode.id,
-                    subtitle_locales: episode.subtitle_locales,
-                    audio_locale: season.audio_locale2,
-                    videoStreamsUrl: episode.__links__.streams.href,
-                  },
-                ];
-                episodes.push(mainValue);
+                this.createMergedEpisode(episode, season, mergedEpisodes);
               }
             });
           })
       );
     }
     await Promise.all(promiseList);
-    return episodes;
+    mergedEpisodes.sort(
+      (episode1, episode2) =>
+        episode1.sequence_number - episode2.sequence_number
+    );
+    return mergedEpisodes;
+  }
+
+  async parseMergedEpisodesWithCurrentEpisodes(
+    sameSeasonsWithLang: improveSeason[],
+    currentEpisodes: episode[],
+    url: string,
+    currentSeasonId: string
+  ): Promise<improveMergedEpisode[]> {
+    const mergedEpisodesList: improveMergedEpisode[] = [];
+    const promiseList: Promise<void>[] = [];
+    for (const season of sameSeasonsWithLang) {
+      if (season.id === currentSeasonId) {
+        currentEpisodes.forEach((episode) => {
+          const foundIndex = mergedEpisodesList.findIndex(
+            (alreadyPresentEpisode) =>
+              episode.sequence_number === alreadyPresentEpisode.sequence_number
+          );
+          const mainValue: improveMergedEpisode = this.createMergedEpisode(
+            episode,
+            season,
+            mergedEpisodesList
+          );
+          if (foundIndex !== -1) {
+            const found = mergedEpisodesList[foundIndex];
+            mergedEpisodesList.splice(foundIndex, 1);
+
+            this.mergeEpisodeIntoMergedEpisode(mainValue, found, season);
+          }
+        });
+        continue;
+      }
+      let urlOtherEpisodes = url.replace(
+        `episodes?season_id=${currentSeasonId}`,
+        `episodes?season_id=${season.id}`
+      );
+      promiseList.push(
+        this.requestService
+          .fetchJson(urlOtherEpisodes)
+          .then((body: collectionEpisode) => {
+            body.items.forEach((episode) => {
+              const found = mergedEpisodesList.find(
+                (alreadyPresentEpisode) =>
+                  episode.sequence_number ===
+                  alreadyPresentEpisode.sequence_number
+              );
+              if (found != null) {
+                this.mergeEpisodeIntoMergedEpisode(episode, found, season);
+              } else {
+                this.createMergedEpisode(episode, season, mergedEpisodesList);
+              }
+            });
+          })
+      );
+    }
+    await Promise.all(promiseList);
+    mergedEpisodesList.sort(
+      (episode1, episode2) =>
+        episode1.sequence_number - episode2.sequence_number
+    );
+    return mergedEpisodesList;
   }
 
   async parseSeasonsWithLang(
@@ -152,52 +198,107 @@ export default class ParseService {
   async parseMergedSeasons(
     seasonsWithLang: improveSeason[],
     currentEpisodeId: string
-  ) {
+  ): Promise<improveMergedSeason[]> {
     const seasons = seasonsWithLang.reduce(
       (previousValue: improveMergedSeason[], currentValue: improveSeason) => {
         const found = previousValue.find((season) =>
           this.seasonService.sameSeason(season, currentValue)
         );
         if (found != null) {
-          if (currentValue.audio_locale2 == "SUB") {
-            found.subtitle_locales = currentValue.subtitle_locales;
-            found.audio_locale2 = currentValue.audio_locale2;
-          }
-          found.is_subbed = found.is_subbed || currentValue.is_subbed;
-          found.is_dubbed = found.is_dubbed || currentValue.is_dubbed;
-          found.audio_locales2.push(currentValue.audio_locale2);
-          found.seasons.set(currentValue.audio_locale2, {
-            id: currentValue.id,
-            audio_locale: currentValue.audio_locale2,
-          });
-          found.season_number = Math.min(
-            found.season_number,
-            currentValue.season_number
+          this.mergeSeasonWithLangIntoMergedSeason(
+            currentValue,
+            found,
+            currentEpisodeId
           );
-          if (currentValue.audio_locale2 === "SUB") {
-            found.title = currentValue.title;
-          }
-          if (currentEpisodeId === currentValue.id) {
-            found.id = currentValue.id;
-          }
         } else {
-          const mainValue: improveMergedSeason = <any>_.cloneDeep(currentValue);
-          mainValue.audio_locales2 = [currentValue.audio_locale2];
-          mainValue.seasons = new Map([
-            [
-              currentValue.audio_locale2,
-              {
-                id: currentValue.id,
-                audio_locale: currentValue.audio_locale2,
-              },
-            ],
-          ]);
-          previousValue.push(mainValue);
+          this.createMergedSeason(currentValue, previousValue);
         }
         return previousValue;
       },
       <improveMergedSeason[]>(<unknown[]>[])
     );
     return seasons;
+  }
+
+  private createMergedEpisode(
+    episode: episode,
+    seasonWithLang: improveSeason,
+    mergedEpisodes: improveMergedEpisode[]
+  ): improveMergedEpisode {
+    const mergedEpisode: improveMergedEpisode = <any>_.cloneDeep(episode);
+    mergedEpisode.episodes = [
+      {
+        id: episode.id,
+        subtitle_locales: episode.subtitle_locales,
+        audio_locale: seasonWithLang.audio_locale2,
+        videoStreamsUrl: episode.__links__.streams.href,
+      },
+    ];
+    mergedEpisodes.push(mergedEpisode);
+    return mergedEpisode;
+  }
+
+  private createMergedSeason(
+    seasonWithLang: improveSeason,
+    mergedSeasons: improveMergedSeason[]
+  ) {
+    const mergedSeason: improveMergedSeason = <any>_.cloneDeep(seasonWithLang);
+    mergedSeason.audio_locales2 = [seasonWithLang.audio_locale2];
+    mergedSeason.seasons = new Map([
+      [
+        seasonWithLang.audio_locale2,
+        {
+          id: seasonWithLang.id,
+          audio_locale: seasonWithLang.audio_locale2,
+        },
+      ],
+    ]);
+    mergedSeasons.push(mergedSeason);
+  }
+
+  private mergeEpisodeIntoMergedEpisode(
+    episode: episode,
+    mergedEpisode: improveMergedEpisode,
+    seasonWithLang: improveSeason
+  ): void {
+    if (seasonWithLang.audio_locale2 == "SUB") {
+      mergedEpisode.subtitle_locales = episode.subtitle_locales;
+    }
+    mergedEpisode.is_subbed = mergedEpisode.is_subbed || episode.is_subbed;
+    mergedEpisode.is_dubbed = mergedEpisode.is_dubbed || episode.is_dubbed;
+    mergedEpisode.episodes.push({
+      id: episode.id,
+      subtitle_locales: episode.subtitle_locales,
+      audio_locale: seasonWithLang.audio_locale2,
+      videoStreamsUrl: episode.__links__.streams.href,
+    });
+  }
+
+  private mergeSeasonWithLangIntoMergedSeason(
+    seasonWithLang: improveSeason,
+    mergedSeason: improveMergedSeason,
+    currentEpisodeId: string
+  ) {
+    if (seasonWithLang.audio_locale2 == "SUB") {
+      mergedSeason.subtitle_locales = seasonWithLang.subtitle_locales;
+      mergedSeason.audio_locale2 = seasonWithLang.audio_locale2;
+    }
+    mergedSeason.is_subbed = mergedSeason.is_subbed || seasonWithLang.is_subbed;
+    mergedSeason.is_dubbed = mergedSeason.is_dubbed || seasonWithLang.is_dubbed;
+    mergedSeason.audio_locales2.push(seasonWithLang.audio_locale2);
+    mergedSeason.seasons.set(seasonWithLang.audio_locale2, {
+      id: seasonWithLang.id,
+      audio_locale: seasonWithLang.audio_locale2,
+    });
+    mergedSeason.season_number = Math.min(
+      mergedSeason.season_number,
+      seasonWithLang.season_number
+    );
+    if (seasonWithLang.audio_locale2 === "SUB") {
+      mergedSeason.title = seasonWithLang.title;
+    }
+    if (currentEpisodeId === seasonWithLang.id) {
+      mergedSeason.id = seasonWithLang.id;
+    }
   }
 }

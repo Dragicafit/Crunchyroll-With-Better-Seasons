@@ -102,8 +102,8 @@ export default class ProxyService {
     );
     const mergedEpisodesList = await this.parseService.parseMergedEpisodes(
       sameSeasonsWithLang,
-      currentEpisodeId,
-      url
+      url,
+      currentEpisodeId
     );
     return {
       currentSeasonWithLang,
@@ -112,50 +112,24 @@ export default class ProxyService {
   }
 
   async addEpisodesFromOtherLanguages(
-    episodes: collectionEpisode,
+    collectionEpisode: collectionEpisode,
     seasonsWithLang: improveSeason[],
     url: string
   ) {
-    const currentSeasonId = episodes.items[0].season_id;
+    const currentSeasonId = collectionEpisode.items[0].season_id;
     const currentSeasonWithLang = seasonsWithLang.find(
       (season) => season.id === currentSeasonId
     )!;
     const sameSeasonsWithLang = seasonsWithLang.filter((season) =>
       this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
-    const promiseList: Promise<void>[] = [];
-    for (const season of sameSeasonsWithLang) {
-      if (season.id === currentSeasonId) {
-        continue;
-      }
-      let urlOtherEpisodes = url.replace(
-        `episodes?season_id=${currentSeasonId}`,
-        `episodes?season_id=${season.id}`
-      );
-      promiseList.push(
-        this.requestService
-          .fetchJson(urlOtherEpisodes)
-          .then((body: collectionEpisode) => {
-            body.items.forEach((episode) => {
-              if (
-                !episodes.items.find(
-                  (alreadyPresentEpisode) =>
-                    episode.sequence_number ===
-                    alreadyPresentEpisode.sequence_number
-                )
-              ) {
-                episodes.items.push(episode);
-              }
-            });
-          })
-      );
-    }
-    await Promise.all(promiseList);
-    episodes.items.sort(
-      (episode1, episode2) =>
-        episode1.sequence_number - episode2.sequence_number
+
+    return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
+      sameSeasonsWithLang,
+      collectionEpisode.items,
+      url,
+      currentSeasonId
     );
-    return episodes;
   }
 
   async concatLanguages(

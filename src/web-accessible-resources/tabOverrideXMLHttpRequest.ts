@@ -170,15 +170,19 @@ export default class TabOverrideXMLHttpRequest {
   }
 
   private async handleEpisodesInPageSeries(
-    episodes: collectionEpisode,
+    collectionEpisode: collectionEpisode,
     url: string
   ): Promise<collectionEpisode> {
-    const seasonsWithLang = await this.saveService.waitForSeasonsWithLang();
-    return await this.proxyService.addEpisodesFromOtherLanguages(
-      episodes,
-      seasonsWithLang,
-      url
-    );
+    const seasonsWithLang: improveSeason[] =
+      await this.saveService.waitForSeasonsWithLang();
+    const mergedEpisodesList: improveMergedEpisode[] =
+      await this.proxyService.addEpisodesFromOtherLanguages(
+        collectionEpisode,
+        seasonsWithLang,
+        url
+      );
+    collectionEpisode.items = mergedEpisodesList;
+    return collectionEpisode;
   }
 
   private async sendLanguagesToVilos(
