@@ -9,6 +9,8 @@ module.exports = {
   entry: {
     "src/web-accessible-resources/tab":
       "./src/web-accessible-resources/tabScript.ts",
+    "src/web-accessible-resources/vilosOverride":
+      "./src/web-accessible-resources/vilosOverrideScript.ts",
   },
   devtool: "inline-source-map",
   module: {
@@ -56,10 +58,15 @@ module.exports = {
       patterns: [
         { from: "LICENSE" },
         { from: "manifest.json" },
+        { from: "rules.json" },
         { from: "src/icons", to: "src/icons" },
         {
           from: "src/content-scripts/injectInTab.js",
           to: "src/content-scripts/injectInTab.js",
+        },
+        {
+          from: "src/content-scripts/injectInPlayer.js",
+          to: "src/content-scripts/injectInPlayer.js",
         },
         {
           from: "src/content-scripts/crunchyrollVideoPlayerV2.js",

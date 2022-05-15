@@ -9,11 +9,15 @@
     "48": "src/icons/icon48.png",
     "128": "src/icons/icon128.png"
   },
-  "permissions": [],
+  "permissions": ["declarativeNetRequest"],
   "web_accessible_resources": [
     {
       "resources": ["src/web-accessible-resources/tab.bundle.js"],
       "matches": ["https://beta.crunchyroll.com/*"]
+    },
+    {
+      "resources": ["src/web-accessible-resources/vilosOverride.bundle.js"],
+      "matches": ["https://static.crunchyroll.com/*"]
     }
   ],
   "content_scripts": [
@@ -27,10 +31,27 @@
       "run_at": "document_start"
     },
     {
+      "matches": [
+        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
+      ],
+      "js": ["src/content-scripts/injectInPlayer.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    },
+    {
       "matches": ["https://beta.crunchyroll.com/*"],
       "js": ["src/content-scripts/injectInTab.js"],
       "all_frames": false,
       "run_at": "document_start"
     }
-  ]
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "vilosOverride",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
 }

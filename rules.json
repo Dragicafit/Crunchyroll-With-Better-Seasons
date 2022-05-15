@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "block"
+    },
+    "condition": {
+      "urlFilter": "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js",
+      "resourceTypes": ["script"]
+    }
+  }
+]

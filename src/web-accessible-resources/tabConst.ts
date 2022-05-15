@@ -12,6 +12,56 @@ export type languages =
   | "RU"
   | "OTHERS";
 
+export type subtitleLocales =
+  | "en-US"
+  | "es-419"
+  | "es-ES"
+  | "fr-FR"
+  | "pt-BR"
+  | "pt-PT"
+  | "ar-SA"
+  | "it-IT"
+  | "de-DE"
+  | "ru-RU";
+
+export type subtitleLocalesWithSUB =
+  | "en-USSUB"
+  | "es-419SUB"
+  | "es-ESSUB"
+  | "fr-FRSUB"
+  | "pt-BRSUB"
+  | "pt-PTSUB"
+  | "ar-SASUB"
+  | "it-ITSUB"
+  | "de-DESUB"
+  | "ru-RUSUB";
+
+export const subtitleLocalesValues: subtitleLocales[] = [
+  "en-US",
+  "es-419",
+  "es-ES",
+  "fr-FR",
+  "pt-BR",
+  "pt-PT",
+  "ar-SA",
+  "it-IT",
+  "de-DE",
+  "ru-RU",
+];
+
+export const subtitleLocalesWithSUBValues: subtitleLocalesWithSUB[] = [
+  "en-USSUB",
+  "es-419SUB",
+  "es-ESSUB",
+  "fr-FRSUB",
+  "pt-BRSUB",
+  "pt-PTSUB",
+  "ar-SASUB",
+  "it-ITSUB",
+  "de-DESUB",
+  "ru-RUSUB",
+];
+
 export type episode_metadata = {
   series_id: string;
   series_title: string;
@@ -38,17 +88,7 @@ export type episode_metadata = {
   is_dubbed: boolean;
   is_clip: boolean;
   available_offline: boolean;
-  subtitle_locales: (
-    | "en-US"
-    | "es-419"
-    | "es-ES"
-    | "fr-FR"
-    | "pt-BR"
-    | "ar-SA"
-    | "it-IT"
-    | "de-DE"
-    | "ru-RU"
-  )[];
+  subtitle_locales: subtitleLocales[];
   availability_notes: string;
 };
 
@@ -126,14 +166,30 @@ export type season = {
 };
 
 export type improveSeason = season & {
-  lang: languages;
+  audio_locale2: languages;
   season_number_order: number;
   useNewLang: boolean;
   useNewOrder: boolean;
 };
 
-export type impoveMergedSeason = improveSeason & {
-  langs: languages[];
+export type improveMergedSeason = improveSeason & {
+  audio_locales2: languages[];
+  seasons: Map<
+    languages,
+    {
+      id: string;
+      audio_locale: languages;
+    }
+  >;
+};
+
+export type improveMergedEpisode = episode & {
+  episodes: {
+    id: string;
+    audio_locale: languages;
+    subtitle_locales: subtitleLocales[];
+    videoStreamsUrl: string;
+  }[];
 };
 
 export type collectionPanel = {
@@ -241,50 +297,105 @@ export type episode = {
   duration_ms: number;
   is_premium_only: boolean;
   listing_id: string;
-  subtitle_locales: (
-    | "en-US"
-    | "es-419"
-    | "es-ES"
-    | "fr-FR"
-    | "pt-BR"
-    | "ar-SA"
-    | "it-IT"
-    | "de-DE"
-    | "ru-RU"
-  )[];
+  subtitle_locales: subtitleLocales[];
   playback: string;
   availability_notes: string;
 };
 
-export const possibleLang = {
-  SUB: "Subs",
-  EN: "English dub",
-  FR: "French dub",
-  ES: "Spanish dub",
-  PT: "Portuguese dub",
-  DE: "German dub",
-  RU: "Russian dub",
-  OTHERS: "Other dubs",
+export type streamInfo = {
+  [subtitleLocale: string]: {
+    hardsub_locale: subtitleLocales | "";
+    url: string;
+  };
 };
 
-export const langToDisplay = {
-  SUB: "Japanese",
-  EN: "English (United States)",
-  FR: "Français (France)",
-  ES: "Español (Latin America)",
-  PT: "Português (Brasil)",
-  DE: "Deutsch (Germany)",
-  RU: "Русский (Russia)",
-  OTHERS: "Other",
+export type videoStreams = {
+  __class__: "video_streams";
+  __href__: string;
+  __resource_key__: string;
+  __links__: {
+    resource: { href: string };
+  };
+  __actions__: {};
+  media_id: string;
+  audio_locale: subtitleLocales;
+  subtitles: {
+    [subtitleLocale: string]: {
+      locale: subtitleLocales;
+      url: string;
+      format: string;
+    };
+  };
+  captions: {};
+  streams: {
+    adaptive_dash: streamInfo;
+    adaptive_hls: streamInfo;
+    download_dash: streamInfo;
+    download_hls: streamInfo;
+    drm_adaptive_dash: streamInfo;
+    drm_adaptive_hls: streamInfo;
+    drm_download_dash: streamInfo;
+    drm_download_hls: streamInfo;
+    drm_multitrack_adaptive_hls_v2: streamInfo;
+    multitrack_adaptive_hls_v2: streamInfo;
+    urls: streamInfo;
+    vo_adaptive_dash: streamInfo;
+    vo_adaptive_hls: streamInfo;
+    vo_drm_adaptive_dash: streamInfo;
+    vo_drm_adaptive_hls: streamInfo;
+  };
+  bifs: string[];
 };
 
-export const possibleLangKeys = <languages[]>Object.keys(possibleLang);
+export type supportedAndMappingLocales = {
+  supported: subtitleLocales[];
+  supported_fallbacks: {
+    [subtitleLocale: string]: subtitleLocales[];
+  };
+  mapping: {
+    [locale: string]: { to: subtitleLocales; desc: string };
+  };
+};
+
+export type localeToDisplay = {
+  [locale: string]: string;
+};
+
+export const possibleLang: Map<languages, string> = new Map([
+  ["SUB", "Subs"],
+  ["EN", "English dub"],
+  ["FR", "French dub"],
+  ["ES", "Spanish dub"],
+  ["PT", "Portuguese dub"],
+  ["DE", "German dub"],
+  ["RU", "Russian dub"],
+  ["OTHERS", "Other dubs"],
+]);
+
+export const langToDisplay: Map<languages, string> = new Map([
+  ["SUB", "Japanese"],
+  ["EN", "English (United States)"],
+  ["FR", "Français (France)"],
+  ["ES", "Español (Latin America)"],
+  ["PT", "Português (Brasil)"],
+  ["DE", "Deutsch (Germany)"],
+  ["RU", "Русский (Russia)"],
+  ["OTHERS", "Other"],
+]);
+
+export const possibleLangKeys: languages[] = [...possibleLang.keys()];
 
 export const regexPageSeries =
   /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?series/;
 
 export const regexPageWatch =
   /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?watch/;
+
+export const startPagePlayer =
+  "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html";
+
+export const startPageBundle =
+  "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js";
 
 export const regexApiObjects =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/objects\/[A-Z0-9]{9}/;
@@ -298,27 +409,24 @@ export const startApiUpNextSeries =
 export const regexApiEpisodes =
   /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
 
-export const invalidSlug = [
+export const regexApiVideoStreams =
+  /^https:\/\/beta-api.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/;
+
+export const invalidSlug: string[] = [
   "kaguya-sama-love-is-war",
   "my-hero-academia-season",
   "my-hero-academia",
 ];
 
-export const findOtherDubs = new Map([
-  ["G24H1NM05", "GR751KNZY"], // Attack on Titan
+export const seriesGroups: string[][] = [
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan
-  ["GYNV9DP2R", "G6NQ5DWZ6"], // My Hero Academia
   ["G6NQ5DWZ6", "GYNV9DP2R"], // My Hero Academia
-  ["GY1XX0N0Y", "GRE50KV36"], // Black Clover
   ["GRE50KV36", "GY1XX0N0Y"], // Black Clover
-  ["G0XHWM9MP", "G6DQDD3WR"], // Fairy Tail
   ["G6DQDD3WR", "G0XHWM9MP"], // Fairy Tail
-  ["GR0XP5V9Y", "G6GG91P26"], // Food Wars
   ["G6GG91P26", "GR0XP5V9Y"], // Food Wars
-  ["GKEH2G8N4", "G619JM99Y"], // Monster Strike
   ["G619JM99Y", "GKEH2G8N4"], // Monster Strike
-  ["G6VNXNE4R", "G6VDWKM76"], // Persona5
   ["G6VDWKM76", "G6VNXNE4R"], // Persona5
-  ["GRWEK728R", "GRGGVKP4R"], // Yowamushi Pedal
   ["GRGGVKP4R", "GRWEK728R"], // Yowamushi Pedal
-]);
+  ["GYGGPPW7Y", "GRE5XQJV6", "GR09QXWGR", "G6P8GKKJ6"], // Natsume Yujin-cho
+  ["G8DHV7W21", "G9VHN9PPW", "G4PH0WXXM", "GR19V7816"], // Dragon Ball
+];
