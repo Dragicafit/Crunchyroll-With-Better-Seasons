@@ -1,4 +1,4 @@
-import _ from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import {
   collectionEpisode,
   collectionSeason,
@@ -228,7 +228,7 @@ export default class ParseService {
     mergedEpisodes: improveMergedEpisode[]
   ): improveMergedEpisode {
     const mergedEpisode: improveMergedEpisode = <improveMergedEpisode>(
-      _.cloneDeep(episode)
+      cloneDeep(episode)
     );
     mergedEpisode.episodes = [
       {
@@ -247,7 +247,7 @@ export default class ParseService {
     mergedSeasons: improveMergedSeason[]
   ) {
     const mergedSeason: improveMergedSeason = <improveMergedSeason>(
-      _.cloneDeep(seasonWithLang)
+      cloneDeep(seasonWithLang)
     );
     mergedSeason.audio_locales2 = [seasonWithLang.audio_locale2];
     mergedSeason.seasons = new Map([
