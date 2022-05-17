@@ -17,7 +17,7 @@ import {
   regexApiVideoStreams,
   regexPageSeries,
   regexPageWatch,
-  startApiUpNextSeries,
+  regexApiUpNextSeries,
   upNextSeries,
   videoStreams,
 } from "./tabConst";
@@ -105,7 +105,7 @@ export default class TabOverrideXMLHttpRequest {
                     resolve();
                   });
                 return;
-              } else if (url2.startsWith(startApiUpNextSeries)) {
+              } else if (url2.match(regexApiUpNextSeries)) {
                 tabOverrideXMLHttpRequest.saveUpNext(data);
               }
             }
