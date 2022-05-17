@@ -1,4 +1,4 @@
-import _ from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import {
   improveMergedEpisode,
   improveSeason,
@@ -34,25 +34,25 @@ export default class SaveService {
   }
 
   saveUpNext(season_id: string): string {
-    this.upNext = _.cloneDeep(season_id);
-    return _.cloneDeep(this.upNext);
+    this.upNext = cloneDeep(season_id);
+    return cloneDeep(this.upNext);
   }
 
   saveSeasonWithLang(seasonsWithLang: improveSeason[]): improveSeason[] {
-    this.seasonsWithLang = _.cloneDeep(seasonsWithLang);
-    return _.cloneDeep(this.seasonsWithLang);
+    this.seasonsWithLang = cloneDeep(seasonsWithLang);
+    return cloneDeep(this.seasonsWithLang);
   }
 
   saveCurrentEpisode(currentEpisode: panel): panel {
-    this.currentEpisode = _.cloneDeep(currentEpisode);
-    return _.cloneDeep(this.currentEpisode);
+    this.currentEpisode = cloneDeep(currentEpisode);
+    return cloneDeep(this.currentEpisode);
   }
 
   saveCurrentMergedEpisodes(
     currentMergedEpisodes: improveMergedEpisode
   ): improveMergedEpisode {
-    this.currentMergedEpisodes = _.cloneDeep(currentMergedEpisodes);
-    return _.cloneDeep(this.currentMergedEpisodes);
+    this.currentMergedEpisodes = cloneDeep(currentMergedEpisodes);
+    return cloneDeep(this.currentMergedEpisodes);
   }
 
   waitForUpNext(): Promise<string> {
@@ -64,7 +64,7 @@ export default class SaveService {
         return;
       }
 
-      return resolve(_.cloneDeep(this.upNext));
+      return resolve(cloneDeep(this.upNext));
     });
   }
 
@@ -77,7 +77,7 @@ export default class SaveService {
         return;
       }
 
-      return resolve(_.cloneDeep(this.seasonsWithLang));
+      return resolve(cloneDeep(this.seasonsWithLang));
     });
   }
 
@@ -90,7 +90,7 @@ export default class SaveService {
         return;
       }
 
-      return resolve(_.cloneDeep(this.currentEpisode));
+      return resolve(cloneDeep(this.currentEpisode));
     });
   }
 
@@ -103,7 +103,7 @@ export default class SaveService {
         return;
       }
 
-      return resolve(_.cloneDeep(this.currentMergedEpisodes));
+      return resolve(cloneDeep(this.currentMergedEpisodes));
     });
   }
 }

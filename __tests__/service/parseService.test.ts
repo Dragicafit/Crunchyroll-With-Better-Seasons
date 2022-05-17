@@ -1,4 +1,4 @@
-import _ from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import ParseService from "../../src/service/parseService";
 import RequestService from "../../src/service/requestService";
 import SeasonService from "../../src/service/seasonService";
@@ -699,7 +699,7 @@ describe("parses merged seasons", () => {
       },
     ];
 
-    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    const seasonsWithLangClone = cloneDeep(seasonsWithLang);
     expect(
       await parseService.parseMergedSeasons(seasonsWithLang, "0")
     ).toStrictEqual(expected);
@@ -759,7 +759,7 @@ describe("parses merged seasons", () => {
       },
     ];
 
-    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    const seasonsWithLangClone = cloneDeep(seasonsWithLang);
     expect(
       await parseService.parseMergedSeasons(seasonsWithLang, "1")
     ).toStrictEqual(expected);
@@ -866,7 +866,7 @@ describe("parses merged seasons", () => {
       },
     ];
 
-    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    const seasonsWithLangClone = cloneDeep(seasonsWithLang);
     expect(
       await parseService.parseMergedSeasons(seasonsWithLang, "0")
     ).toStrictEqual(expected);
@@ -926,7 +926,7 @@ describe("parses merged seasons", () => {
       },
     ];
 
-    const seasonsWithLangClone = _.cloneDeep(seasonsWithLang);
+    const seasonsWithLangClone = cloneDeep(seasonsWithLang);
     expect(
       await parseService.parseMergedSeasons(seasonsWithLang, "0")
     ).toStrictEqual(expected);
