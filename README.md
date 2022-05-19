@@ -4,17 +4,17 @@
 
 # Crunchyroll With Better Seasons
 
-Crunchyroll With Better Seasons is a cross-platform browser extension that changes the way seasons are display on Crunchyroll.
+Crunchyroll With Better Seasons is a cross-platform browser extension that changes the way seasons are displayed on Crunchyroll and adds the subtitles to the dub episodes.
 
-On the serie page, it groups all audio languages into a single seasons.
+On the serie page, it groups all audio languages into a single seasons and reorder the seasons with a better numerotation.
 
 On the episode page, it adds a setting to change the audio language.
 
 ## Manual Install
 
-- Firefox: Download the [xpi release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.0-beta/Crunchyroll-With-Better-Seasons.xpi), go to `about:debugging#/runtime/this-firefox`, click on `Load Temporay Add-on...` and select the xpi file.
-- Chromium: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.0-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
-- Chrome: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.0-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
+- Firefox: Download the [xpi release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.1-beta/Crunchyroll-With-Better-Seasons.xpi), go to `about:debugging#/runtime/this-firefox`, click on `Load Temporay Add-on...` and select the xpi file.
+- Chromium: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.1-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
+- Chrome: Download the [crx release](https://github.com/Dragicafit/Crunchyroll-With-Better-Seasons/releases/download/v0.4.1-beta/Crunchyroll-With-Better-Seasons.crx), go to `chrome://extensions`, enable debugging, drag and drop the crx file.
 
 ## Developing or debugging the extension
 
