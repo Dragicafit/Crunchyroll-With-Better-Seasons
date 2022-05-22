@@ -386,10 +386,10 @@ export const langToDisplay: Map<languages, string> = new Map([
 export const possibleLangKeys: languages[] = [...possibleLang.keys()];
 
 export const regexPageSeries =
-  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?series/;
+  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?series\/[A-Z0-9]{9}/;
 
 export const regexPageWatch =
-  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?watch/;
+  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?watch\/[A-Z0-9]{9}/;
 
 export const startPagePlayer =
   "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html";
