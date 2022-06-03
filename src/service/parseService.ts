@@ -176,19 +176,7 @@ export default class ParseService {
       if (useNewOrder) {
         seasonWithLang.season_number_order =
           improveApiSeason!.season_number_order!;
-        seasonWithLang.season_number = <any>null;
-        if (
-          typeof improveApiSeason!.season_number !== "string" ||
-          !improveApiSeason!.season_number.startsWith(" ")
-        ) {
-          improveApiSeason!.season_number =
-            "S" + improveApiSeason!.season_number;
-        } else {
-          improveApiSeason!.season_number =
-            improveApiSeason!.season_number.substring(1);
-        }
-        seasonWithLang.title =
-          improveApiSeason!.season_number + " - " + seasonWithLang.title;
+        seasonWithLang.season_number = <any>improveApiSeason!.season_number!;
       }
 
       seasonWithLang.slug_title = season.slug_title.replace(
@@ -308,10 +296,12 @@ export default class ParseService {
       id: seasonWithLang.id,
       audio_locale: seasonWithLang.audio_locale2,
     });
-    mergedSeason.season_number = Math.min(
-      mergedSeason.season_number,
-      seasonWithLang.season_number
-    );
+    if (!mergedSeason.useNewOrder) {
+      mergedSeason.season_number = Math.min(
+        mergedSeason.season_number,
+        seasonWithLang.season_number
+      );
+    }
     if (seasonWithLang.audio_locale2 === "SUB") {
       mergedSeason.title = seasonWithLang.title;
     }
