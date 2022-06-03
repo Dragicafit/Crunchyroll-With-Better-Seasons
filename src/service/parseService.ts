@@ -176,7 +176,19 @@ export default class ParseService {
       if (useNewOrder) {
         seasonWithLang.season_number_order =
           improveApiSeason!.season_number_order!;
-        seasonWithLang.season_number = <any>improveApiSeason!.season_number!;
+        seasonWithLang.season_number = <any>null;
+        if (
+          typeof improveApiSeason!.season_number !== "string" ||
+          !improveApiSeason!.season_number.startsWith(" ")
+        ) {
+          improveApiSeason!.season_number =
+            "S" + improveApiSeason!.season_number;
+        } else {
+          improveApiSeason!.season_number =
+            improveApiSeason!.season_number.substring(1);
+        }
+        seasonWithLang.title =
+          improveApiSeason!.season_number + " - " + seasonWithLang.title;
       }
 
       seasonWithLang.slug_title = season.slug_title.replace(
