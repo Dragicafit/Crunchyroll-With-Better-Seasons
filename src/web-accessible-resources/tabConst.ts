@@ -76,7 +76,7 @@ export type episode_metadata = {
   duration_ms: number;
   episode_air_date: string;
   is_premium_only: boolean;
-  extended_maturity_ratings: {};
+  extended_maturity_rating: {};
   maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
@@ -151,7 +151,7 @@ export type season = {
   keywords: [];
   season_tags: string[];
   images: {};
-  extended_maturity_ratings: {};
+  extended_maturity_rating: {};
   maturity_ratings: string[];
   is_mature: boolean;
   mature_blocked: boolean;
@@ -269,7 +269,7 @@ export type episode = {
   next_episode_title: string;
   hd_flag: boolean;
   maturity_ratings: string[];
-  extended_maturity_ratings: {};
+  extended_maturity_rating: {};
   is_mature: boolean;
   mature_blocked: boolean;
   episode_air_date: string;

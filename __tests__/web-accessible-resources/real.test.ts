@@ -43,7 +43,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -83,7 +83,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -123,7 +123,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: ["spring-2019", "summer-2019"],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -133,7 +133,7 @@ it("test API seasons", () => {
         seo_title: "",
         seo_description: "",
         availability_notes:
-          '[link url="https://store.crunchyroll.com/collections/demon-slayer-kimetsu-no-yaiba-merchandise-collection?utm_source=ecomm_cr\u0026utm_medium=show_page\u0026utm_campaign=show_page_kimetsu_2019_6_20\u0026referrer=ecomm_cr_show_page_show_page_kimetsu"]Check out our Demon Slayer Figures![/link]',
+          '[link url="https://store.crunchyroll.com/collections/demon-slayer-kimetsu-no-yaiba-merchandise-collection',
         audio_locales: [],
         subtitle_locales: [],
       },
@@ -164,7 +164,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -206,7 +206,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -246,7 +246,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -286,7 +286,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -328,7 +328,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: [],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -368,7 +368,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: ["fall-2021"],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -408,7 +408,7 @@ it("test API seasons", () => {
         keywords: [],
         season_tags: ["winter-2022"],
         images: {},
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         maturity_ratings: ["TV-14"],
         is_mature: false,
         mature_blocked: false,
@@ -477,7 +477,7 @@ it("test API episodes", () => {
         next_episode_title: "One today is worth two tomorrows",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-10-08T01:30:00+09:00",
@@ -561,7 +561,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: ["en-US"],
         playback:
-          "https://pl.crunchyroll.com/asset/389e0008525987125a282e327d4f34d0/v/dbe64c259b22869396d4fcad820b0901/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMzg5ZTAwMDg1MjU5ODcxMjVhMjgyZTMyN2Q0ZjM0ZDAvdi9kYmU2NGMyNTliMjI4NjkzOTZkNGZjYWQ4MjBiMDkwMS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=C0GZbTjFGS~zvvTmi3LF-4jTaz9lD5XQklhHnQx5UQuc5Jk-RqHnW2A1vNG1~QBaIG2JZdQEDKGNH1GOL6BRNvp8bD4IWNzgFo10VM8hR83aZb3xR2WQafPyTbpbT1cB4qO-P8vPvu3A3qSnlspzoEwREDVUIu21QYg2hXEZ82HcjvdcLwP7kvtf8xshlMFknjVbgx2Yjd33l1s79nYHATiWl0WmNiEYl5hYWmvgYNQC72vPnm27Eduit9Ce33PjDGKhJY~NdIPGjqPTPLypz8ju9-LX4qcVdt8Kbfd3ivHw7XZzLGbdOdDxDb4A4xCKM4X9jxqSTMDxmUXK3ilYug__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/389e0008525987125a282e327d4f34d0/v/dbe64c259b22869396d4fcad820b0901/languages/en-US",
         availability_notes: "",
       },
       {
@@ -608,7 +608,7 @@ it("test API episodes", () => {
           "The balance distinguishes not between gold and lead",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-10-15T01:30:00+09:00",
@@ -692,7 +692,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/2b3d51d5ae5b63f1e77878d1e1f27a64/v/f7e5f1cf86a50b1255d0cf754a7afe18/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMmIzZDUxZDVhZTViNjNmMWU3Nzg3OGQxZTFmMjdhNjQvdi9mN2U1ZjFjZjg2YTUwYjEyNTVkMGNmNzU0YTdhZmUxOC8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=ZJEQzUMvIuLb9yzFvZSJi1uTCwK~NZEQfdJ2yDkLiS~-KdbRw-MlGcpgCqmSLMhykJzA8V6dLoe9KI4roTLVTiqCihSfdyS8YI5rVvXIUgmyZhLQg4fDgFSqoUNIglp05Ab~SnkkiULVRXLHJy6gVgi9Kh9rEKk3Z8H-Nrs-AdY6e4fYpO4ZmNjRC5vWPYAv-hEIhei8oXsoayJu3wy0om2TbDI5epUEYkJMjxqWigCRMiRRYpG~~eN4us5QIKhE1yO~yngYwVoNpUSO4Zs3CyuSuD9Z2sGZqGauyAgpLEa1JW9v6qzRtX00tP~MB8h0R5UE2D~ArUXqg6ty0DhQ2A__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/2b3d51d5ae5b63f1e77878d1e1f27a64/v/f7e5f1cf86a50b1255d0cf754a7afe18/languages/en-US",
         availability_notes: "",
       },
       {
@@ -738,7 +738,7 @@ it("test API episodes", () => {
         next_episode_title: "Everything must have a beginning",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-10-22T01:30:00+09:00",
@@ -822,7 +822,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/2396ee9f93b979166d8485b647f49d9c/v/b55125c806006675d7936b97c8576868/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMjM5NmVlOWY5M2I5NzkxNjZkODQ4NWI2NDdmNDlkOWMvdi9iNTUxMjVjODA2MDA2Njc1ZDc5MzZiOTdjODU3Njg2OC8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=QID-woMUlP2dB9i0KJgfX1LsDIVudDMNNqjEwREKXr0TzuPXL~16cDhJnn8HYZGC7QJss-rmCqVuzianI6BMROwOBC8gDmTeXI3P57-dKir0Q-rbyKHWPkMcFzeGgV4FpdVP5vaXPrbs89GHQFlUGvV0f3J1g4L82i2vcyxnb9ZlQ2v8Wwcp6xfpZONy2CCUEtMS58Ws0QWpp8VSjnCzqqUvyo1sKQAGZ~UEuGCWG6DB93dp3~yNoXiIpJbhBpCtkHMYBiaxRDxPtNVh0u82e0pEGlqnex9Jg5LsbiPza0G-AhDCrfyPctpeCwUbScjQiYbKcdpCKrhjjD1MsjYKIw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/2396ee9f93b979166d8485b647f49d9c/v/b55125c806006675d7936b97c8576868/languages/en-US",
         availability_notes: "",
       },
       {
@@ -868,7 +868,7 @@ it("test API episodes", () => {
         next_episode_title: "Love conquers all",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-10-29T01:30:00+09:00",
@@ -952,7 +952,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/768b17affa941b0afcae0e6e5977bfd7/v/fab68f8a63882a99177ad4cf65392605/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNzY4YjE3YWZmYTk0MWIwYWZjYWUwZTZlNTk3N2JmZDcvdi9mYWI2OGY4YTYzODgyYTk5MTc3YWQ0Y2Y2NTM5MjYwNS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=L5OzqHdUoWtX4upfNLKoA9q0zcCtl2QnQDtDH6W5Gqo7yZ~HmnfZfKYff2uTu7zqxHYzTREW~ZLoccGl9F1XKapub4nn1wXQ0zWSEKXcPLwciMStRYxpP15x0nkq-ZvQtPj6bUrjqzeInlKnD050B~Oxxnwxoep1SBeJohryO035x7rguhdeI7mMO9tgfQ0WwJJlU-FHVCwoPyu~qo7O-ZxIgTqBLAMX2J3d7mxx~uYOegiUFjDay9ZIJwvCl3vosb24jjwzesaYz1K8hbyOZC6tNcEJfW4Wn~vjSH6yWBz2vXlKKmJD2gbvFcD2saeXtbKlQ2QNAAQH7tgpFIsaYQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/768b17affa941b0afcae0e6e5977bfd7/v/fab68f8a63882a99177ad4cf65392605/languages/en-US",
         availability_notes: "",
       },
       {
@@ -998,7 +998,7 @@ it("test API episodes", () => {
         next_episode_title: "The Faerie Queene",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-11-05T01:30:00+09:00",
@@ -1082,7 +1082,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/44ecd665486cd1cf1551072844fad696/v/a4704963a48f1d140a767baec9dd24e3/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNDRlY2Q2NjU0ODZjZDFjZjE1NTEwNzI4NDRmYWQ2OTYvdi9hNDcwNDk2M2E0OGYxZDE0MGE3NjdiYWVjOWRkMjRlMy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=MNOYbSD3nH8hYrokTry41winm-Wn6~xuQ9k1d~xwdTDGPDvKZJBhBlg3MUy5OoC1ROk-73LegIVs60emn5dWJlwa-HptHeMPlI88CCnWX50RgblahatzHTAOTgWKz5PqmcHQITqFEhwgXcTVIeYwiQnYjx5zIf88HBwOvPPfvKGWxkBrqsRWrH1eJYu~FaWa60irgKxnj89Pq7MrcTMStIel4y7-DqLraxenhkSkfJr20eokFMU1kDxdTqKHrnhZ13JqqaOa5DuIkqo1xen75T29cQsK8NwvJCv0mbJaRF9JbN46slGu0VkRAQcnAzeN7UWr9EYNjbTKhS0~z~l-rA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/44ecd665486cd1cf1551072844fad696/v/a4704963a48f1d140a767baec9dd24e3/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1128,7 +1128,7 @@ it("test API episodes", () => {
         next_episode_title: "Talk of the devil, and he is sure to appear.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-11-12T01:30:00+09:00",
@@ -1212,7 +1212,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: ["en-US"],
         playback:
-          "https://pl.crunchyroll.com/asset/81a1dd04fc38ddb038219e927248ebac/v/88ad4832cbe93dcdbde945808621ca36/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvODFhMWRkMDRmYzM4ZGRiMDM4MjE5ZTkyNzI0OGViYWMvdi84OGFkNDgzMmNiZTkzZGNkYmRlOTQ1ODA4NjIxY2EzNi8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=RtJBANTOhC7w7NmHGXTjEDEeDU3Qen-x7PoqtYXjouqIkzb-yoApQ05C6wva3g3vgn~XdzgtbleKtoSZYwIK7TLjgSjRgx93G280SKJR~lemnNRP3EZuTcHcO2y5ywkNWjK3RLimkSgktmDrVRJR-EMsinQuw1bqVchS5Vk~lRIRKtl9G0Jau0aEulEKkFJ1yCtlLtxgPRMNLhztXr0YgAi-d8xR7duhHSlOUwIvwzPRlE1zyn8Q3PRWg7y1eslog71pEV7~1VTWUlN~7NYAWRASt0AARcUezLAgHJPgjKVFWSoGWwLT5jJYlx~CpCmQ9em2DJ0xfyM7946RBXaHmg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/81a1dd04fc38ddb038219e927248ebac/v/88ad4832cbe93dcdbde945808621ca36/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1258,7 +1258,7 @@ it("test API episodes", () => {
         next_episode_title: "Let sleeping dogs lie.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-11-19T01:30:00+09:00",
@@ -1342,7 +1342,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/29ba42ad5386fe6dbcf53327d412880f/v/98697a21e0feeade87c774788d7013a3/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMjliYTQyYWQ1Mzg2ZmU2ZGJjZjUzMzI3ZDQxMjg4MGYvdi85ODY5N2EyMWUwZmVlYWRlODdjNzc0Nzg4ZDcwMTNhMy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=rCCmlPbh93EyEi542JT9zDRqVTOYtesUk5SWBzlWV83NwdD3zgBtApuknQjGdKGaGhm5F7MkoJbpnvEqbtB43VLQX1MmgTEPNFxqKxjJNvvhkJ~mrQM-dgUFynMYe7rZzoKEDWNh2-bREPxaeootc7-bUjvMDOYriMad2jx4BlIv0jR5IyhQh9QQIcCPtXUNSXK8MdO1IcdciCKox8iciEUaDYe3MsIqmwLfH3YhQ-KVB-L5BWOZE8hG0OankdWNK-d-gLfbd2pkTXNSqvDM8EP3KMFpu0Jq8DC8B26Er4-KAij3C6SXJSxtEYhWiYM9uKQWd2yCRIGly6XoB~8pcw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/29ba42ad5386fe6dbcf53327d412880f/v/98697a21e0feeade87c774788d7013a3/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1388,7 +1388,7 @@ it("test API episodes", () => {
         next_episode_title: "None so deaf as those who will not hear",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-11-26T01:30:00+09:00",
@@ -1472,7 +1472,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/9ce1ab74e7836dac5a61840082c0a15d/v/b6dc7c95e4d6da82dbe2c3ddb7e7f0b8/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvOWNlMWFiNzRlNzgzNmRhYzVhNjE4NDAwODJjMGExNWQvdi9iNmRjN2M5NWU0ZDZkYTgyZGJlMmMzZGRiN2U3ZjBiOC8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=YQD11R~A9JrVGznzUvLvs7kC8degq72GvEjGnd2ycch9AvjbSCrrFjnunc5D0bUqfvAdo41aSR~Ie28YOL8GA2gt0Vrmcrajs5azHVMB57nNrJgeiFwhneYdEyTa4~MKdk--wet9ETBupFq-NHOtmsWy7PB~VSBeAFQbv9Ilm419iOCJSMyYpAYTMBUI1usbm2M1b-TFvfdmenoqG4JxMeLamgbbbtZa6Hlr41ec0V02X7IQPYC4GkhoR97yAfuWUPMezdP7LOUpzyxk-AXP8lzIeXBMhmUj~tNysqt8k6YD9mhyRNoOQ89QKE9uiHvp~~5GmJSY-jnn9TBY77kfig__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/9ce1ab74e7836dac5a61840082c0a15d/v/b6dc7c95e4d6da82dbe2c3ddb7e7f0b8/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1518,7 +1518,7 @@ it("test API episodes", () => {
         next_episode_title: "We live and learn",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-12-03T01:30:00+09:00",
@@ -1602,7 +1602,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/1002a583f5063b625b06566fa887e214/v/b3db6af2f93070d6ecb83e5def6e2b4f/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMTAwMmE1ODNmNTA2M2I2MjViMDY1NjZmYTg4N2UyMTQvdi9iM2RiNmFmMmY5MzA3MGQ2ZWNiODNlNWRlZjZlMmI0Zi8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=AvGiqcWr1QQO8DL2PeRAMk9xEa29Pc2LU4MJ0Vap79ifDb3Xsc4rmj0M2qUw22qc0ZCg2N1GCUApGdoGjcSzN1CCaJtof2LUTx5DUtDZaTpTcUbvPsJESaFrvJb4d7ej1nh8RMqHSLn8phpyFdx0B0cLmdTcOpeFSFyt2O6~qfvZoMgaiQPogz~LOUjyOPWPFG133~DVU-w-Bfw~7Dt3Yw7YQAIoM0YgMsAKvGHThHUXhvbzUSHUQ31dsBP2bM95eCz6WptTV9gIm1EpjduNWGudTuA6DkuSaD7sMlR1aWrigcJM8y8HRNRC4Mzfuky2MLZB~yMUzuTVw3bk-JR43w__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/1002a583f5063b625b06566fa887e214/v/b3db6af2f93070d6ecb83e5def6e2b4f/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1648,7 +1648,7 @@ it("test API episodes", () => {
         next_episode_title: "Lovers ever run before the clock",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-12-10T01:30:00+09:00",
@@ -1732,7 +1732,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/06a8520c6da4de910469df44c2f1deb6/v/b3bdd613a2207a44f8b0991a706342f1/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMDZhODUyMGM2ZGE0ZGU5MTA0NjlkZjQ0YzJmMWRlYjYvdi9iM2JkZDYxM2EyMjA3YTQ0ZjhiMDk5MWE3MDYzNDJmMS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=K~Mow~59YhiFZqBP821NYX8wGAlC-NXkxHMr~jcwN2gUG6b0CorfC119YbpH1zqlu0vyEdn~HjNv9ZmpqdGtwfZCK2G-ZCoOGwaI~CUM2UQneEqJ1JbGPXPp-AqV103OrWcK-rkis9OufT3UmwjmtrFggruSxj2zSL-YhazPTcS1EHFim3wQkVdUS~kKeqnpi9A1wv-D4oP9cymbHoAoNj8zzv9~bBIbW4SPpPcH1gnZ7mVNiLliMSGxfoh0z7yBbbtI~1PP5MkEIAs5S1Z1q5kvHwMDXKYBPmna~cWx6LB6ryJMp2TSacbotAEvEkyFK5ekyuHephdeBi4B8QGqoA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/06a8520c6da4de910469df44c2f1deb6/v/b3bdd613a2207a44f8b0991a706342f1/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1778,7 +1778,7 @@ it("test API episodes", () => {
         next_episode_title: "Better to ask the way than go astray",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-12-17T01:30:00+09:00",
@@ -1862,7 +1862,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/efd2e0c28d7340e32a3c20b6c9e3fb96/v/b33795606def59988a467476749bf6c7/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvZWZkMmUwYzI4ZDczNDBlMzJhM2MyMGI2YzllM2ZiOTYvdi9iMzM3OTU2MDZkZWY1OTk4OGE0Njc0NzY3NDliZjZjNy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=ZIJzSYoN7EssIAISmORRTdSnPjILQR-y-~4bNGvT7wFBpwq9iAXwaxexzRvdrVipd~cj-nxXJlu0L0m9xYf2wac6jFpl2Qnm66Ag6UGniCa0sei8c7KZBV-RM4kdFrB6ribufvZMVk4oYz6bJfDBmkM2x7bAsQ3gM3jcbHLxvxiu~cqMSNDyNpxyShyCqNKjc1W7k7ZaftMmHn8KkRVmogYLzxNTFjOCFaxTQqN26xNex0xZVxQBc-vZkBdMWsoTJ2RV2M43XmI65F9D7-VnLUacpKJZm-ssbwX-DGCIO-ichPz~DwfNtNlfiiqJn-3X9Jo8qCWEeOvBD7vmlMChTg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/efd2e0c28d7340e32a3c20b6c9e3fb96/v/b33795606def59988a467476749bf6c7/languages/en-US",
         availability_notes: "",
       },
       {
@@ -1908,7 +1908,7 @@ it("test API episodes", () => {
         next_episode_title: "East, west, home's best.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2017-12-24T01:30:00+09:00",
@@ -1992,7 +1992,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/30b8ba5e013c2d4b5932d7f3babbddec/v/e8b62e88b0fa558983b24543d3bb6b5d/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMzBiOGJhNWUwMTNjMmQ0YjU5MzJkN2YzYmFiYmRkZWMvdi9lOGI2MmU4OGIwZmE1NTg5ODNiMjQ1NDNkM2JiNmI1ZC8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=DaWDcEgx~Avijs5ohAXhWO6bZQONfEHveo5Up2myL4qRmYJPk1b3feOxtKYSn1l4ZUhbneIUuemeVnneBLZwGTDcEnUo~fHn8vMaPESVk6gnar4~ACeHOlVhjBGJnfmg9FsDXMNztXYi0mUoww85xHKdDX1PzEsIjmVk0WVCAptAuFnzmwEqI8bAWn6SwWPJXvlqu0hcDfWz2tKRYsaaEOaiSqCPBypDKisH3N0LlWEf48xajI4OtoZaUiqwOSwB-v1L9Kp0~o9PTQ9Ug2NQTWST7rlkqI15-gJcF81CfBtXVVX7RSJW1BGhMq6iYGJw0nB~Mw00Gz-CECln5Hl1Zw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/30b8ba5e013c2d4b5932d7f3babbddec/v/e8b62e88b0fa558983b24543d3bb6b5d/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2038,7 +2038,7 @@ it("test API episodes", () => {
         next_episode_title: "Looks breed love.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-01-07T01:30:00+09:00",
@@ -2122,7 +2122,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/9f8d0fbf9c93f349579331dcd3ee3836/v/70886cff0e407f0e47fdc2343023036c/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvOWY4ZDBmYmY5YzkzZjM0OTU3OTMzMWRjZDNlZTM4MzYvdi83MDg4NmNmZjBlNDA3ZjBlNDdmZGMyMzQzMDIzMDM2Yy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=cAgdq6NzrAKL5gwjfEHfNHceloQdxTa-ftKPxpDyTHkMX8MhHkhgJyQW6DL6w1fi9nRzlLOn4g9yThPz9nh00ad2bKcX46~Y-CEWxNsxb8EJ1NxCvnZ7mrt99hZftFfOnBIcnarjRQEpsQGlxtc3MXDl2eT67x7onlYib8YV-RkcoDAYBZiCT--edoOIdYjllq0h5N015FZ~EjRCISzC1awgKSYLR5NKRMOfDzCsoWcLH-54qzxLzIswPoMjldYusmPc8dehVDt2e3opiB5M7F2fFCgxMQpT0~5pML7GQEGmXBlnWu7kMcULT32S7dBOfqR01n3N~4BRNoW6INb-Fw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/9f8d0fbf9c93f349579331dcd3ee3836/v/70886cff0e407f0e47fdc2343023036c/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2168,7 +2168,7 @@ it("test API episodes", () => {
         next_episode_title: "There is no place like home",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-01-14T01:30:00+09:00",
@@ -2252,7 +2252,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/259627983bce0b2baebfc148a061cd39/v/f76d0adbd0a948995541af9e4786facb/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMjU5NjI3OTgzYmNlMGIyYmFlYmZjMTQ4YTA2MWNkMzkvdi9mNzZkMGFkYmQwYTk0ODk5NTU0MWFmOWU0Nzg2ZmFjYi8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=pMUMkR39MTElTXFlWhoy5lDaXBzVW2JCO-BF8jW7i~klyQxdjHm3WvtkffBtJTHpP8OgvmUatuAtxSG5iwoP1~Fd221n87~6U~UQ8Ye9e04sO42ncZi-AVRAEIEBsfBaxoIZTyF1jEs2H1HMJ79UNJlJAHyiBZKxJzK0~Voet99GjsF0ew39g-qqNO9byTjeVy1XVmI5tqgRKJi-rfxeLvUxdrDmzb4QfQ~T1y9lUDYgnW5V0Y4fRKIYfY8g8~AjCM~NPiVYcPrls6Hp1CYqLKcZzpra0ZtxdGa9aXykpetVK6l67EcMNG-8CLCGaDks4lFoLlyBN6lefjM6fYg13Q__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/259627983bce0b2baebfc148a061cd39/v/f76d0adbd0a948995541af9e4786facb/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2298,7 +2298,7 @@ it("test API episodes", () => {
         next_episode_title: "God's mill grinds slow but sure",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-01-21T01:30:00+09:00",
@@ -2382,7 +2382,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/e5db4e36c320687fc419585c427dfca8/v/774c4dba16262f3e21190c5d94d57749/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvZTVkYjRlMzZjMzIwNjg3ZmM0MTk1ODVjNDI3ZGZjYTgvdi83NzRjNGRiYTE2MjYyZjNlMjExOTBjNWQ5NGQ1Nzc0OS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=haZRaxktqTUJZCbomZPX21~ugjXlxw8VHZHdQ51l5foxraa7NSEo1oo7wzjOlcPuJeuKW-Q9htckzilbJFsq-oiCBta~H~lCFoZT-GjdPmAff2fnDOhiSizOHQNmFK77~ijbS7zvUumI-~HBRqYVf4p7ubKvPy34rjRr4pzimfwpxv1pTMWPJsqmcOBEg2R~9FJ-7VZtxxtoEMjD62H-UpIzko6lLsymw0QMvjPoHS3ibQoAtRMHFUL6ZaB2cvAcX1SSQ22O~SsbNtrI8Ax3fBSHgH3XMzRIXlf5C8imOtpJBqeEAmDzjIvG4fvvH45fo~EeT0Fa0KCleGLwZstY6A__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/e5db4e36c320687fc419585c427dfca8/v/774c4dba16262f3e21190c5d94d57749/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2428,7 +2428,7 @@ it("test API episodes", () => {
         next_episode_title: "Look before you leap",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-01-28T01:30:00+09:00",
@@ -2512,7 +2512,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/516bcf0435c54ccf4826a9f559c378de/v/276b6eb4cdf2d506f770ec57dca3b399/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNTE2YmNmMDQzNWM1NGNjZjQ4MjZhOWY1NTljMzc4ZGUvdi8yNzZiNmViNGNkZjJkNTA2Zjc3MGVjNTdkY2EzYjM5OS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=TNX8IoVjN3nDtudG8zZBEv1BJ2la0KB5TBNggeRJ0HwsdDYPBmsj0btElZErpZPNhTQzQ9JdKU11hcm0DfvuMyThj~PXkXQS5CQYYCWziRR8kax6Y8mD3f90jW1SRbGWMp9ruqYvI~1MXnGeoGbSUKc2XOfOs9aGcM0MZSrNcZJZC9j9zqjlB1ViqDf-CUZJH58sYmTymOzHq3B998KQObJ5f1VUpUDmZG6tov2oBbNY9c-vIWrQa7f9o5Wr2Ea856zdiZ8cHoLT0lcwwdTwhxJ2y1FHtOVkS00TsrwI61cIMzdiq7997bPMi62UwUAeExl8q2jW3hVJq~B~1tnmww__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/516bcf0435c54ccf4826a9f559c378de/v/276b6eb4cdf2d506f770ec57dca3b399/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2558,7 +2558,7 @@ it("test API episodes", () => {
         next_episode_title: "Forgive and forget",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-02-04T01:30:00+09:00",
@@ -2642,7 +2642,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/6fe4cee66d6c14cd3318d40559e74f23/v/2b590b15d870bd69db83fbb8faf14713/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNmZlNGNlZTY2ZDZjMTRjZDMzMThkNDA1NTllNzRmMjMvdi8yYjU5MGIxNWQ4NzBiZDY5ZGI4M2ZiYjhmYWYxNDcxMy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=nvzbEJY20HK8mnomEsD~w~XsCXPP7hFHbYV3dZtKo7gsRCZ2AREVAZWmvBxHQthWsmcxR2No~9CXMig14AiFWnPbY~YymicnRpzuMEbZwAAEwC8FAHjcI~ZCtxmWX0yICGVLrd2R4Cw6JEhOGtdXkliOYqQjtq9t37wcwhzWMBPS0~zXca17r7hXpHvyktTiYyZwTdm7vrM~AvGHiSB-AWXR0JsumqIufzUfcQwnDwGGHk-JIqZExHkE0U6jafz4COu59p3a8gMJSSznViKvhjZW1hhMzx0t1HDZ0hZcMA~7buWmpdSAKmHYBHoiVXSxi0eEL85G3ohykT5d8BYurw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/6fe4cee66d6c14cd3318d40559e74f23/v/2b590b15d870bd69db83fbb8faf14713/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2688,7 +2688,7 @@ it("test API episodes", () => {
         next_episode_title: "Any port in a storm.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-02-11T01:30:00+09:00",
@@ -2772,7 +2772,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/def5324cbd469fc43dcae791dc1ef5a0/v/e915c80cfba25032723ad9fa238c2613/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvZGVmNTMyNGNiZDQ2OWZjNDNkY2FlNzkxZGMxZWY1YTAvdi9lOTE1YzgwY2ZiYTI1MDMyNzIzYWQ5ZmEyMzhjMjYxMy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=IqSZbWCA3vqSplgKzFVbF0AaMcWvxK9Z-94OFb9OU3j7Dtvx0b8wCLxEFXMWmSkYCUjK4I2po4tg0QseOCaJW8mRDSoYd0L4boUlpzk5Prg-7k88zoQsiwaLRdDIIMHfRSEUZeb2DuWM7O6CkZqkri5a31RXZ2Xj6MeW9fHa7OhvxC2GJXBnU2oes2-PUQrGOZFTgT9f9TNyBtxzG38z1ZjjnVmD0KUu~SlWqv0vRPJqVCWRw947ymen232HaklHMV2Ja9SWuD3CBnSnEQ92Liybh6V-sWbVFL1L7bqbzBuEVEdiYYEFGIFlj0krXKpSpOuJlla-7hITlA1Yb379KA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/def5324cbd469fc43dcae791dc1ef5a0/v/e915c80cfba25032723ad9fa238c2613/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2819,7 +2819,7 @@ it("test API episodes", () => {
           "You can't make an omelet without breaking a few eggs",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-02-18T01:30:00+09:00",
@@ -2903,7 +2903,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/73373494e37a9900b28ab2d74654d669/v/69eafd0948d3d87facf16145a7efe259/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNzMzNzM0OTRlMzdhOTkwMGIyOGFiMmQ3NDY1NGQ2Njkvdi82OWVhZmQwOTQ4ZDNkODdmYWNmMTYxNDVhN2VmZTI1OS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=irPOuqsAvCR0R2AxSgQ~kIzCtWjZH7OSTEz~dNoKlx8bJW98AJFlSswAJLqRDpBWLlSCZvSAh2oBtKzZe7ljJjrK-Tuyv9LIUFB3Df-Uq3RPICJTCV8qGx78mqszgA97DxBPDkIGtYbALgepr7kghR93qrQ7OEsvRUR7hgE2HBGJcEuLIsIOH1VhHedtS~K6YLeYR32T5jVjtQxBR88Ye7TXqoOXKnuNLEvLmK6kvWyH7L0InbvF3WqrXbMfNXkPOnmLr1s1xz75CZ3Sb61CwgstnPF5jM0MUe063pBb3VL2RP4K6FUHebIjr1lIvJ5Ste4xCt51-hv9izWxQ525hg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/73373494e37a9900b28ab2d74654d669/v/69eafd0948d3d87facf16145a7efe259/languages/en-US",
         availability_notes: "",
       },
       {
@@ -2949,7 +2949,7 @@ it("test API episodes", () => {
         next_episode_title: "Necessity has no law.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-02-25T01:30:00+09:00",
@@ -3033,7 +3033,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/7df81114181bc5b987398c5899a60ae4/v/e219b08e8e225f6bd6668c814fb858a3/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvN2RmODExMTQxODFiYzViOTg3Mzk4YzU4OTlhNjBhZTQvdi9lMjE5YjA4ZThlMjI1ZjZiZDY2NjhjODE0ZmI4NThhMy8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=C7LrUv66v4Es5dS9XdYrwrmyWzSwKPOhfs7HMOXanzRVEDxxu7bm5U76WVEkPmm6FLwy9S8vS2Wpf8lipa9JRCHk3UtKuiIPLLgrhdb69jLL0Z00fM4DX~lx4BiMTx7cLXLXeBlF6e7aDjLcnilITsqKqJQj5ywqbp-T7b4nzZ1kxUy~vO2kCIBGyjnMz039rWpFsHtjBzlLwBDn8~Xr~uoW2qhQODrGdrFLSyhRLAtTu1Qb8h4iAUrpVFY9SX3BdYzRTqvZSGKSHD-naez-rYdVZf-eXIZm5ukQ4WujAwsNlJv05GNblZ6JfMhDMlnyIAQEvF5DiD0r8KQnSnLfRA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/7df81114181bc5b987398c5899a60ae4/v/e219b08e8e225f6bd6668c814fb858a3/languages/en-US",
         availability_notes: "",
       },
       {
@@ -3079,7 +3079,7 @@ it("test API episodes", () => {
         next_episode_title: "As you sow, so shall you reap.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-03-04T01:30:00+09:00",
@@ -3163,7 +3163,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/a53755e4bfcea1c75617dfb258a1f188/v/6de10c3d4e46fbaf9d6a64f0799c2a59/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvYTUzNzU1ZTRiZmNlYTFjNzU2MTdkZmIyNThhMWYxODgvdi82ZGUxMGMzZDRlNDZmYmFmOWQ2YTY0ZjA3OTljMmE1OS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=lELnwEZ5mU1~dnxoH1IhJApCvKotEtY4hmAKySBRIUOCknkfUcYIU7bjmyIUCKjXfDCY8vYZpXKlgvE4RaKvNYKQZe27jCrReIB5QIAiLkICxOCei8rEVHr8ZbXzbPJ959CEHo-rYDHINDZyy7uxSL37Hs0Lxdig-BurAStXsAcIe7qypAVWSda4oJJ0iCOGR0MKFFK4TF6QHKgkeK2VZWbWOmnj8dQE0tQl2S-8F7XMwd-Im5yU0fhF426VgEhJrkOCLJoUSlYqIWk0Ry7IlIBPLJWK6deJt4JeIGO1LQshnGF7kym4NzZLz32JyDO2CB8ABIGH43ZvMN08flezaA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/a53755e4bfcea1c75617dfb258a1f188/v/6de10c3d4e46fbaf9d6a64f0799c2a59/languages/en-US",
         availability_notes: "",
       },
       {
@@ -3209,7 +3209,7 @@ it("test API episodes", () => {
         next_episode_title: "Nothing seek, nothing find.",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-03-11T01:30:00+09:00",
@@ -3293,7 +3293,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: ["en-US"],
         playback:
-          "https://pl.crunchyroll.com/asset/a5d58092039dbdbda3dba474112d2809/v/558366e369ab750a482518fb4c4f0ea0/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvYTVkNTgwOTIwMzlkYmRiZGEzZGJhNDc0MTEyZDI4MDkvdi81NTgzNjZlMzY5YWI3NTBhNDgyNTE4ZmI0YzRmMGVhMC8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=r-hF1aZU~6vxLiUnVtagumnL9-ZxAn93-DW3tjGOp7MnKdLTPWjTDiHhY83RtzAC8No7Zs7J2kevCXTc93lLfCW5v5OfsVoU0OfCQRHidy1lePs-pC9ytpMxbb9QxBNALr6-EMU63lC0pMUkKvtDvnqO9ytntXGSoqB5X2S5Ed0KVV2Ah19Hc-0XHkgjuAbit6gEaQlNcZvqVP-N4HthX1LByDE3HPS0LO6eYndFFanZb6wlQO1YGVani6YL2ISkr-lZLnyAydEgHedzbG~80AziB-tbdtoR-6r2h7hCJq0zUc1B61cJ1zE3eEzH92pN~49FE31c8RmXKlmOcxwiag__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/a5d58092039dbdbda3dba474112d2809/v/558366e369ab750a482518fb4c4f0ea0/languages/en-US",
         availability_notes: "",
       },
       {
@@ -3339,7 +3339,7 @@ it("test API episodes", () => {
         next_episode_title: "Live and let live",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-03-18T01:30:00+09:00",
@@ -3423,7 +3423,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/649bb31a7e400473c37e4803db61fd27/v/96ad4271b6dffc1b4438a6d5b0dc4f0f/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvNjQ5YmIzMWE3ZTQwMDQ3M2MzN2U0ODAzZGI2MWZkMjcvdi85NmFkNDI3MWI2ZGZmYzFiNDQzOGE2ZDViMGRjNGYwZi8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=HS5Nsm9g5ypVgtYBmql8MmMMS9i8cOlqnLDTJ-wrngRcTWMkPTRyQlUQAbMpOWD2fQ5zN71QGacGIIOMxrLq23QwJZcfO26gLAVHSzv7tTtD3BzqFJYcNOp~FBZKm-KCYFKNxqU8nJ3vAhgoPyj2pwu-m6i-BEXC0CignwQsgL0pd0zHlL7znvmbm6tRIgSfbsRTkVPewTqM-t6ZCWQpdV1xLFpRilR2vlN8FEz5UjVhBm6pRjBQFMUh1Yjq8TPIfOlsQtxJ0MgOD~FzQyIHl9s7tQ4~02Cz-cPtf4EhPV-84LknRaccjzUXhE4bwMeVOUlLUNZ42zZQOEaGnpp3bQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/649bb31a7e400473c37e4803db61fd27/v/96ad4271b6dffc1b4438a6d5b0dc4f0f/languages/en-US",
         availability_notes: "",
       },
       {
@@ -3469,7 +3469,7 @@ it("test API episodes", () => {
         next_episode_title: "April showers bring May flowers",
         hd_flag: true,
         maturity_ratings: ["TV-14"],
-        extended_maturity_ratings: {},
+        extended_maturity_rating: {},
         is_mature: false,
         mature_blocked: false,
         episode_air_date: "2018-03-25T01:30:00+09:00",
@@ -3553,7 +3553,7 @@ it("test API episodes", () => {
         listing_id: "",
         subtitle_locales: [],
         playback:
-          "https://pl.crunchyroll.com/asset/c9f29da59e869eec937d7b18eb9a797d/v/1b82f3c31b0269336a03f882d5e8a60e/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvYzlmMjlkYTU5ZTg2OWVlYzkzN2Q3YjE4ZWI5YTc5N2Qvdi8xYjgyZjNjMzFiMDI2OTMzNmEwM2Y4ODJkNWU4YTYwZS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkwMjU2M319fV19\u0026Signature=adTcrlI9ucVFXgPt8okLhKgdGzmTcQTOliF9uiAx1DiKKRVrQtBaGbnJ-auqMep0gyuArJHMewKMdmLdvUOGn7mvW9nt9NpRcuK5yImLxOUWdhAXPtHBbPmYX8F6YsoClSmxI0D9kb5mVfKrss4TiqjhspMIHXiWcXFWuNbwbEh9~wSOKlvi8UUSNgrCmw4V4SNZs4--D45Z~kT6FS8EqOJ4seBHTIzf7iwONBXOq4cnrBzUmMSnIZTybzbAex2niS1Hg4zPMCHBMQU7mQrB-43u5JTe69zPUCazS~5kWa5617OjyPG2xuR20RKlyqjDepCsSf~6QT6~tH~H-ibczw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/c9f29da59e869eec937d7b18eb9a797d/v/1b82f3c31b0269336a03f882d5e8a60e/languages/en-US",
         availability_notes: "",
       },
     ],
@@ -3675,7 +3675,7 @@ it("test API episode", () => {
           duration_ms: 1450056,
           episode_air_date: "2017-10-08T01:30:00+09:00",
           is_premium_only: false,
-          extended_maturity_ratings: {},
+          extended_maturity_rating: {},
           maturity_ratings: ["TV-14"],
           is_mature: false,
           mature_blocked: false,
@@ -3691,7 +3691,7 @@ it("test API episode", () => {
           availability_notes: "",
         },
         playback:
-          "https://pl.crunchyroll.com/asset/389e0008525987125a282e327d4f34d0/v/dbe64c259b22869396d4fcad820b0901/languages/en-US?*\u0026Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vYXNzZXQvMzg5ZTAwMDg1MjU5ODcxMjVhMjgyZTMyN2Q0ZjM0ZDAvdi9kYmU2NGMyNTliMjI4NjkzOTZkNGZjYWQ4MjBiMDkwMS8~KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MTkzNDIxN319fV19\u0026Signature=RlGK2HFvurV2Y2MvS-iCpmwLj5cxTXrNx~UYT9Jed31YduE1XbUbTnJ0PpycWoyebGdhWT433dGvlvpkvq17d9FF0urZIetuh6x78l90fUhg6lw4qvCO-f451dTEmLvEkzYDTZZ8L5NWzEy2hKLcRhBSnATJ16zhCs5Wf5SZnppktib7nV2sgU2ZPLZrVmY77GDJXxzpjPiv36u2vJp~gx9HjhW-p9bOCF1i-29auRtRnVne4e-T0gmge2Bg6UbMLI2vanlp~m2dO9oyUtUx~bIC1x60qcArcIg-3YkG5xkdYtSS8UTIRXExNoi-MD6bLn3v-dvHI3mxM3whpSczEg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          "https://pl.crunchyroll.com/asset/389e0008525987125a282e327d4f34d0/v/dbe64c259b22869396d4fcad820b0901/languages/en-US",
         linked_resource_key: "cms:/episodes/GY3K0QWZY",
       },
     ],
@@ -3712,7 +3712,7 @@ it("test API video streams", () => {
     subtitles: {
       "fr-FR": {
         locale: "fr-FR",
-        url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_261292.txt?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8yNjEyOTIudHh0IiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=sw3zxbpv4cewzaybxfJn1mxaOSsOhCUutNFMURTLnOXQfTEM9E7xlQt5dkCHpIKymLMNvf0dZ7JdPQA6aKHzpNwYoC7OKhBpm7HJeJaPZWglL6Du4KZpVqJj4fmyvwxfOyyRK2TjEKsaIB-xoexDUTIYIvTdkQmOHIPjmU6zSxmbFC-8MS-sfTZWEDiqex1xlmxxbg~u4yOpg-ILuXzMMefSb1ysOgHRvPhxRdILGZ-hMTRL9I2yXojBrWDEHa5Ql1k~h9qIRzA6yhfPjrtaqGsPpSvJFh~~QyOjIBLSUQiaIQQ77TcdeJ0bLZeN5uRHp6Lo2L1eH-WFCpVPQHDzPQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+        url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_261292.txt",
         format: "ass",
       },
     },
@@ -3721,131 +3721,131 @@ it("test API video streams", () => {
       adaptive_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODE0NTkubXA0LDQxODE0NjAubXA0LDQxODE0NTgubXA0LDQxODE0NTYubXA0LDQxODE0NTcubXA0LC51cmxzZXQvbWFuaWZlc3QubXBkIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=YgkunmCSFPAay4-xcCvi~XkgU~9qqtDhKzB4192U4t6FzGv0YEWoN7LuCT8NpoDOAepAne~7DabTG7wbZOwBx27XXGe97nvam4kgVMor6fV86Wqq2AjJq-oUnrD7qWXqnc3w-8NPWCvt1~z61FSg3hrV3dd-J6uzBtJDwS~tKCAef9iG7BhNbT1rwoIgpQF888QGKFxRT39ES5BB8XtxrU~JzWN-UE32m6yjsiIFVttwQVo9LJSvVexkOzJvxkdQEv0DVEu4Hr6pQ1txxXB6JDnBDlOWIQqrmaSyebZDrIe3YJYBTwsl6yM4HpT1JSMOY4qwjA3s0pEVK3gHL9BD4Q__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODQxMzYubXA0LDQxODQxMzcubXA0LDQxODQxMzUubXA0LDQxODQxMzQubXA0LDQxODQxMzMubXA0LC51cmxzZXQvbWFuaWZlc3QubXBkIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=RjIdW2wKJLNgGhrWm3IFYYQbk4slOfuFqBap01Nd6Jf-1rCQKZGlxcj~yGiFF9T9fd6t4FDfCXv0udTXrf2kgDwrJZxBVVja8ri40Z5fOHPWj~SeA5It~BRbpJIrXNELrpKDeF63PB1jFLvmjnUE4GBYlEkwH3kNF9MtG4a4TSWggDrshHU1X-5qL7OoWa2pIxlDyCGehZE7aG-pB9gMpQNYH9p-nAK50lDtV1fMP1-eEMZN-LjQKepQN01gc7OoCiU69dTRcSpRC9vzrQlEp6lJKSSc-FwGV~SdGj1zObpMDeXWEkzCqFbYmR8h2fPWWubNxRDPHFPYuEc-wbH-WQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd",
         },
       },
       adaptive_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODE0NTkubXA0LDQxODE0NjAubXA0LDQxODE0NTgubXA0LDQxODE0NTYubXA0LDQxODE0NTcubXA0LC51cmxzZXQvbWFzdGVyLm0zdTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=R4LOatORn5MoE594RLBGDiEod4rNYiLlo5fF22Cs286EGMJcFn3rsHpOUsDpX9nhP6O3xI-4fB7ZQGxd57jS~JTsBKj7SBkpj8k78gOvBokcrpH8Gmr9LDxfeHBF1JuX1LuBPcrymZCgRJf0RM65VLGkQ5JLZEDVL3F9ai4vdQ4vreiD0-QMfUo~FuP7mQVlwZLEbO6pUYJ3ZOtLhYvCoNRPkxZt3xBiYXW9n7hyI-HWFLF3Up8m1eNk~VyCvsyVcdzpALggJEzDHmrR7uOvWmapD1IT2sfN9v1RZZmDjjNowDsArYnqG1474GaEtQlbbco5US89X6wO7zo~CwZ2Pg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODQxMzYubXA0LDQxODQxMzcubXA0LDQxODQxMzUubXA0LDQxODQxMzQubXA0LDQxODQxMzMubXA0LC51cmxzZXQvbWFzdGVyLm0zdTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=oMOckaf11wtH6OZocpPGtkLpc7LQsJRShs2Hx0BTUQjdAX4qmX89tPU3jh0sK2PVT8Abqun8sc3BSp-8OF-qUcK-EfSSvqb1IJ63VWhuoYcPg9SaSyr4Zbr2QaS57DrxdkMYxqNt1rnS-DLSb7mp5a2l2U1s8OJe2FaURHGa17AwqORZMa2gzac-~Lms0RqPKj2LYu~nagKPRI1yySnesih6VK1hQDZ49AFKWPQ9YWUMHE2OfwVwaRaeYuru0b0KiybVJYFNxZRbjTaQRv1Rktz8-tbp3q75P99gkE7Q4-m3dgfprvHJjqFmiokdLegxxU7nz0n~7l6lcg72AWBJuw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
       download_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODE0NTgubXA0LDQxODE0NTkubXA0LDQxODE0NTYubXA0LDQxODE0NTcubXA0LC51cmxzZXQvbWFuaWZlc3QubXBkIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=F4Iq4n12MImB8feInFxhmVXRhAv7dRfE1-WXxUiDVjznusc78PNWZyzgV0fhLBzAKc7v-hsBKQ0Bw-4qQ4ONANp5vTjf27oxozxXJfKJjSDlR-KG7KZoxXdC-wQdpC2zyRSb0XRqrUDm7fYhyfArgVtks~4u1mcwiWqKW-LYSdbVdwZqjABvMCujbQVpr87kSx7PdRJww12dvf1KLrvizxHb4BrRIDAddkeN25WOjH8J4K2bkpPv8yzM-vrd72Zj-xCtorpwFTXznzG0zEbJ3mXJJiw5klhPZ-Gff4owNBSCrp2rGb2r0coarml3pT24L6tHiMCHS0hfr933SDoOcA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
       },
       download_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODE0NTgubXA0LDQxODE0NTkubXA0LDQxODE0NTYubXA0LDQxODE0NTcubXA0LC51cmxzZXQvbWFzdGVyLm0zdTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=DMEcCimETS68lY~vRmD3MDMolBPaeWqIyN5zD63aSqvFMvALWHf-QOVscrOpPA0pbbvYnTpjYzR127ttp~fvcZGfpAZhtbw6i3xFYyEWf-I-lrQy0n0xuj0kgk3womOPESGPmsCCkS5YtQnw4g4Qd85mG5eWPUE5iZNoHr5pOx4aQct54JKlzq1JF-rqyHDZGUDOfj7HCr5V2WClzPlPKYKGxfNCRNPPPXce26ivHSsTnZbVRKVhkRkc9CBPc~TBNIoOnBcbxYrdGCCruVubMoeulYazTsrSG7G7AXuyC~OOtbMWAl18fTtdGs5hfP7clu9DHfuo4LrVr0E7tbHutA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
       },
       drm_adaptive_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OS5tcDQsNDE4MTQ2MC5tcDQsNDE4MTQ1OC5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYW5pZmVzdC5tcGQiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=DJOEQO76AqEC6Io~3vp9HPK0mhu47f3hmZz5vo8qhhm8TGptvgCUnLj4Tjzs80PBxi5EK2ONmp8joMvegkF0HF9cmtfupBYHSalDp8C3gBxBtiIDr~0z6tJLCsq0Pbl0ubQzs49W7ARLcGszNujiJ~CUco7QCCUIQgKulE0QOo-bZqcuF1PfWproUJcRHlAS4bUD5P4-nQEV7-~lN6AI6Ycw7MJBg4HmKA9TFj-HrOAqDiHR~eqK55oMdvXaSPmEgzhgHfIJ7uk-NT7ENIQe0iC5m9z2a4Fsvd-xhp2qIvaTjfwJl0bYaKASUzKaKst8Wfnjgt0s0rv8WewPghC2dA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4NDEzNi5tcDQsNDE4NDEzNy5tcDQsNDE4NDEzNS5tcDQsNDE4NDEzNC5tcDQsNDE4NDEzMy5tcDQsLnVybHNldC9tYW5pZmVzdC5tcGQiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=A3AamQEIL0e67y7euTM0a0vvWhu--gN1uvJ797VmGK6ILsQe3xVECg05U8MRgB8kbPnOtXV7y3fVWuLdFQ-WfcveL~iveACHdOo3nS9aU9i0THSAem4cSHD439JmDa2tsCgju6bkfz~C8gruWfTVFfMweYH8Lnjot~xBhId1kJE1JBAJar9IsHZzPA1adX7WFxU2NhxtkjTVD~FNu2so3jjx~edMSaOWl~ZAyJl26QRBxxJJAxkiwNFZzzjEDmkSGdFM2Gl9AEsJj5Dy-7C5NBGENSkecYZTeS9~HacGvYFE6lpMFvMYERLqqmbqexx1UreaEJos7UoXVnIVF-rLnQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd",
         },
       },
       drm_adaptive_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OS5tcDQsNDE4MTQ2MC5tcDQsNDE4MTQ1OC5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=l2paopR3FeJMaaVzDHKP96Gy55JlCQR9pls71kssO2Tn98WlYPZRZvmFqV3h49mVDKIgfTwdAeGfrT8l-Sf41kKzIfYckX7EDRd2KS6RR707nkUL9Ti6v9kyQ~-PRG8dG4eyjRaYJ~4SxhZH8-qHJFY~u7yny9pjpBBVfFjhKaNCGxiaZ36iMHx47WXHovhDWPTUG44QgpnnCf1yJeTGXn1aQpTtF2zPEeCpK3Wl1aJq-A9NJf-uci2tGWsBakytigargmCoCe6TUG-XHrEQNzKFfwAj6oK2qjCEUsZ2PBbvjWy-71gMpBgzgKzHrl9dpLZ-5VoW9bhn-sa~uYQJiA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4NDEzNi5tcDQsNDE4NDEzNy5tcDQsNDE4NDEzNS5tcDQsNDE4NDEzNC5tcDQsNDE4NDEzMy5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=fP7GDH9tmknsUS3pq92wXH6xZxP-annf-PHFgc6kwyNVIy5pPrKgv9T2x-VgkgxUbGFPkCmcvyaZU3VVHmbxCjmcwd1YQSjzxi-e7jLrZU5roMCeSAAAlJjl82AIzozkLJCdA5nT7SjOyeoLKYVmotp6cb7mh9vGbOOdVafGKHX1UvezftCu4xSrVsBdnVwzGfD8rSjVWSr3ZZ~~bY--W5QrctPiVOVlfmA29CzXHrtS9gYBJi~l0KCqhSp41bq~~q~rG3CqTUDFmjsaeZC-dRwPMwcG9vVQ5LZnxeKi5b2Vyid8VpIDIQLJFeOIawBXCl-IlIlchVcxGGK3IQci0g__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
       drm_download_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OC5tcDQsNDE4MTQ1OS5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYW5pZmVzdC5tcGQiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=FkKDnbK1dnKeMQ2Y3qrBTvTeF1HGQI4HReJN36z8KQElkpCkuUNru63WhSgG6YJlCBwAXH0krSBT3UiPb0wdCv4ukP64YEdmRuaG7hC3eb5jiWq6Z1NQ5h0YgzRiLE0nqXbo-Lm3ygVrMRo-u0brSHJ2j~k5ibeW64~FFtsH70l5GgfaOFJ0DBjAcBZz7790AJH17lKrjJjoPnrCLb1WycCX4NPLAqghcLmcURI4VvxQE35NfUVRwI~3P24nVEhRYzvQE30vA32UorP3YLc~kyogq2cybL0Tah4rrU7t9pgDwuja6IIbI~D-W3TctlseHGtzSoK25gZ6tY7XwT~92A__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
       },
       drm_download_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OC5tcDQsNDE4MTQ1OS5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=mcRa5FDbYB7kjbefPmgp-oQ-5ffa4Ole~5NIIQQCIXmjKSpaMni5BKDMYXyFNkQu06wsdBXKEJyxfiuaZYCt7stKEjkuSY5BXrQnixJKXgf9iBSxAT0HH~ksTi2Tek4g0eT5WIvGdApZHi0gfyZGqaTL2UduIaoBAGp9JuX46bHYoWYcS8yEZZHe30LWNYgC-7jKwyly8w3-AuxvZeBzCcvUdxOISMdWW5dLJwjhIDGw6UxCsaucI1btEmB16npNxIz0jMR-GL-gXSSm9mwNLqghIAlmgiqVFKNrtUxmAVzrNoDcCKTJ2X62ZOfaa6QDLP5Ezg8jQYZrofhHKn0cYg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181458.mp4,4181459.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
       },
       drm_multitrack_adaptive_hls_v2: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OS5tcDQsNDE4MTQ2MC5tcDQsNDE4MTQ1OC5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=l2paopR3FeJMaaVzDHKP96Gy55JlCQR9pls71kssO2Tn98WlYPZRZvmFqV3h49mVDKIgfTwdAeGfrT8l-Sf41kKzIfYckX7EDRd2KS6RR707nkUL9Ti6v9kyQ~-PRG8dG4eyjRaYJ~4SxhZH8-qHJFY~u7yny9pjpBBVfFjhKaNCGxiaZ36iMHx47WXHovhDWPTUG44QgpnnCf1yJeTGXn1aQpTtF2zPEeCpK3Wl1aJq-A9NJf-uci2tGWsBakytigargmCoCe6TUG-XHrEQNzKFfwAj6oK2qjCEUsZ2PBbvjWy-71gMpBgzgKzHrl9dpLZ-5VoW9bhn-sa~uYQJiA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9jMzAwMDg4NDA4M2Y5NDAyMGNjYThmMjc2OGEzMWZhZS9hc3NldHMvcC80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4NDEzNi5tcDQsNDE4NDEzNy5tcDQsNDE4NDEzNS5tcDQsNDE4NDEzNC5tcDQsNDE4NDEzMy5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=fP7GDH9tmknsUS3pq92wXH6xZxP-annf-PHFgc6kwyNVIy5pPrKgv9T2x-VgkgxUbGFPkCmcvyaZU3VVHmbxCjmcwd1YQSjzxi-e7jLrZU5roMCeSAAAlJjl82AIzozkLJCdA5nT7SjOyeoLKYVmotp6cb7mh9vGbOOdVafGKHX1UvezftCu4xSrVsBdnVwzGfD8rSjVWSr3ZZ~~bY--W5QrctPiVOVlfmA29CzXHrtS9gYBJi~l0KCqhSp41bq~~q~rG3CqTUDFmjsaeZC-dRwPMwcG9vVQ5LZnxeKi5b2Vyid8VpIDIQLJFeOIawBXCl-IlIlchVcxGGK3IQci0g__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
       multitrack_adaptive_hls_v2: {
         "": {
           hardsub_locale: "",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODE0NTkubXA0LDQxODE0NjAubXA0LDQxODE0NTgubXA0LDQxODE0NTYubXA0LDQxODE0NTcubXA0LC51cmxzZXQvbWFzdGVyLm0zdTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=R4LOatORn5MoE594RLBGDiEod4rNYiLlo5fF22Cs286EGMJcFn3rsHpOUsDpX9nhP6O3xI-4fB7ZQGxd57jS~JTsBKj7SBkpj8k78gOvBokcrpH8Gmr9LDxfeHBF1JuX1LuBPcrymZCgRJf0RM65VLGkQ5JLZEDVL3F9ai4vdQ4vreiD0-QMfUo~FuP7mQVlwZLEbO6pUYJ3ZOtLhYvCoNRPkxZt3xBiYXW9n7hyI-HWFLF3Up8m1eNk~VyCvsyVcdzpALggJEzDHmrR7uOvWmapD1IT2sfN9v1RZZmDjjNowDsArYnqG1474GaEtQlbbco5US89X6wO7zo~CwZ2Pg__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wbC5jcnVuY2h5cm9sbC5jb20vZXZzMy9iMGU0ZmIxNmIzMWE5OTMwOTZiOWM3YWFlZmU2YzZkNC9hc3NldHMvNGY0NzFiNTQ4NzE1ZGNmNTFhOTlkZWYyOTBmZTRjZTlfLDQxODQxMzYubXA0LDQxODQxMzcubXA0LDQxODQxMzUubXA0LDQxODQxMzQubXA0LDQxODQxMzMubXA0LC51cmxzZXQvbWFzdGVyLm0zdTgiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=oMOckaf11wtH6OZocpPGtkLpc7LQsJRShs2Hx0BTUQjdAX4qmX89tPU3jh0sK2PVT8Abqun8sc3BSp-8OF-qUcK-EfSSvqb1IJ63VWhuoYcPg9SaSyr4Zbr2QaS57DrxdkMYxqNt1rnS-DLSb7mp5a2l2U1s8OJe2FaURHGa17AwqORZMa2gzac-~Lms0RqPKj2LYu~nagKPRI1yySnesih6VK1hQDZ49AFKWPQ9YWUMHE2OfwVwaRaeYuru0b0KiybVJYFNxZRbjTaQRv1Rktz8-tbp3q75P99gkE7Q4-m3dgfprvHJjqFmiokdLegxxU7nz0n~7l6lcg72AWBJuw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://pl.crunchyroll.com/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
       urls: { "": { hardsub_locale: "", url: "" } },
       vo_adaptive_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OS5tcDQsNDE4MTQ2MC5tcDQsNDE4MTQ1OC5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYW5pZmVzdC5tcGQiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=PAUmjxzfEHTeGuBJeEwMrcEKTyHNWbU4go9TM7HJRnuNvuE1fHEcWw3zt9ZAAjllhnv~lmqtO8ti6Tdwg4alkMzdg8XLiunTu6Q2Hi475w~udzAw-bUDuUERpnuVfnj6BscGH0kWb23lIci0qMHPSYJ-hQAsyULgDEnWYlG7FBLVG-E-95Hik6CIqc73XuHydY0RrpFjsmJvbi4jQ7W19eWuYZGzzhu2tB6mTgBzWUukYKPiT4KzE6aL8d~~xTRv5fYKNarRqvSaPSqWRGf6SKyTI0QPKJvjZKKNXsKdVitixHb3B9X7S61FjnSeMxpN6jNNWYhPHIVvt7T3ur4A7Q__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4NDEzNi5tcDQsNDE4NDEzNy5tcDQsNDE4NDEzNS5tcDQsNDE4NDEzNC5tcDQsNDE4NDEzMy5tcDQsLnVybHNldC9tYW5pZmVzdC5tcGQiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NTI1NTY5NTR9fX1dfQ__\u0026Signature=FNg3eIoFwvlqncjyxLwQN--cscY7Xadbi4M7fe7fIYsrAxTtvdoa1OD0rv9EILkPP8IXWwDDfgt3OpjjQX0giObzO9gupXGc4b~1IXjwBgYs12L3Zv4N4u0clCtxOUipZ0b2tAGbvfw6gMayqkkldZZy85h0AsFFBD-k5naF5-9vsJOebWjsvCq1uBLsYuLfF6yoND9AOQ88cp2AwTTqzVZBmP2pYPoxcM0Bx~7G~NugoVFfLfzI3dqMLAyuxa9YiBkWT-XrM7uCpKjC0cwYdfYue8M1K3-uRxpTfA7ec2jAnFpcQlGjVtxO8CsAKXtcH7vtQqZMDtlNh9eIhpEFeQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd",
         },
       },
       vo_adaptive_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4MTQ1OS5tcDQsNDE4MTQ2MC5tcDQsNDE4MTQ1OC5tcDQsNDE4MTQ1Ni5tcDQsNDE4MTQ1Ny5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=WIMaZHIIrylocfoEKqGUNJ5-HusVVNcXIXZGHw8a-mp7RnEoj-B3maLKbgsr5wZNbEwcx3dPp858JTKh0CRGYMuYA4KEWt3btL3Vd7pV9M20o5Zb8i8ER4d3SeMBPmmdfwQ5sFPRaZdbr5~9aG9lFNCMTUSD3k1B3E5mamQyViSC~bWQiMoceUk-bggXixx3uuJ~FxCA9SPVEEDbAxuD31hoatRjscOEJGIddj99NovTc410yWAvRwvjSwKG1BRk7nev3dyyVwLtGs8k3udSIW2IIDLU2LAv72WnJiVBzPKmrKWJ25X~dfPuBcAdiBW6J8Z-3jdKf-CsW1oPiPc6ug__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV8sNDE4NDEzNi5tcDQsNDE4NDEzNy5tcDQsNDE4NDEzNS5tcDQsNDE4NDEzNC5tcDQsNDE4NDEzMy5tcDQsLnVybHNldC9tYXN0ZXIubTN1OCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=jy-C5vmoJzHYY0cNDHCUawRLpkvSmBu1ARAny3sZSAev~stFyveVWmLT3YOqggddJAOL4baEQZ7vZCmKnY~7yUHRyPHSn0pfUiHyiMTMGjoyI3ijpr7q3u4sumqlVMUMb9cc0wg-qUV2vR-O5bvXFenP3dHDs0USGXJr5sTYan04QPpEcZrTZ5v7pB6XFipj2RcaUreqPRSzzd02w3WxHKrrusTGplC26m8ubFYlxodXWyzy7CmaLIZjIajshpn9LDuqRA7Zh8bE5NJMZuLTQG-pYN-GNZfggPP09U2z7pGl4B1RPWViUrGmYcRjbhs4sJNqDAofXC5XEFXDz4gVUQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
       vo_drm_adaptive_dash: {
         "": {
           hardsub_locale: "",
-          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2MzMDAwODg0MDgzZjk0MDIwY2NhOGYyNzY4YTMxZmFlL2Fzc2V0cy9wLzRmNDcxYjU0ODcxNWRjZjUxYTk5ZGVmMjkwZmU0Y2U5Xyw0MTgxNDU5Lm1wNCw0MTgxNDYwLm1wNCw0MTgxNDU4Lm1wNCw0MTgxNDU2Lm1wNCw0MTgxNDU3Lm1wNCwudXJsc2V0L21hbmlmZXN0Lm1wZCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=dz3y4XCfU7OIuEQJzmv~meRVhPZXkLiNtDf9vUVHz0Mrw9k2gnNYHaDMC6mctu-WImXlbz0qzHhKtoDqLilhPHDMBYT~XWxShliIOEmYD~OPl~LxYfDC46g~lpOK1lYbhCcnVzDjCdlRmkHBTMfCEoYKIZFtAZYbDeJnDSIvjDGvKi-S6r3hjAbt~qToKiO0pEroBSF6TJ~0mjzEdv3iPAhCVW3UPlDeSr7W4QNsdCUHm-0dS86EBXNqaCWtZFzZ0mWUToHwfI0D5nXwlBuZOyY64k7DLiPm7MR-CAShT~khlu8eOmZKNqfi~m4u8643zPW7Nk4jn923CBORnVz~sQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/manifest.mpd",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2MzMDAwODg0MDgzZjk0MDIwY2NhOGYyNzY4YTMxZmFlL2Fzc2V0cy9wLzRmNDcxYjU0ODcxNWRjZjUxYTk5ZGVmMjkwZmU0Y2U5Xyw0MTg0MTM2Lm1wNCw0MTg0MTM3Lm1wNCw0MTg0MTM1Lm1wNCw0MTg0MTM0Lm1wNCw0MTg0MTMzLm1wNCwudXJsc2V0L21hbmlmZXN0Lm1wZCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY1MjU1Njk1NH19fV19\u0026Signature=k5v~bRCf8oQJK8zkjltS-LLMddUyf0JgeMxxVlGkSkcrMiok~P~ttVRx0dqOcJ3dPPWlrKm2WMrR1leUohHbCF673MDNeF7n0G94nPb5oaceemUBPcRrm-8NG1xMNm9ifs6CSoOO6IRklIuK7ywSEKZ~~BtCPEKrLBD5d6tdxMOEnCtVyfRt841kolyjU41c0yGwwHNGwpSwGahFIALt36m1n-fuMWtLTrY9Kt79f8AC4-RdeGtXuufDXENktT7kclSosKVhNwkKa~fFawvS1oiQ6YD9UadLSW1XMmoRKlNl4wyIAE9ly3ztjlKi-PGs6~P9RiTAZHEBc3VcloxQRA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/manifest.mpd",
         },
       },
       vo_drm_adaptive_hls: {
         "": {
           hardsub_locale: "",
-          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2MzMDAwODg0MDgzZjk0MDIwY2NhOGYyNzY4YTMxZmFlL2Fzc2V0cy9wLzRmNDcxYjU0ODcxNWRjZjUxYTk5ZGVmMjkwZmU0Y2U5Xyw0MTgxNDU5Lm1wNCw0MTgxNDYwLm1wNCw0MTgxNDU4Lm1wNCw0MTgxNDU2Lm1wNCw0MTgxNDU3Lm1wNCwudXJsc2V0L21hc3Rlci5tM3U4IiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=WtpE985U9utoksAkHUV15e-~EbKHMsd8YeeeYivUkeAfMJwvcJ0rk7V~n20nr910~rPFhPhjCW8PMT9EBXxaWbeakAxu3NNoQBVZXoamhOeq8KTXelQ3EszOVszuW7UzjkBK1rCS8AnE749JvvsI5UsBix1KxzW2qqBf8y~fZzzje4w6Zz32dCcCAq60X-bNFyu8ZR9bWOBb4gn~UXEvObQpDwmiGhlJrbfUwptbNXO5whlMRyw2f9-ZVgOgXdqRSP6uzrNPtvJC-~Hd0tL5ST8uhOCzCIYiAKQLcwHlIeCfpZgPsdFOqjMGpEypvQS4KkAWXbLkuXl9kYKqCgvuaw__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4181459.mp4,4181460.mp4,4181458.mp4,4181456.mp4,4181457.mp4,.urlset/master.m3u8",
         },
         "fr-FR": {
           hardsub_locale: "fr-FR",
-          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2MzMDAwODg0MDgzZjk0MDIwY2NhOGYyNzY4YTMxZmFlL2Fzc2V0cy9wLzRmNDcxYjU0ODcxNWRjZjUxYTk5ZGVmMjkwZmU0Y2U5Xyw0MTg0MTM2Lm1wNCw0MTg0MTM3Lm1wNCw0MTg0MTM1Lm1wNCw0MTg0MTM0Lm1wNCw0MTg0MTMzLm1wNCwudXJsc2V0L21hc3Rlci5tM3U4IiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=X-3iO8TDYO52RGrEs0shtI~3TTsU87PE7LIdqoeVWR89atCGUHXDrdUKSUnV5iGLaQcOjifaWEkWfXd9O9w2CjrjWb6ihhHi-Kxw6H57eMruzvenW~n-z7Ddbi2hYhTkCnhJUxXhi3qJGt9TltWDRQd98iQ~lJt9DDANLl0prOjjju~vQFmJEwEPoJbvlEMKbdXn3g0E-jYsqLFaYYR5RGIdYUwvILspDIZ0GJD7HWrn61CDjDM0NExgYIppkl2xGs8~1Pw8Tn5z6aHT0kVT4tFeRg0GF3z4flFrmo1yS5ceDz1wqDQW4pTjCXjYYUsoB9E-4JwK1LJhNNLWkmfQpA__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+          url: "https://v.vrv.co/evs3/c3000884083f94020cca8f2768a31fae/assets/p/4f471b548715dcf51a99def290fe4ce9_,4184136.mp4,4184137.mp4,4184135.mp4,4184134.mp4,4184133.mp4,.urlset/master.m3u8",
         },
       },
     },
     bifs: [
-      "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_bif.bif?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly92LnZydi5jby9ldnMzL2IwZTRmYjE2YjMxYTk5MzA5NmI5YzdhYWVmZTZjNmQ0L2Fzc2V0cy80ZjQ3MWI1NDg3MTVkY2Y1MWE5OWRlZjI5MGZlNGNlOV9iaWYuYmlmIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjUyNTU2OTU0fX19XX0_\u0026Signature=S9hj85dwqLDR0HUpygAZYmziEH7AK-nVz3sSHg~WPSG9BYQJ5jbKaviD6irN~eZtpVUzxkH2ET6sPiocBue5d~UPXG-8uv-R5p1FXsZ0IRCTtXLbgzBio-cBSEL56h8E-6cL6ti~ehlsOfLYlEp8PaQcCEaeaF4RHWs1YOcxhFYAlDBL3aC0yGwiRf5ibnqg-70v1OWY0NgauFmJAMubkDyRJzsExI2N1RAU1gAtMGPBHfbpnd6n6OdcWo8CmoDLuY6AvfniYkOCyoLRrvIZFh2QJK15PG59Se8EIGOBhYI9XDBt8ATwVCyewJcN8JZnY72zss-EqPIDNNTB1zaQeQ__\u0026Key-Pair-Id=APKAJMWSQ5S7ZB3MF5VA",
+      "https://v.vrv.co/evs3/b0e4fb16b31a993096b9c7aaefe6c6d4/assets/4f471b548715dcf51a99def290fe4ce9_bif.bif",
     ],
   };
 });

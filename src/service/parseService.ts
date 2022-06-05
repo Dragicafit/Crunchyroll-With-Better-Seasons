@@ -296,10 +296,12 @@ export default class ParseService {
       id: seasonWithLang.id,
       audio_locale: seasonWithLang.audio_locale2,
     });
-    mergedSeason.season_number = Math.min(
-      mergedSeason.season_number,
-      seasonWithLang.season_number
-    );
+    if (!mergedSeason.useNewOrder) {
+      mergedSeason.season_number = Math.min(
+        mergedSeason.season_number,
+        seasonWithLang.season_number
+      );
+    }
     if (seasonWithLang.audio_locale2 === "SUB") {
       mergedSeason.title = seasonWithLang.title;
     }
