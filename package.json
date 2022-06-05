@@ -1,6 +1,8 @@
 {
   "private": true,
   "scripts": {
+    "publish-extension": "npm run release && jszip-cli add --noconfig --force -o built/Release/Firefox/Crunchyroll-With-Better-Seasons-Source.zip src LICENSE manifest.json package.json package-lock.json tsconfig.json webpack.config.js release/README.md",
+    "release-version": "ts-node release/release-version.ts && npm run release",
     "release": "webpack --mode=production && mkdirp built/Release/Firefox/ && rimraf built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi && jszip-cli add --noconfig --force -o built/Release/Firefox/Crunchyroll-With-Better-Seasons.xpi built/Firefox/src built/Firefox/LICENSE built/Firefox/manifest.json",
     "build-extension": "webpack --mode=development",
     "watch-extension": "webpack --mode=development -w",
@@ -9,7 +11,7 @@
   "devDependencies": {
     "@ffflorian/jszip-cli": "^3.1.6",
     "@tsconfig/recommended": "^1.0.1",
-    "@types/jest": "^28.1.0",
+    "@types/jest": "^28.1.1",
     "@types/lodash": "^4.14.182",
     "@types/webextension-polyfill": "^0.9.0",
     "@types/webpack": "^5.28.0",
@@ -27,6 +29,7 @@
     "style-loader": "^3.3.1",
     "ts-jest": "^28.0.4",
     "ts-loader": "^9.3.0",
+    "ts-node": "^10.8.1",
     "typescript": "^4.7.3",
     "webextension-polyfill": "^0.9.0",
     "webpack": "^5.73.0",
