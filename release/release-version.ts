@@ -6,7 +6,7 @@ const releaseName = `v${version}-beta`;
 const commitName = `release ${releaseName}`;
 
 betterExec(`git restore --staged .`)
-  .then(() => betterExec(`git add manifest.json`))
+  .then(() => betterExec(`git add manifest.json README.md`))
   .then(() => betterExec(`git commit -m "${commitName}"`))
   .then(() => betterExec(`git tag "${releaseName}"`))
   .then(() => betterExec(`git push origin`))

@@ -176,7 +176,7 @@ export default class ProxyService {
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
       const urlVideoStreams: string = url.replace(
-        /\/cms\/v2\/FR\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
+        /\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
         mergedEpisode.videoStreamsUrl
       );
       const subtitles = await this.requestService
