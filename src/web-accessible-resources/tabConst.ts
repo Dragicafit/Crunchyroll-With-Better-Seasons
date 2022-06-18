@@ -429,4 +429,5 @@ export const seriesGroups: string[][] = [
   ["GRGGVKP4R", "GRWEK728R"], // Yowamushi Pedal
   ["GYGGPPW7Y", "GRE5XQJV6", "GR09QXWGR", "G6P8GKKJ6"], // Natsume Yujin-cho
   ["G8DHV7W21", "G9VHN9PPW", "G4PH0WXXM", "GR19V7816"], // Dragon Ball
+  ["G6ZXZXZ4R", "G3KHEV5NG"], // Saiyuki Reload
 ];
