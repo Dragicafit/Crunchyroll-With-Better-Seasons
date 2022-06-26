@@ -1,4 +1,5 @@
 import SameSerie from "../model/sameSerie";
+import urlAPI from "../model/urlAPI";
 import {
   collectionSeason,
   improveSeason,
@@ -16,17 +17,16 @@ export default class SeasonService {
 
   async findOtherSeries(
     serieId: string,
-    url: string,
+    urlAPI: urlAPI,
     seasons: collectionSeason
   ) {
     const otherSeries: string[] = sameSerie.findOtherSeries(serieId);
     if (otherSeries.length > 0) {
       const promiseList: Promise<void>[] = [];
       for (const otherSerie of otherSeries) {
-        const urlOtherSeasons: string = url.replace(
-          `seasons?series_id=${serieId}`,
-          `seasons?series_id=${otherSerie}`
-        );
+        const urlOtherSeasons: string = urlAPI
+          .setApiPath(`seasons?series_id=${otherSerie}&`)
+          .toString();
         promiseList.push(
           this.requestService
             .fetchJson(urlOtherSeasons)

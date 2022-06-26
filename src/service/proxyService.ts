@@ -1,3 +1,4 @@
+import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
   collectionPanel,
@@ -35,14 +36,12 @@ export default class ProxyService {
 
   getSeasonsFromEpisode(
     dataObjects: collectionPanel,
-    url: string
+    urlAPI: urlAPI
   ): Promise<collectionSeason> {
     const serieId: string = dataObjects.items[0].episode_metadata.series_id;
-    const episodeId: string = dataObjects.items[0].id;
-    const urlSeasons: string = url.replace(
-      `objects/${episodeId}?`,
-      `seasons?series_id=${serieId}&`
-    );
+    const urlSeasons: string = urlAPI
+      .setApiPath(`seasons?series_id=${serieId}&`)
+      .toString();
     return this.requestService.fetchJson(urlSeasons);
   }
 
@@ -90,7 +89,7 @@ export default class ProxyService {
     currentEpisode: panel,
     currentEpisodeId: string,
     seasonsWithLang: improveSeason[],
-    url: string
+    urlAPI: urlAPI
   ) {
     const seasonId: string = currentEpisode.episode_metadata.season_id;
     const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
@@ -102,7 +101,7 @@ export default class ProxyService {
     const mergedEpisodesList: improveMergedEpisode[] =
       await this.parseService.parseMergedEpisodes(
         sameSeasonsWithLang,
-        url,
+        urlAPI,
         currentEpisodeId
       );
     return {
@@ -114,7 +113,7 @@ export default class ProxyService {
   async addEpisodesFromOtherLanguages(
     collectionEpisode: collectionEpisode,
     seasonsWithLang: improveSeason[],
-    url: string
+    urlAPI: urlAPI
   ) {
     const currentSeasonId: string = collectionEpisode.items[0].season_id;
     const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
@@ -127,7 +126,7 @@ export default class ProxyService {
     return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
       sameSeasonsWithLang,
       collectionEpisode.items,
-      url,
+      urlAPI,
       currentSeasonId
     );
   }
@@ -164,7 +163,7 @@ export default class ProxyService {
 
   async addVideoStreamsFromOtherLanguages(
     videoStreams: videoStreams,
-    url: string,
+    urlAPI: urlAPI,
     currentEpisode: panel,
     mergedEpisodes: improveMergedEpisode
   ) {
@@ -175,10 +174,11 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
-      const urlVideoStreams: string = url.replace(
-        /\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
-        mergedEpisode.videoStreamsUrl
-      );
+      const urlVideoStreams: string =
+        urlAPI.getHost() +
+        mergedEpisode.videoStreamsUrl +
+        "?" +
+        urlAPI.getExtraInfos();
       const subtitles = await this.requestService
         .fetchJson(urlVideoStreams)
         .then((body: videoStreams) => Object.values(body.subtitles));

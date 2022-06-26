@@ -1,5 +1,6 @@
-import SeasonService from "../../src/service/seasonService";
+import urlAPI from "../../src/model/urlAPI";
 import RequestService from "../../src/service/requestService";
+import SeasonService from "../../src/service/seasonService";
 
 let seasonService: SeasonService;
 let requestService: RequestService;
@@ -39,14 +40,14 @@ it("finds other series", async () => {
     );
   await seasonService.findOtherSeries(
     "GYGGPPW7Y",
-    "seasons?series_id=GYGGPPW7Y",
+    new urlAPI(),
     collectionSeason
   );
   let i = 1;
   for (const serie of urlToSeasonNumber.keys()) {
     expect(fetchJsonMock).toHaveBeenNthCalledWith(
       i,
-      `seasons?series_id=${serie}`
+      `seasons?series_id=${serie}&`
     );
     i++;
   }
