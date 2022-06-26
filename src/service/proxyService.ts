@@ -174,23 +174,34 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
+      if (mergedEpisode.audio_locale != "SUB") {
+        continue;
+      }
       const urlVideoStreams: string =
         urlAPI.getHost() +
         mergedEpisode.videoStreamsUrl +
         "?" +
         urlAPI.getExtraInfos();
-      const subtitles = await this.requestService
-        .fetchJson(urlVideoStreams)
-        .then((body: videoStreams) => Object.values(body.subtitles));
-      for (const subtitle of subtitles) {
-        if (mergedEpisode.audio_locale != "SUB") {
-          continue;
-        }
-        subtitle.locale = <any>(subtitle.locale + "SUB");
-        videoStreams.subtitles[subtitle.locale] = subtitle;
+      const otherVideoStreams: videoStreams =
+        await this.requestService.fetchJson(urlVideoStreams);
+      for (const otherSubtitle of Object.values(otherVideoStreams.subtitles)) {
+        otherSubtitle.locale = <any>(otherSubtitle.locale + "SUB");
+        videoStreams.subtitles[otherSubtitle.locale] = otherSubtitle;
       }
+      for (const [otherStream, otherStreamInfo] of Object.entries(
+        otherVideoStreams.streams
+      ))
+        for (const otherSubtitle of Object.values(otherStreamInfo)) {
+          if (otherSubtitle.hardsub_locale == "") continue;
+          otherSubtitle.hardsub_locale = <any>(
+            (otherSubtitle.hardsub_locale + "SUB")
+          );
+          (<any>videoStreams.streams)[otherStream][
+            otherSubtitle.hardsub_locale
+          ] = otherSubtitle;
+        }
     }
-    console.log("subtitles", videoStreams.subtitles);
+    console.log("videoStreams", videoStreams);
     return videoStreams;
   }
 }
