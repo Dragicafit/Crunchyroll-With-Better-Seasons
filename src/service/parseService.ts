@@ -1,4 +1,5 @@
 import cloneDeep from "lodash/cloneDeep";
+import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
   collectionSeason,
@@ -22,16 +23,15 @@ export default class ParseService {
 
   async parseMergedEpisodes(
     sameSeasonsWithLang: improveSeason[],
-    url: string,
+    urlAPI: urlAPI,
     episodeId: string
   ): Promise<improveMergedEpisode[]> {
     const mergedEpisodes: improveMergedEpisode[] = [];
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
-      const urlEpisodes: string = url.replace(
-        `objects/${episodeId}?`,
-        `episodes?season_id=${season.id}&`
-      );
+      const urlEpisodes: string = urlAPI
+        .setApiPath(`episodes?season_id=${season.id}&`)
+        .toString();
       promiseList.push(
         this.requestService
           .fetchJson(urlEpisodes)
@@ -63,7 +63,7 @@ export default class ParseService {
   async parseMergedEpisodesWithCurrentEpisodes(
     sameSeasonsWithLang: improveSeason[],
     currentEpisodes: episode[],
-    url: string,
+    urlAPI: urlAPI,
     currentSeasonId: string
   ): Promise<improveMergedEpisode[]> {
     const mergedEpisodesList: improveMergedEpisode[] = [];
@@ -89,10 +89,9 @@ export default class ParseService {
         });
         continue;
       }
-      const urlOtherEpisodes: string = url.replace(
-        `episodes?season_id=${currentSeasonId}`,
-        `episodes?season_id=${season.id}`
-      );
+      const urlOtherEpisodes: string = urlAPI
+        .setApiPath(`episodes?season_id=${season.id}&`)
+        .toString();
       promiseList.push(
         this.requestService
           .fetchJson(urlOtherEpisodes)
@@ -123,13 +122,13 @@ export default class ParseService {
 
   async parseSeasonsWithLang(
     seasons: collectionSeason,
-    url: string
+    urlAPI: urlAPI
   ): Promise<improveSeason[]> {
     const serieId: string = seasons.__resource_key__.replace(
       "cms:/seasons?series_id=",
       ""
     );
-    await this.seasonService.findOtherSeries(serieId, url, seasons);
+    await this.seasonService.findOtherSeries(serieId, urlAPI, seasons);
     const useNewLang: boolean = seasons.items.every((season) => {
       const improveApiSeason = improveApiSeasons.get(season.id);
       return improveApiSeason != null && improveApiSeason.lang != null;

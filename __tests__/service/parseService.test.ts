@@ -1,4 +1,5 @@
 import cloneDeep from "lodash/cloneDeep";
+import urlAPI from "../../src/model/urlAPI";
 import ParseService from "../../src/service/parseService";
 import RequestService from "../../src/service/requestService";
 import SeasonService from "../../src/service/seasonService";
@@ -287,7 +288,7 @@ it("parses seasons of demon slayer", async () => {
     },
   ];
   expect(
-    await parseService.parseSeasonsWithLang(collectionSeason, "")
+    await parseService.parseSeasonsWithLang(collectionSeason, new urlAPI())
   ).toStrictEqual(expected);
 });
 
@@ -633,13 +634,13 @@ it("parses seasons with old", async () => {
     .spyOn(seasonService, "findOtherSeries")
     .mockImplementation(() => Promise.resolve());
   expect(
-    await parseService.parseSeasonsWithLang(collectionSeason, "urlMock")
+    await parseService.parseSeasonsWithLang(collectionSeason, new urlAPI())
   ).toStrictEqual(expected);
 
   expect(findOtherSeriesMock).toHaveBeenNthCalledWith(
     1,
     "seriesIdMock",
-    "urlMock",
+    new urlAPI(),
     collectionSeason
   );
   expect(findOtherSeriesMock).toHaveBeenCalledTimes(1);

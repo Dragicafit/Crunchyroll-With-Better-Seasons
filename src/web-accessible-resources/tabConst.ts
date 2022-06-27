@@ -398,19 +398,19 @@ export const startPageBundle =
   "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js";
 
 export const regexApiObjects =
-  /^https:\/\/beta(-api)?.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/objects\/[A-Z0-9]{9}/;
+  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/)(?<apiPath>objects\/[A-Z0-9]{9}\?)(?<extraInfos>.*)$/;
 
 export const regexApiSeasons =
-  /^https:\/\/beta(-api)?.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/seasons/;
+  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/)(?<apiPath>seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiUpNextSeries =
   /^https:\/\/beta(-api)?.crunchyroll.com\/content\/v1\/up_next_series/;
 
 export const regexApiEpisodes =
-  /^https:\/\/beta(-api)?.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/episodes/;
+  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/)(?<apiPath>episodes\?)(?<extraInfos>.*)$/;
 
 export const regexApiVideoStreams =
-  /^https:\/\/beta(-api)?.crunchyroll.com\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/;
+  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
 
 export const invalidSlug: string[] = [
   "kaguya-sama-love-is-war",

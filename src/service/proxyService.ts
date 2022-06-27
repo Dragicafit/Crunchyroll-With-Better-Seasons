@@ -1,3 +1,4 @@
+import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
   collectionPanel,
@@ -35,14 +36,12 @@ export default class ProxyService {
 
   getSeasonsFromEpisode(
     dataObjects: collectionPanel,
-    url: string
+    urlAPI: urlAPI
   ): Promise<collectionSeason> {
     const serieId: string = dataObjects.items[0].episode_metadata.series_id;
-    const episodeId: string = dataObjects.items[0].id;
-    const urlSeasons: string = url.replace(
-      `objects/${episodeId}?`,
-      `seasons?series_id=${serieId}&`
-    );
+    const urlSeasons: string = urlAPI
+      .setApiPath(`seasons?series_id=${serieId}&`)
+      .toString();
     return this.requestService.fetchJson(urlSeasons);
   }
 
@@ -71,26 +70,47 @@ export default class ProxyService {
     const vilosWindow: Window = (<HTMLIFrameElement>(
       document.getElementsByClassName("video-player")[0]
     )).contentWindow!;
-    console.log("send info", {
-      currentLanguage: currentLanguageId,
-      languages: languagesOrdered,
-    });
-    vilosWindow.postMessage(
-      {
-        direction: "from-script-CWBS",
-        command: eventsBackgroundSend.SEND_INFO,
-        currentAudioLanguage: currentLanguageId,
-        audioLanguages: languagesOrdered,
-      },
-      startPagePlayer
-    );
+
+    const post: () => void = () => {
+      console.log(
+        "send info",
+        {
+          currentLanguage: currentLanguageId,
+          languages: languagesOrdered,
+        },
+        vilosWindow
+      );
+      if (!this.isLoaded(vilosWindow)) {
+        setTimeout(post, 100);
+        return;
+      }
+      vilosWindow.postMessage(
+        {
+          direction: "from-script-CWBS",
+          command: eventsBackgroundSend.SEND_INFO,
+          currentAudioLanguage: currentLanguageId,
+          audioLanguages: languagesOrdered,
+        },
+        startPagePlayer
+      );
+    };
+    post();
+  }
+
+  private isLoaded(window: Window): boolean {
+    try {
+      window.location.href;
+      return false;
+    } catch (error) {
+      return true;
+    }
   }
 
   async getInfos(
     currentEpisode: panel,
     currentEpisodeId: string,
     seasonsWithLang: improveSeason[],
-    url: string
+    urlAPI: urlAPI
   ) {
     const seasonId: string = currentEpisode.episode_metadata.season_id;
     const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
@@ -102,7 +122,7 @@ export default class ProxyService {
     const mergedEpisodesList: improveMergedEpisode[] =
       await this.parseService.parseMergedEpisodes(
         sameSeasonsWithLang,
-        url,
+        urlAPI,
         currentEpisodeId
       );
     return {
@@ -114,7 +134,7 @@ export default class ProxyService {
   async addEpisodesFromOtherLanguages(
     collectionEpisode: collectionEpisode,
     seasonsWithLang: improveSeason[],
-    url: string
+    urlAPI: urlAPI
   ) {
     const currentSeasonId: string = collectionEpisode.items[0].season_id;
     const currentSeasonWithLang: improveSeason = seasonsWithLang.find(
@@ -127,7 +147,7 @@ export default class ProxyService {
     return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
       sameSeasonsWithLang,
       collectionEpisode.items,
-      url,
+      urlAPI,
       currentSeasonId
     );
   }
@@ -164,7 +184,7 @@ export default class ProxyService {
 
   async addVideoStreamsFromOtherLanguages(
     videoStreams: videoStreams,
-    url: string,
+    urlAPI: urlAPI,
     currentEpisode: panel,
     mergedEpisodes: improveMergedEpisode
   ) {
@@ -175,22 +195,34 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
-      const urlVideoStreams: string = url.replace(
-        /\/cms\/v2\/[A-Z]{2}\/M3\/crunchyroll\/videos\/[A-Z0-9]{9}\/streams/,
-        mergedEpisode.videoStreamsUrl
-      );
-      const subtitles = await this.requestService
-        .fetchJson(urlVideoStreams)
-        .then((body: videoStreams) => Object.values(body.subtitles));
-      for (const subtitle of subtitles) {
-        if (mergedEpisode.audio_locale != "SUB") {
-          continue;
-        }
-        subtitle.locale = <any>(subtitle.locale + "SUB");
-        videoStreams.subtitles[subtitle.locale] = subtitle;
+      if (mergedEpisode.audio_locale != "SUB") {
+        continue;
       }
+      const urlVideoStreams: string =
+        urlAPI.getHost() +
+        mergedEpisode.videoStreamsUrl +
+        "?" +
+        urlAPI.getExtraInfos();
+      const otherVideoStreams: videoStreams =
+        await this.requestService.fetchJson(urlVideoStreams);
+      for (const otherSubtitle of Object.values(otherVideoStreams.subtitles)) {
+        otherSubtitle.locale = <any>(otherSubtitle.locale + "SUB");
+        videoStreams.subtitles[otherSubtitle.locale] = otherSubtitle;
+      }
+      for (const [otherStream, otherStreamInfo] of Object.entries(
+        otherVideoStreams.streams
+      ))
+        for (const otherSubtitle of Object.values(otherStreamInfo)) {
+          if (otherSubtitle.hardsub_locale == "") continue;
+          otherSubtitle.hardsub_locale = <any>(
+            (otherSubtitle.hardsub_locale + "SUB")
+          );
+          (<any>videoStreams.streams)[otherStream][
+            otherSubtitle.hardsub_locale
+          ] = otherSubtitle;
+        }
     }
-    console.log("subtitles", videoStreams.subtitles);
+    console.log("videoStreams", videoStreams);
     return videoStreams;
   }
 }
