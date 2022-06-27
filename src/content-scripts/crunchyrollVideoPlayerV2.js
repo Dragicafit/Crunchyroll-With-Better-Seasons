@@ -21,6 +21,10 @@ window.addEventListener("message", (event) => {
     return;
   switch (event.data.command) {
     case "sendInfo":
+      console.log("receive info", {
+        currentAudioLanguage: event.data.currentAudioLanguage,
+        audioLanguages: event.data.audioLanguages,
+      });
       settings = createSettings(
         [
           {

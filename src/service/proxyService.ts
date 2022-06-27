@@ -70,19 +70,40 @@ export default class ProxyService {
     const vilosWindow: Window = (<HTMLIFrameElement>(
       document.getElementsByClassName("video-player")[0]
     )).contentWindow!;
-    console.log("send info", {
-      currentLanguage: currentLanguageId,
-      languages: languagesOrdered,
-    });
-    vilosWindow.postMessage(
-      {
-        direction: "from-script-CWBS",
-        command: eventsBackgroundSend.SEND_INFO,
-        currentAudioLanguage: currentLanguageId,
-        audioLanguages: languagesOrdered,
-      },
-      startPagePlayer
-    );
+
+    const post: () => void = () => {
+      console.log(
+        "send info",
+        {
+          currentLanguage: currentLanguageId,
+          languages: languagesOrdered,
+        },
+        vilosWindow
+      );
+      if (!this.isLoaded(vilosWindow)) {
+        setTimeout(post, 100);
+        return;
+      }
+      vilosWindow.postMessage(
+        {
+          direction: "from-script-CWBS",
+          command: eventsBackgroundSend.SEND_INFO,
+          currentAudioLanguage: currentLanguageId,
+          audioLanguages: languagesOrdered,
+        },
+        startPagePlayer
+      );
+    };
+    post();
+  }
+
+  private isLoaded(window: Window): boolean {
+    try {
+      window.location.href;
+      return false;
+    } catch (error) {
+      return true;
+    }
   }
 
   async getInfos(
