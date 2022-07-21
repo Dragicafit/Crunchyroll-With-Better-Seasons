@@ -4,7 +4,20 @@ it("test improveApiSeasons type", () => {
   for (const [key, value] of improveApiSeasons) {
     expect(typeof key).toEqual("string");
     expect(
-      ["SUB", "EN", "FR", "ES", "PT", "DE", "RU", "OTHERS"].includes(value.lang)
+      [
+        "SUB",
+        "EN",
+        "FR",
+        "ES",
+        "PT",
+        "DE",
+        "IT",
+        "HI",
+        "AR",
+        "CAS",
+        "RU",
+        "OTHERS",
+      ].includes(value.lang)
     ).toBeTruthy();
     expect(
       value.season_number == null ||

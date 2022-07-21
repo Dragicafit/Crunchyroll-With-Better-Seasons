@@ -164,6 +164,14 @@ export default class ParseService {
           seasonWithLang.audio_locale2 = "PT";
         } else if (seasonWithLang.slug_title.match(/-german-dub$/)) {
           seasonWithLang.audio_locale2 = "DE";
+        } else if (seasonWithLang.slug_title.match(/-italian-dub$/)) {
+          seasonWithLang.audio_locale2 = "IT";
+        } else if (seasonWithLang.slug_title.match(/-hindi-dub$/)) {
+          seasonWithLang.audio_locale2 = "HI";
+        } else if (seasonWithLang.slug_title.match(/-arabic-dub$/)) {
+          seasonWithLang.audio_locale2 = "AR";
+        } else if (seasonWithLang.slug_title.match(/-castilian-dub$/)) {
+          seasonWithLang.audio_locale2 = "CAS";
         } else if (seasonWithLang.slug_title.match(/-russian(-dub)?$/)) {
           seasonWithLang.audio_locale2 = "RU";
         } else if (seasonWithLang.slug_title.match(/-dub$|-dubbed$/)) {
@@ -179,11 +187,11 @@ export default class ParseService {
       }
 
       seasonWithLang.slug_title = season.slug_title.replace(
-        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-russian(-dub)?$|-dub$|-sub$|-dubbed$|-subbed$|-subtitled$/,
+        /-english-dub$|-french-dub$|-spanish-dub$|-portuguese-dub$|-german-dub$|-italian-dub$|-hindi-dub$|-arabic-dub$|-castilian-dub$|-russian(-dub)?$|-dub$|-sub$|-dubbed$|-subbed$|-subtitled$/,
         ""
       );
       seasonWithLang.title = season.title.replace(
-        / \(English Dub\)$| \(French Dub\)$| \(Spanish Dub\)$| \(Portuguese Dub\)$| \(German Dub\)$| \(Russian Dub\)$| \(Dub\)$| \(Sub\)$| \(Dubbed\)$| \(Subbed\)$| \(Subtitled\)$| \(Russian\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(RU\) |\(OmU\) /,
+        / \(English Dub\)$| \(French Dub\)$| \(Spanish Dub\)$| \(Portuguese Dub\)$| \(German Dub\)$| \(Italian Dub\)$| \(Hindi Dub\)$| \(Arabic Dub\)$| \(Castilian Dub\)$| \(Russian Dub\)$| \(Dub\)$| \(Sub\)$| \(Dubbed\)$| \(Subbed\)$| \(Subtitled\)$| \(Russian\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(IT\) |\(HI\) |\(AR\) |\(CAS\) |\(RU\) |\(OmU\) /,
         ""
       );
       return seasonWithLang;

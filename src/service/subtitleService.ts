@@ -1,32 +1,43 @@
 import {
   localeToDisplay,
+  mapping,
+  subtitleLocales,
   subtitleLocalesWithSUB,
-  supportedAndMappingLocales,
+  supported,
+  supportedFallbacks,
 } from "../web-accessible-resources/tabConst";
+
+const regexSupported = /(JSON\.parse\(')(\[".*?"\])('\))/;
+const regexSupportedFallbacks = /(Fs=JSON\.parse\(')(\{".*?"\]\})('\))/;
+const regexMapping = /(JSON\.parse\(')(\{"Wp":\{".*?"\}\}\})('\))/;
+const regexLocaleToDisplay = /(Vs=JSON\.parse\(')(\{".*?,"":""\})('\))/;
 
 export default class SubtitleService {
   overridePageBundle(body: string) {
-    const supportedAndMappingLocales: supportedAndMappingLocales = JSON.parse(
-      body
-        .match(/JSON\.parse\('({"supported".*?"}}})'\)},/)![1]
-        .replaceAll("\\'", "'")
+    const supported: supported = JSON.parse(
+      body.match(regexSupported)![2].replaceAll("\\'", "'")
+    );
+    const supportedFallbacks: supportedFallbacks = JSON.parse(
+      body.match(regexSupportedFallbacks)![2].replaceAll("\\'", "'")
+    );
+    const mapping: mapping = JSON.parse(
+      body.match(regexMapping)![2].replaceAll("\\'", "'")
     );
     const localeToDisplay: localeToDisplay = JSON.parse(
-      body.match(/JSON.parse\('({"af-na".*?})'\)}/)![1].replaceAll("\\'", "'")
+      body.match(regexLocaleToDisplay)![2].replaceAll("\\'", "'")
     );
 
-    for (const subtitleLocale of [...supportedAndMappingLocales.supported]) {
+    for (const subtitleLocale of [
+      ...(<subtitleLocales[]>Object.keys(supportedFallbacks)),
+    ]) {
       const subtitleLocaleWithSUB: subtitleLocalesWithSUB = <
         subtitleLocalesWithSUB
       >(subtitleLocale + "SUB");
       const display: string =
         localeToDisplay[subtitleLocale.toLowerCase()] + " (Sub)";
-      supportedAndMappingLocales.supported.push(<any>subtitleLocaleWithSUB);
-      supportedAndMappingLocales.supported_fallbacks[subtitleLocaleWithSUB] = [
-        subtitleLocale,
-        "en-US",
-      ];
-      supportedAndMappingLocales.mapping[subtitleLocaleWithSUB] = {
+      supported.push(<any>subtitleLocaleWithSUB);
+      supportedFallbacks[subtitleLocaleWithSUB] = [subtitleLocale, "en-US"];
+      mapping.Wp[subtitleLocaleWithSUB] = {
         to: <any>subtitleLocaleWithSUB,
         desc: display,
       };
@@ -35,15 +46,20 @@ export default class SubtitleService {
 
     return body
       .replace(
-        /(JSON\.parse\('){"supported".*?"}}}('\)},)/,
-        `$1${JSON.stringify(supportedAndMappingLocales).replaceAll(
-          "'",
-          "\\'"
-        )}$2`
+        regexSupported,
+        `$1${JSON.stringify(supported).replaceAll("'", "\\'")}$3`
       )
       .replace(
-        /(JSON.parse\('){"af-na".*?}('\)})/,
-        `$1${JSON.stringify(localeToDisplay).replaceAll("'", "\\'")}$2`
+        regexSupportedFallbacks,
+        `$1${JSON.stringify(supportedFallbacks).replaceAll("'", "\\'")}$3`
+      )
+      .replace(
+        regexMapping,
+        `$1${JSON.stringify(mapping).replaceAll("'", "\\'")}$3`
+      )
+      .replace(
+        regexLocaleToDisplay,
+        `$1${JSON.stringify(localeToDisplay).replaceAll("'", "\\'")}$3`
       );
   }
 }

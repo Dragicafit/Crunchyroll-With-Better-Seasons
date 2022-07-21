@@ -9,57 +9,77 @@ export type languages =
   | "ES"
   | "PT"
   | "DE"
+  | "IT"
+  | "HI"
+  | "AR"
+  | "CAS"
   | "RU"
   | "OTHERS";
 
 export type subtitleLocales =
+  | "ar-ME"
+  | "ar-SA"
+  | "de-DE"
   | "en-US"
   | "es-419"
   | "es-ES"
+  | "es-LA"
   | "fr-FR"
+  | "hi-IN"
+  | "it-IT"
   | "pt-BR"
   | "pt-PT"
-  | "ar-SA"
-  | "it-IT"
-  | "de-DE"
-  | "ru-RU";
+  | "ru-RU"
+  | "tr-TR";
 
 export type subtitleLocalesWithSUB =
+  | "ar-MESUB"
+  | "ar-SASUB"
+  | "de-DESUB"
   | "en-USSUB"
   | "es-419SUB"
   | "es-ESSUB"
+  | "es-LASUB"
   | "fr-FRSUB"
+  | "hi-INSUB"
+  | "it-ITSUB"
   | "pt-BRSUB"
   | "pt-PTSUB"
-  | "ar-SASUB"
-  | "it-ITSUB"
-  | "de-DESUB"
-  | "ru-RUSUB";
+  | "ru-RUSUB"
+  | "tr-TRSUB";
 
 export const subtitleLocalesValues: subtitleLocales[] = [
+  "ar-ME",
+  "ar-SA",
+  "de-DE",
   "en-US",
   "es-419",
   "es-ES",
+  "es-LA",
   "fr-FR",
+  "hi-IN",
+  "it-IT",
   "pt-BR",
   "pt-PT",
-  "ar-SA",
-  "it-IT",
-  "de-DE",
   "ru-RU",
+  "tr-TR",
 ];
 
 export const subtitleLocalesWithSUBValues: subtitleLocalesWithSUB[] = [
+  "ar-MESUB",
+  "ar-SASUB",
+  "de-DESUB",
   "en-USSUB",
   "es-419SUB",
   "es-ESSUB",
+  "es-LASUB",
   "fr-FRSUB",
+  "hi-INSUB",
+  "it-ITSUB",
   "pt-BRSUB",
   "pt-PTSUB",
-  "ar-SASUB",
-  "it-ITSUB",
-  "de-DESUB",
   "ru-RUSUB",
+  "tr-TRSUB",
 ];
 
 export type episode_metadata = {
@@ -347,12 +367,14 @@ export type videoStreams = {
   bifs: string[];
 };
 
-export type supportedAndMappingLocales = {
-  supported: subtitleLocales[];
-  supported_fallbacks: {
-    [subtitleLocale: string]: subtitleLocales[];
-  };
-  mapping: {
+export type supported = subtitleLocales[];
+
+export type supportedFallbacks = {
+  [subtitleLocale: string]: subtitleLocales[];
+};
+
+export type mapping = {
+  Wp: {
     [locale: string]: { to: subtitleLocales; desc: string };
   };
 };
@@ -368,6 +390,10 @@ export const possibleLang: Map<languages, string> = new Map([
   ["ES", "Spanish dub"],
   ["PT", "Portuguese dub"],
   ["DE", "German dub"],
+  ["IT", "Italian dub"],
+  ["HI", "Hindi dub"],
+  ["AR", "Arabic dub"],
+  ["CAS", "Castilian dub"],
   ["RU", "Russian dub"],
   ["OTHERS", "Other dubs"],
 ]);
@@ -379,6 +405,10 @@ export const langToDisplay: Map<languages, string> = new Map([
   ["ES", "Español (Latin America)"],
   ["PT", "Português (Brasil)"],
   ["DE", "Deutsch (Germany)"],
+  ["IT", "Italian (Italy)"],
+  ["HI", "Hindi (India)"],
+  ["AR", "العربية (Arabic)"],
+  ["CAS", "Español (España)"],
   ["RU", "Русский (Russia)"],
   ["OTHERS", "Other"],
 ]);
