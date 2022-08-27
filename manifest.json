@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Crunchyroll With Better Seasons",
   "description": "Instead of having multiple seasons as DUBS, change audio language directly from the episode.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Dragicafit",
   "icons": {
     "16": "src/icons/icon16.png",

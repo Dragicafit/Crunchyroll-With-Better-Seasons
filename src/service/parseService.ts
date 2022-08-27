@@ -242,7 +242,7 @@ export default class ParseService {
         id: episode.id,
         subtitle_locales: episode.subtitle_locales,
         audio_locale: seasonWithLang.audio_locale2,
-        videoStreamsUrl: episode.__links__.streams.href,
+        videoStreamsUrl: episode.__links__.streams?.href,
       },
     ];
     mergedEpisodes.push(mergedEpisode);
@@ -283,7 +283,7 @@ export default class ParseService {
       id: episode.id,
       subtitle_locales: episode.subtitle_locales,
       audio_locale: seasonWithLang.audio_locale2,
-      videoStreamsUrl: episode.__links__.streams.href,
+      videoStreamsUrl: episode.__links__.streams?.href,
     });
   }
 
