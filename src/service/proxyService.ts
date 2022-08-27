@@ -195,7 +195,10 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const mergedEpisode of mergedEpisodes.episodes) {
-      if (mergedEpisode.audio_locale != "SUB") {
+      if (
+        mergedEpisode.audio_locale != "SUB" ||
+        mergedEpisode.videoStreamsUrl == null
+      ) {
         continue;
       }
       const urlVideoStreams: string =
