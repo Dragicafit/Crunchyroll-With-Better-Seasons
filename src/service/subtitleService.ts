@@ -8,9 +8,10 @@ import {
 } from "../web-accessible-resources/tabConst";
 
 const regexSupported = /(JSON\.parse\(')(\[".*?"\])('\))/;
-const regexSupportedFallbacks = /(Fs=JSON\.parse\(')(\{".*?"\]\})('\))/;
+const regexSupportedFallbacks = /([^\w]\w\w=JSON\.parse\(')(\{".*?"\]\})('\))/;
 const regexMapping = /(JSON\.parse\(')(\{"Wp":\{".*?"\}\}\})('\))/;
-const regexLocaleToDisplay = /(Vs=JSON\.parse\(')(\{".*?,"":""\})('\))/;
+const regexLocaleToDisplay =
+  /([^\w]\w\w=JSON\.parse\('.*?[^\w]\w\w=JSON\.parse\(')(\{".*?,"":""\})('\))/;
 
 export default class SubtitleService {
   overridePageBundle(body: string) {
