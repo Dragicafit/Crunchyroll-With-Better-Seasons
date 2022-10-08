@@ -206,7 +206,7 @@ export default class ParseService {
 
   async parseMergedSeasons(
     seasonsWithLang: improveSeason[],
-    currentEpisodeId: string
+    currentSeasonId: string
   ): Promise<improveMergedSeason[]> {
     const seasons: improveMergedSeason[] = seasonsWithLang.reduce(
       (previousValue: improveMergedSeason[], currentValue: improveSeason) => {
@@ -214,11 +214,7 @@ export default class ParseService {
           (season) => this.seasonService.sameSeason(season, currentValue)
         );
         if (found != null) {
-          this.mergeSeasonWithLangIntoMergedSeason(
-            currentValue,
-            found,
-            currentEpisodeId
-          );
+          this.mergeSeasonWithLangIntoMergedSeason(currentValue, found);
         } else {
           this.createMergedSeason(currentValue, previousValue);
         }
@@ -226,6 +222,14 @@ export default class ParseService {
       },
       <improveMergedSeason[]>(<unknown[]>[])
     );
+    for (const season of seasons) {
+      const currentSeason = [...season.seasons.values()].find(
+        (season) => season.id === currentSeasonId
+      );
+      if (currentSeason != null) {
+        season.id = currentSeason.id;
+      }
+    }
     return seasons;
   }
 
@@ -274,7 +278,7 @@ export default class ParseService {
     mergedEpisode: improveMergedEpisode,
     seasonWithLang: improveSeason
   ): void {
-    if (seasonWithLang.audio_locale2 == "SUB") {
+    if (seasonWithLang.audio_locale2 === "SUB") {
       mergedEpisode.subtitle_locales = episode.subtitle_locales;
     }
     mergedEpisode.is_subbed = mergedEpisode.is_subbed || episode.is_subbed;
@@ -289,10 +293,9 @@ export default class ParseService {
 
   private mergeSeasonWithLangIntoMergedSeason(
     seasonWithLang: improveSeason,
-    mergedSeason: improveMergedSeason,
-    currentEpisodeId: string
+    mergedSeason: improveMergedSeason
   ) {
-    if (seasonWithLang.audio_locale2 == "SUB") {
+    if (seasonWithLang.audio_locale2 === "SUB") {
       mergedSeason.subtitle_locales = seasonWithLang.subtitle_locales;
       mergedSeason.audio_locale2 = seasonWithLang.audio_locale2;
     }
@@ -311,9 +314,6 @@ export default class ParseService {
     }
     if (seasonWithLang.audio_locale2 === "SUB") {
       mergedSeason.title = seasonWithLang.title;
-    }
-    if (currentEpisodeId === seasonWithLang.id) {
-      mergedSeason.id = seasonWithLang.id;
     }
   }
 }

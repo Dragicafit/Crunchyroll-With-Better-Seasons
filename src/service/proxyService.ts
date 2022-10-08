@@ -63,9 +63,9 @@ export default class ProxyService {
     }));
     const languagesOrdered = possibleLangKeys
       .filter((lang) => languages.map((language) => language.id).includes(lang))
-      .map((lang) => languages.find((lang2) => lang == lang2.id)!);
+      .map((lang) => languages.find((lang2) => lang === lang2.id)!);
     const currentLanguageId: languages | undefined = languagesOrdered.find(
-      (season) => season.id == currentSeasonWithLang.audio_locale2
+      (season) => season.id === currentSeasonWithLang.audio_locale2
     )?.id;
     const vilosWindow: Window = (<HTMLIFrameElement>(
       document.getElementsByClassName("video-player")[0]
@@ -216,7 +216,7 @@ export default class ProxyService {
         otherVideoStreams.streams
       ))
         for (const otherSubtitle of Object.values(otherStreamInfo)) {
-          if (otherSubtitle.hardsub_locale == "") continue;
+          if (otherSubtitle.hardsub_locale === "") continue;
           otherSubtitle.hardsub_locale = <any>(
             (otherSubtitle.hardsub_locale + "SUB")
           );
