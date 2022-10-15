@@ -227,6 +227,22 @@ function insertSettings(
       )
     );
   }
+  if (
+    velocitySettingsMenu.querySelector(
+      '[data-testid="vilos-settings_back_button"]'
+    )
+  ) {
+    document.body.setAttribute("ic_options", "submenu");
+  } else if (document.body.getAttribute("ic_options") === "submenu") {
+    document.body.removeAttribute("ic_options");
+  }
+}
+
+function insertSettingsWithObserver(
+  velocitySettingsMenu: Element,
+  elements: HTMLElement[]
+) {
+  insertSettings(velocitySettingsMenu, elements);
   new MutationObserver((mutations, observer) => {
     if (!velocitySettingsMenu.isConnected) {
       return observer.disconnect();
@@ -240,23 +256,7 @@ function insertSettings(
     ) {
       return;
     }
-    for (const element of elements) {
-      velocitySettingsMenu.insertBefore(
-        element,
-        velocitySettingsMenu.querySelector(
-          '[data-testid="vilos-settings_texttrack_submenu"]'
-        )
-      );
-    }
-    if (
-      velocitySettingsMenu.querySelector(
-        '[data-testid="vilos-settings_back_button"]'
-      )
-    ) {
-      document.body.setAttribute("ic_options", "submenu");
-    } else if (document.body.getAttribute("ic_options") === "submenu") {
-      document.body.removeAttribute("ic_options");
-    }
+    insertSettings(velocitySettingsMenu, elements);
   }).observe(velocitySettingsMenu, {
     childList: true,
   });
@@ -291,7 +291,7 @@ new MutationObserver((_, observer) => {
           "#velocity-settings-menu"
         );
         if (velocitySettingsMenu && settings) {
-          insertSettings(velocitySettingsMenu, settings);
+          insertSettingsWithObserver(velocitySettingsMenu, settings);
         }
       }).observe(velocityControlsPackage, {
         childList: true,

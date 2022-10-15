@@ -14,7 +14,7 @@ Copyright (c) 2022 Damien HERBERT
   display: none;
 }
 
-[ic_options="hide"] #velocity-settings-menu > .ic_settings:target {
+[ic_options="hide"] #velocity-settings-menu > .ic_settings {
   display: flex !important;
   flex-direction: column;
   overflow-y: auto;
