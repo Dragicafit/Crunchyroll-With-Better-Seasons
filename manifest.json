@@ -2,15 +2,24 @@
   "manifest_version": 3,
   "name": "Crunchyroll With Better Seasons",
   "description": "Instead of having multiple seasons as DUBS, change audio language directly from the episode.",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": "Dragicafit",
   "icons": {
     "16": "src/icons/icon16.png",
     "48": "src/icons/icon48.png",
     "128": "src/icons/icon128.png"
   },
-  "permissions": ["declarativeNetRequestWithHostAccess"],
+  "permissions": ["storage", "declarativeNetRequestWithHostAccess"],
   "host_permissions": ["https://static.crunchyroll.com/*"],
+  "action": {
+    "default_title": "Crunchyroll With Better Seasons",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon16.png",
+      "24": "src/icons/icon24.png",
+      "32": "src/icons/icon32.png"
+    }
+  },
   "web_accessible_resources": [
     {
       "resources": ["src/web-accessible-resources/tab.bundle.js"],
@@ -26,7 +35,7 @@
       "matches": [
         "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
       ],
-      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.js"],
+      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.bundle.js"],
       "css": ["src/content-scripts/crunchyrollVideoPlayer2.css"],
       "all_frames": true,
       "run_at": "document_start"
@@ -41,7 +50,7 @@
     },
     {
       "matches": ["https://beta.crunchyroll.com/*"],
-      "js": ["src/content-scripts/injectInTab.js"],
+      "js": ["src/content-scripts/injectInTab.bundle.js"],
       "all_frames": false,
       "run_at": "document_start"
     }

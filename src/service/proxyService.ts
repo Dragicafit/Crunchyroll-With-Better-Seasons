@@ -3,7 +3,9 @@ import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
+  Config,
   eventsBackgroundSend,
+  FROM_SCRIPT_CWBS,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
@@ -23,15 +25,18 @@ export default class ProxyService {
   private readonly requestService: RequestService;
   private readonly seasonService: SeasonService;
   private readonly parseService: ParseService;
+  private readonly config: Config;
 
   constructor(
     requestService: RequestService,
     seasonService: SeasonService,
-    parseService: ParseService
+    parseService: ParseService,
+    config: Config
   ) {
     this.requestService = requestService;
     this.seasonService = seasonService;
     this.parseService = parseService;
+    this.config = config;
   }
 
   getSeasonsFromEpisode(
@@ -63,9 +68,9 @@ export default class ProxyService {
     }));
     const languagesOrdered = possibleLangKeys
       .filter((lang) => languages.map((language) => language.id).includes(lang))
-      .map((lang) => languages.find((lang2) => lang == lang2.id)!);
+      .map((lang) => languages.find((lang2) => lang === lang2.id)!);
     const currentLanguageId: languages | undefined = languagesOrdered.find(
-      (season) => season.id == currentSeasonWithLang.audio_locale2
+      (season) => season.id === currentSeasonWithLang.audio_locale2
     )?.id;
     const vilosWindow: Window = (<HTMLIFrameElement>(
       document.getElementsByClassName("video-player")[0]
@@ -86,9 +91,9 @@ export default class ProxyService {
       }
       vilosWindow.postMessage(
         {
-          direction: "from-script-CWBS",
+          direction: FROM_SCRIPT_CWBS,
           command: eventsBackgroundSend.SEND_INFO,
-          currentAudioLanguage: currentLanguageId,
+          preferedAudioLanguage: currentLanguageId,
           audioLanguages: languagesOrdered,
         },
         startPagePlayer
@@ -108,7 +113,6 @@ export default class ProxyService {
 
   async getInfos(
     currentEpisode: panel,
-    currentEpisodeId: string,
     seasonsWithLang: improveSeason[],
     urlAPI: urlAPI
   ) {
@@ -120,11 +124,7 @@ export default class ProxyService {
       (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
     const mergedEpisodesList: improveMergedEpisode[] =
-      await this.parseService.parseMergedEpisodes(
-        sameSeasonsWithLang,
-        urlAPI,
-        currentEpisodeId
-      );
+      await this.parseService.parseMergedEpisodes(sameSeasonsWithLang, urlAPI);
     return {
       currentSeasonWithLang,
       mergedEpisodesList,
@@ -144,12 +144,27 @@ export default class ProxyService {
       (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
 
-    return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
-      sameSeasonsWithLang,
-      collectionEpisode.items,
-      urlAPI,
-      currentSeasonId
-    );
+    const episodes =
+      await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
+        sameSeasonsWithLang,
+        collectionEpisode.items,
+        urlAPI,
+        currentSeasonId
+      );
+
+    const preferedAudioLanguages = this.config.preferedAudioLanguages;
+    preferedAudioLanguages.reverse();
+    for (const episode of episodes) {
+      for (const preferedAudioLanguage of preferedAudioLanguages) {
+        const currentSeason = [...episode.episodes.values()].find(
+          (episode) => episode.audio_locale === preferedAudioLanguage
+        );
+        if (currentSeason != null) {
+          episode.id = currentSeason.id;
+        }
+      }
+    }
+    return episodes;
   }
 
   async concatLanguages(
@@ -216,7 +231,7 @@ export default class ProxyService {
         otherVideoStreams.streams
       ))
         for (const otherSubtitle of Object.values(otherStreamInfo)) {
-          if (otherSubtitle.hardsub_locale == "") continue;
+          if (otherSubtitle.hardsub_locale === "") continue;
           otherSubtitle.hardsub_locale = <any>(
             (otherSubtitle.hardsub_locale + "SUB")
           );

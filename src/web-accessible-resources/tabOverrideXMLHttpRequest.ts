@@ -8,6 +8,7 @@ import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
+  Config,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
@@ -28,14 +29,15 @@ export default class TabOverrideXMLHttpRequest {
   private readonly proxyService: ProxyService;
   private readonly saveService: SaveService;
 
-  constructor() {
+  constructor(config: Config) {
     const requestService = new RequestService();
     const seasonService = new SeasonService(requestService);
     this.parseService = new ParseService(requestService, seasonService);
     this.proxyService = new ProxyService(
       requestService,
       seasonService,
-      this.parseService
+      this.parseService,
+      config
     );
     this.saveService = new SaveService();
   }
@@ -58,9 +60,14 @@ export default class TabOverrideXMLHttpRequest {
         if (_onloadend == null) return;
 
         new Promise<void>((resolve) => {
-          if (_this.readyState === 4 && _this.status === 200) {
+          if (
+            _this.readyState === 4 &&
+            _this.status >= 200 &&
+            _this.status < 300
+          ) {
             tabOverrideXMLHttpRequest.saveService.resetIfChanged();
-            const data: any = JSON.parse(_this.responseText);
+            const data: any =
+              _this.responseText === "" ? "" : JSON.parse(_this.responseText);
 
             if (document.URL.match(regexPageWatch)) {
               let match: RegExpMatchArray | null = url2.match(regexApiObjects);
@@ -216,7 +223,6 @@ export default class TabOverrideXMLHttpRequest {
       mergedEpisodesList: improveMergedEpisode[];
     } = await this.proxyService.getInfos(
       currentEpisode,
-      currentEpisodeId,
       seasonsWithLang,
       urlAPI
     );
@@ -234,10 +240,12 @@ export default class TabOverrideXMLHttpRequest {
     );
   }
 
-  private saveUpNext(dataUpNextSeries: upNextSeries): string {
-    return this.saveService.saveUpNext(
-      dataUpNextSeries.panel.episode_metadata.season_id
-    );
+  private saveUpNext(dataUpNextSeries: upNextSeries | ""): string {
+    const currentSeasonId =
+      dataUpNextSeries === ""
+        ? ""
+        : dataUpNextSeries.panel.episode_metadata.season_id;
+    return this.saveService.saveUpNext(currentSeasonId);
   }
 
   private async saveSeasonWithLang(

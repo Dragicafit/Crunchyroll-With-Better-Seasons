@@ -1,6 +1,18 @@
 export enum eventsBackgroundSend {
   SEND_INFO = "sendInfo",
+  SEND_CONFIG = "sendConfig",
 }
+
+export enum eventsBackgroundReceive {
+  ASK_CONFIG = "askConfig",
+}
+
+export const FROM_CONTENT_CWBS = "from-content-CWBS";
+export const FROM_SCRIPT_CWBS = "from-script-CWBS";
+
+export const PREFERED_AUDIO_LANGUAGES = "PREFERED_AUDIO_LANGUAGES";
+
+export type Config = { preferedAudioLanguages: languages[] };
 
 export type languages =
   | "SUB"
@@ -95,6 +107,10 @@ export type episode_metadata = {
   sequence_number: number;
   duration_ms: number;
   episode_air_date: string;
+  upload_date: string;
+  availability_starts: string;
+  availability_ends: string;
+  eligible_region: string;
   is_premium_only: boolean;
   extended_maturity_rating: {};
   maturity_ratings: string[];
@@ -110,6 +126,10 @@ export type episode_metadata = {
   available_offline: boolean;
   subtitle_locales: subtitleLocales[];
   availability_notes: string;
+  audio_locale: string;
+  versions: null;
+  closed_captions_available: boolean;
+  identifier: string;
 };
 
 export type panel = {
@@ -165,6 +185,8 @@ export type season = {
   title: string;
   slug_title: string;
   series_id: string;
+  season_display_number: string;
+  season_sequence_number: number;
   season_number: number;
   is_complete: boolean;
   description: string;
@@ -183,6 +205,9 @@ export type season = {
   availability_notes: string;
   audio_locales: [];
   subtitle_locales: [];
+  audio_locale: string;
+  versions: null;
+  identifier: string;
 };
 
 export type improveSeason = season & {
@@ -293,6 +318,10 @@ export type episode = {
   is_mature: boolean;
   mature_blocked: boolean;
   episode_air_date: string;
+  upload_date: string;
+  availability_starts: string;
+  availability_ends: string;
+  eligible_region: string;
   available_date: string | null;
   free_available_date: string | null;
   premium_date: string | null;
@@ -304,6 +333,13 @@ export type episode = {
   seo_description: string;
   season_tags: string[];
   available_offline: boolean;
+  subtitle_locales: subtitleLocales[];
+  playback: string;
+  availability_notes: string;
+  audio_locale: string;
+  versions: null;
+  closed_captions_available: boolean;
+  identifier: string;
   media_type: string;
   slug: string;
   images: {
@@ -317,9 +353,6 @@ export type episode = {
   duration_ms: number;
   is_premium_only: boolean;
   listing_id: string;
-  subtitle_locales: subtitleLocales[];
-  playback: string;
-  availability_notes: string;
 };
 
 export type streamInfo = {
@@ -365,6 +398,7 @@ export type videoStreams = {
     vo_drm_adaptive_hls: streamInfo;
   };
   bifs: string[];
+  versions: null;
 };
 
 export type supported = subtitleLocales[];

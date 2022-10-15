@@ -7,6 +7,10 @@ const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
+    "src/popup/popup": "./src/popup/popupScript.ts",
+    "src/content-scripts/crunchyrollVideoPlayerV2":
+      "./src/content-scripts/crunchyrollVideoPlayerV2.ts",
+    "src/content-scripts/injectInTab": "./src/content-scripts/injectInTab.ts",
     "src/web-accessible-resources/tab":
       "./src/web-accessible-resources/tabScript.ts",
     "src/web-accessible-resources/vilosOverride":
@@ -61,21 +65,14 @@ module.exports = {
         { from: "rules.json" },
         { from: "src/icons", to: "src/icons" },
         {
-          from: "src/content-scripts/injectInTab.js",
-          to: "src/content-scripts/injectInTab.js",
-        },
-        {
           from: "src/content-scripts/injectInPlayer.js",
           to: "src/content-scripts/injectInPlayer.js",
-        },
-        {
-          from: "src/content-scripts/crunchyrollVideoPlayerV2.js",
-          to: "src/content-scripts/crunchyrollVideoPlayerV2.js",
         },
         {
           from: "src/content-scripts/crunchyrollVideoPlayer2.css",
           to: "src/content-scripts/crunchyrollVideoPlayer2.css",
         },
+        { from: "src/popup/popup.html", to: "src/popup/popup.html" },
       ],
     }),
     new CleanWebpackPlugin(),
