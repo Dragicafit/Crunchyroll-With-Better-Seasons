@@ -2,6 +2,8 @@ export enum eventsBackgroundSend {
   SEND_INFO = "sendInfo",
 }
 
+export const FROM_SCRIPT_CWBS = "from-script-CWBS";
+
 export type languages =
   | "SUB"
   | "EN"

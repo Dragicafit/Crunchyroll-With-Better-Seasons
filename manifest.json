@@ -22,14 +22,14 @@
       "matches": [
         "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
       ],
-      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.js"],
+      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.bundle.js"],
       "css": ["src/content-scripts/crunchyrollVideoPlayer2.css"],
       "all_frames": true,
       "run_at": "document_start"
     },
     {
       "matches": ["https://beta.crunchyroll.com/*"],
-      "js": ["src/content-scripts/injectInTab.js"],
+      "js": ["src/content-scripts/injectInTab.bundle.js"],
       "all_frames": false,
       "run_at": "document_start"
     }

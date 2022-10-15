@@ -10,17 +10,23 @@ Copyright (c) 2022 Damien HERBERT
 
 "use strict";
 
-let settings;
+import {
+  eventsBackgroundSend,
+  FROM_SCRIPT_CWBS,
+  languages,
+} from "../web-accessible-resources/tabConst";
+
+let settings: HTMLElement[];
 
 window.addEventListener("message", (event) => {
   if (
     event.source !== window.parent ||
     event.origin !== "https://beta.crunchyroll.com" ||
-    event.data?.direction !== "from-script-CWBS"
+    event.data?.direction !== FROM_SCRIPT_CWBS
   )
     return;
   switch (event.data.command) {
-    case "sendInfo":
+    case eventsBackgroundSend.SEND_INFO:
       console.log("receive info", {
         currentAudioLanguage: event.data.currentAudioLanguage,
         audioLanguages: event.data.audioLanguages,
@@ -30,7 +36,13 @@ window.addEventListener("message", (event) => {
           {
             title: "Audio",
             type: "audioLanguage",
-            values: event.data.audioLanguages,
+            values: <
+              {
+                id: languages;
+                name: string | undefined;
+                url: string;
+              }[]
+            >event.data.audioLanguages,
             callback: changeAudioLanguage,
           },
         ],
@@ -39,10 +51,20 @@ window.addEventListener("message", (event) => {
   }
 });
 
-function render({ tagName, children, callback, ...properties }) {
-  const element = document.createElement(tagName);
+function render({
+  tagName,
+  children,
+  callback,
+  ...properties
+}: {
+  tagName: string;
+  children?: any;
+  callback?: (element: EventTarget) => void;
+  [properties: string]: any;
+}) {
+  const element: HTMLElement = document.createElement(tagName);
   Object.entries(properties).forEach(
-    ([property, value]) => (element[property] = value)
+    ([property, value]) => ((<any>element)[property] = value)
   );
   if (Array.isArray(children))
     children.forEach((child) =>
@@ -52,19 +74,35 @@ function render({ tagName, children, callback, ...properties }) {
   return element;
 }
 
-function changeAudioLanguage(infos) {
+function changeAudioLanguage(infos: {
+  id: languages;
+  name: string | undefined;
+  url: string;
+}) {
   window.parent.location = infos.url;
 }
 
-function createSettings(settings, currentValue) {
+function createSettings<U extends { id: string; name?: string }>(
+  settings: [
+    {
+      title: string;
+      type: string;
+      values: U[];
+      callback: (infos: U) => void;
+    }
+  ],
+  currentValue: string
+) {
   console.log("create settings", settings, currentValue);
   return settings.flatMap(({ type, title, values, callback }) => {
     const displayValue = render({
       tagName: "span",
       className: "font",
     });
-    const elementByValues = {};
-    const elements = [
+    const elementByValues: {
+      [x: string]: { element: HTMLElement; option: U };
+    } = {};
+    const elements: HTMLElement[] = [
       render({
         tagName: "div",
         id: `ic_${type}_menu`,
@@ -91,7 +129,7 @@ function createSettings(settings, currentValue) {
             ],
           },
         ],
-        callback: (element) => {
+        callback: (element: EventTarget) => {
           element.addEventListener("click", () => {
             window.location.hash = "";
             document.body.setAttribute("ic_options", "hide");
@@ -108,7 +146,7 @@ function createSettings(settings, currentValue) {
             tagName: "div",
             className: "ic_back",
             innerHTML: `<div class='back'></div><div class='font'>${title}</div>`,
-            callback: (element) => {
+            callback: (element: EventTarget) => {
               element.addEventListener("click", () =>
                 document.body.removeAttribute("ic_options")
               );
@@ -137,7 +175,7 @@ function createSettings(settings, currentValue) {
                   ];
                   return children;
                 })(),
-                callback: (element) => {
+                callback: (element: EventTarget) => {
                   element.addEventListener("click", () => {
                     callback(option);
                   });
@@ -159,17 +197,29 @@ function createSettings(settings, currentValue) {
   });
 }
 
-function changeSelected(displayValue, elementByValues, currentValue) {
+function changeSelected<U extends { id: string; name?: string }>(
+  displayValue: HTMLElement,
+  elementByValues: {
+    [x: string]: {
+      element: HTMLElement;
+      option: U;
+    };
+  },
+  currentValue: string
+) {
   if (!currentValue) return;
   const { element, option } = elementByValues[currentValue];
-  displayValue.innerText = option.name;
+  displayValue.innerText = option.name ?? "";
   const selected = document.querySelector(".ic_option[value=true]");
   if (selected) selected.setAttribute("value", "false");
   element.setAttribute("value", "true");
 }
 
-function insertSettings(velocitySettingsMenu, elements) {
-  elements.forEach((element) => {
+function insertSettings(
+  velocitySettingsMenu: Element,
+  elements: HTMLElement[]
+) {
+  elements.forEach((element: HTMLElement) => {
     velocitySettingsMenu.insertBefore(
       element,
       velocitySettingsMenu.querySelector(
@@ -180,14 +230,14 @@ function insertSettings(velocitySettingsMenu, elements) {
   new MutationObserver((mutations) => {
     if (
       mutations.find((mutation) =>
-        [...mutation.addedNodes].find((addedNode) =>
-          elements.includes(addedNode)
+        [...mutation.addedNodes].find((addedNode: Node) =>
+          elements.includes(<any>addedNode)
         )
       )
     ) {
       return;
     }
-    elements.forEach((element) => {
+    elements.forEach((element: HTMLElement) => {
       velocitySettingsMenu.removeChild(element);
       velocitySettingsMenu.insertBefore(
         element,
@@ -217,19 +267,25 @@ new MutationObserver((_, observer) => {
   new MutationObserver((_, observer) => {
     observer.disconnect();
     new MutationObserver((mutations) => {
-      const velocityControlsPackage = mutations.reduce(
-        (f, { addedNodes }) =>
-          f ||
-          [...addedNodes].find(({ id }) => id === "velocity-controls-package"),
-        false
-      );
+      const velocityControlsPackage: HTMLElement | false = <
+        HTMLElement | false
+      >(<unknown>(
+        mutations.reduce(
+          (f: MutationRecord | false, { addedNodes }: { addedNodes: any }) =>
+            f ||
+            [...addedNodes].find(
+              ({ id }: { id?: string }) => id === "velocity-controls-package"
+            ),
+          false
+        )
+      ));
       if (!velocityControlsPackage) return;
       new MutationObserver((mutations) => {
         const addedNode = mutations.flatMap(({ addedNodes }) => [
           ...addedNodes,
         ])[0];
         if (!addedNode) return;
-        const velocitySettingsMenu = addedNode.querySelector(
+        const velocitySettingsMenu = (<HTMLElement>addedNode).querySelector(
           "#velocity-settings-menu"
         );
         if (velocitySettingsMenu && settings) {
@@ -238,7 +294,7 @@ new MutationObserver((_, observer) => {
       }).observe(velocityControlsPackage, {
         childList: true,
       });
-    }).observe(document.getElementById("vilosRoot"), {
+    }).observe(document.getElementById("vilosRoot")!, {
       childList: true,
     });
   }).observe(vilos, {

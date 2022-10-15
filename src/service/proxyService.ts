@@ -4,6 +4,7 @@ import {
   collectionPanel,
   collectionSeason,
   eventsBackgroundSend,
+  FROM_SCRIPT_CWBS,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
@@ -86,7 +87,7 @@ export default class ProxyService {
       }
       vilosWindow.postMessage(
         {
-          direction: "from-script-CWBS",
+          direction: FROM_SCRIPT_CWBS,
           command: eventsBackgroundSend.SEND_INFO,
           currentAudioLanguage: currentLanguageId,
           audioLanguages: languagesOrdered,

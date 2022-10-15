@@ -9,6 +9,9 @@ module.exports = {
   entry: {
     "src/background-scripts/background":
       "./src/background-scripts/backgroundScript.ts",
+    "src/content-scripts/crunchyrollVideoPlayerV2":
+      "./src/content-scripts/crunchyrollVideoPlayerV2.ts",
+    "src/content-scripts/injectInTab": "./src/content-scripts/injectInTab.ts",
     "src/web-accessible-resources/tab":
       "./src/web-accessible-resources/tabScript.ts",
   },
@@ -59,14 +62,6 @@ module.exports = {
         { from: "LICENSE" },
         { from: "manifest.json" },
         { from: "src/icons", to: "src/icons" },
-        {
-          from: "src/content-scripts/injectInTab.js",
-          to: "src/content-scripts/injectInTab.js",
-        },
-        {
-          from: "src/content-scripts/crunchyrollVideoPlayerV2.js",
-          to: "src/content-scripts/crunchyrollVideoPlayerV2.js",
-        },
         {
           from: "src/content-scripts/crunchyrollVideoPlayer2.css",
           to: "src/content-scripts/crunchyrollVideoPlayer2.css",
