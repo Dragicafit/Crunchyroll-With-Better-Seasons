@@ -219,15 +219,18 @@ function insertSettings(
   velocitySettingsMenu: Element,
   elements: HTMLElement[]
 ) {
-  elements.forEach((element: HTMLElement) => {
+  for (const element of elements) {
     velocitySettingsMenu.insertBefore(
       element,
       velocitySettingsMenu.querySelector(
         '[data-testid="vilos-settings_texttrack_submenu"]'
       )
     );
-  });
-  new MutationObserver((mutations) => {
+  }
+  new MutationObserver((mutations, observer) => {
+    if (!velocitySettingsMenu.isConnected) {
+      return observer.disconnect();
+    }
     if (
       mutations.find((mutation) =>
         [...mutation.addedNodes].find((addedNode: Node) =>
@@ -237,15 +240,14 @@ function insertSettings(
     ) {
       return;
     }
-    elements.forEach((element: HTMLElement) => {
-      velocitySettingsMenu.removeChild(element);
+    for (const element of elements) {
       velocitySettingsMenu.insertBefore(
         element,
         velocitySettingsMenu.querySelector(
           '[data-testid="vilos-settings_texttrack_submenu"]'
         )
       );
-    });
+    }
     if (
       velocitySettingsMenu.querySelector(
         '[data-testid="vilos-settings_back_button"]'
@@ -281,8 +283,8 @@ new MutationObserver((_, observer) => {
       ));
       if (!velocityControlsPackage) return;
       new MutationObserver((mutations) => {
-        const addedNode = mutations.flatMap(({ addedNodes }) => [
-          ...addedNodes,
+        const addedNode = mutations.flatMap((mutation: MutationRecord) => [
+          ...mutation.addedNodes,
         ])[0];
         if (!addedNode) return;
         const velocitySettingsMenu = (<HTMLElement>addedNode).querySelector(
