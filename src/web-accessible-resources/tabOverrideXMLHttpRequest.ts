@@ -8,6 +8,7 @@ import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
+  Config,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
@@ -28,14 +29,15 @@ export default class TabOverrideXMLHttpRequest {
   private readonly proxyService: ProxyService;
   private readonly saveService: SaveService;
 
-  constructor() {
+  constructor(config: Config) {
     const requestService = new RequestService();
     const seasonService = new SeasonService(requestService);
     this.parseService = new ParseService(requestService, seasonService);
     this.proxyService = new ProxyService(
       requestService,
       seasonService,
-      this.parseService
+      this.parseService,
+      config
     );
     this.saveService = new SaveService();
   }
@@ -221,7 +223,6 @@ export default class TabOverrideXMLHttpRequest {
       mergedEpisodesList: improveMergedEpisode[];
     } = await this.proxyService.getInfos(
       currentEpisode,
-      currentEpisodeId,
       seasonsWithLang,
       urlAPI
     );

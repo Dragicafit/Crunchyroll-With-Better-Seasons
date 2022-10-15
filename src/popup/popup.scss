@@ -1,0 +1,14 @@
+.container {
+  width: 350px;
+  height: 350px;
+}
+
+#priority {
+  overflow: auto;
+  height: 200px;
+}
+
+.grab {
+  cursor: grab;
+  cursor: -webkit-grabbing;
+}

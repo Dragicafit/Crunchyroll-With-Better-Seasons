@@ -24,40 +24,47 @@ export default class ParseService {
   async parseMergedEpisodes(
     sameSeasonsWithLang: improveSeason[],
     urlAPI: urlAPI,
-    episodeId: string
+    mergedEpisodesList: improveMergedEpisode[] = []
   ): Promise<improveMergedEpisode[]> {
-    const mergedEpisodes: improveMergedEpisode[] = [];
     const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
-      const urlEpisodes: string = urlAPI
-        .setApiPath(`episodes?season_id=${season.id}&`)
-        .toString();
       promiseList.push(
-        this.requestService
-          .fetchJson(urlEpisodes)
-          .then((body: collectionEpisode) => {
-            body.items.forEach((episode) => {
-              const found: improveMergedEpisode | undefined =
-                mergedEpisodes.find(
-                  (alreadyPresentEpisode) =>
-                    episode.sequence_number ===
-                    alreadyPresentEpisode.sequence_number
-                );
-              if (found != null) {
-                this.mergeEpisodeIntoMergedEpisode(episode, found, season);
-              } else {
-                this.createMergedEpisode(episode, season, mergedEpisodes);
-              }
-            });
-          })
+        this.addOtherEpisodesToEpisode(urlAPI, season, mergedEpisodesList)
       );
     }
     await Promise.all(promiseList);
-    mergedEpisodes.sort(
+    mergedEpisodesList.sort(
       (episode1, episode2) =>
         episode1.sequence_number - episode2.sequence_number
     );
-    return mergedEpisodes;
+    return mergedEpisodesList;
+  }
+
+  async addOtherEpisodesToEpisode(
+    urlAPI: urlAPI,
+    season: improveSeason,
+    mergedEpisodesList: improveMergedEpisode[]
+  ): Promise<void> {
+    const urlOtherEpisodes: string = urlAPI
+      .setApiPath(`episodes?season_id=${season.id}&`)
+      .toString();
+    return await this.requestService
+      .fetchJson(urlOtherEpisodes)
+      .then((body: collectionEpisode) => {
+        body.items.forEach((episode) => {
+          const mergedEpisodes: improveMergedEpisode | undefined =
+            mergedEpisodesList.find(
+              (alreadyPresentEpisode) =>
+                episode.sequence_number ===
+                alreadyPresentEpisode.sequence_number
+            );
+          if (mergedEpisodes != null) {
+            this.mergeEpisodeIntoMergedEpisode(episode, mergedEpisodes, season);
+          } else {
+            this.createMergedEpisode(episode, season, mergedEpisodesList);
+          }
+        });
+      });
   }
 
   async parseMergedEpisodesWithCurrentEpisodes(
@@ -67,7 +74,6 @@ export default class ParseService {
     currentSeasonId: string
   ): Promise<improveMergedEpisode[]> {
     const mergedEpisodesList: improveMergedEpisode[] = [];
-    const promiseList: Promise<void>[] = [];
     for (const season of sameSeasonsWithLang) {
       if (season.id === currentSeasonId) {
         currentEpisodes.forEach((episode) => {
@@ -89,35 +95,12 @@ export default class ParseService {
         });
         continue;
       }
-      const urlOtherEpisodes: string = urlAPI
-        .setApiPath(`episodes?season_id=${season.id}&`)
-        .toString();
-      promiseList.push(
-        this.requestService
-          .fetchJson(urlOtherEpisodes)
-          .then((body: collectionEpisode) => {
-            body.items.forEach((episode) => {
-              const found: improveMergedEpisode | undefined =
-                mergedEpisodesList.find(
-                  (alreadyPresentEpisode) =>
-                    episode.sequence_number ===
-                    alreadyPresentEpisode.sequence_number
-                );
-              if (found != null) {
-                this.mergeEpisodeIntoMergedEpisode(episode, found, season);
-              } else {
-                this.createMergedEpisode(episode, season, mergedEpisodesList);
-              }
-            });
-          })
-      );
     }
-    await Promise.all(promiseList);
-    mergedEpisodesList.sort(
-      (episode1, episode2) =>
-        episode1.sequence_number - episode2.sequence_number
+    return await this.parseMergedEpisodes(
+      sameSeasonsWithLang,
+      urlAPI,
+      mergedEpisodesList
     );
-    return mergedEpisodesList;
   }
 
   async parseSeasonsWithLang(

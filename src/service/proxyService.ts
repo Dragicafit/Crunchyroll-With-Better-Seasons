@@ -3,6 +3,7 @@ import {
   collectionEpisode,
   collectionPanel,
   collectionSeason,
+  Config,
   eventsBackgroundSend,
   FROM_SCRIPT_CWBS,
   improveMergedEpisode,
@@ -24,15 +25,18 @@ export default class ProxyService {
   private readonly requestService: RequestService;
   private readonly seasonService: SeasonService;
   private readonly parseService: ParseService;
+  private readonly config: Config;
 
   constructor(
     requestService: RequestService,
     seasonService: SeasonService,
-    parseService: ParseService
+    parseService: ParseService,
+    config: Config
   ) {
     this.requestService = requestService;
     this.seasonService = seasonService;
     this.parseService = parseService;
+    this.config = config;
   }
 
   getSeasonsFromEpisode(
@@ -89,7 +93,7 @@ export default class ProxyService {
         {
           direction: FROM_SCRIPT_CWBS,
           command: eventsBackgroundSend.SEND_INFO,
-          currentAudioLanguage: currentLanguageId,
+          preferedAudioLanguage: currentLanguageId,
           audioLanguages: languagesOrdered,
         },
         startPagePlayer
@@ -109,7 +113,6 @@ export default class ProxyService {
 
   async getInfos(
     currentEpisode: panel,
-    currentEpisodeId: string,
     seasonsWithLang: improveSeason[],
     urlAPI: urlAPI
   ) {
@@ -121,11 +124,7 @@ export default class ProxyService {
       (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
     const mergedEpisodesList: improveMergedEpisode[] =
-      await this.parseService.parseMergedEpisodes(
-        sameSeasonsWithLang,
-        urlAPI,
-        currentEpisodeId
-      );
+      await this.parseService.parseMergedEpisodes(sameSeasonsWithLang, urlAPI);
     return {
       currentSeasonWithLang,
       mergedEpisodesList,
@@ -145,12 +144,27 @@ export default class ProxyService {
       (season) => this.seasonService.sameSeason(season, currentSeasonWithLang)
     );
 
-    return await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
-      sameSeasonsWithLang,
-      collectionEpisode.items,
-      urlAPI,
-      currentSeasonId
-    );
+    const episodes =
+      await this.parseService.parseMergedEpisodesWithCurrentEpisodes(
+        sameSeasonsWithLang,
+        collectionEpisode.items,
+        urlAPI,
+        currentSeasonId
+      );
+
+    const preferedAudioLanguages = this.config.preferedAudioLanguages;
+    preferedAudioLanguages.reverse();
+    for (const episode of episodes) {
+      for (const preferedAudioLanguage of preferedAudioLanguages) {
+        const currentSeason = [...episode.episodes.values()].find(
+          (episode) => episode.audio_locale === preferedAudioLanguage
+        );
+        if (currentSeason != null) {
+          episode.id = currentSeason.id;
+        }
+      }
+    }
+    return episodes;
   }
 
   async concatLanguages(

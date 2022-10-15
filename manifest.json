@@ -9,12 +9,21 @@
     "96": "src/icons/icon.svg"
   },
   "permissions": [
+    "storage",
     "webRequest",
     "webRequestBlocking",
     "https://static.crunchyroll.com/*"
   ],
   "background": {
     "scripts": ["src/background-scripts/background.bundle.js"]
+  },
+  "browser_action": {
+    "default_title": "Crunchyroll With Better Seasons",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon.svg",
+      "32": "src/icons/icon.svg"
+    }
   },
   "web_accessible_resources": ["src/web-accessible-resources/tab.bundle.js"],
   "content_scripts": [

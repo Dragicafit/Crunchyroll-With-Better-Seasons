@@ -1,8 +1,18 @@
 export enum eventsBackgroundSend {
   SEND_INFO = "sendInfo",
+  SEND_CONFIG = "sendConfig",
 }
 
+export enum eventsBackgroundReceive {
+  ASK_CONFIG = "askConfig",
+}
+
+export const FROM_CONTENT_CWBS = "from-content-CWBS";
 export const FROM_SCRIPT_CWBS = "from-script-CWBS";
+
+export const PREFERED_AUDIO_LANGUAGES = "PREFERED_AUDIO_LANGUAGES";
+
+export type Config = { preferedAudioLanguages: languages[] };
 
 export type languages =
   | "SUB"

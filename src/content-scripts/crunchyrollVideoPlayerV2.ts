@@ -28,7 +28,7 @@ window.addEventListener("message", (event) => {
   switch (event.data.command) {
     case eventsBackgroundSend.SEND_INFO:
       console.log("receive info", {
-        currentAudioLanguage: event.data.currentAudioLanguage,
+        preferedAudioLanguage: event.data.preferedAudioLanguage,
         audioLanguages: event.data.audioLanguages,
       });
       settings = createSettings(
@@ -46,7 +46,7 @@ window.addEventListener("message", (event) => {
             callback: changeAudioLanguage,
           },
         ],
-        event.data.currentAudioLanguage
+        event.data.preferedAudioLanguage
       );
   }
 });
