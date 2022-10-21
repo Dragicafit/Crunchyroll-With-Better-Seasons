@@ -450,10 +450,10 @@ export const langToDisplay: Map<languages, string> = new Map([
 export const possibleLangKeys: languages[] = [...possibleLang.keys()];
 
 export const regexPageSeries =
-  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?series\/[A-Z0-9]{9}/;
+  /^https:\/\/((beta|www)\.)?crunchyroll\.com\/([a-z]{2}(-[a-z]{2})?\/)?series\/[A-Z0-9]{9}/;
 
 export const regexPageWatch =
-  /^https:\/\/beta.crunchyroll.com\/([a-z]{2}(-[a-z]{2})?\/)?watch\/[A-Z0-9]{9}/;
+  /^https:\/\/((beta|www)\.)?crunchyroll\.com\/([a-z]{2}(-[a-z]{2})?\/)?watch\/[A-Z0-9]{9}/;
 
 export const startPagePlayer =
   "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html";
@@ -462,19 +462,19 @@ export const startPageBundle =
   "https://static.crunchyroll.com/vilos-v2/web/vilos/js/bundle.js";
 
 export const regexApiObjects =
-  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>objects\/[A-Z0-9]{9}\?)(?<extraInfos>.*)$/;
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>objects\/[A-Z0-9]{9}\?)(?<extraInfos>.*)$/;
 
 export const regexApiSeasons =
-  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>seasons\?)(?<extraInfos>.*)$/;
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiUpNextSeries =
-  /^https:\/\/beta(-api)?.crunchyroll.com\/content\/v1\/up_next_series/;
+  /^https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com\/content\/v1\/up_next_series/;
 
 export const regexApiEpisodes =
-  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>episodes\?)(?<extraInfos>.*)$/;
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>episodes\?)(?<extraInfos>.*)$/;
 
 export const regexApiVideoStreams =
-  /^(?<host>https:\/\/beta(-api)?.crunchyroll.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
 
 export const invalidSlug: string[] = [
   "kaguya-sama-love-is-war",
