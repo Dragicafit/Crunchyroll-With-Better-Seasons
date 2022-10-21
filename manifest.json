@@ -37,7 +37,11 @@
       "run_at": "document_start"
     },
     {
-      "matches": ["https://beta.crunchyroll.com/*"],
+      "matches": [
+        "https://beta.crunchyroll.com/*",
+        "https://www.crunchyroll.com/*",
+        "https://crunchyroll.com/*"
+      ],
       "js": ["src/content-scripts/injectInTab.bundle.js"],
       "all_frames": false,
       "run_at": "document_start"

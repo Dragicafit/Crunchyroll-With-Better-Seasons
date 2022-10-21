@@ -21,7 +21,11 @@ let settings: HTMLElement[];
 window.addEventListener("message", (event) => {
   if (
     event.source !== window.parent ||
-    event.origin !== "https://beta.crunchyroll.com" ||
+    ![
+      "https://beta.crunchyroll.com",
+      "https://www.crunchyroll.com",
+      "https://crunchyroll.com",
+    ].includes(event.origin) ||
     event.data?.direction !== FROM_SCRIPT_CWBS
   )
     return;
