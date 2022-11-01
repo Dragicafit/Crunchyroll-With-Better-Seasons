@@ -3,6 +3,7 @@ import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
   collectionSeason,
+  Config,
   episode,
   improveMergedEpisode,
   improveMergedSeason,
@@ -15,10 +16,16 @@ import SeasonService from "./seasonService";
 export default class ParseService {
   private readonly requestService: RequestService;
   private readonly seasonService: SeasonService;
+  private readonly config: Config;
 
-  constructor(requestService: RequestService, seasonService: SeasonService) {
+  constructor(
+    requestService: RequestService,
+    seasonService: SeasonService,
+    config: Config
+  ) {
     this.requestService = requestService;
     this.seasonService = seasonService;
+    this.config = config;
   }
 
   async parseMergedEpisodes(
@@ -37,6 +44,20 @@ export default class ParseService {
       (episode1, episode2) =>
         episode1.sequence_number - episode2.sequence_number
     );
+
+    const preferedAudioLanguages = this.config.preferedAudioLanguages;
+    preferedAudioLanguages.reverse();
+    for (const episode of mergedEpisodesList) {
+      for (const preferedAudioLanguage of preferedAudioLanguages) {
+        const currentSeason = [...episode.episodes.values()].find(
+          (episode) => episode.audio_locale === preferedAudioLanguage
+        );
+        if (currentSeason != null) {
+          episode.id = currentSeason.id;
+        }
+      }
+    }
+
     return mergedEpisodesList;
   }
 
