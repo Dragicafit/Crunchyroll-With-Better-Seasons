@@ -11,7 +11,9 @@ let parseService: ParseService;
 beforeEach(() => {
   requestService = new RequestService();
   seasonService = new SeasonService(requestService);
-  parseService = new ParseService(requestService, seasonService);
+  parseService = new ParseService(requestService, seasonService, {
+    preferedAudioLanguages: ["EN"],
+  });
 });
 
 it("parses seasons of demon slayer", async () => {

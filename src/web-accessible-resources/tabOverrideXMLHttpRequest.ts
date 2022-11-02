@@ -32,12 +32,11 @@ export default class TabOverrideXMLHttpRequest {
   constructor(config: Config) {
     const requestService = new RequestService();
     const seasonService = new SeasonService(requestService);
-    this.parseService = new ParseService(requestService, seasonService);
+    this.parseService = new ParseService(requestService, seasonService, config);
     this.proxyService = new ProxyService(
       requestService,
       seasonService,
-      this.parseService,
-      config
+      this.parseService
     );
     this.saveService = new SaveService();
   }
@@ -230,6 +229,11 @@ export default class TabOverrideXMLHttpRequest {
     const mergedEpisodes: improveMergedEpisode = this.saveCurrentMergedEpisodes(
       currentEpisode,
       mergedEpisodesList
+    );
+
+    this.proxyService.redirectToDefaultAudioIfNeeded(
+      mergedEpisodes,
+      currentEpisodeId
     );
 
     this.proxyService.sendLanguagesToVilos(
