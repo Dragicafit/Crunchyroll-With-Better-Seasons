@@ -1,4 +1,5 @@
 import {
+  Config,
   eventsBackgroundReceive,
   eventsBackgroundSend,
   FROM_CONTENT_CWBS,
@@ -7,7 +8,7 @@ import {
 import TabOverrideHistoryPushState from "./tabOverrideHistoryPushState";
 import TabOverrideXMLHttpRequest from "./tabOverrideXMLHttpRequest";
 
-const config = { preferedAudioLanguages: [] };
+const config: Config = { preferedAudioLanguages: [] };
 const tabOverrideXMLHttpRequest = new TabOverrideXMLHttpRequest(config);
 tabOverrideXMLHttpRequest.start();
 const tabOverrideHistoryPushState = new TabOverrideHistoryPushState();
@@ -24,7 +25,9 @@ window.addEventListener("message", (event) => {
 
   switch (event.data.command) {
     case eventsBackgroundSend.SEND_CONFIG:
-      config.preferedAudioLanguages = event.data.preferedAudioLanguages;
+      config.preferedAudioLanguages = Object.freeze(
+        event.data.preferedAudioLanguages
+      );
       break;
     default:
       break;
