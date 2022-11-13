@@ -45,7 +45,7 @@ export default class ParseService {
         episode1.sequence_number - episode2.sequence_number
     );
 
-    const preferedAudioLanguages = this.config.preferedAudioLanguages;
+    const preferedAudioLanguages = [...this.config.preferedAudioLanguages];
     preferedAudioLanguages.reverse();
     for (const episode of mergedEpisodesList) {
       for (const preferedAudioLanguage of preferedAudioLanguages) {
