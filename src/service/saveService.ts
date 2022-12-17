@@ -1,5 +1,7 @@
 import cloneDeep from "lodash/cloneDeep";
+import urlAPI from "../model/urlAPI";
 import {
+  collectionSeason,
   improveMergedEpisode,
   improveSeason,
   panel,
@@ -13,6 +15,8 @@ export default class SaveService {
   private seasonsWithLang: improveSeason[] | undefined;
   private currentEpisode: panel | undefined;
   private currentMergedEpisodes: improveMergedEpisode | undefined;
+  private collectionSeason: collectionSeason | undefined;
+  private urlAPI: urlAPI | undefined;
 
   constructor() {
     this.href = window.location.href;
@@ -29,6 +33,8 @@ export default class SaveService {
       this.seasonsWithLang = undefined;
       this.currentEpisode = undefined;
       this.currentMergedEpisodes = undefined;
+      this.collectionSeason = undefined;
+      this.urlAPI = undefined;
       this.href = window.location.href;
     }
   }
@@ -53,6 +59,16 @@ export default class SaveService {
   ): improveMergedEpisode {
     this.currentMergedEpisodes = cloneDeep(currentMergedEpisodes);
     return cloneDeep(this.currentMergedEpisodes);
+  }
+
+  saveCurrentSeasons(collectionSeason: collectionSeason): collectionSeason {
+    this.collectionSeason = cloneDeep(collectionSeason);
+    return cloneDeep(this.collectionSeason);
+  }
+
+  saveUrlApi(urlAPI: urlAPI): urlAPI {
+    this.urlAPI = cloneDeep(urlAPI);
+    return cloneDeep(this.urlAPI);
   }
 
   waitForUpNext(): Promise<string> {
@@ -104,6 +120,32 @@ export default class SaveService {
       }
 
       return resolve(cloneDeep(this.currentMergedEpisodes));
+    });
+  }
+
+  waitForCurrentSeasons(): Promise<collectionSeason> {
+    return new Promise<collectionSeason>((resolve) => {
+      if (this.collectionSeason == null) {
+        this.eventsToClean.push(
+          setTimeout(() => resolve(this.waitForCurrentSeasons()), 100)
+        );
+        return;
+      }
+
+      return resolve(cloneDeep(this.collectionSeason));
+    });
+  }
+
+  waitForUrlAPI(): Promise<urlAPI> {
+    return new Promise<urlAPI>((resolve) => {
+      if (this.urlAPI == null) {
+        this.eventsToClean.push(
+          setTimeout(() => resolve(this.waitForUrlAPI()), 100)
+        );
+        return;
+      }
+
+      return resolve(cloneDeep(this.urlAPI));
     });
   }
 }

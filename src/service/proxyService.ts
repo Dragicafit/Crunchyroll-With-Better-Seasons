@@ -1,8 +1,6 @@
 import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
-  collectionPanel,
-  collectionSeason,
   eventsBackgroundSend,
   FROM_SCRIPT_CWBS,
   improveMergedEpisode,
@@ -16,6 +14,7 @@ import {
   startPagePlayer,
   subtitleLocalesWithSUBValues,
   videoStreams,
+  videoStreamsV2,
 } from "../web-accessible-resources/tabConst";
 import ParseService from "./parseService";
 import RequestService from "./requestService";
@@ -34,17 +33,6 @@ export default class ProxyService {
     this.requestService = requestService;
     this.seasonService = seasonService;
     this.parseService = parseService;
-  }
-
-  getSeasonsFromEpisode(
-    dataObjects: collectionPanel,
-    urlAPI: urlAPI
-  ): Promise<collectionSeason> {
-    const serieId: string = dataObjects.items[0].episode_metadata.series_id;
-    const urlSeasons: string = urlAPI
-      .setApiPath(`seasons?series_id=${serieId}&`)
-      .toString();
-    return this.requestService.fetchJson(urlSeasons);
   }
 
   async sendLanguagesToVilos(
@@ -233,6 +221,53 @@ export default class ProxyService {
             (otherSubtitle.hardsub_locale + "SUB")
           );
           (<any>videoStreams.streams)[otherStream][
+            otherSubtitle.hardsub_locale
+          ] = otherSubtitle;
+        }
+    }
+    console.log("videoStreams", videoStreams);
+    return videoStreams;
+  }
+
+  async addVideoStreamsFromOtherLanguagesV2(
+    videoStreams: videoStreamsV2,
+    urlAPI: urlAPI,
+    currentEpisode: panel,
+    mergedEpisodes: improveMergedEpisode
+  ) {
+    if (
+      currentEpisode.episode_metadata.is_subbed ||
+      !currentEpisode.episode_metadata.is_dubbed
+    ) {
+      return videoStreams;
+    }
+    for (const mergedEpisode of mergedEpisodes.episodes) {
+      if (
+        mergedEpisode.audio_locale != "SUB" ||
+        mergedEpisode.videoStreamsUrl == null
+      ) {
+        continue;
+      }
+      const urlVideoStreams: string =
+        urlAPI.getHost() +
+        mergedEpisode.videoStreamsUrl +
+        "?" +
+        urlAPI.getExtraInfos();
+      const otherVideoStreams: videoStreams =
+        await this.requestService.fetchJson(urlVideoStreams);
+      for (const otherSubtitle of Object.values(otherVideoStreams.subtitles)) {
+        otherSubtitle.locale = <any>(otherSubtitle.locale + "SUB");
+        videoStreams.meta.subtitles[otherSubtitle.locale] = otherSubtitle;
+      }
+      for (const [otherStream, otherStreamInfo] of Object.entries(
+        otherVideoStreams.streams
+      ))
+        for (const otherSubtitle of Object.values(otherStreamInfo)) {
+          if (otherSubtitle.hardsub_locale === "") continue;
+          otherSubtitle.hardsub_locale = <any>(
+            (otherSubtitle.hardsub_locale + "SUB")
+          );
+          (<any>videoStreams.data[0])[otherStream][
             otherSubtitle.hardsub_locale
           ] = otherSubtitle;
         }
