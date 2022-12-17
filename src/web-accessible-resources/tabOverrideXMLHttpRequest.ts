@@ -7,6 +7,7 @@ import SeasonService from "../service/seasonService";
 import {
   collectionEpisode,
   collectionPanel,
+  collectionPanelV2,
   collectionSeason,
   Config,
   improveMergedEpisode,
@@ -15,13 +16,16 @@ import {
   panel,
   regexApiEpisodes,
   regexApiObjects,
+  regexApiObjectsV2,
   regexApiSeasons,
   regexApiUpNextSeries,
   regexApiVideoStreams,
+  regexApiVideoStreamsV2,
   regexPageSeries,
   regexPageWatch,
   upNextSeries,
   videoStreams,
+  videoStreamsV2,
 } from "./tabConst";
 
 export default class TabOverrideXMLHttpRequest {
@@ -72,7 +76,19 @@ export default class TabOverrideXMLHttpRequest {
               let match: RegExpMatchArray | null = url2.match(regexApiObjects);
               if (match) {
                 tabOverrideXMLHttpRequest
-                  .handleObjectsInPageWatch(data, new urlAPI(match))
+                  .handleObjectsInPageWatch(data)
+                  .then((episodes) => {
+                    Object.defineProperty(_this, "responseText", {
+                      value: JSON.stringify(episodes),
+                    });
+                    resolve();
+                  });
+                return;
+              }
+              match = url2.match(regexApiObjectsV2);
+              if (match) {
+                tabOverrideXMLHttpRequest
+                  .handleObjectsInPageWatchV2(data)
                   .then((episodes) => {
                     Object.defineProperty(_this, "responseText", {
                       value: JSON.stringify(episodes),
@@ -84,7 +100,7 @@ export default class TabOverrideXMLHttpRequest {
               match = url2.match(regexApiVideoStreams);
               if (match) {
                 tabOverrideXMLHttpRequest
-                  .handleVideoStreamsInPageWatch(data, new urlAPI(match))
+                  .handleVideoStreamsInPageWatch(data)
                   .then((videoStreams) => {
                     Object.defineProperty(_this, "responseText", {
                       value: JSON.stringify(videoStreams),
@@ -92,6 +108,25 @@ export default class TabOverrideXMLHttpRequest {
                     resolve();
                   });
                 return;
+              }
+              match = url2.match(regexApiVideoStreamsV2);
+              if (match) {
+                tabOverrideXMLHttpRequest
+                  .handleVideoStreamsInPageWatchV2(data)
+                  .then((videoStreams) => {
+                    Object.defineProperty(_this, "responseText", {
+                      value: JSON.stringify(videoStreams),
+                    });
+                    resolve();
+                  });
+                return;
+              }
+              match = url2.match(regexApiSeasons);
+              if (match) {
+                tabOverrideXMLHttpRequest.handleSeasonsInPageWatch(
+                  data,
+                  new urlAPI(match)
+                );
               }
             } else if (document.URL.match(regexPageSeries)) {
               let match: RegExpMatchArray | null = url2.match(regexApiSeasons);
@@ -143,30 +178,63 @@ export default class TabOverrideXMLHttpRequest {
   }
 
   private async handleObjectsInPageWatch(
-    dataObjects: collectionPanel,
-    urlAPI: urlAPI
+    dataObjects: collectionPanel
   ): Promise<collectionPanel> {
     const currentEpisode: panel = this.saveCurrentEpisode(dataObjects);
-    this.sendLanguagesToVilos(dataObjects, urlAPI);
+    this.sendLanguagesToVilos();
     this.proxyService.addSubtitlesFromOtherLanguages(currentEpisode);
-    dataObjects.items[0] = currentEpisode;
+    dataObjects.items[0] = { ...dataObjects.items[0], ...currentEpisode };
+    return dataObjects;
+  }
+
+  private async handleObjectsInPageWatchV2(
+    dataObjects: collectionPanelV2
+  ): Promise<collectionPanelV2> {
+    const currentEpisode: panel = this.saveCurrentEpisodeV2(dataObjects);
+    this.sendLanguagesToVilos();
+    this.proxyService.addSubtitlesFromOtherLanguages(currentEpisode);
+    dataObjects.data[0] = { ...dataObjects.data[0], ...currentEpisode };
     return dataObjects;
   }
 
   private async handleVideoStreamsInPageWatch(
-    videoStreams: videoStreams,
-    urlAPI: urlAPI
+    videoStreams: videoStreams
   ): Promise<videoStreams> {
     const currentEpisode: panel =
       await this.saveService.waitForCurrentEpisode();
     const mergedEpisodes: improveMergedEpisode =
       await this.saveService.waitForCurrentMergedEpisodes();
+    const urlAPI: urlAPI = await this.saveService.waitForUrlAPI();
     return await this.proxyService.addVideoStreamsFromOtherLanguages(
       videoStreams,
       urlAPI,
       currentEpisode,
       mergedEpisodes
     );
+  }
+
+  private async handleVideoStreamsInPageWatchV2(
+    videoStreams: videoStreamsV2
+  ): Promise<videoStreamsV2> {
+    const currentEpisode: panel =
+      await this.saveService.waitForCurrentEpisode();
+    const mergedEpisodes: improveMergedEpisode =
+      await this.saveService.waitForCurrentMergedEpisodes();
+    const urlAPI: urlAPI = await this.saveService.waitForUrlAPI();
+    return await this.proxyService.addVideoStreamsFromOtherLanguagesV2(
+      videoStreams,
+      urlAPI,
+      currentEpisode,
+      mergedEpisodes
+    );
+  }
+
+  private async handleSeasonsInPageWatch(
+    seasons: collectionSeason,
+    urlAPI: urlAPI
+  ) {
+    this.saveCurrentSeasons(seasons);
+    this.saveUrlApi(urlAPI);
   }
 
   private async handleSeasonsInPageSeries(
@@ -200,15 +268,13 @@ export default class TabOverrideXMLHttpRequest {
     return collectionEpisode;
   }
 
-  private async sendLanguagesToVilos(
-    dataObjects: collectionPanel,
-    urlAPI: urlAPI
-  ) {
+  private async sendLanguagesToVilos() {
+    const urlAPI: urlAPI = await this.saveService.waitForUrlAPI();
     const currentEpisode: panel =
       await this.saveService.waitForCurrentEpisode();
     const currentEpisodeId: string = currentEpisode.id;
     const seasons: collectionSeason =
-      await this.proxyService.getSeasonsFromEpisode(dataObjects, urlAPI);
+      await this.saveService.waitForCurrentSeasons();
     const seasonsWithLang: improveSeason[] = await this.saveSeasonWithLang(
       seasons,
       urlAPI
@@ -252,6 +318,16 @@ export default class TabOverrideXMLHttpRequest {
     return this.saveService.saveUpNext(currentSeasonId);
   }
 
+  private async saveCurrentSeasons(
+    seasons: collectionSeason
+  ): Promise<collectionSeason> {
+    return this.saveService.saveCurrentSeasons(seasons);
+  }
+
+  private async saveUrlApi(seasons: urlAPI): Promise<urlAPI> {
+    return this.saveService.saveUrlApi(seasons);
+  }
+
   private async saveSeasonWithLang(
     seasons: collectionSeason,
     urlAPI: urlAPI
@@ -263,6 +339,10 @@ export default class TabOverrideXMLHttpRequest {
 
   private saveCurrentEpisode(dataObjects: collectionPanel): panel {
     return this.saveService.saveCurrentEpisode(dataObjects.items[0]);
+  }
+
+  private saveCurrentEpisodeV2(dataObjects: collectionPanelV2): panel {
+    return this.saveService.saveCurrentEpisode(dataObjects.data[0]);
   }
 
   private saveCurrentMergedEpisodes(

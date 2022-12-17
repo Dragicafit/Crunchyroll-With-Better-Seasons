@@ -132,7 +132,7 @@ export type episode_metadata = {
   identifier: string;
 };
 
-export type panel = {
+export type panelV1 = {
   __class__: "panel";
   __href__: "";
   __links__: {
@@ -143,16 +143,11 @@ export type panel = {
     streams: { href: string };
   };
   __actions__: {};
-  id: string;
-  external_id: string;
-  channel_id: string;
-  title: string;
-  description: string;
-  promo_title: string;
-  promo_description: string;
-  type: string;
-  slug: string;
-  slug_title: string;
+} & panel;
+
+export type panelV2 = panel;
+
+export type panel = {
   images: {
     thumbnail: {
       width: number;
@@ -162,8 +157,19 @@ export type panel = {
     }[][];
   };
   episode_metadata: episode_metadata;
-  playback: string;
+  title: string;
+  slug_title: string;
+  external_id: string;
+  promo_title: string;
+  slug: string;
+  description: string;
+  promo_description: string;
+  id: string;
   linked_resource_key: string;
+  channel_id: string;
+  playback: string;
+  type: string;
+  streams_link?: string;
 };
 
 export type season = {
@@ -244,7 +250,13 @@ export type collectionPanel = {
   __links__: {};
   __actions__: {};
   total: number;
-  items: panel[];
+  items: panelV1[];
+};
+
+export type collectionPanelV2 = {
+  total: number;
+  data: panelV2[];
+  meta: {};
 };
 
 export type collectionSeason = {
@@ -271,7 +283,7 @@ export type upNextSeries = {
   playhead: number;
   fully_watched: boolean;
   never_watched: boolean;
-  panel: panel;
+  panel: panelV1;
 };
 
 export type episode = {
@@ -371,7 +383,7 @@ export type videoStreams = {
   };
   __actions__: {};
   media_id: string;
-  audio_locale: subtitleLocales;
+  audio_locale: string;
   subtitles: {
     [subtitleLocale: string]: {
       locale: subtitleLocales;
@@ -399,6 +411,44 @@ export type videoStreams = {
   };
   bifs: string[];
   versions: null;
+};
+
+export type videoStreamsV2 = {
+  total: number;
+  data: [
+    {
+      vo_adaptive_dash: streamInfo;
+      multitrack_adaptive_hls_v2: streamInfo;
+      adaptive_hls: streamInfo;
+      download_dash: streamInfo;
+      drm_download_hls: streamInfo;
+      vo_drm_adaptive_hls: streamInfo;
+      adaptive_dash: streamInfo;
+      drm_download_dash: streamInfo;
+      drm_multitrack_adaptive_hls_v2: streamInfo;
+      vo_drm_adaptive_dash: streamInfo;
+      drm_adaptive_dash: streamInfo;
+      drm_adaptive_hls: streamInfo;
+      urls: streamInfo;
+      vo_adaptive_hls: streamInfo;
+      download_hls: streamInfo;
+    }
+  ];
+  meta: {
+    closed_captions: {};
+    media_id: string;
+    bifs: string[];
+    versions: null;
+    captions: {};
+    audio_locale: string;
+    subtitles: {
+      [subtitleLocale: string]: {
+        locale: subtitleLocales;
+        url: string;
+        format: string;
+      };
+    };
+  };
 };
 
 export type supported = subtitleLocales[];
@@ -464,6 +514,9 @@ export const startPageBundle =
 export const regexApiObjects =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>objects\/[A-Z0-9]{9}\?)(?<extraInfos>.*)$/;
 
+export const regexApiObjectsV2 =
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>objects\/[A-Z0-9]{9}\?)(?<extraInfos>.*)$/;
+
 export const regexApiSeasons =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>seasons\?)(?<extraInfos>.*)$/;
 
@@ -475,6 +528,9 @@ export const regexApiEpisodes =
 
 export const regexApiVideoStreams =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
+
+export const regexApiVideoStreamsV2 =
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
 
 export const invalidSlug: string[] = [
   "kaguya-sama-love-is-war",
