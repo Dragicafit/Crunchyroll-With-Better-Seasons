@@ -135,9 +135,7 @@ function createSettings<U extends { id: string; name?: string }>(
         ],
         callback: (element: EventTarget) => {
           element.addEventListener("click", () => {
-            window.location.hash = "";
             document.body.setAttribute("ic_options", "hide");
-            window.location.hash = type;
           });
         },
       }),
