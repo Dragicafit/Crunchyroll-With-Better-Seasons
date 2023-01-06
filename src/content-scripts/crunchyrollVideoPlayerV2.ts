@@ -291,8 +291,9 @@ new MutationObserver((_, observer) => {
           ...mutation.addedNodes,
         ])[0];
         if (!addedNode) return;
-        const velocitySettingsMenu = (<HTMLElement>addedNode).querySelector(
-          "#velocity-settings-menu"
+        const velocitySettingsMenu = <Element>(
+          (<HTMLElement>addedNode).querySelector("#velocity-settings-menu")
+            ?.firstChild
         );
         if (velocitySettingsMenu && settings) {
           insertSettingsWithObserver(velocitySettingsMenu, settings);
