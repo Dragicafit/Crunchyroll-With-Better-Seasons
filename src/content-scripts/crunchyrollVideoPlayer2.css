@@ -10,7 +10,8 @@ Copyright (c) 2022 Damien HERBERT
 
 #velocity-settings-menu .ic_settings,
 [ic_options="submenu"] #velocity-settings-menu .ic_menu,
-[ic_options="hide"] #velocity-settings-menu > div > * {
+[ic_options="hide"] #velocity-settings-menu > *:not(:only-child),
+[ic_options="hide"] #velocity-settings-menu > div:only-child > * {
   display: none;
 }
 
