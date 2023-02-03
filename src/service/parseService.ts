@@ -61,6 +61,39 @@ export default class ParseService {
     return mergedEpisodesList;
   }
 
+  // async parseMergedEpisodesV2(
+  //   sameSeasonsWithLang: seasonV2[],
+  //   urlAPI: urlAPI,
+  //   episode?: panelV2
+  // ): Promise<panelV2[]> {
+  //   const promiseList: Promise<void>[] = [];
+  //   for (const season of sameSeasonsWithLang) {
+  //     promiseList.push(
+  //       this.addOtherEpisodesToEpisodeV2(urlAPI, season, episode)
+  //     );
+  //   }
+  //   await Promise.all(promiseList);
+  //   mergedEpisodesList.sort(
+  //     (episode1, episode2) =>
+  //       episode1.sequence_number - episode2.sequence_number
+  //   );
+
+  //   const preferedAudioLanguages = [...this.config.preferedAudioLanguages];
+  //   preferedAudioLanguages.reverse();
+  //   for (const episode of mergedEpisodesList) {
+  //     for (const preferedAudioLanguage of preferedAudioLanguages) {
+  //       const currentSeason = [...episode.episodes.values()].find(
+  //         (episode) => episode.audio_locale === preferedAudioLanguage
+  //       );
+  //       if (currentSeason != null) {
+  //         episode.id = currentSeason.id;
+  //       }
+  //     }
+  //   }
+
+  //   return mergedEpisodesList;
+  // }
+
   async addOtherEpisodesToEpisode(
     urlAPI: urlAPI,
     season: improveSeason,
@@ -87,6 +120,36 @@ export default class ParseService {
         });
       });
   }
+
+  // async addOtherEpisodesToEpisodeV2(
+  //   urlAPI: urlAPI,
+  //   season: seasonV2,
+  //   mergedEpisode: panelV2
+  // ): Promise<void> {
+  //   const urlOtherEpisodes: string = urlAPI
+  //     .setApiPath(`episodes?season_id=${season.id}&`)
+  //     .toString();
+  //   return await this.requestService
+  //     .fetchJson(urlOtherEpisodes)
+  //     .then((body: collectionPanelV2) => {
+  //       body.data.forEach((episode: panelV2) => {
+  //         const mergedEpisodes: panelV2 | undefined = mergedEpisode.find(
+  //           (alreadyPresentEpisode) =>
+  //             episode.episode_metadata.sequence_number ===
+  //             alreadyPresentEpisode.episode_metadata.sequence_number
+  //         );
+  //         if (mergedEpisodes != null) {
+  //           this.mergeEpisodeIntoMergedEpisodeV2(
+  //             episode,
+  //             mergedEpisodes,
+  //             season
+  //           );
+  //         } else {
+  //           this.createMergedEpisodeV2(episode, mergedEpisode);
+  //         }
+  //       });
+  //     });
+  // }
 
   async parseMergedEpisodesWithCurrentEpisodes(
     sameSeasonsWithLang: improveSeason[],
@@ -208,6 +271,15 @@ export default class ParseService {
     return seasonsWithLang;
   }
 
+  // async parseSeasonsWithLangV2(
+  //   seasons: collectionSeasonV2,
+  //   urlAPI: urlAPI
+  // ): Promise<collectionSeasonV2> {
+  //   const serieId: string = seasons.data[0].series_id;
+  //   await this.seasonService.findOtherSeriesV2(serieId, urlAPI, seasons);
+  //   return seasons;
+  // }
+
   async parseMergedSeasons(
     seasonsWithLang: improveSeason[],
     currentSeasonId: string
@@ -257,6 +329,17 @@ export default class ParseService {
     return mergedEpisode;
   }
 
+  // private createMergedEpisodeV2(episode: panelV2, mergedEpisodes: panelV2) {
+  //   if (
+  //     mergedEpisodes.episode_metadata.versions &&
+  //     episode.episode_metadata.versions
+  //   ) {
+  //     mergedEpisodes.episode_metadata.versions.push(
+  //       ...episode.episode_metadata.versions
+  //     );
+  //   }
+  // }
+
   private createMergedSeason(
     seasonWithLang: improveSeason,
     mergedSeasons: improveMergedSeason[]
@@ -294,6 +377,26 @@ export default class ParseService {
       videoStreamsUrl: episode.__links__.streams?.href,
     });
   }
+
+  // private mergeEpisodeIntoMergedEpisodeV2(
+  //   episode: panelV2,
+  //   mergedEpisode: panelV2,
+  //   seasonWithLang: seasonV2
+  // ): void {
+  //   if (seasonWithLang.audio_locale === "SUB") {
+  //     mergedEpisode.episode_metadata.subtitle_locales =
+  //       episode.episode_metadata.subtitle_locales;
+  //   }
+  //   mergedEpisode.episode_metadata.is_subbed =
+  //     mergedEpisode.episode_metadata.is_subbed ||
+  //     episode.episode_metadata.is_subbed;
+  //   mergedEpisode.episode_metadata.is_dubbed =
+  //     mergedEpisode.episode_metadata.is_dubbed ||
+  //     episode.episode_metadata.is_dubbed;
+  //   mergedEpisode.episode_metadata.versions.push(
+  //     ...episode.episode_metadata.versions
+  //   );
+  // }
 
   private mergeSeasonWithLangIntoMergedSeason(
     seasonWithLang: improveSeason,

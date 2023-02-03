@@ -9,6 +9,7 @@ import {
   langToDisplay,
   languages,
   panel,
+  panelV2,
   possibleLangKeys,
   regexPageSeries,
   startPagePlayer,
@@ -131,6 +132,20 @@ export default class ProxyService {
     };
   }
 
+  async getInfosV2(currentEpisode: panelV2, urlAPI: urlAPI) {
+    // const seasonId: string = currentEpisode.episode_metadata.season_id;
+    // const currentSeasonWithLang: seasonV2 = seasonsWithLang.data.find(
+    //   (season) => season.id === seasonId
+    // )!;
+    // const sameSeasonsWithLang: seasonV2[] = seasonsWithLang.data.filter(
+    //   (season) => this.seasonService.sameSeasonV2(season, currentSeasonWithLang)
+    // );
+    // await this.parseService.parseMergedEpisodesV2(
+    //   sameSeasonsWithLang,
+    //   urlAPI
+    // );
+  }
+
   async addEpisodesFromOtherLanguages(
     collectionEpisode: collectionEpisode,
     seasonsWithLang: improveSeason[],
@@ -175,6 +190,14 @@ export default class ProxyService {
   }
 
   addSubtitlesFromOtherLanguages(currentEpisode: panel) {
+    currentEpisode.episode_metadata.is_subbed = true;
+    currentEpisode.episode_metadata.subtitle_locales.push(
+      ...(<any[]>subtitleLocalesWithSUBValues)
+    );
+    return currentEpisode;
+  }
+
+  addSubtitlesFromOtherLanguagesV2(currentEpisode: panelV2) {
     currentEpisode.episode_metadata.is_subbed = true;
     currentEpisode.episode_metadata.subtitle_locales.push(
       ...(<any[]>subtitleLocalesWithSUBValues)
@@ -232,35 +255,35 @@ export default class ProxyService {
   async addVideoStreamsFromOtherLanguagesV2(
     videoStreams: videoStreamsV2,
     urlAPI: urlAPI,
-    currentEpisode: panel,
-    mergedEpisodes: improveMergedEpisode
+    currentEpisode: panelV2
   ) {
     if (
       currentEpisode.episode_metadata.is_subbed ||
-      !currentEpisode.episode_metadata.is_dubbed
+      !currentEpisode.episode_metadata.is_dubbed ||
+      !currentEpisode.episode_metadata.versions
     ) {
       return videoStreams;
     }
-    for (const mergedEpisode of mergedEpisodes.episodes) {
-      if (
-        mergedEpisode.audio_locale != "SUB" ||
-        mergedEpisode.videoStreamsUrl == null
-      ) {
+    for (const version of currentEpisode.episode_metadata.versions) {
+      if (version.audio_locale != "ja-JP" || version.media_guid == null) {
         continue;
       }
-      const urlVideoStreams: string =
-        urlAPI.getHost() +
-        mergedEpisode.videoStreamsUrl +
-        "?" +
-        urlAPI.getExtraInfos();
-      const otherVideoStreams: videoStreams =
-        await this.requestService.fetchJson(urlVideoStreams);
-      for (const otherSubtitle of Object.values(otherVideoStreams.subtitles)) {
+      const urlVideoStreams: string = `${urlAPI.getHost()}/content/v2/cms/videos/${
+        version.media_guid
+      }/streams?${urlAPI.getExtraInfos()}`;
+      const otherVideoStreams: videoStreamsV2 =
+        await this.requestService.fetchJson(
+          urlVideoStreams,
+          urlAPI.getAuthorization()
+        );
+      for (const otherSubtitle of Object.values(
+        otherVideoStreams.meta.subtitles
+      )) {
         otherSubtitle.locale = <any>(otherSubtitle.locale + "SUB");
         videoStreams.meta.subtitles[otherSubtitle.locale] = otherSubtitle;
       }
       for (const [otherStream, otherStreamInfo] of Object.entries(
-        otherVideoStreams.streams
+        otherVideoStreams.data[0]
       ))
         for (const otherSubtitle of Object.values(otherStreamInfo)) {
           if (otherSubtitle.hardsub_locale === "") continue;

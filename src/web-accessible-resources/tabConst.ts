@@ -132,7 +132,54 @@ export type episode_metadata = {
   identifier: string;
 };
 
-export type panelV1 = {
+export type episode_metadataV2 = {
+  ad_breaks: { offset_ms: number; type: string }[];
+  audio_locale: string;
+  availability_ends: string;
+  availability_notes: string;
+  availability_starts: string;
+  available_date?: string;
+  available_offline: boolean;
+  closed_captions_available: boolean;
+  duration_ms: number;
+  eligible_region: string;
+  episode: string;
+  episode_air_date: string;
+  episode_number: number;
+  extended_maturity_rating: {};
+  free_available_date: string;
+  identifier: string;
+  is_clip: boolean;
+  is_dubbed: boolean;
+  is_mature: boolean;
+  is_premium_only: boolean;
+  is_subbed: boolean;
+  mature_blocked: boolean;
+  maturity_ratings: string[];
+  premium_available_date: string;
+  premium_date: null;
+  season_id: string;
+  season_number: number;
+  season_slug_title: string;
+  season_title: string;
+  sequence_number: number;
+  series_id: string;
+  series_slug_title: string;
+  series_title: string;
+  subtitle_locales: string[];
+  upload_date: string;
+  versions?: {
+    audio_locale: string;
+    guid: string;
+    is_premium_only: boolean;
+    media_guid: string;
+    original: boolean;
+    season_guid: string;
+    variant: string;
+  }[];
+};
+
+export type panel = {
   __class__: "panel";
   __href__: "";
   __links__: {
@@ -143,11 +190,6 @@ export type panelV1 = {
     streams: { href: string };
   };
   __actions__: {};
-} & panel;
-
-export type panelV2 = panel;
-
-export type panel = {
   images: {
     thumbnail: {
       width: number;
@@ -170,6 +212,31 @@ export type panel = {
   playback: string;
   type: string;
   streams_link?: string;
+};
+
+export type panelV2 = {
+  playback: string;
+  id: string;
+  title: string;
+  promo_title: string;
+  streams_link: string;
+  channel_id: string;
+  linked_resource_key: string;
+  slug: string;
+  type: string;
+  episode_metadata: episode_metadataV2;
+  external_id: string;
+  promo_description: string;
+  images: {
+    thumbnail: {
+      height: number;
+      source: string;
+      type: string;
+      width: number;
+    }[][];
+  };
+  description: string;
+  slug_title: string;
 };
 
 export type season = {
@@ -216,6 +283,43 @@ export type season = {
   identifier: string;
 };
 
+export type seasonV2 = {
+  title: string;
+  series_id: string;
+  description: string;
+  seo_title: string;
+  number_of_episodes: number;
+  versions?: {
+    audio_locale: string;
+    guid: string;
+    original: boolean;
+    variant: string;
+  }[];
+  slug_title: string;
+  season_tags: string[];
+  maturity_ratings: string[];
+  is_mature: boolean;
+  audio_locale: string;
+  channel_id: string;
+  is_dubbed: boolean;
+  subtitle_locales: string[];
+  season_display_number: string;
+  is_complete: boolean;
+  is_simulcast: boolean;
+  extended_maturity_rating: {};
+  availability_notes: string;
+  seo_description: string;
+  identifier: string;
+  season_sequence_number: number;
+  mature_blocked: boolean;
+  is_subbed: boolean;
+  id: string;
+  season_number: 1;
+  keywords: [];
+  images: {};
+  audio_locales: string[];
+};
+
 export type improveSeason = season & {
   audio_locale2: languages;
   season_number_order: number;
@@ -250,7 +354,7 @@ export type collectionPanel = {
   __links__: {};
   __actions__: {};
   total: number;
-  items: panelV1[];
+  items: panel[];
 };
 
 export type collectionPanelV2 = {
@@ -269,6 +373,14 @@ export type collectionSeason = {
   items: season[];
 };
 
+export type collectionSeasonV2 = {
+  total: number;
+  data: seasonV2[];
+  meta: {
+    versions_considered: boolean;
+  };
+};
+
 export type collectionEpisode = {
   __class__: "collection";
   __href__: string;
@@ -283,7 +395,7 @@ export type upNextSeries = {
   playhead: number;
   fully_watched: boolean;
   never_watched: boolean;
-  panel: panelV1;
+  panel: panel;
 };
 
 export type episode = {
@@ -519,6 +631,9 @@ export const regexApiObjectsV2 =
 
 export const regexApiSeasons =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>seasons\?)(?<extraInfos>.*)$/;
+
+export const regexApiSeasonsV2 =
+  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>series\/[A-Z0-9]{9}\/seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiUpNextSeries =
   /^https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com\/content\/v1\/up_next_series/;
