@@ -3,11 +3,13 @@ import urlAPI from "../model/urlAPI";
 import {
   collectionEpisode,
   collectionSeason,
+  collectionSeasonV2,
   Config,
   episode,
   improveMergedEpisode,
   improveMergedSeason,
   improveSeason,
+  seasonV2,
 } from "../web-accessible-resources/tabConst";
 import { improveApiSeasons } from "../web-accessible-resources/tabImproveApiSeasons";
 import RequestService from "./requestService";
@@ -271,14 +273,17 @@ export default class ParseService {
     return seasonsWithLang;
   }
 
-  // async parseSeasonsWithLangV2(
-  //   seasons: collectionSeasonV2,
-  //   urlAPI: urlAPI
-  // ): Promise<collectionSeasonV2> {
-  //   const serieId: string = seasons.data[0].series_id;
-  //   await this.seasonService.findOtherSeriesV2(serieId, urlAPI, seasons);
-  //   return seasons;
-  // }
+  async parseSeasonsWithLangV2(
+    seasons: collectionSeasonV2
+  ): Promise<seasonV2[]> {
+    for (const season of seasons.data) {
+      season.title = season.title.replace(
+        / \(English Dub\)$| \(French Dub\)$| \(Spanish Dub\)$| \(Portuguese Dub\)$| \(German Dub\)$| \(Italian Dub\)$| \(Hindi Dub\)$| \(Arabic Dub\)$| \(Castilian Dub\)$| \(Russian Dub\)$| \(Dub\)$| \(Sub\)$| \(Dubbed\)$| \(Subbed\)$| \(Subtitled\)$| \(Russian\)$| \(VF\)$|\(EN\) |\(FR\) |\(ES\) |\(PT\) |\(DE\) |\(IT\) |\(HI\) |\(AR\) |\(CAS\) |\(RU\) |\(OmU\) /,
+        ""
+      );
+    }
+    return seasons.data;
+  }
 
   async parseMergedSeasons(
     seasonsWithLang: improveSeason[],
@@ -304,6 +309,35 @@ export default class ParseService {
       );
       if (currentSeason != null) {
         season.id = currentSeason.id;
+      }
+    }
+    return seasons;
+  }
+
+  async parseMergedSeasonsV2(
+    seasonsWithLang: seasonV2[],
+    currentSeasonId: string
+  ): Promise<seasonV2[]> {
+    const seasons: seasonV2[] = seasonsWithLang.reduce(
+      (previousValue: seasonV2[], currentValue: seasonV2) => {
+        const found: seasonV2 | undefined = previousValue.find((season) =>
+          this.seasonService.sameSeasonV2(season, currentValue)
+        );
+        if (found == null) {
+          previousValue.push(currentValue);
+        }
+        return previousValue;
+      },
+      <seasonV2[]>(<unknown[]>[])
+    );
+    for (const season of seasons) {
+      if (season.versions) {
+        const currentSeason = [...season.versions?.values()].find(
+          (season) => season.guid === currentSeasonId
+        );
+        if (currentSeason != null) {
+          season.id = currentSeason.guid;
+        }
       }
     }
     return seasons;

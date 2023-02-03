@@ -81,8 +81,8 @@ export default class SeasonService {
     if (!season1.versions) {
       return false;
     }
-    const versions = season1.versions.map((version) => version.guid);
-    return versions.includes(season2.id);
+    const versionIds = season1.versions.map((version) => version.guid);
+    return versionIds.includes(season2.id);
   }
 }
 

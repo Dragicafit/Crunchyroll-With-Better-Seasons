@@ -6,6 +6,7 @@ import {
   improveSeason,
   panel,
   panelV2,
+  seasonV2,
 } from "../web-accessible-resources/tabConst";
 
 export default class SaveService {
@@ -14,6 +15,7 @@ export default class SaveService {
 
   private upNext: string | undefined;
   private seasonsWithLang: improveSeason[] | undefined;
+  private seasonsWithLangV2: seasonV2[] | undefined;
   private currentEpisode: panel | undefined;
   private currentEpisodeV2: panelV2 | undefined;
   private currentMergedEpisodes: improveMergedEpisode | undefined;
@@ -33,6 +35,7 @@ export default class SaveService {
       this.eventsToClean = [];
       this.upNext = undefined;
       this.seasonsWithLang = undefined;
+      this.seasonsWithLangV2 = undefined;
       this.currentEpisode = undefined;
       this.currentEpisodeV2 = undefined;
       this.currentMergedEpisodes = undefined;
@@ -50,6 +53,11 @@ export default class SaveService {
   saveSeasonWithLang(seasonsWithLang: improveSeason[]): improveSeason[] {
     this.seasonsWithLang = cloneDeep(seasonsWithLang);
     return cloneDeep(this.seasonsWithLang);
+  }
+
+  saveSeasonWithLangV2(seasonsWithLang: seasonV2[]): seasonV2[] {
+    this.seasonsWithLangV2 = cloneDeep(seasonsWithLang);
+    return cloneDeep(this.seasonsWithLangV2);
   }
 
   saveCurrentEpisode(currentEpisode: panel): panel {
@@ -102,6 +110,19 @@ export default class SaveService {
       }
 
       return resolve(cloneDeep(this.seasonsWithLang));
+    });
+  }
+
+  waitForSeasonsWithLangV2(): Promise<seasonV2[]> {
+    return new Promise<seasonV2[]>((resolve) => {
+      if (this.seasonsWithLangV2 == null) {
+        this.eventsToClean.push(
+          setTimeout(() => resolve(this.waitForSeasonsWithLangV2()), 100)
+        );
+        return;
+      }
+
+      return resolve(cloneDeep(this.seasonsWithLangV2));
     });
   }
 

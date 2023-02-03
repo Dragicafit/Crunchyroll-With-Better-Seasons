@@ -9,6 +9,7 @@ import {
   collectionPanel,
   collectionPanelV2,
   collectionSeason,
+  collectionSeasonV2,
   Config,
   improveMergedEpisode,
   improveMergedSeason,
@@ -19,12 +20,16 @@ import {
   regexApiObjects,
   regexApiObjectsV2,
   regexApiSeasons,
+  regexApiSeasonsV2,
   regexApiUpNextSeries,
+  regexApiUpNextSeriesV2,
   regexApiVideoStreams,
   regexApiVideoStreamsV2,
   regexPageSeries,
   regexPageWatch,
+  seasonV2,
   upNextSeries,
+  upNextSeriesV2,
   videoStreams,
   videoStreamsV2,
 } from "./tabConst";
@@ -147,6 +152,18 @@ export default class TabOverrideXMLHttpRequest {
                   });
                 return;
               }
+              match = url2.match(regexApiSeasonsV2);
+              if (match) {
+                tabOverrideXMLHttpRequest
+                  .handleSeasonsInPageSeriesV2(data)
+                  .then((seasons) => {
+                    Object.defineProperty(_this, "responseText", {
+                      value: JSON.stringify(seasons),
+                    });
+                    resolve();
+                  });
+                return;
+              }
               match = url2.match(regexApiEpisodes);
               if (match) {
                 tabOverrideXMLHttpRequest
@@ -160,6 +177,8 @@ export default class TabOverrideXMLHttpRequest {
                 return;
               } else if (url2.match(regexApiUpNextSeries)) {
                 tabOverrideXMLHttpRequest.saveUpNext(data);
+              } else if (url2.match(regexApiUpNextSeriesV2)) {
+                tabOverrideXMLHttpRequest.saveUpNextV2(data);
               }
             }
           }
@@ -265,6 +284,20 @@ export default class TabOverrideXMLHttpRequest {
     return seasons;
   }
 
+  private async handleSeasonsInPageSeriesV2(
+    dataSeasons: collectionSeasonV2
+  ): Promise<collectionSeasonV2> {
+    const seasons: seasonV2[] = await this.saveSeasonWithLangV2(dataSeasons);
+    const upNext: string = await this.saveService.waitForUpNext();
+    const mergedSeasons: seasonV2[] = await this.proxyService.concatLanguagesV2(
+      seasons,
+      upNext
+    );
+    dataSeasons.data = mergedSeasons;
+    dataSeasons.meta.versions_considered = true;
+    return dataSeasons;
+  }
+
   private async handleEpisodesInPageSeries(
     collectionEpisode: collectionEpisode,
     urlAPI: urlAPI
@@ -331,6 +364,14 @@ export default class TabOverrideXMLHttpRequest {
     return this.saveService.saveUpNext(currentSeasonId);
   }
 
+  private saveUpNextV2(dataUpNextSeries: upNextSeriesV2 | ""): string {
+    const currentSeasonId =
+      dataUpNextSeries === "" || dataUpNextSeries.total == 0
+        ? ""
+        : dataUpNextSeries.data[0].panel.episode_metadata.season_id;
+    return this.saveService.saveUpNext(currentSeasonId);
+  }
+
   private async saveCurrentSeasons(
     seasons: collectionSeason
   ): Promise<collectionSeason> {
@@ -347,6 +388,14 @@ export default class TabOverrideXMLHttpRequest {
   ): Promise<improveSeason[]> {
     return this.saveService.saveSeasonWithLang(
       await this.parseService.parseSeasonsWithLang(seasons, urlAPI)
+    );
+  }
+
+  private async saveSeasonWithLangV2(
+    seasons: collectionSeasonV2
+  ): Promise<seasonV2[]> {
+    return this.saveService.saveSeasonWithLangV2(
+      await this.parseService.parseSeasonsWithLangV2(seasons)
     );
   }
 

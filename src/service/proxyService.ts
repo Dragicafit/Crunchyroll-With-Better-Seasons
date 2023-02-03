@@ -11,7 +11,9 @@ import {
   panel,
   panelV2,
   possibleLangKeys,
+  possibleLangKeysV2,
   regexPageSeries,
+  seasonV2,
   startPagePlayer,
   subtitleLocalesWithSUBValues,
   videoStreams,
@@ -181,6 +183,33 @@ export default class ProxyService {
         if (firstDub && lang !== "SUB") {
           firstDub = false;
           season.title += `, DUBS : ${lang}`;
+        } else {
+          season.title += `, ${lang}`;
+        }
+      }
+      return season;
+    });
+  }
+
+  async concatLanguagesV2(
+    seasons: seasonV2[],
+    upNext: string
+  ): Promise<seasonV2[]> {
+    const mergedSeasons: seasonV2[] =
+      await this.parseService.parseMergedSeasonsV2(seasons, upNext);
+    return mergedSeasons.map((season) => {
+      let firstDub = true;
+      const langs = season.versions
+        ? season.versions.map((version) => version.audio_locale)
+        : season.audio_locales;
+      for (const lang of possibleLangKeysV2.filter((lang) =>
+        langs.includes(lang)
+      )) {
+        if (lang === "ja-JP") {
+          season.title += `, SUB`;
+        } else if (firstDub) {
+          firstDub = false;
+          season.title += `, DUBS: ${lang}`;
         } else {
           season.title += `, ${lang}`;
         }

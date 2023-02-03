@@ -28,6 +28,23 @@ export type languages =
   | "RU"
   | "OTHERS";
 
+export type languagesV2 =
+  | "ja-JP"
+  | "en-US"
+  | "en-IN"
+  | "de-DE"
+  | "es-419"
+  | "es-ES"
+  | "fr-FR"
+  | "it-IT"
+  | "pt-BR"
+  | "pt-PT"
+  | "ru-RU"
+  | "ar-SA"
+  | "hi-IN"
+  | "zh-CN"
+  | "ko-KR";
+
 export type subtitleLocales =
   | "ar-ME"
   | "ar-SA"
@@ -398,6 +415,20 @@ export type upNextSeries = {
   panel: panel;
 };
 
+export type upNextSeriesV2 = {
+  total: number;
+  data: {
+    fully_watched: boolean;
+    never_watched: boolean;
+    panel: panelV2;
+    playhead: number;
+    shortcut: boolean;
+  }[];
+  meta: {
+    versions_considered: boolean;
+  };
+};
+
 export type episode = {
   __class__: "episode";
   __href__: string;
@@ -611,6 +642,24 @@ export const langToDisplay: Map<languages, string> = new Map([
 
 export const possibleLangKeys: languages[] = [...possibleLang.keys()];
 
+export const possibleLangKeysV2: languagesV2[] = [
+  "ja-JP",
+  "en-US",
+  "en-IN",
+  "de-DE",
+  "es-419",
+  "es-ES",
+  "fr-FR",
+  "it-IT",
+  "pt-BR",
+  "pt-PT",
+  "ru-RU",
+  "ar-SA",
+  "hi-IN",
+  "zh-CN",
+  "ko-KR",
+];
+
 export const regexPageSeries =
   /^https:\/\/((beta|www)\.)?crunchyroll\.com\/([a-z]{2}(-[a-z]{2})?\/)?series\/[A-Z0-9]{9}/;
 
@@ -637,6 +686,9 @@ export const regexApiSeasonsV2 =
 
 export const regexApiUpNextSeries =
   /^https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com\/content\/v1\/up_next_series/;
+
+export const regexApiUpNextSeriesV2 =
+  /^https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com\/content\/v2\/discover\/up_next\/[A-Z0-9]{9}/;
 
 export const regexApiEpisodes =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/cms\/v2\/[A-Z]{2}\/M\d\/(?:crunchyroll|-)\/)(?<apiPath>episodes\?)(?<extraInfos>.*)$/;
