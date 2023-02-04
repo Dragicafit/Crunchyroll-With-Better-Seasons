@@ -51,6 +51,7 @@ export default class urlAPI {
     this.extraInfos = extraInfos;
     return this;
   }
+
   public getAuthorization(): string | undefined {
     return this.authorization;
   }

@@ -1,25 +1,13 @@
 import cloneDeep from "lodash/cloneDeep";
 import urlAPI from "../model/urlAPI";
-import {
-  collectionSeason,
-  improveMergedEpisode,
-  improveSeason,
-  panel,
-  panelV2,
-  seasonV2,
-} from "../web-accessible-resources/tabConst";
+import { panel, season } from "../web-accessible-resources/tabConst";
 
 export default class SaveService {
   private href: string;
   private eventsToClean: NodeJS.Timeout[];
 
-  private upNext: string | undefined;
-  private seasonsWithLang: improveSeason[] | undefined;
-  private seasonsWithLangV2: seasonV2[] | undefined;
+  private seasonsWithLang: season[] | undefined;
   private currentEpisode: panel | undefined;
-  private currentEpisodeV2: panelV2 | undefined;
-  private currentMergedEpisodes: improveMergedEpisode | undefined;
-  private collectionSeason: collectionSeason | undefined;
   private urlAPI: urlAPI | undefined;
 
   constructor() {
@@ -33,31 +21,16 @@ export default class SaveService {
     if (this.href != window.location.href) {
       this.eventsToClean.forEach(clearTimeout);
       this.eventsToClean = [];
-      this.upNext = undefined;
       this.seasonsWithLang = undefined;
-      this.seasonsWithLangV2 = undefined;
       this.currentEpisode = undefined;
-      this.currentEpisodeV2 = undefined;
-      this.currentMergedEpisodes = undefined;
-      this.collectionSeason = undefined;
       this.urlAPI = undefined;
       this.href = window.location.href;
     }
   }
 
-  saveUpNext(season_id: string): string {
-    this.upNext = cloneDeep(season_id);
-    return cloneDeep(this.upNext);
-  }
-
-  saveSeasonWithLang(seasonsWithLang: improveSeason[]): improveSeason[] {
+  saveSeasonWithLang(seasonsWithLang: season[]): season[] {
     this.seasonsWithLang = cloneDeep(seasonsWithLang);
     return cloneDeep(this.seasonsWithLang);
-  }
-
-  saveSeasonWithLangV2(seasonsWithLang: seasonV2[]): seasonV2[] {
-    this.seasonsWithLangV2 = cloneDeep(seasonsWithLang);
-    return cloneDeep(this.seasonsWithLangV2);
   }
 
   saveCurrentEpisode(currentEpisode: panel): panel {
@@ -65,43 +38,13 @@ export default class SaveService {
     return cloneDeep(this.currentEpisode);
   }
 
-  saveCurrentEpisodeV2(currentEpisode: panelV2): panelV2 {
-    this.currentEpisodeV2 = cloneDeep(currentEpisode);
-    return cloneDeep(this.currentEpisodeV2);
-  }
-
-  saveCurrentMergedEpisodes(
-    currentMergedEpisodes: improveMergedEpisode
-  ): improveMergedEpisode {
-    this.currentMergedEpisodes = cloneDeep(currentMergedEpisodes);
-    return cloneDeep(this.currentMergedEpisodes);
-  }
-
-  saveCurrentSeasons(collectionSeason: collectionSeason): collectionSeason {
-    this.collectionSeason = cloneDeep(collectionSeason);
-    return cloneDeep(this.collectionSeason);
-  }
-
   saveUrlApi(urlAPI: urlAPI): urlAPI {
     this.urlAPI = cloneDeep(urlAPI);
     return cloneDeep(this.urlAPI);
   }
 
-  waitForUpNext(): Promise<string> {
-    return new Promise<string>((resolve) => {
-      if (this.upNext == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForUpNext()), 100)
-        );
-        return;
-      }
-
-      return resolve(cloneDeep(this.upNext));
-    });
-  }
-
-  waitForSeasonsWithLang(): Promise<improveSeason[]> {
-    return new Promise<improveSeason[]>((resolve) => {
+  waitForSeasonsWithLang(): Promise<season[]> {
+    return new Promise<season[]>((resolve) => {
       if (this.seasonsWithLang == null) {
         this.eventsToClean.push(
           setTimeout(() => resolve(this.waitForSeasonsWithLang()), 100)
@@ -110,19 +53,6 @@ export default class SaveService {
       }
 
       return resolve(cloneDeep(this.seasonsWithLang));
-    });
-  }
-
-  waitForSeasonsWithLangV2(): Promise<seasonV2[]> {
-    return new Promise<seasonV2[]>((resolve) => {
-      if (this.seasonsWithLangV2 == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForSeasonsWithLangV2()), 100)
-        );
-        return;
-      }
-
-      return resolve(cloneDeep(this.seasonsWithLangV2));
     });
   }
 
@@ -136,45 +66,6 @@ export default class SaveService {
       }
 
       return resolve(cloneDeep(this.currentEpisode));
-    });
-  }
-
-  waitForCurrentEpisodeV2(): Promise<panelV2> {
-    return new Promise<panelV2>((resolve) => {
-      if (this.currentEpisodeV2 == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForCurrentEpisodeV2()), 100)
-        );
-        return;
-      }
-
-      return resolve(cloneDeep(this.currentEpisodeV2));
-    });
-  }
-
-  waitForCurrentMergedEpisodes(): Promise<improveMergedEpisode> {
-    return new Promise<improveMergedEpisode>((resolve) => {
-      if (this.currentMergedEpisodes == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForCurrentMergedEpisodes()), 100)
-        );
-        return;
-      }
-
-      return resolve(cloneDeep(this.currentMergedEpisodes));
-    });
-  }
-
-  waitForCurrentSeasons(): Promise<collectionSeason> {
-    return new Promise<collectionSeason>((resolve) => {
-      if (this.collectionSeason == null) {
-        this.eventsToClean.push(
-          setTimeout(() => resolve(this.waitForCurrentSeasons()), 100)
-        );
-        return;
-      }
-
-      return resolve(cloneDeep(this.collectionSeason));
     });
   }
 

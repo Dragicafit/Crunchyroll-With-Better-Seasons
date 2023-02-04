@@ -29,15 +29,6 @@
   "content_scripts": [
     {
       "matches": [
-        "https://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
-      ],
-      "js": ["src/content-scripts/crunchyrollVideoPlayerV2.bundle.js"],
-      "css": ["src/content-scripts/crunchyrollVideoPlayer2.css"],
-      "all_frames": true,
-      "run_at": "document_start"
-    },
-    {
-      "matches": [
         "https://beta.crunchyroll.com/*",
         "https://www.crunchyroll.com/*",
         "https://crunchyroll.com/*"
