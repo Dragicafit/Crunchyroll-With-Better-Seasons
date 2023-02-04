@@ -12,14 +12,16 @@ beforeEach(() => {
 
 it("finds other series", async () => {
   let collectionSeason: any = {
-    items: [
+    total: 1,
+    data: [
       {
         season_number: 1,
       },
     ],
   };
   let expected: any = {
-    items: [
+    total: 4,
+    data: [
       { season_number: 1 },
       { season_number: undefined },
       { season_number: undefined },
@@ -35,7 +37,8 @@ it("finds other series", async () => {
     .spyOn(requestService, "fetchJson")
     .mockImplementation((urlOtherSeasons) =>
       Promise.resolve({
-        items: [{ season_number: urlToSeasonNumber.get(urlOtherSeasons) }],
+        total: 1,
+        data: [{ season_number: urlToSeasonNumber.get(urlOtherSeasons) }],
       })
     );
   await seasonService.findOtherSeries(
@@ -47,7 +50,7 @@ it("finds other series", async () => {
   for (const serie of urlToSeasonNumber.keys()) {
     expect(fetchJsonMock).toHaveBeenNthCalledWith(
       i,
-      `seasons?series_id=${serie}&`
+      `series/${serie}/seasons?`
     );
     i++;
   }
