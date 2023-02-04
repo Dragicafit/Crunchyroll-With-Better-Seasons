@@ -1,6 +1,10 @@
 import cloneDeep from "lodash/cloneDeep";
 import urlAPI from "../model/urlAPI";
-import { panel, season } from "../web-accessible-resources/tabConst";
+import {
+  panel,
+  regexPageWatch,
+  season,
+} from "../web-accessible-resources/tabConst";
 
 export default class SaveService {
   private href: string;
@@ -18,7 +22,10 @@ export default class SaveService {
   }
 
   resetIfChanged() {
-    if (this.href != window.location.href) {
+    if (
+      this.href != window.location.href &&
+      !window.location.href.match(regexPageWatch)
+    ) {
       this.eventsToClean.forEach(clearTimeout);
       this.eventsToClean = [];
       this.seasonsWithLang = undefined;
