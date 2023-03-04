@@ -65,8 +65,7 @@ export default class ProxyService {
     currentEpisode: panel
   ) {
     if (
-      currentEpisode.episode_metadata.is_subbed ||
-      !currentEpisode.episode_metadata.is_dubbed ||
+      currentEpisode.episode_metadata.audio_locale === "ja-JP" ||
       !currentEpisode.episode_metadata.versions
     ) {
       return videoStreams;
