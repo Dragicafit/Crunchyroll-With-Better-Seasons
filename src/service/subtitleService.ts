@@ -8,12 +8,12 @@ import {
 } from "../web-accessible-resources/tabConst";
 
 const regexSupported = /(JSON\.parse\(')(\[".*?"\])('\))/;
-const regexSupportedFallbacks = /([^\w]\w\w=JSON\.parse\(')(\{".*?"\]\})('\))/;
+const regexSupportedFallbacks = /(,\$u=JSON\.parse\(')(\{".*?"\]\})('\))/;
 const regexSupportedFallbacks2 =
   /(\d+:e=>\{"use strict";e\.exports=JSON\.parse\(')(\{"default":\[.*?"\]\})('\)\})/;
 const regexMapping = /(JSON\.parse\(')(\{"Wp":\{".*?"\}\}\})('\))/;
 const regexLocaleToDisplay =
-  /([^\w]\w\w=JSON\.parse\('.*?[^\w]\w\w=JSON\.parse\(')(\{".*?,"":""\})('\))/;
+  /(\$u=JSON\.parse\('.*?[^\w]\w\w=JSON\.parse\(')(\{".*?,"":""\})('\))/;
 const regexLocaleToDisplay2 =
   /(\d+:e=>\{"use strict";e\.exports=JSON\.parse\(')(\{"en-US":".*?"\})('\)\})/;
 
