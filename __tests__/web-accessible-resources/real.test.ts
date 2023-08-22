@@ -4367,316 +4367,196 @@ it("test API episode", () => {
 
 it("test API video streams", () => {
   let videoStreams: videoStreams = {
-    total: 1,
-    data: [
+    audioLocale: "ja-JP",
+    bifs: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_bif.bif",
+    burnedInLocale: "",
+    captions: {},
+    hardSubs: {
+      "en-US": {
+        hlang: "en-US",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692408.mp4,3692415.mp4,3692401.mp4,3692387.mp4,3692394.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "de-DE": {
+        hlang: "de-DE",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692448.mp4,3692449.mp4,3692447.mp4,3692445.mp4,3692446.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "es-419": {
+        hlang: "es-419",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692409.mp4,3692416.mp4,3692402.mp4,3692388.mp4,3692395.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "es-ES": {
+        hlang: "es-ES",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692410.mp4,3692417.mp4,3692403.mp4,3692389.mp4,3692396.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "fr-FR": {
+        hlang: "fr-FR",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692411.mp4,3692418.mp4,3692404.mp4,3692390.mp4,3692397.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "it-IT": {
+        hlang: "it-IT",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692455.mp4,3692456.mp4,3692454.mp4,3692452.mp4,3692453.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "pt-BR": {
+        hlang: "pt-BR",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692412.mp4,3692419.mp4,3692405.mp4,3692391.mp4,3692398.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "ru-RU": {
+        hlang: "ru-RU",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692414.mp4,3692421.mp4,3692407.mp4,3692393.mp4,3692400.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+      "ar-SA": {
+        hlang: "ar-SA",
+        url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692413.mp4,3692420.mp4,3692406.mp4,3692392.mp4,3692399.mp4,.urlset/manifest.mpd",
+        quality: "adaptive",
+      },
+    },
+    session: {
+      renewSeconds: 270,
+      noNetworkRetryIntervalSeconds: 30,
+      noNetworkTimeoutSeconds: 370,
+      maximumPauseSeconds: 900,
+      sessionExpirationSeconds: 21600,
+    },
+    subtitles: {
+      "en-US": {
+        format: "ass",
+        language: "en-US",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212679.txt",
+      },
+      "de-DE": {
+        format: "ass",
+        language: "de-DE",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212687.txt",
+      },
+      "es-419": {
+        format: "ass",
+        language: "es-419",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212680.txt",
+      },
+      "es-ES": {
+        format: "ass",
+        language: "es-ES",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212681.txt",
+      },
+      "fr-FR": {
+        format: "ass",
+        language: "fr-FR",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212682.txt",
+      },
+      "it-IT": {
+        format: "ass",
+        language: "it-IT",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212688.txt",
+      },
+      "pt-BR": {
+        format: "ass",
+        language: "pt-BR",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212683.txt",
+      },
+      "ru-RU": {
+        format: "ass",
+        language: "ru-RU",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212685.txt",
+      },
+      "ar-SA": {
+        format: "ass",
+        language: "ar-SA",
+        url: "https://v.vrv.co/evs3/490d785df6fd43208416525a3b4287f6/assets/ff40b060c7dfe6d7cf0f71d3438032a7_212684.txt",
+      },
+    },
+    token: "2d2972b4-cf83-4b86-9a8f-e830dd154430",
+    url: "https://cr-play-service.prd.crunchyrollsvc.com/v1/manifest/G63K39W46/evs3/490d785df6fd43208416525a3b4287f6/assets/p/ff40b060c7dfe6d7cf0f71d3438032a7_,3692370.mp4,3692371.mp4,3692369.mp4,3692367.mp4,3692368.mp4,.urlset/manifest.mpd",
+    versions: [
       {
-        vo_drm_adaptive_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/manifest.mpd",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/manifest.mpd",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/manifest.mpd",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/manifest.mpd",
-          },
-        },
-        adaptive_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/manifest.mpd",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/manifest.mpd",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/manifest.mpd",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/manifest.mpd",
-          },
-        },
-        download_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649265.mp4,3649266.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-        },
-        download_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649265.mp4,3649266.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-        },
-        drm_adaptive_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/master.m3u8",
-          },
-        },
-        drm_download_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649265.mp4,3649266.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-        },
-        urls: { "": { hardsub_locale: "", url: "" } },
-        vo_adaptive_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/manifest.mpd",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/manifest.mpd",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/manifest.mpd",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/manifest.mpd",
-          },
-        },
-        adaptive_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/master.m3u8",
-          },
-        },
-        drm_adaptive_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/manifest.mpd",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/manifest.mpd",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/manifest.mpd",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/manifest.mpd",
-          },
-        },
-        drm_multitrack_adaptive_hls_v2: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,208734.txt,.urlset/master.m3u8",
-          },
-        },
-        multitrack_adaptive_hls_v2: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,208734.txt,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://pl.crunchyroll.com/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,208734.txt,.urlset/master.m3u8",
-          },
-        },
-        drm_download_dash: {
-          "": {
-            hardsub_locale: "",
-            url: "https://pl.crunchyroll.com/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649265.mp4,3649266.mp4,3649263.mp4,3649264.mp4,.urlset/manifest.mpd",
-          },
-        },
-        vo_adaptive_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/master.m3u8",
-          },
-        },
-        vo_drm_adaptive_hls: {
-          "": {
-            hardsub_locale: "",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649266.mp4,3649267.mp4,3649265.mp4,3649263.mp4,3649264.mp4,.urlset/master.m3u8",
-          },
-          "de-DE": {
-            hardsub_locale: "de-DE",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183028.mp4,4183029.mp4,4183027.mp4,4183026.mp4,4183025.mp4,.urlset/master.m3u8",
-          },
-          "en-US": {
-            hardsub_locale: "en-US",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,3649292.mp4,3649294.mp4,3649290.mp4,3649286.mp4,3649288.mp4,.urlset/master.m3u8",
-          },
-          "fr-FR": {
-            hardsub_locale: "fr-FR",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4183860.mp4,4183861.mp4,4183859.mp4,4183858.mp4,4183857.mp4,.urlset/master.m3u8",
-          },
-          "ru-RU": {
-            hardsub_locale: "ru-RU",
-            url: "https://v.vrv.co/evs3/035452e1c54f3d5a585ada40d51ad7c2/assets/p/778fa7fb69bd5fee895f433654a5690b_,4184778.mp4,4184779.mp4,4184777.mp4,4184776.mp4,4184775.mp4,.urlset/master.m3u8",
-          },
-        },
+        audio_locale: "ja-JP",
+        guid: "G63K39W46",
+        is_premium_only: false,
+        media_guid: "G1QF4K91J",
+        original: true,
+        season_guid: "GR79GK406",
+        variant: "",
+      },
+      {
+        audio_locale: "en-US",
+        guid: "G14U4E83J",
+        is_premium_only: false,
+        media_guid: "GKKF347Z2",
+        original: false,
+        season_guid: "GYX0C4DGQ",
+        variant: "",
+      },
+      {
+        audio_locale: "de-DE",
+        guid: "G624308EY",
+        is_premium_only: false,
+        media_guid: "GJKF24VP7",
+        original: false,
+        season_guid: "GYP5K34DY",
+        variant: "",
+      },
+      {
+        audio_locale: "es-419",
+        guid: "GZ7UV7QW4",
+        is_premium_only: false,
+        media_guid: "G5JFZ2K85",
+        original: false,
+        season_guid: "GR2PCVZN5",
+        variant: "",
+      },
+      {
+        audio_locale: "es-ES",
+        guid: "G0DUN85ZJ",
+        is_premium_only: true,
+        media_guid: "G9XFE314G",
+        original: false,
+        season_guid: "GY19CPW0X",
+        variant: "",
+      },
+      {
+        audio_locale: "fr-FR",
+        guid: "G6XM7MGKR",
+        is_premium_only: false,
+        media_guid: "G9XFEW01V",
+        original: false,
+        season_guid: "GR9XGX1EY",
+        variant: "",
+      },
+      {
+        audio_locale: "it-IT",
+        guid: "GG1U284Z5",
+        is_premium_only: true,
+        media_guid: "G71F4QMJ2",
+        original: false,
+        season_guid: "GRWEC3534",
+        variant: "",
+      },
+      {
+        audio_locale: "pt-BR",
+        guid: "G50UZ2K3V",
+        is_premium_only: false,
+        media_guid: "G07FN3GEK",
+        original: false,
+        season_guid: "GY8VCP97W",
+        variant: "",
+      },
+      {
+        audio_locale: "ar-SA",
+        guid: "GQJUG24D0",
+        is_premium_only: true,
+        media_guid: "GGVF2G7M5",
+        original: false,
+        season_guid: "GYNQCJP5M",
+        variant: "",
       },
     ],
-    meta: {
-      media_id: "G8MFNKW40",
-      subtitles: {
-        "de-DE": {
-          format: "ass",
-          locale: "de-DE",
-          url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_261230.txt",
-        },
-        "en-US": {
-          format: "ass",
-          locale: "en-US",
-          url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_208734.txt",
-        },
-        "fr-FR": {
-          format: "ass",
-          locale: "fr-FR",
-          url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_261265.txt",
-        },
-        "ru-RU": {
-          format: "ass",
-          locale: "ru-RU",
-          url: "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_261416.txt",
-        },
-      },
-      captions: {},
-      audio_locale: "ja-JP",
-      closed_captions: {},
-      bifs: [
-        "https://v.vrv.co/evs3/d53a440834f2f87549a567a6a0e1a114/assets/778fa7fb69bd5fee895f433654a5690b_bif.bif",
-      ],
-      versions: [
-        {
-          audio_locale: "ja-JP",
-          guid: "GRG5JD92R",
-          is_premium_only: true,
-          media_guid: "G8MFNKW40",
-          original: true,
-          season_guid: "GRW4JP20Y",
-          variant: "",
-        },
-        {
-          audio_locale: "fr-FR",
-          guid: "GK9U38KMV",
-          is_premium_only: true,
-          media_guid: "G3WFX74WK",
-          original: false,
-          season_guid: "GY2PCV2P2",
-          variant: "",
-        },
-        {
-          audio_locale: "ru-RU",
-          guid: "G2XU057M2",
-          is_premium_only: true,
-          media_guid: "GDVFV2M1N",
-          original: false,
-          season_guid: "GR5VCD239",
-          variant: "",
-        },
-      ],
-    },
   };
 });
 

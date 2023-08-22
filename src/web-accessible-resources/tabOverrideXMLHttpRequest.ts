@@ -76,7 +76,10 @@ export default class TabOverrideXMLHttpRequest {
               match = url2.match(regexApiVideoStreams);
               if (match) {
                 tabOverrideXMLHttpRequest
-                  .handleVideoStreamsInPageWatch(data)
+                  .handleVideoStreamsInPageWatch(
+                    data,
+                    new urlAPI(match, authorization)
+                  )
                   .then((videoStreams) => {
                     Object.defineProperty(_this, "responseText", {
                       value: JSON.stringify(videoStreams),
@@ -141,11 +144,11 @@ export default class TabOverrideXMLHttpRequest {
   }
 
   private async handleVideoStreamsInPageWatch(
-    videoStreams: videoStreams
+    videoStreams: videoStreams,
+    urlAPI: urlAPI
   ): Promise<videoStreams> {
     const currentEpisode: panel =
       await this.saveService.waitForCurrentEpisode();
-    const urlAPI: urlAPI = await this.saveService.waitForUrlAPI();
     return await this.proxyService.addVideoStreamsFromOtherLanguages(
       videoStreams,
       urlAPI,

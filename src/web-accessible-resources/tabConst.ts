@@ -295,49 +295,42 @@ export type streamInfo = {
 };
 
 export type videoStreams = {
-  total: number;
-  data: [
-    {
-      vo_adaptive_dash: streamInfo;
-      multitrack_adaptive_hls_v2: streamInfo;
-      adaptive_hls: streamInfo;
-      download_dash: streamInfo;
-      drm_download_hls: streamInfo;
-      vo_drm_adaptive_hls: streamInfo;
-      adaptive_dash: streamInfo;
-      drm_download_dash: streamInfo;
-      drm_multitrack_adaptive_hls_v2: streamInfo;
-      vo_drm_adaptive_dash: streamInfo;
-      drm_adaptive_dash: streamInfo;
-      drm_adaptive_hls: streamInfo;
-      urls: streamInfo;
-      vo_adaptive_hls: streamInfo;
-      download_hls: streamInfo;
-    }
-  ];
-  meta: {
-    closed_captions: {};
-    media_id: string;
-    bifs: string[];
-    versions: {
-      audio_locale: string;
-      guid: string;
-      is_premium_only: boolean;
-      media_guid: string;
-      original: boolean;
-      season_guid: string;
-      variant: string;
-    }[];
-    captions: {};
-    audio_locale: string;
-    subtitles: {
-      [subtitleLocale: string]: {
-        locale: subtitleLocales;
-        url: string;
-        format: string;
-      };
+  audioLocale: languages;
+  bifs: string;
+  burnedInLocale: string;
+  captions: {};
+  hardSubs: {
+    [subtitleLocale: string]: {
+      hlang: subtitleLocales;
+      url: string;
+      quality: string;
     };
   };
+  session: {
+    renewSeconds: number;
+    noNetworkRetryIntervalSeconds: number;
+    noNetworkTimeoutSeconds: number;
+    maximumPauseSeconds: number;
+    sessionExpirationSeconds: number;
+  };
+  subtitles: {
+    [subtitleLocale: string]: {
+      format: string;
+      language: subtitleLocales;
+      url: string;
+    };
+  };
+  token: string;
+  url: string;
+  versions: {
+    audio_locale: languages;
+    guid: string;
+    is_premium_only: boolean;
+    media_guid: string;
+    original: boolean;
+    season_guid: string;
+    variant: string;
+  }[];
 };
 
 export type supported = subtitleLocales[];
@@ -393,7 +386,7 @@ export const regexApiSeasons =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>series\/[A-Z0-9]{9}\/seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiVideoStreams =
-  /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>videos\/[A-Z0-9]{9}\/streams\?)(?<extraInfos>.*)$/;
+  /^(?<host>https:\/\/cr-play-service\.prd\.crunchyrollsvc\.com)(?<baseUrl>\/v1\/)(?<apiPath>[A-Z0-9]{9}\/\w+\/\w+\/play)(?<extraInfos>\?.*)?$/;
 
 export const seriesGroups: string[][] = [
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan

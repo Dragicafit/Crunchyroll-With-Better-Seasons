@@ -71,35 +71,25 @@ export default class ProxyService {
       return videoStreams;
     }
     for (const version of currentEpisode.episode_metadata.versions) {
-      if (version.audio_locale != "ja-JP" || version.media_guid == null) {
+      if (version.audio_locale != "ja-JP" || version.guid == null) {
         continue;
       }
-      const urlVideoStreams: string = `${urlAPI.getHost()}/content/v2/cms/videos/${
-        version.media_guid
-      }/streams?${urlAPI.getExtraInfos()}`;
+      const urlVideoStreams: string = `${urlAPI.getHost()}${urlAPI.getBaseUrl()}${
+        version.guid
+      }${urlAPI.getApiPath().substring(9)}?${urlAPI.getExtraInfos()}`;
       const otherVideoStreams: videoStreams =
         await this.requestService.fetchJson(
           urlVideoStreams,
           urlAPI.getAuthorization()
         );
-      for (const otherSubtitle of Object.values(
-        otherVideoStreams.meta.subtitles
-      )) {
-        otherSubtitle.locale = <any>(otherSubtitle.locale + "SUB");
-        videoStreams.meta.subtitles[otherSubtitle.locale] = otherSubtitle;
+      for (const otherHardSubs of Object.values(otherVideoStreams.hardSubs)) {
+        otherHardSubs.hlang = <any>(otherHardSubs.hlang + "SUB");
+        videoStreams.hardSubs[otherHardSubs.hlang] = otherHardSubs;
       }
-      for (const [otherStream, otherStreamInfo] of Object.entries(
-        otherVideoStreams.data[0]
-      ))
-        for (const otherSubtitle of Object.values(otherStreamInfo)) {
-          if (otherSubtitle.hardsub_locale === "") continue;
-          otherSubtitle.hardsub_locale = <any>(
-            (otherSubtitle.hardsub_locale + "SUB")
-          );
-          (<any>videoStreams.data[0])[otherStream][
-            otherSubtitle.hardsub_locale
-          ] = otherSubtitle;
-        }
+      for (const otherSubtitle of Object.values(otherVideoStreams.subtitles)) {
+        otherSubtitle.language = <any>(otherSubtitle.language + "SUB");
+        videoStreams.subtitles[otherSubtitle.language] = otherSubtitle;
+      }
     }
     console.log("videoStreams", videoStreams);
     return videoStreams;
