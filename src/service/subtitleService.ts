@@ -7,13 +7,13 @@ import {
   supportedFallbacks,
 } from "../web-accessible-resources/tabConst";
 
-const regexSupported = /(JSON\.parse\(')(\[".*?"\])('\))/;
-const regexSupportedFallbacks = /(,\$u=JSON\.parse\(')(\{".*?"\]\})('\))/;
+const regexSupported = /(JSON\.parse\(')(\["\w{2}(?:-\w+){0,3}",[-\w",]*?fr-FR[-\w",]*?\])('\))/;
+const regexSupportedFallbacks = /(JSON\.parse\(')(\{"\w{2}(?:-\w+){0,3}":\["\w{2}(?:-\w+){0,3}"[-\w",\[\]:]*"\]\})('\))/;
 const regexSupportedFallbacks2 =
-  /(\d+:e=>\{"use strict";e\.exports=JSON\.parse\(')(\{"default":\[.*?"\]\})('\)\})/;
-const regexMapping = /(JSON\.parse\(')(\{"Wp":\{".*?"\}\}\})('\))/;
+  /(JSON\.parse\(')(\{"default":\["\w{2}(?:-\w+){0,3}"\],"\w{2}(?:-\w+){0,3}":\[[-\w",:\[\]]*?"\]\})('\))/;
+const regexMapping = /(JSON\.parse\(')(\{"Wp":\{"\w+":\{"to":"\w{2}(?:-\w+){0,3}","desc":".*?"\}\}\})('\))/;
 const regexLocaleToDisplay =
-  /(\$u=JSON\.parse\('.*?[^\w]\w\w=JSON\.parse\(')(\{".*?,"":""\})('\))/;
+  /(JSON\.parse\(')(\{"\w{2}(?:-\w+){0,3}":"[^{}]*?,"":""\})('\))/;
 const regexLocaleToDisplay2 =
   /(\d+:e=>\{"use strict";e\.exports=JSON\.parse\(')(\{"en-US":".*?"\})('\)\})/;
 
