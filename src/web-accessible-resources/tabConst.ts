@@ -386,7 +386,7 @@ export const regexApiSeasons =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>series\/[A-Z0-9]{9}\/seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiVideoStreams =
-  /^(?<host>https:\/\/((beta(-api)?|www|cr-play-service\.prd)\.)?crunchyroll(svc)?\.com)(?<baseUrl>(\/playback)?\/v1\/)(?<apiPath>[A-Z0-9]{9}\/\w+\/\w+\/play)(?<extraInfos>\?.*)?$/;
+  /^(?<host>https:\/\/((beta(-api)?|www|cr-play-service\.prd)\.)?crunchyroll(svc)?\.com)(?<baseUrl>(\/playback)?\/(v1|v2)\/)(?<apiPath>[A-Z0-9]{9}\/\w+\/\w+\/play)(?<extraInfos>\?.*)?$/;
 
 export const seriesGroups: string[][] = [
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan
