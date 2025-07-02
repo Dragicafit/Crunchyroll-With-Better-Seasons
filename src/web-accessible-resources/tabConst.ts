@@ -295,29 +295,35 @@ export type streamInfo = {
 };
 
 export type videoStreams = {
+  assetId: string;
   audioLocale: languages;
+  audioRole: string;
   bifs: string;
   burnedInLocale: string;
   captions: {};
   hardSubs: {
     [subtitleLocale: string]: {
-      hlang: subtitleLocales;
+      hlang: subtitleLocales | "none";
       url: string;
       quality: string;
     };
   };
+  playbackType: string;
   session: {
     renewSeconds: number;
+    noNetworkRetryCount: number;
     noNetworkRetryIntervalSeconds: number;
     noNetworkTimeoutSeconds: number;
+    endOfVideoUnloadSeconds: number;
     maximumPauseSeconds: number;
     sessionExpirationSeconds: number;
+    usesStreamLimits: boolean;
   };
   subtitles: {
     [subtitleLocale: string]: {
-      format: string;
-      language: subtitleLocales;
-      url: string;
+      format?: string;
+      language: subtitleLocales | "none";
+      url?: string;
     };
   };
   token: string;
@@ -328,6 +334,7 @@ export type videoStreams = {
     is_premium_only: boolean;
     media_guid: string;
     original: boolean;
+    roles: string[];
     season_guid: string;
     variant: string;
   }[];
@@ -386,7 +393,7 @@ export const regexApiSeasons =
   /^(?<host>https:\/\/((beta(-api)?|www)\.)?crunchyroll\.com)(?<baseUrl>\/content\/v2\/cms\/)(?<apiPath>series\/[A-Z0-9]{9}\/seasons\?)(?<extraInfos>.*)$/;
 
 export const regexApiVideoStreams =
-  /^(?<host>https:\/\/((beta(-api)?|www|cr-play-service\.prd)\.)?crunchyroll(svc)?\.com)(?<baseUrl>(\/playback)?\/(v1|v2)\/)(?<apiPath>[A-Z0-9]{9}\/\w+\/\w+\/play)(?<extraInfos>\?.*)?$/;
+  /^(?<host>https:\/\/((beta(-api)?|www|cr-play-service\.prd)\.)?crunchyroll(svc)?\.com)(?<baseUrl>(\/playback)?\/v\d+\/)(?<apiPath>[A-Z0-9]{9}\/\w+\/\w+\/play)(?<extraInfos>\?.*)?$/;
 
 export const seriesGroups: string[][] = [
   ["GR751KNZY", "G24H1NM05"], // Attack on Titan
